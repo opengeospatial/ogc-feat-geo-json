@@ -211,6 +211,7 @@ The following people support this proposal and are committed to the Charter and 
 |Ignacio Correas |Skymantics 
 |Paul Birkel |
 |Gabriella Wiersma |Geonovum
+|Jeff Harrison| US Army Geospatial Center (AGC)
 |===
 
 === Conveners
