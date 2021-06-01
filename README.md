@@ -40,7 +40,7 @@ Most all work on the specification takes place in [GitHub issues](https://github
 so browse there to get a good idea of what is happening, as well as past decisions.
 
 <!---
-Join the [![chat at https://gitter.im/opengeospatial/OGC-feat-geo-json](https://badges.gitter.im/opengeospatial/OGC-feat-geo-json.svg)](https://gitter.im/opengeospatial/OGC-feat-geo-json?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Join the [![chat at https://gitter.im/opengeospatial/OGC-feat-geo-json](https://badges.gitter.im/opengeospatial/OGC-feat-geo-json.svg)](https://gitter.im/opengeospatial/OGC-feat-geo-json?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Join the chat at https://gitter.im/opengeospatial/ogc-feat-geo-json](https://badges.gitter.im/opengeospatial/ogc-feat-geo-json.svg)](https://gitter.im/opengeospatial/ogc-feat-geo-json?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 --->
 
 ## Contributing
