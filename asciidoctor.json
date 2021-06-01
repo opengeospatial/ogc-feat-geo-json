@@ -1,0 +1,17 @@
+{
+        "0":  {
+                "OGC_doc_number": "21-045",
+                "urn":"http://www.opengis.net/doc/IS/feat-geo-json-1/1.0",
+                "title":"OGC Features and Geometries JSON - Part 1: Core",
+                "path":"core/21-045.adoc",
+                "options": ["--trace"],
+                "a":[
+                        "data-uri",
+                        "stylesdir=./resources/stylesheets",
+                        "dot=/usr/bin/dot"
+                ],
+                "r":[
+                        "asciidoctor-diagram"
+                ]
+        }
+}

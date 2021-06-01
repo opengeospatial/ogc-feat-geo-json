@@ -1,0 +1,247 @@
+:Title: OGC Features and Geometries JSON Standards Working Group Charter
+:titletext: {Title}
+:doctype: book
+:encoding: utf-8
+:lang: en
+:toc:
+:toc-placement!:
+:toclevels: 4
+:numbered:
+:sectanchors:
+:source-highlighter: pygments
+
+<<<
+[cols = ">",frame = "none",grid = "none"]
+|===
+|{set:cellbgcolor:#FFFFFF}
+|[big]*Open Geospatial Consortium*
+|Submission Date: 2020-10-29
+|Approval Date: 2021-05-14
+|Internal reference number of this OGC(R) document: 20-086r1
+|Category: OGC(R) Standards Working Group Charter
+|Authors: Clemens Portele, Panagiotis (Peter) Vretanos, Scott Simmons
+|===
+
+[cols = "^", frame = "none"]
+|===
+|[big]*{titletext}*
+|===
+
+[cols = "^", frame = "none", grid = "none"]
+|===
+|*Copyright notice*
+|Copyright (C) 2021 Open Geospatial Consortium
+|To obtain additional rights of use, visit http://www.opengeospatial.org/legal/
+|===
+
+<<<
+
+To: OGC members & interested parties
+
+A new OGC Standards Working Group (SWG) is being formed. The OGC members listed below have proposed the OGC Features and Geometries JSON SWG.  The SWG proposal provided in this document meets the requirements of the OGC Technical Committee (TC) Policies and Procedures.
+
+The SWG name, statement of purpose, scope, list of deliverables, audience, and language specified in the proposal will constitute the SWG's official charter. Technical discussions may occur no sooner than the SWG's first meeting.
+
+This SWG will operate under the OGC IPR Policy. The eligibility requirements for becoming a participant in the SWG at the first meeting (see details below) are that:
+
+* You must be an employee of an OGC member organization or an individual
+member of OGC;
+
+* The OGC member must have signed the OGC Membership agreement;
+
+* You must notify the SWG chair of your intent to participate to the first meeting. Members may do so by logging onto the OGC Portal and navigating to the Observer page and clicking on the link for the SWG they wish to join and;
+
+* You must attend meetings of the SWG. The first meeting of this SWG is at the time and date fixed below. Attendance may be by teleconference.
+
+Of course, participants also may join the SWG at any time. The OGC and the SWG welcomes all interested parties.
+
+Non-OGC members who wish to participate may contact us about joining the OGC. In addition, the public may access some of the resources maintained for each SWG: the SWG public description, the SWG Charter, Change Requests, and public comments, which will be linked from the SWG’s page.
+
+Please feel free to forward this announcement to any other appropriate lists. The OGC is an open standards organization; we encourage your feedback.
+
+== Purpose of the Standards Working Group
+
+The OGC Features and Geometries JSON SWG is chartered to develop a JSON encoding for geospatial feature data. This encoding is intended to build upon the foundational OGC standards (such as Simple Features), be inclusive of other geospatial JSON encodings (such as GeoJSON [<<gj,1>>]), and support content delivery per the OGC API suite of standards. More specifically, OGC Features and Geometries JSON will build on the widely used GeoJSON standard and extend it with minimal extensions to support additional concepts that are important for the wider geospatial community and the OGC API standards.
+
+== Business Value Proposition
+
+JSON as an encoding format for geospatial data is becoming increasingly popular over XML. The light weight, simple syntax, and clear human and machine readability of JSON appeals to developers. GeoJSON has become a very popular encoding, but has significant limitations that prevent broad use in more technical circumstances. At a minimum, a more-inclusive JSON encoding for geospatial feature data should:
+
+* include the ability to use Coordinate Reference Systems (CRSs) other than WGS84,
+* support other non-Euclidean metrics, in particular ellipsoidal metrics,
+* support more geometry types, in particular solids, and
+* provide guidance on how to represent feature properties in JSON consistent with the General Feature Model, e.g., including temporal properties.
+
+In the future OGC Features and Geometries JSON may be extended include more complex geometries such as curves with non-linear interpolation, time-variant geometry, or geometries based on multiple coordinate reference systems.
+
+Given the popularity of GeoJSON, the SWG will ensure that OGC Features and Geometries JSON will be specified as a superset of GeoJSON so that valid GeoJSON is also valid OGC Features and Geometries JSON.
+
+== Scope of Work
+
+OGC Features and Geometries JSON is intended to fulfill a known need in the geospatial and broader communities for a JSON encoding of geospatial feature content that supports capabilities not found in GeoJSON, but which are generally more simple to implement than the OGC Geography Markup Language (GML)[<<gml,2>>]. The OGC Features and Geometries JSON SWG will consider the elements contributing to the Business Value Proposition (above) as general requirements for defining the encoding requirements. The SWG will take on the following work actions.
+
+* Specify requirements for OGC Features and Geometries JSON based on the identified community needs and further consultation with members and users of geospatial data, such as the addition of CRS support.
+
+* Use JSON Schema to specify the syntax of OGC Features and Geometries JSON.
+
+* OGC Features and Geometries JSON will use a core-and-extensions approach. The initial task of the SWG will be the initial version of OGC Features and Geometries JSON and will be restricted to the requirements identified in this charter. If successful, the scope may be extended with tasks to support additional capabilities.
+
+* Leverage profiling requirements identified by the user community or domains to structure the design of the Standard such that profiling of the Standard is done by enumerating the conformance classes required by the community or domain.
+
+* Assess relevance of JSON-LD[<<jl,3>>] to the structure of OGC Features and Geometries JSON.
+
+* Use Sprints and/or Hackathons to help advance the work with realistic testing of the candidate Standard against community requirements.
+
+* Register one or more media types for OGC Features and Geometries JSON with the OGC naming authority.
+
+* Develop and move the candidate Standard through the approval process.
+
+=== Statement of relationship of planned work to the current OGC standards baseline
+
+OGC Features and Geometries JSON will build upon existing OGC Standards and offer capabilities fulfilled in part (or in total) by other standards. The primary difference between this effort and other OGC standards is that OGC Features and Geometries JSON will provide a fundamental, yet flexible, encoding of geographic feature data in JSON.
+
+* Simple Features[<<si1,4>>],[<<si2,5>>]: Simple Features provides a distinct set of geometric objects for describing geospatial feature data. Simple Features also defines the geometry model for most other OGC feature encodings.
+
+* GML[<<gml,2>>]: GML is a comprehensive encoding of features, geometry and topology in XML. GML is quite heavy for simple feature data exchange and specifies an XML encoding for many other geospatial resources that are out-of-scope of this SWG such as coverage data or coordinate reference systems.
+
+* GeoPackage[<<gp,6>>]: GeoPackage defines a container for geospatial data, including feature content. GeoPackage uses SQLite as a storage mechanism.
+
+* KML[<<kml,7>>]: KML is an XML encoding of geographic features focused on its visualization including the control of the user's navigation in the sense of where to go and where to look.
+
+* Abstract Specification Topic 1: Features and Geometry[<<fg,8>>]: OGC Abstract Specification Topic 1 is a comprehensive feature and geometry model from which Simple Features is derived.
+
+* WKT CRS[<<wc,9>>]: The Well Known Text representation of Coordinate Reference Systems offers a standardized way to fully describe CRSs for reference by any spatial data set.
+
+* SensorThings API[<<sta,13>>]: SensorThings provides an open, geospatial-enabled and unified way to interconnect the Internet of Things (IoT) devices, data, and applications over the Web. It supports GeoJSON to encode locations and features of interest.
+
+
+=== What is Out of Scope?
+
+OGC Features and Geometries JSON will not consider encodings beyond JSON.
+
+Compatibility between versions of a standard is important. Revisions of OGC Features and Geometries JSON should avoid breaking existing implementations. Any Change Request that would result in a major revision of OGC Features and Geometries JSON is out-of-scope unless a 75% majority of the SWG members support the change.
+
+Standards are important for interoperability. At the same time, it is important that standards only state requirements that are important for a significantly large group of users. Proposals for new tasks or change requests to an existing standard must identify the user groups that will benefit from the proposal and include the commitment for two independent implementations that will generate JSON in accordance with all proposed changes and for two independent implementations that will consume that JSON.
+
+OGC Features and Geometries JSON is a modular standard. Developing profiles of OGC Features and Geometries JSON as separate standards should not be necessary and is, therefore, out-of-scope for the SWG. If a community has a need to develop a profile, the profile should be specified and governed by that community.
+
+=== Specific Existing Work Used as Starting Point
+
+OGC Features and Geometries JSON will consider GeoJSON as a starting point for a content model and extend the model based on the benefits known from implementations of the Standards from the OGC Standards Baseline referenced above as well as other specifications used for geospatial data encoding and exchange.
+
+The UGAS-2020 Pilot[<<up,10>>] has developed a proposal for a "Features Core Profile", and also developed a JSON Schema encoding rule that supports GeoJSON.
+
+=== Is This a Persistent SWG
+
+[x] YES
+
+[ ] NO
+
+=== When can the SWG be Inactivated
+
+The SWG can be inactivated once the SWG identifies no new tasks for the SWG and there are no open Change Requests.
+
+== Description of deliverables
+
+=== Initial Deliverables
+
+The following deliverables will be the initial results of work of the SWG.
+
+* OGC Features and Geometries JSON Standard.
+
+* Associated implementation guidance for OGC Features and Geometries JSON.
+
+* Any sample code, evidence of implementation, and/or compliance tests that might be developed in parallel to the Standard.
+
+The targeted start date for this SWG is the first quarter of 2021, once the charter is approved. The SWG will aim to deliver an initial release of the candidate standard for review by the end of 2021.
+
+=== Additional SWG Tasks
+
+No specific additional tasks are currently planned for the SWG, although extension to the Standard may be considered in the future.
+
+== IPR Policy for this SWG
+
+[x] RAND-Royalty Free
+
+[ ] RAND for fee
+
+== Anticipated Audience / Participants
+
+This SWG will develop a Standard for general use in the geospatial community and suitable for data exchange beyond this community. Geospatial data providers and software implementers will be interested in assisting with the development of this Standard as well as the output of the SWG.
+
+== Domain Working Group Endorsement
+
+This draft charter has been presented to and endorsed by the Architecture DWG.
+
+== Other informative information about the work of this SWG
+
+=== Collaboration
+
+All work in the Standards Working Group will be public and the SWG solicits contributions and feedback from OGC members and non-OGC members to the extent that is supported by the OGC Technical Committee Policies and Procedures.
+
+The OGC Features and Geometries JSON SWG will collaborate on Standard development using a public GitHub repository and a Gitter channel. Development of the Standard will include the use of Issues and other project tools in GitHub.
+
+=== Similar or Applicable Standards Work (OGC and Elsewhere)
+
+GeoJSON is clearly related to this work and is planned to be a valid profile of the resulting OGC Standard.
+
+GeoJSON-T [<<gjt,11>>] extends GeoJSON by adding a "when" foreign member, either at the level of Feature or for individual geometries within a GeometryCollection.
+
+Linked Places format [<<lp,12>>] is GeoJSON and JSON-LD compatible. It also supports "when" elements, not only at Feature level and in geometries, but within a set of recognized properties ("names", "types", "relations"). This permits the temporal scoping of those attributes of places.
+
+=== Details of first meeting
+
+The first meeting of the SWG will occur within four weeks of approval of the SWG charter.
+
+=== Projected on-going meeting schedule
+
+The work of this SWG will be carried out primarily on GitHub and via email, web conferences / calls, and at face-to-face sessions at OGC Member Meetings as agreed to by the SWG members. The web conferences / calls will be scheduled as needed and posted to the OGC portal. Voting on OGC Features and Geometries JSON content will be limited to SWG members only.
+
+=== Supporters of this Charter
+
+The following people support this proposal and are committed to the Charter and projected meeting schedule. These members are known as SWG Founding or Charter members. The charter members agree to the SoW and IPR terms as defined in this charter. The charter members have voting rights beginning the day the SWG is officially formed. Charter Members are shown on the public SWG page.
+
+|===
+|Name |Organization
+
+|Clemens Portele |interactive instruments
+|Panagiotis (Peter) A. Vretanos |CubeWerx Inc.
+|Howard Butler |Hobu
+|Carsten Rönsdorf |Ordnance Survey
+|Ignacio Correas |Skymantics 
+|Paul Birkel |
+|Gabriella Wiersma |Geonovum
+|===
+
+=== Conveners
+
+Clemens Portele, Panagiotis (Peter) A. Vretanos
+
+[bibliography]
+== References
+
+- [[[gj,1]]] IETF: IETF RFC 7946, The GeoJSON Format, 2016
+
+- [[[gml,2]]] OGC: OGC 07-036r1, OpenGIS Geography Markup Language (GML) Encoding Standard 3.2.2, 2016
+
+- [[[jl,3]]] W3C: JSON-LD A JSON-based Serialization for Linked Data, 2020
+
+- [[[si1,4]]] OGC: OGC 06-103r4, OpenGIS Implementation Standard for Geographic information - Simple feature access - Part 1: Common architecture, 2011
+
+- [[[si2,5]]] OGC: OGC 06-104r4, OpenGIS Implementation Standard for Geographic information - Simple feature access - Part 2: SQL option, 2010
+
+- [[[gp,6]]] OGC: OGC 12-128r15, OGC GeoPackage Encoding Standard, 2018
+
+- [[[kml,7]]] OGC: OGC 12-007r2, OGC KML 2.3, 2015
+
+- [[[fg,8]]] OGC: OGC 17-087r13, OGC Abstract Specification Topic 1 Features and geometry – Part 1: Feature models, 2020
+
+- [[[wc,9]]] OGC: OGC 18-010r7, Geographic information — Well-known text representation of coordinate reference systems, 2019
+
+- [[[up,10]]] OGC: OGC 20-012, UML-to-GML Application Schema Pilot (UGAS-2020) Engineering Report, 2020
+
+- [[[gjt,11]]] GeoJSON-T (https://github.com/kgeographer/geojson-t)
+
+- [[[lp,12]]] Linked Places format (https://github.com/LinkedPasts/linked-places)
+
+- [[[sta,13]]] OGC: OGC 15-076r6, OGC SensorThings API - Part 1: Sensing, 2016
