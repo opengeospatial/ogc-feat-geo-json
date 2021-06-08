@@ -21,7 +21,7 @@
 |External identifier of this OGC(R) document: http://www.opengis.net/doc/IS/{standard}/{m.n}
 |Internal reference number of this OGC(R) document:    21-045
 |Version: 0.0
-|Category: OGC(R) <Implementation Standard / Abstract Specification / Best Practice>
+|Category: OGC(R) Implementation Standard
 |Editor:   <Name(s) of Editor or Editors>
 |===
 
@@ -33,7 +33,7 @@
 [cols = "^", frame = "none", grid = "none"]
 |===
 |*Copyright notice*
-|Copyright (C) <year> Open Geospatial Consortium
+|Copyright (C) 2021 Open Geospatial Consortium
 |To obtain additional rights of use, visit http://www.opengeospatial.org/legal/
 |===
 
@@ -48,7 +48,7 @@ Recipients of this document are invited to submit, with their comments, notifica
 
 [width = "50%", grid = "none"]
 |===
-|Document type:   	OGC® <Standard/Abstract Specification/Best Practice>
+|Document type:   	OGC® Standard
 |Document subtype:   	if applicable
 |Document stage:   	Draft
 |Document language: 	English
