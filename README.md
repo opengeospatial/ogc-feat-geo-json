@@ -36,10 +36,10 @@ If the first part of the standard sees good adoption by the market, OGC Features
 
 ## Communication
 
-Most all work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/ogcapi-features/issues),
+Most all work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/ogc-feat-geo-json/issues),
 so browse there to get a good idea of what is happening, as well as past decisions.
 
-Join the [![chat at https://gitter.im/opengeospatial/OGC-feat-geo-json](https://badges.gitter.im/opengeospatial/OGC-feat-geo-json.svg)](https://gitter.im/opengeospatial/OGC-feat-geo-json?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+Join the [![chat at https://gitter.im/opengeospatial/OGC-feat-geo-json](https://badges.gitter.im/opengeospatial/OGC-feat-geo-json.svg)](https://gitter.im/opengeospatial/ogc-feat-geo-json?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Contributing
 
@@ -47,8 +47,8 @@ The contributor understands that any contributions, if accepted by the OGC Membe
 
 The OGC Features and Geometries JSON Standards Working Group (SWG) is the group at OGC responsible for the stewardship of the standard, but is working to do as much work in public as possible.
 
-* [Open issues](https://github.com/opengeospatial/OGC-feat-geo-json/issues)
-* [Copy of License Language](https://raw.githubusercontent.com/opengeospatial/OGC-feat-geo-json/master/LICENSE)
+* [Open issues](https://github.com/opengeospatial/ogc-feat-geo-json/issues)
+* [Copy of License Language](https://raw.githubusercontent.com/opengeospatial/ogc-feat-geo-json/master/LICENSE)
 
 For more information, see [CONTRIBUTING.md](CONTRIBUTING.md).
 

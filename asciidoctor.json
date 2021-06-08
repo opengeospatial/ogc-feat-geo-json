@@ -13,5 +13,20 @@
                 "r":[
                         "asciidoctor-diagram"
                 ]
+        },
+        "1":  {
+                "OGC_doc_number": "21-048",
+                "urn":"http://www.opengis.net/doc/dp/feat-geo-json/1.0",
+                "title":"OGC Features and Geometries JSON Guide",
+                "path":"guide/21-048.adoc",
+                "options": ["--trace"],
+                "a":[
+                        "data-uri",
+                        "stylesdir=./resources/stylesheets",
+                        "dot=/usr/bin/dot"
+                ],
+                "r":[
+                        "asciidoctor-diagram"
+                ]
         }
 }
