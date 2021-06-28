@@ -1,0 +1,21 @@
+= Title
+
+Version: x.y.z (initial version should be "0.1.0" with y increasing for technical changes and x increasing with editorial changes or fixes)
+
+== Overview
+
+A summary of the proposed capability. Describe design considerations.
+
+== Examples
+
+Provide JSON examples for all aspects of the proposal.
+
+== Description
+
+Describe the elements.
+
+Provide a JSON schema of the elements (as JSON or YAML).
+
+== Discussion, Alternatives, References
+
+Additional comments and/or alternative encodings. Add links to material that provides background information or was used as inspiration.
