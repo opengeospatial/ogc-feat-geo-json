@@ -1,6 +1,6 @@
 = Encoding a temporal extent
 
-Version: 0.1.0
+Version: 0.2.0
 
 == Overview
 
@@ -74,7 +74,16 @@ More complex cases and other temporal coordinate reference systems are out-of-sc
 
 == Description
 
-The temporal extent is specified in a `when` member of the feature object. The value of `when` is an object.
+Features can have temporal properties, these will typically be included in the "properties" member.
+
+* In many datasets all temporal properties are instants (a date or a timestamp) and intervals will be described using two temporal instants, one for the start and one for the end.
+* Multiple temporal properties are sometimes used to describe different temporal characteristics of a feature. For example, the time instant or interval when the information in the feature is valid (sometimes called "valid time") and the time when the feature was recorded in the dataset (sometimes called "transaction time"). Another example is the https://www.ogc.org/standards/om[Observations & Measurements standard], where an observation has multiple temporal properties including "phenomenon time", "result time" and "valid time".
+
+This specification does not place constraints on the information in the "properties" member. It specifies a new top-level JSON member in a feature object (key: "when"). The member describes a default temporal extent (an instant or an interval) that can be used by clients without a need to inspect the "properties" member or to understand the schema of the feature. Clients that are familiar with a dataset can, of course, inspect then information in the "properties" member instead of inspecting the "when" member.
+
+It is up to the publisher of the data to decide which temporal feature properties are used in the "when" member.
+
+The value of "when" is an object.
 
 .Properties of the "when" object
 [cols="20,10a,70a",options="header"]
@@ -84,7 +93,7 @@ The temporal extent is specified in a `when` member of the feature object. The v
 |interval |[ string ] |The temporal extent as an interval, an array of two instants. See below for more details about intervals.
 !===
 
-It is valid to include both an instant and an interval. In this case, clients should use the interval and may us the instant to determine the temporal extent of the feature.
+It is valid to include both an instant and an interval, if both values intersect. Clients should use the interval and may us the instant to determine the temporal extent of the feature.
 
 The "when" object may be extended with additional members. Clients processing a "when" object must be prepared to parse additional members. Clients may ignore members that they do not understand. For example, in cases where the "when" member neither includes an "instant" or "interval", a client may process the feature as a feature without a temporal extent.
 
@@ -135,17 +144,28 @@ This describes the initial range of interval values. This range may be extended 
 
 == Discussion, Alternatives, References
 
-The current proposal could be extended with minimal extensions beyond the RFC 3339 timestamps to support additional use cases:
+a. The current proposal could be extended with minimal extensions beyond the RFC 3339 timestamps to support additional use cases:
 
-* Supporting instant values of a year (e.g., "1969") or a month (e.g., "1967-07") in addition to dates and timestamps could useful for extents that cover a complete month or year.
-* Supporting instant values of the proleptic Gregorian calendar (i.e., dates before 1582 including negative years) could be useful for historic information.
+  * Supporting instant values of a year (e.g., "1969") or a month (e.g., "1967-07") in addition to dates and timestamps could useful for extents that cover a complete month or year.
+  * Supporting instant values of the proleptic Gregorian calendar (i.e., dates before 1582 including negative years) could be useful for historic information.
 
-An alternative interval encoding could be to use ISO 8601-1/8601-2 and represent intervals as a string, too, instead of an array. In this case, the value of "interval" would be encoded as:
+b. An alternative interval encoding could be to use ISO 8601-1/8601-2 and represent intervals as a string, too, instead of an array. In this case, the value of "interval" would be encoded as:
 
-* `"1969-07-16/1969-07-24"`
-* `"1969-07-16T05:32:00Z/1969-07-24T16:50:35Z"`
-* `"2019-10-14/.."`
+  * `"1969-07-16/1969-07-24"`
+  * `"1969-07-16T05:32:00Z/1969-07-24T16:50:35Z"`
+  * `"2019-10-14/.."`
 
-The current proposal only specifies the use of "when" in the context of a feature. In general, other contexts could be supported in the future, too. For example, a temporal extent for each geometry in a geometry collection or for properties where the value changes over time.
+c. For timestamps, the current proposal recommends the use of UTC. Should this be more strict, i.e. require UTC ("Z")?
 
-There is an existing initiative for a https://github.com/kgeographer/geojson-t[temporal GeoJSON extension ("GeoJSON-T")]. The proposal also uses "when" as a key, but with a different schema for the "when" object. The GeoJSON-T design supports more complex use cases that go beyond the scope of this proposal. We should either use a different key than "when" or agree an joint approach with the GeoJSON-T author (there should be support for simple instants/intervals as a minimal profile, additional capabilities would then extend that minimal profile - either in a future standard or in other specifications).
+d. ISO 8601 also supports intervals by a duration (a start instant and the duration or the duration and an end instant). Should we allow this, too, or does that make parsing just more complex for clients?
+
+e. The current proposal only specifies the use of "when" in the context of a feature. In general, other contexts could be supported in the future, too. For example, a temporal extent for each geometry in a geometry collection or for properties where the value changes over time.
+
+f. STAC specifies a property https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#datetime[datetime] that is included in the "properties" member. This approach has not been followed for two reasons:
+
+  * Like the feature identifier and the default spatial geometry of a feature, the default temporal extent of a feature should be a "first-class" citizen in the JSON encoding of the feature.
+  * The use of reserved property names might conflict with existing features that include a "datetime" property with a different specification.
+
+g. Just like the STAC "datetime" property, "when" does not provide an indication of the semantics associated with the temporal information. One potential approach to provide hints to clients could be the use of a JSON-LD context to associate the "when" member with a property definition in some vocabulary.
+
+h. There is an existing initiative for a https://github.com/kgeographer/geojson-t[temporal GeoJSON extension ("GeoJSON-T")]. The proposal also uses "when" as a key, but with a different schema for the "when" object. The GeoJSON-T design supports more complex use cases that go beyond the scope of this proposal. We should either use a different key than "when" or agree an joint approach with the GeoJSON-T author (there should be support for simple instants/intervals as a minimal profile, additional capabilities would then extend that minimal profile).
