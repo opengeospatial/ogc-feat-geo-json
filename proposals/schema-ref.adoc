@@ -1,0 +1,376 @@
+= Identifying the schema
+
+Version: 0.1.0
+
+== Overview
+
+A schema is metadata about a JSON document that clients can use to validate the JSON document or to derive additional information about the content of the JSON document, e.g. a textual description of the feature properties or their value range.
+
+The OGC Features API Standards Working Group is working on a [specification in the OGC API Features series](https://github.com/opengeospatial/ogcapi-features/tree/master/proposals/schemas) for using JSON schemas to describe the schema of features. 
+
+This proposal provides guidance on how to include information about the schema of a JSON document that is a single feature or a feature collection. 
+
+== Examples
+
+Examples of a feature / feature collection instance and the associated JSON Schemas:
+
+.Feature instance
+[%collapsible]
+====
+[source,json]
+----
+{
+  "type": "Feature",
+  "links": [
+    {
+      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/items/1?f=json",
+      "rel": "self",
+      "type": "application/geo+json",
+      "title": "This document"
+    },
+    {
+      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/items/1?f=html",
+      "rel": "alternate",
+      "type": "text/html",
+      "title": "This document as HTML"
+    },
+    {
+      "href": "https://demo.ldproxy.net/zoomstack/collections/airports?f=json",
+      "rel": "collection",
+      "type": "application/json",
+      "title": "The collection the feature belongs to"
+    },
+    {
+      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/schema?profile=feature",
+      "rel": "describedby",
+      "type": "application/schema+json",
+      "title": "JSON Schema of this document"
+    }
+  ],
+  "id": 1,
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -1.6930015,
+      60.3216821
+    ]
+  },
+  "properties": {
+    "name": "Papa Stour Airstrip"
+  }
+}
+----
+====
+
+.Feature schema
+[%collapsible]
+====
+[source,json]
+----
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://demo.ldproxy.net/zoomstack/collections/airports/schema?profile=feature",
+  "type": "object",
+  "title": "Airports",
+  "description": "A centre point for all major airports including a name.",
+  "required": [
+    "type",
+    "geometry",
+    "properties"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "Feature"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/link.yaml"
+      }
+    },
+    "geometry": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "https://geojson.org/schema/Point.json"
+        }
+      ]
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        }
+      }
+    }
+  }
+}
+----
+====
+
+.FeatureCollection instance
+[%collapsible]
+====
+[source,json]
+----
+{
+  "type": "FeatureCollection",
+  "links": [
+    {
+      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/items?f=json",
+      "rel": "self",
+      "type": "application/geo+json",
+      "title": "This document"
+    },
+    {
+      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/items?f=html",
+      "rel": "alternate",
+      "type": "text/html",
+      "title": "This document as HTML"
+    },
+    {
+      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/items?f=json&offset=10",
+      "rel": "next",
+      "type": "application/geo+json",
+      "title": "Next page"
+    },
+    {
+      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/schema?profile=collection",
+      "rel": "describedby",
+      "type": "application/schema+json",
+      "title": "JSON Schema of this document"
+    }
+  ],
+  "numberReturned": 10,
+  "timeStamp": "2021-04-09T13:48:44Z",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.6930015,
+          60.3216821
+        ]
+      },
+      "properties": {
+        "name": "Papa Stour Airstrip"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.2922268,
+          59.8782666
+        ]
+      },
+      "properties": {
+        "name": "Sumburgh Airport"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.2439112,
+          60.1917461
+        ]
+      },
+      "properties": {
+        "name": "Tingwall Airport"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.8997054,
+          58.9579609
+        ]
+      },
+      "properties": {
+        "name": "Kirkwall Airport"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.3295079,
+          58.2139012
+        ]
+      },
+      "properties": {
+        "name": "Port-Adhair Steòrnabhaigh/Stornoway Airport"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.0940330,
+          58.4583627
+        ]
+      },
+      "properties": {
+        "name": "Wick John O'Groats Airport"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.3604149,
+          57.4838089
+        ]
+      },
+      "properties": {
+        "name": "Benbecula Airport"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.4485984,
+          57.0255697
+        ]
+      },
+      "properties": {
+        "name": "Barra Airport"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.0493516,
+          57.5431467
+        ]
+      },
+      "properties": {
+        "name": "Inverness Airport"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.2001789,
+          57.2023588
+        ]
+      },
+      "properties": {
+        "name": "Aberdeen International Airport"
+      }
+    }
+  ]
+}
+----
+====
+
+.FeatureCollection schema
+[%collapsible]
+====
+[source,json]
+----
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://demo.ldproxy.net/zoomstack/collections/airports/schema?profile=collection",
+  "required": [
+    "type", 
+    "features"
+  ], 
+  "type": "object", 
+  "properties": {
+    "features": {
+      "items": {
+        "$ref": "https://demo.ldproxy.net/zoomstack/collections/airports/schema?profile=feature"
+      }, 
+      "type": "array"
+    }, 
+    "links": {
+      "items": {
+        "$ref": "http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/link.yaml"
+      }, 
+      "type": "array"
+    }, 
+    "timeStamp": {
+      "$ref": "http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/timeStamp.yaml"
+    }, 
+    "numberReturned": {
+      "$ref": "http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/numberReturned.yaml"
+    }, 
+    "numberMatched": {
+      "$ref": "http://schemas.opengis.net/ogcapi/features/part1/1.0/openapi/schemas/numberMatched.yaml"
+    }, 
+    "type": {
+      "enum": [
+        "FeatureCollection"
+      ], 
+      "type": "string"
+    }
+  }
+}
+----
+====
+
+== Description
+
+The JSON Schema spec https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.9.5[recommends to use a `describedby` link relation to the schema]:
+
+> It is RECOMMENDED that instances described by a schema provide a link to a downloadable JSON Schema using the link relation "describedby", as defined by Linked Data Protocol 1.0, section 8.1.
+
+OGC API Features already specifies a general "links" member with an array of link objects based on https://tools.ietf.org/html/rfc8288[RFC 8288 (Web linking)] and feature responses from APIs implementing OGC API Features will already include a "links" member. The proposal is to build on this approach and include a "describedby" link to a JSON Schema document in the "links" array, if schema information is important for the target users of the JSON feature documents. 
+
+.Link properties
+[cols="20,10,70",options="header"]
+!===
+|Property |Type |Description
+|href |URI |**REQUIRED**. The URI of a JSON Schema document that describes the JSON document that is the link context.
+|rel |String |**REQUIRED**. The link relation type, which is always "describedby" for the link to the JSON Schema document.
+|type |String |**RECOMMENDED**. To indicate that the target of the link is a JSON Schema document, set the value to "application/schema+json".
+|title |String |Include this link attribute for a human readable label of the link, e.g. for use in a derived HTML representation.
+!===
+
+Additional link attributes may be added to the Link object.
+
+== Discussion, Alternatives, References
+
+1. Some environments use a "$schema" member to reference the schema of a JSON document. However, that is not the approach recommended by the JSON Schema specification itself. In JSON Schema, the value of a "$schema" property is always the URI of a meta-schema.
+
+2. The OGC API specification for feature schemas should support at least the following two types of schemas so that they can be referenced from JSON documents retrieved from an API:
+  - the schema of a feature, and
+  - the schema of a feature collection, which is basically a FeatureCollection object that references the feature schema.
+
+3. An open issue is how to declare to clients in a JSON schema that the schema conforms to a specification, say GeoJSON, JSON-FG or a community profile. See https://github.com/opengeospatial/ogc-feat-geo-json/issues/10[#10].
