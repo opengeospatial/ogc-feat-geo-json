@@ -363,6 +363,18 @@ OGC API Features already specifies a general "links" member with an array of lin
 |title |String |Include this link attribute for a human readable label of the link, e.g. for use in a derived HTML representation.
 !===
 
+An example of a link object:
+
+[source,json]
+----
+{
+  "href": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
+  "rel": "describedby",
+  "type": "application/schema+json",
+  "title": "JSON Schema of this document"
+}
+----
+
 Additional link attributes may be added to the Link object.
 
 == Discussion, Alternatives, References
