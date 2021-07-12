@@ -4,7 +4,7 @@ Version: 0.2.0
 
 == Overview
 
-Many features have a spatial geometry that provides information about the location of the feature. In GeoJSON, this information is encoded in the top-level `geometry` member. Features are often associated with temporal information, too. In most cases this is either an instant (e.g., an event) or an interval (e.g., an activity or a temporal validity). In OGC API Features this is reflected in the http://www.opengis.net/doc/IS/ogcapi-features-1/1.0#_parameter_datetime[`datetime` parameter] for temporal filtering of features. 
+Many features have a spatial geometry that provides information about the location of the feature. In GeoJSON, this information is encoded in the top-level "geometry" member. Features are often associated with temporal information, too. In most cases this is either an instant (e.g., an event) or an interval (e.g., an activity or a temporal validity). In OGC API Features this is reflected in the http://www.opengis.net/doc/IS/ogcapi-features-1/1.0#_parameter_datetime[`datetime` parameter] for temporal filtering of features. 
 
 This proposal adds support for the most common case: associating a feature with a single temporal instant or interval in the Gregorian calendar.
 
