@@ -1,6 +1,6 @@
 = Identifying the schema
 
-Version: 0.1.0
+Version: 0.2.0
 
 == Overview
 
@@ -12,7 +12,7 @@ This proposal provides guidance on how to include information about the schema o
 
 == Examples
 
-Examples of a feature / feature collection instance and the associated JSON Schemas:
+Examples of a feature / feature collection instance and the associated JSON Schemas using the OS Open Zoomstack airport feature type:
 
 .Feature instance
 [%collapsible]
@@ -45,6 +45,12 @@ Examples of a feature / feature collection instance and the associated JSON Sche
       "rel": "describedby",
       "type": "application/schema+json",
       "title": "JSON Schema of this document"
+    },
+    {
+      "href":"https://geojson.org/schema/Feature.json",
+      "rel":"describedby",
+      "type":"application/schema+json",
+      "title":"This a document is a GeoJSON Feature"
     }
   ],
   "id": 1,
@@ -62,7 +68,7 @@ Examples of a feature / feature collection instance and the associated JSON Sche
 ----
 ====
 
-.Feature schema
+.Schema of the Zoomstack airport feature type
 [%collapsible]
 ====
 [source,json]
@@ -149,6 +155,12 @@ Examples of a feature / feature collection instance and the associated JSON Sche
       "rel": "describedby",
       "type": "application/schema+json",
       "title": "JSON Schema of this document"
+    },
+    {
+      "href":"https://geojson.org/schema/FeatureCollection.json",
+      "rel":"describedby",
+      "type":"application/schema+json",
+      "title":"This a document is a GeoJSON FeatureCollection"
     }
   ],
   "numberReturned": 10,
@@ -299,7 +311,7 @@ Examples of a feature / feature collection instance and the associated JSON Sche
 ----
 ====
 
-.FeatureCollection schema
+.Schema of this FeatureCollection
 [%collapsible]
 ====
 [source,json]
@@ -359,7 +371,7 @@ OGC API Features already specifies a general "links" member with an array of lin
 |Property |Type |Description
 |href |URI |**REQUIRED**. The URI of a JSON Schema document that describes the JSON document that is the link context.
 |rel |String |**REQUIRED**. The link relation type, which is always "describedby" for the link to the JSON Schema document.
-|type |String |**RECOMMENDED**. To indicate that the target of the link is a JSON Schema document, set the value to "application/schema+json".
+|type |String |**REQUIRED**. To indicate that the target of the link is a JSON Schema document, set the value to "application/schema+json".
 |title |String |Include this link attribute for a human readable label of the link, e.g. for use in a derived HTML representation.
 !===
 
@@ -377,6 +389,12 @@ An example of a link object:
 
 Additional link attributes may be added to the Link object.
 
+Each JSON-FG document is either a feature or a feature collection. 
+
+A feature collection document must contain a link to the JSON-FG feature collection schema at `TODO`. If the document is also a GeoJSON feature collection, it must contain a link to the GeoJSON feature collection schema at `https://geojson.org/schema/FeatureCollection.json`. The document should also contain another link to a schema document that specifies the properties of the features in the collection.
+
+A feature document must contain a link to the JSON-FG feature schema at `TODO`. If the document is also a GeoJSON feature, it must contain a link to the GeoJSON feature schema at `https://geojson.org/schema/Feature.json`. The document should also contain another link to a schema document that specifies the properties of the feature.
+
 == Discussion, Alternatives, References
 
 1. Some environments use a "$schema" member to reference the schema of a JSON document. However, that is not the approach recommended by the JSON Schema specification itself. In JSON Schema, the value of a "$schema" property is always the URI of a meta-schema.
@@ -385,4 +403,12 @@ Additional link attributes may be added to the Link object.
   - the schema of a feature, and
   - the schema of a feature collection, which is basically a FeatureCollection object that references the feature schema.
 
-3. An open issue is how to declare to clients in a JSON schema that the schema conforms to a specification, say GeoJSON, JSON-FG or a community profile. See https://github.com/opengeospatial/ogc-feat-geo-json/issues/10[#10].
+3. The current approach to signal to clients that the instance conforms to GeoJSON and/or JSON-FG is to link to the respective schemas. See the discussion in issue https://github.com/opengeospatial/ogc-feat-geo-json/issues/10[#10]. There are at least two potential issues that should be investigated:
+
+  - The GeoJSON schemas are in draft 07 and not available in the more recent versions 2019-09 or 2020-12. Many parsers seem to have issues mixed schema versions. However, that is less of an issue, if the GeoJSON schemas, the JSON-FG schemas and the API-specific or community schemas are referenced separately and do not reference each other. It will still be an issue, if the schema of a particular feature type wants to reference, for example, the GeoJSON Point schema to constrain the geometries to points.
+  - The status and persistence of the GeoJSON schemas is unclear.
+
++
+If we want to move forward in the current direction, we should contact the GeoJSON maintainers to discuss these topics.
+
+4. The JSON-FG schema documents need to be set up.
