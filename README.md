@@ -41,6 +41,8 @@ so browse there to get a good idea of what is happening, as well as past decisio
 
 Join the [![chat at https://gitter.im/opengeospatial/OGC-feat-geo-json](https://badges.gitter.im/opengeospatial/OGC-feat-geo-json.svg)](https://gitter.im/opengeospatial/ogc-feat-geo-json?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+Recordings of meetings can be found on the [OGC portal](https://portal.ogc.org/index.php?m=projects&a=view&project_id=660&tab=2&artifact_id=97658) (access for members of the OGC and the OGC Features and Geometries JSON Standards Working Group).
+
 ## Contributing
 
 The contributor understands that any contributions, if accepted by the OGC Membership, shall be incorporated into OGC standards documents and that all copyright and intellectual property shall be vested to the OGC.
