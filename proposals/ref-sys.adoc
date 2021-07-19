@@ -44,7 +44,7 @@ The following were taken into account in this proposal:
 
 . Scoping rules
 ** **Consideration**: Do we need to be able to tag reference system information at various levels (i.e. collection level, feature level, value level)?
-** **Decision**: Reference system information for JSON-LD spatio-temporal values will primarily be asserted at the collection-level since it is likely that all values in a document will be in the same reference system.  However, having defined a structure for asserting reference system information at that level, it is a fairly simple matter to reuse the key(s) to assert reference system information at deeper levels (i.e. feature-level or value-level).
+** **Decision**: Reference system information for JSON-FG spatio-temporal values will primarily be asserted at the collection-level since it is likely that all values in a document will be in the same reference system.  However, having defined a structure for asserting reference system information at that level, it is a fairly simple matter to reuse the key(s) to assert reference system information at deeper levels (i.e. feature-level or value-level).
 
 . Specifying reference system information by value or by reference
 ** **Consideration**: Do we need to handle specifying reference system information by reference and by value?
