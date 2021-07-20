@@ -6,13 +6,13 @@ Version: 0.1.0
 == Tl;dr
 
 * Reference system values can be specified as:
-** a <<simple-rs-value,simple URL reference>>,
-** by <<rs-value-byref,reference>> with additional information such as an epoch,
-** by <<rs-value-byvalue,value>>
+** a <<rs-by-simple-ref,simple URL reference>>,
+** by <<rs-by-ref-with-epoch,reference>> with additional information such as an epoch,
+** by <<rs-by-value-proj,value>>
 ** or as an array for a compound reference system.
-* The keys <<ref-systems-schema,`coord-ref-sys`>>, <<ref-systems-schema,`temporal-ref-sys`>> or <<ref-systems-schema,`vertical-ref-sys`>> can be used to assert reference system information at the collection, feature or value levels.
-* The <<sc-value-ref-sys,`value-ref-sys`>> key defines a lookup table that allows reference systems to be asserted for simple JSON-FG values.  Unlike object values, additional properties (i.e. `coord-ref-sys`, `temporal-ref-sys`, vertical-ref-sys`) cannot be added to simple values to assert a reference system.
-* The <<ref-systems-schema,`ref-systems`>> key can be used to declare, at the collection level, a dictionary of reference systems used in the document.  Values from this dictionary can be referenced within the document using the aforementioned <<ref-systems-schema,`coord-ref-sys`>>, <<ref-systems-schema,`temporal-ref-sys`>> or <<ref-systems-schema,`vertical-ref-sys`>> keys and relative URL references/JSON pointer values.
+* The keys <<coord-ref-systems-schema,`coord-ref-sys`>>, <<temporal-ref-systems-schema,`temporal-ref-sys`>> or <<vertical-ref-systems-schema,`vertical-ref-sys`>> can be used to assert reference system information at the collection, feature or value levels.
+* The <<sc-value-ref-sys,`value-ref-sys`>> key defines a lookup table that allows reference systems to be asserted for simple JSON-FG values.  Unlike object values, additional properties (i.e. `coord-ref-sys`, `temporal-ref-sys`, `vertical-ref-sys`) cannot be added to simple values to assert a reference system.
+* The <<ref-systems-dictionary,`ref-systems`>> key can be used to declare, at the collection level, a dictionary of reference systems used in the document.  Values from this dictionary can be referenced within the document using the aforementioned <<coord-ref-systems-schema,`coord-ref-sys`>>, <<temporal-ref-systems-schema,`temporal-ref-sys`>> or <<vertical-ref-systems-schema,`vertical-ref-sys`>> keys and relative URL references/JSON pointer values.
 
 == Overview
 
@@ -146,7 +146,7 @@ The following JSON Schema fragment defines a reference system value:
 ----
 ====
 
-[#simple-rs-reference,reftext='{listing-caption} {counter:listing-num}']
+[#rs-by-simple-ref,reftext='{listing-caption} {counter:listing-num}']
 .A reference system value specified by a simple URL reference
 ====
 [source,json,linenumbers]
@@ -155,7 +155,7 @@ The following JSON Schema fragment defines a reference system value:
 ----
 ====
 
-[#rs-reference-with-epoch,reftext='{listing-caption} {counter:listing-num}']
+[#rs-by-ref-with-epoch,reftext='{listing-caption} {counter:listing-num}']
 .A reference system value specified by reference with an epoch.
 ====
 [source,json,linenumbers]
@@ -211,7 +211,7 @@ The following JSON Schema fragment defines a reference system value:
 ----
 ====
 
-[#coordinate-rs-by-value-proj,reftext='{listing-caption} {counter:listing-num}']
+[#rs-by-value-proj,reftext='{listing-caption} {counter:listing-num}']
 .A coordinate reference system value specified by value using PROJ JSON notation.
 [%collapsible]
 ====
@@ -589,6 +589,7 @@ The `vertical-ref-sys` key is defined for tagging the temporal reference system 
 
 The `vertical-ref-sys` key can be used at the collection, feature and value level to assert a vertical reference system using similar scoping rules to those defined for the `coord-ref-sys` key.
 
+[[ref-systems-dictionary]]
 === Reference systems dictionary
 
 The `ref-systems` key is defined for specifying a dictionary of reference systems used in a JSON-FG document.  The following schema fragment defines the schema of the `ref-systems` key:
