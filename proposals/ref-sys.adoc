@@ -174,7 +174,7 @@ The following JSON Schema fragment defines a reference system value:
 ----
 {
   "valueType": "ogcwkt",
-  "value": "VERTCRS["NAVD88", VDATUM["North American Vertical Datum 1988"], CS[vertical,1], AXIS["gravity-related height (H)",up], LENGTHUNIT["metre",1.0] ]"
+  "value": "VERTCRS[\"NAVD88\", VDATUM[\"North American Vertical Datum 1988\"], CS[vertical,1], AXIS[\"gravity-related height (H)\",up], LENGTHUNIT[\"metre\",1.0]]"
 }
 ----
 ====
@@ -367,7 +367,7 @@ The following JSON Schema fragment defines a reference system value:
   { "href": "http://www.opengis.net/def/crs/EPSG/0/25832" },
   {
     "valueType": "ogcwkt",
-    "VERTCRS["DHHN92 height",VDATUM["Deutsches Haupthoehennetz 1992",ID["EPSG",5181]],CS[vertical,1,ID["EPSG",6499]],AXIS["Gravity-related height (H)",up],LENGTHUNIT["metre",1,ID["EPSG",9001]],ID["EPSG",5783]]"
+    "VERTCRS[\"DHHN92 height\",VDATUM[\"Deutsches Haupthoehennetz 1992\",ID[\"EPSG\",5181]],CS[vertical,1,ID[\"EPSG\",6499]],AXIS[\"Gravity-related height (H)\",up],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",5783]]"
   }
 ]
 ----
