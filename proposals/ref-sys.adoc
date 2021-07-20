@@ -14,6 +14,29 @@ Version: 0.1.0
 * The <<sc-value-ref-sys,`value-ref-sys`>> key defines a lookup table that allows reference systems to be asserted for simple JSON-FG values.  Unlike object values, additional properties (i.e. `coord-ref-sys`, `temporal-ref-sys`, `vertical-ref-sys`) cannot be added to simple values to assert a reference system.
 * The <<ref-systems-dictionary,`ref-systems`>> key can be used to declare, at the collection level, a dictionary of reference systems used in the document.  Values from this dictionary can be referenced within the document using the aforementioned <<coord-ref-systems-schema,`coord-ref-sys`>>, <<temporal-ref-systems-schema,`temporal-ref-sys`>> or <<vertical-ref-systems-schema,`vertical-ref-sys`>> keys and relative URL references/JSON pointer values.
 
+The most common anticipated way that JSON-FG documents will be tagged with CRS information will be at the collection level using a simple URL reference.
+
+[#eighty-percent-example,reftext='{listing-caption} {counter:listing-num}']
+.The most common way of tagging a collection with CRS information.
+====
+[source,json,linenumbers]
+----
+
+{
+  "type": "FeatureCollection",
+  "numberReturned": 10,
+  "numberMatched": 5573,
+  "timeStamp": "2021-07-18T23:00:25Z",
+  "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
+  "features": [ 
+    .
+    .
+    .
+  ]
+}
+----
+====
+
 == Overview
 
 Spatio-temporal objects are usually specified relative to some reference system.
