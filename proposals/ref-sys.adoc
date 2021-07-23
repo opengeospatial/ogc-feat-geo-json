@@ -5,6 +5,14 @@ Version: 0.1.0
 
 == Tl;dr
 
+Without any other information, for a JSON-FG file the defaults are:
+
+* coordinate reference system: CRS84 or CRS84h (if there is a vertical dimension)
+* vertical reference system: whatever the vertical reference system used for CRS84h is (I think it is meters above the ellipsoid).
+* temporal reference system: Gregorian
+
+Otherwise:
+
 * Reference system values can be specified as:
 ** a <<rs-by-simple-ref,simple URL reference>>,
 ** by <<rs-by-ref-with-epoch,reference>> with additional information such as an epoch,
