@@ -66,7 +66,7 @@ The following example is a valid GeoJSON feature and includes a polygon geometry
 ----
 ====
 
-The next example is the same building feature as in <<example_building_geojson>>, but the geometry is a solid in the EPSG CRS with code 5555 (ETRS89/UTM zone 32N with height). The geometry is on the JSON-FG member "where" and the coordinate reference system is declared using the "crs" member from the obsolete GeoJSON spec from 2008 (note: this is temporary and will be updated once a proposal exists for the declaration of the coordinate reference system).
+The next example is the same building feature as in <<example_building_geojson>>, but the geometry is a solid in the EPSG CRS with code 5555 (ETRS89/UTM zone 32N with height). The geometry is on the JSON-FG member "where" and the coordinate reference system is declared using the "coord-ref-sys" member from the [reference systems proposal](ref-sys.adoc).
 
 The example also includes a "when" member to express the default temporal extent (an open interval).
 
@@ -81,16 +81,11 @@ The feature is still a valid GeoJSON feature, but without information about the 
 {
    "type": "Feature",
    "id": "DENW19AL0000giv5BL",
+   "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
    "geometry": null,
    "when": [ "2014-04-24T10:50:18Z", null ],
    "where": {
       "type": "Polyhedron",
-      "crs": {
-         "type": "name",
-         "properties": {
-            "name": "http://www.opengis.net/def/crs/EPSG/0/5555"
-         }
-      },
       "coordinates": [
          [
             [
@@ -292,6 +287,7 @@ It also includes encodes proposed JSON-FG capabilities that go beyond the scope 
 {
    "type": "Feature",
    "id": "DENW19AL0000giv5BL",
+   "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
    "geometry": {
       "type": "Polygon",
       "coordinates": [
@@ -327,12 +323,6 @@ It also includes encodes proposed JSON-FG capabilities that go beyond the scope 
    "when": [ "2014-04-24T10:50:18Z", null ],
    "where": {
       "type": "Polyhedron",
-      "crs": {
-         "type": "name",
-         "properties": {
-            "name": "http://www.opengis.net/def/crs/EPSG/0/5555"
-         }
-      },
       "coordinates": [
          [
             [
@@ -667,4 +657,6 @@ A _multi-polyhedron_ is an array of _polyhedron_ arrays. The order of the polyhe
 
 == Discussion, Alternatives, References
 
-#TODO#
+* Does it make sense in JSON-FG to set "where" to `null` and use "geometry" instead, if the geometry is a valid GeoJSON geometry? Or would it be easier to always use "where" for the geometry?
+
+* Should we also add a 3D geometry that represents a simple solid constructed using an extruded polygon? It would consist of a (horizontal) 2D polygon and separate attributes for the lower and upper limits. How often are such geometries used?
