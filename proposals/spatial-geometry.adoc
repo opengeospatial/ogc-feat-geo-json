@@ -664,3 +664,5 @@ A _multi-polyhedron_ is an array of _polyhedron_ arrays. The order of the polyhe
 * Does it make sense in JSON-FG to set "where" to `null` and use "geometry" instead, if the geometry is a valid GeoJSON geometry? Or would it be easier to always use "where" for the geometry?
 
 * Should we also add a 3D geometry that represents a simple solid constructed using an extruded polygon? It would consist of a (horizontal) 2D polygon and separate attributes for the lower and upper limits. How often are such geometries used?
+
+* TODO: Discuss metrics.
