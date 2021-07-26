@@ -83,7 +83,9 @@ The feature is still a valid GeoJSON feature, but without information about the 
    "id": "DENW19AL0000giv5BL",
    "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
    "geometry": null,
-   "when": [ "2014-04-24T10:50:18Z", null ],
+   "when": { 
+      "interval": [ "2014-04-24T10:50:18Z", null ]
+   },
    "where": {
       "type": "Polyhedron",
       "coordinates": [
@@ -320,7 +322,9 @@ It also includes encodes proposed JSON-FG capabilities that go beyond the scope 
          ]
       ]
    },
-   "when": [ "2014-04-24T10:50:18Z", null ],
+   "when": { 
+      "interval": [ "2014-04-24T10:50:18Z", null ]
+   },
    "where": {
       "type": "Polyhedron",
       "coordinates": [
