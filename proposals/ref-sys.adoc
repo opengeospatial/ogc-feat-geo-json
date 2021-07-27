@@ -65,9 +65,9 @@ The following were taken into account in this proposal:
 ** **Consideration**: To which values in a JSON-FG file should the specified reference systems apply?
 ** **Decision**: The key(s) defined in this proposal only apply to JSON-FG spatio-temporal objects (e.g. `where`, `when`) and any spatio-temporal value in the `properties` section.  So, the herein defined key(s) **don't** apply to any defined GeoJSON spatio-temporal element such as `geometry`.
 
-. Types of reference systems
-** **Consideration**: Do we need to handle various types of reference systems?  Coordinate reference system, temporal reference system, vertical reference system, etc.
-** **Decision**: No.  Since the proposal allows CRS values to be included in-line, any reference system that the encoding format supports can be specified.  Something like OGCWKT or PROJJSON handle geographic, projected, vertical, temporal, etc. coordinate reference systems.
+. Temporal and vertical reference systems.
+** **Consideration**: Do we need to handle temporal and vertical reference systems? 
+** **Decision**: I would say that 80+% of the use cases are probably for geographic or projected coordinate reference systems and we should focus on correctly tagging those in a JSON-FG document.  However, techincally, temporal and vertical reference systems are just coordinate reference systems too and so the proposed CRS mechanism should handle these as well.
 
 . Coordinate order
 ** **Consideration**: GeoJSON, in all its forms, fixes the coordinate order to lon/lat.  To properly handle reference systems, we can't do that.  So ...
