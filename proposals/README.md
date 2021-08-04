@@ -6,6 +6,7 @@ Current proposals:
 
 * [Encoding the temporal extent of a feature](temporal-extent.adoc)
 * [Encoding the spatial geometry of a feature](spatial-geometry.adoc)
+* [Encoding of reference systems](ref-sys.adoc)
 * [Identifying the schema](schema-ref.adoc)
 
 To add a new proposal:
