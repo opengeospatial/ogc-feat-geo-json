@@ -12,7 +12,7 @@ There is a column for each proposal and the value identifies the version of the 
 .Server implementations
 [cols="3h,^2a,^2a,^2a,^2a,^2a",options="header",grid="rows",stripes="hover"]
 |===
-| Product | link:../proposals/spatial-geometry.adoc[Spatial Geometry] | link:../proposals/ref-sys.adoc[Declaring CRSs] | link:../proposals/temporal-extent.adoc[Temporal Extent] | link:../proposals/schema-ref.adoc[Declaring the Schema] | Link to JSON-FG document
+| Product | link:../proposals/spatial-geometry.adoc[Spatial Geometry] | link:../proposals/ref-sys.adoc[Declaring CRSs] | link:../proposals/temporal-extent.adoc[Temporal Extent] | link:../proposals/schema-ref.adoc[Declaring the Schema] | Link to a JSON-FG document
 
 | ldproxy | 0.1.0 | 0.2.0 | 0.1.0 | 0.2.0 | https://t17.ldproxy.net/fns/collections/notam/items?f=jsonfg&crs=http://www.opengis.net/def/crs/EPSG/0/3857[Link]
 
@@ -23,7 +23,7 @@ There is a column for each proposal and the value identifies the version of the 
 .Client implementations
 [cols="3h,^2a,^2a,^2a,^2a,^2a",options="header",grid="rows",stripes="hover"]
 |===
-| Product | link:../proposals/spatial-geometry.adoc[Spatial Geometry] | link:../proposals/ref-sys.adoc[Declaring CRSs] | link:../proposals/temporal-extent.adoc[Temporal Extent] | link:../proposals/schema-ref.adoc[Declaring the Schema] | Link to example, if available
+| Product | link:../proposals/spatial-geometry.adoc[Spatial Geometry] | link:../proposals/ref-sys.adoc[Declaring CRSs] | link:../proposals/temporal-extent.adoc[Temporal Extent] | link:../proposals/schema-ref.adoc[Declaring the Schema] | Link to example or more information, if available
 
 | tbd | - | - | - | - | -
 
