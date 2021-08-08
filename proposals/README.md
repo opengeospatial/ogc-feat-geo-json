@@ -9,6 +9,11 @@ Current proposals:
 * [Encoding of reference systems](ref-sys.adoc)
 * [Identifying the schema](schema-ref.adoc)
 
+Proposals in preparation:
+
+* Identifying the feature type(s)
+* Relationships and Links
+
 To add a new proposal:
 
 * Every proposal should be a single AsciiDoc page based on [TEMPLATE.adoc](Template.adoc). The initial version should be 0.1.0. Add the document in the proposal folder and add a link to the proposal in this README page. This can be in a pull request or as a direct commit to the main branch.
