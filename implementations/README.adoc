@@ -1,0 +1,34 @@
+# Implementations
+
+This page lists software packages that implement [draft JSON-FG proposals](../proposals).
+
+Two types of software packages are distinguished:
+
+* Server implementations are software products that generate JSON-FG documents.
+* Client implementations are software products that read and process JSON-FG documents.
+
+There is a column for each proposal and the value identifies the version of the proposal that has been implemented.
+
+.Server implementations
+[cols="3h,^2a,^2a,^2a,^2a,^2a",options="header",grid="rows",stripes="hover"]
+|===
+| Product | link:../proposals/spatial-geometry.adoc[Spatial Geometry] | link:../proposals/ref-sys.adoc[Declaring CRSs] | link:../proposals/temporal-extent.adoc[Temporal Extent] | link:../proposals/schema-ref.adoc[Declaring the Schema] | Link to JSON-FG document
+
+| ldproxy | 0.1.0 | 0.2.0 | 0.1.0 | 0.2.0 | https://t17.ldproxy.net/fns/collections/notam/items?f=jsonfg&crs=http://www.opengis.net/def/crs/EPSG/0/3857[Link]
+
+| tbd | - | - | - | - | -
+
+|===
+
+.Client implementations
+[cols="3h,^2a,^2a,^2a,^2a,^2a",options="header",grid="rows",stripes="hover"]
+|===
+| Product | link:../proposals/spatial-geometry.adoc[Spatial Geometry] | link:../proposals/ref-sys.adoc[Declaring CRSs] | link:../proposals/temporal-extent.adoc[Temporal Extent] | link:../proposals/schema-ref.adoc[Declaring the Schema] | Link to example, if available
+
+| tbd | - | - | - | - | -
+
+|===
+
+## Contribute
+
+While the work on JSON-FG is in it early stages, if you have a server or client implementation of JSON-FG, we welcome a pull request to update this page to add or update an entry for the product. 
