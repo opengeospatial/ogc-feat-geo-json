@@ -4,10 +4,10 @@ This folder contains proposals for building blocks of OGC Features and Geometrie
 
 Current proposals:
 
-* [Encoding the temporal extent of a feature](temporal-extent.adoc)
-* [Encoding the spatial geometry of a feature](spatial-geometry.adoc)
-* [Encoding of reference systems](ref-sys.adoc)
-* [Identifying the schema](schema-ref.adoc)
+* [Encoding the temporal extent of a feature](temporal-extent.adoc) - issue #11
+* [Encoding the spatial geometry of a feature](spatial-geometry.adoc) - issue #13
+* [Encoding of reference systems](ref-sys.adoc) - issues #14, #3
+* [Identifying the schema](schema-ref.adoc) - issue #12
 
 Proposals in preparation:
 
