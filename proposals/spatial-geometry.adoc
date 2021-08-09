@@ -1,6 +1,6 @@
 = Encoding a spatial geometry
 
-Version: 0.1.0
+Version: 0.1.1
 
 == Overview
 
@@ -521,7 +521,7 @@ The value of the "geometry" member is specified in the GeoJSON standard.
 
 The value range of the "where" member is an extended and extensible version of the value range of the value range of the "geometry" member:
 
-* It is extended by the value options (additional JSON-FG geometry types <<Polyhedron>> and <<MultiPolyhedron>>) as well as by the capabilities to declare the coordinate reference system of the coordinates of the geometry (#TODO: add link once the proposal is available#).
+* It is extended by the value options (additional JSON-FG geometry types <<Polyhedron>> and <<MultiPolyhedron>>) as well as by the capabilities to link:ref-sys.adoc[declare the coordinate reference system of the coordinates of the geometry].
 * It is extensible and future parts of Features and Geometries JSON or community extensions may specify additional members or additional geometry types. JSON-FG readers should be prepared to parse values of "where" that go beyond the schema that is implemented by the reader. Unknown members should be ignored and geometries that include an unknown geometry type should be mapped to `null`.
 
 === Use of "geometry" and/or "where"
@@ -529,6 +529,16 @@ The value range of the "where" member is an extended and extensible version of t
 If the geometry that describes the main geometry of the feature can be represented as a valid GeoJSON geometry (one of the GeoJSON geometry types, in WGS84), it is encoded as the value of the "geometry" member. The "where" member has the value `null`.
 
 If the geometry cannot be represented as a valid GeoJSON geometry, it is encoded as the value of the "where" member. In addition, a valid GeoJSON geometry may be provided in the "geometry" member in the coordinate reference system WGS84 as specified in the GeoJSON standard (otherwise "geometry" is set to `null`). The geometry in "geometry" is a fallback for readers that support GeoJSON, but not JSON-FG. This could be a simplified geometry, like the building footprint in <<example_building>> instead of the solid geometry or the same point/line string/polygon geometry, but in WGS 84 (potentially with less vertices to reduce the file size).
+
+=== Metrics
+
+If the coordinate reference system uses longitude and latitude, clients should perform geometrical computations including computation of length or area should be computed on the curved surface that approximates the earth's surface. Details are provided in John Herring's drafts of "Features and Geometry - Part 2: Metrics".
+
+Note that this differs from GeoJSON which states: 
+
+[quote, GeoJSON (RFC 7946)]
+A line between two positions is a straight Cartesian line, the shortest line between those two points in the coordinate reference system.
+In other words, every point on a line that does not cross the antimeridian between a point (lon0, lat0) and (lon1, lat1) can be calculated as `F(lon, lat) = (lon0 + (lon1 - lon0) * t, lat0 + (lat1 - lat0) * t)` with t being a real number greater than or equal to 0 and smaller than or equal to 1. Note that this line may markedly differ from the geodesic path along the curved surface of the reference ellipsoid.
 
 === Polyhedron
 
@@ -661,8 +671,12 @@ A _multi-polyhedron_ is an array of _polyhedron_ arrays. The order of the polyhe
 
 == Discussion, Alternatives, References
 
-* Does it make sense in JSON-FG to set "where" to `null` and use "geometry" instead, if the geometry is a valid GeoJSON geometry? Or would it be easier to always use "where" for the geometry?
+* Does it make sense in JSON-FG to set "where" to `null` and use "geometry" instead, if the geometry is a valid GeoJSON geometry? Or would it be easier to always use "where" for the geometry? This was discussed in the meeting on 2021-07-26 and after some discussion there was a preference for the first option.
 
-* Should we also add a 3D geometry that represents a simple solid constructed using an extruded polygon? It would consist of a (horizontal) 2D polygon and separate attributes for the lower and upper limits. How often are such geometries used?
+* However, maybe we need information in a 'header' how a client should parse the content, in particular, if the data is parsed as a file, not as an API response with a content type header. Maybe Testbed 17 can look into this and test with the clients.
 
-* TODO: Discuss metrics.
+* Should we support that we can use a JSON Pointer in "where", if "where" and "geometry" are the same geometry to reduce duplication?
+
+* Should we support multiple geometries per feature and clarifying the semantics of the geometry? The latter could potentially be addressed using JSON-LD contexts where this is important. JSON-FG Part 1 should continue to focus on the (minimal) extensions in the current charter, but we need to do our best to avoid blocking future extensions.
+
+* Should we also add a 3D geometry that represents a simple solid constructed using an extruded polygon? It would consist of a (horizontal) 2D polygon and separate attributes for the lower and upper limits. How often are such geometries used? With respect to "extruded polygons" it seems like there could be useful, but it is unclear if the added complexity of an additional geometry type is valuable enough. It is a general topic how to handle geometries that are constructed using regular feature properties.
