@@ -8,6 +8,7 @@ Current proposals:
 * [Encoding the spatial geometry of a feature](spatial-geometry.adoc) - issue [#13](https://github.com/opengeospatial/ogc-feat-geo-json/issues/13)
 * [Encoding of reference systems](ref-sys.adoc) - issues [#14](https://github.com/opengeospatial/ogc-feat-geo-json/issues/14), [#3](https://github.com/opengeospatial/ogc-feat-geo-json/issues/3)
 * [Identifying the schema](schema-ref.adoc) - issue [#12](https://github.com/opengeospatial/ogc-feat-geo-json/issues/12)
+
 Proposals in preparation:
 
 * Identifying the feature type(s)
