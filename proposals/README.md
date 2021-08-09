@@ -12,7 +12,7 @@ Current proposals:
 Proposals in preparation:
 
 * Identifying the feature type(s)
-* Relationships and Links
+* Relationships and Links - issue [#8](https://github.com/opengeospatial/ogc-feat-geo-json/issues/8); [draft in Testbed-17](https://gitlab.ogc.org/ogc/T17-D008-Enhanced-GeoJSON-ER/-/wikis/Relationships-and-Links) (requires OGC membership and Testbed-17 observer agreement)
 
 To add a new proposal:
 
