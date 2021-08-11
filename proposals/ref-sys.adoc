@@ -1,31 +1,28 @@
 
 = Encoding of reference systems in a JSON-FG document
 
-Version: 0.1.0
+Version: 0.1.1
 
 == Tl;dr
 
-Without any other information, for a JSON-FG file the defaults are:
+Without any other information, the following defaults apply in a JSON-FG file:
 
 * coordinate reference system: CRS84 or CRS84h (if there is a vertical dimension)
-* vertical reference system: whatever the vertical reference system used for CRS84h is (I think it is meters above the ellipsoid).
+* vertical reference system: whatever the vertical reference system used for CRS84h is (i.e. meters above the ellipsoid).
 * temporal reference system: Gregorian
 
-Otherwise:
+For asserting CRS information in a JSON-FG file:
 
-* Reference system values can be specified as:
-** a <<rs-by-simple-ref,simple URL reference>>,
-** by <<rs-by-ref-with-epoch,reference>> with additional information such as an epoch,
-** by <<rs-by-value-proj,value>>
-** or as an array for a compound reference system.
-* The keys <<coord-ref-systems-schema,`coord-ref-sys`>> can be used to assert coordinate reference system information at the collection, feature or value levels.
-* The <<sc-value-ref-sys,`value-ref-sys`>> key defines a lookup table that allows reference systems to be asserted for simple JSON-FG values.  Unlike object values, additional properties (i.e. `coord-ref-sys`) cannot be added to simple values to assert a reference system.
-* The <<ref-systems-dictionary,`ref-systems`>> key can be used to declare, at the collection level, a dictionary of reference systems used in the document.  Values from this dictionary can be referenced within the document using the aforementioned <<coord-ref-systems-schema,`coord-ref-sys`>> key and relative URL references/JSON pointer values.
+* The key <<coord-ref-systems-schema,`coord-ref-sys`>> is defined and can be used to assert a CRS at the collection, feature or value levels.
+* The value of the <<coord-ref-systems-schema,`coord-ref-sys`>> key can be:
+** a <<rs-by-simple-ref,simple URI reference>>,
+** a <<rs-by-ref-with-epoch,URI reference>> with an epoch,
+** or as an array of CRS references (with or without epoch) for an ad hoc compound CRS.
 
-The most common anticipated way that JSON-FG documents will be tagged with CRS information will be at the collection level using a simple URL reference.
+It is anticipated that if a CRS is asserted for a JSON-FG file, that assertion will be made at the top level of the document; either at the collection level or the feature level depending on the contents of the document.
 
 [#eighty-percent-example,reftext='{listing-caption} {counter:listing-num}']
-.The most common way of tagging a collection with CRS information.
+.Asserting a CRS at the collection level in a JSON-FG file
 ====
 [source,json,linenumbers]
 ----
@@ -47,11 +44,11 @@ The most common anticipated way that JSON-FG documents will be tagged with CRS i
 
 == Overview
 
-Spatio-temporal objects are usually specified relative to some reference system.
+Spatio-temporal objects are specified relative to some reference system.
 
-GeoJSON (both the current https://tools.ietf.org/html/rfc7946[RFC] and the https://geojson.org/geojson-spec.html[legacy version]) fixed the reference system for geometric values to "WGS84 datum, and with longitude and latitude units of decimal degrees".  The https://geojson.org/geojson-spec.html[legacy version], however, also included a prior arrangment provision to allow other reference systems to be used and also defined the "crs" key for specifying the reference system.  This _prior arrangement_ mechanism survived into the https://tools.ietf.org/html/rfc7946[RFC] but the accompanying `crs` key did not.  The result is that there is no interoperable way to unambiguously assert a CRS and the safest thing to do for GeoJSON members is to stick to the https://tools.ietf.org/html/rfc7946[RFC].
+GeoJSON (both the current https://tools.ietf.org/html/rfc7946[RFC] and the https://geojson.org/geojson-spec.html[legacy version]) fixed the reference system for geometric values to "WGS84 datum, and with longitude and latitude units of decimal degrees".  The https://geojson.org/geojson-spec.html[legacy version] included a "prior arrangment" provision to allow other reference systems to be used and also defined the `crs` key for specifying the reference system.  This _prior arrangement_ mechanism survived into the https://tools.ietf.org/html/rfc7946[RFC] but the accompanying `crs` key did not.  The result is that there is no interoperable way to unambiguously assert a different CRS if GeoJSON files and the safest thing to do is to stick with CRS84(h) for GeoJSON members and ignore the _prior arragment_ provision and the old `crs` key.
 
-JSON-FG, however, is not bound by these restrictions and so this document outlines a proposal for handling reference systems in JSON-FG documents that does not interfere with anything, past or present, defined in any of the GeoJSON specifications.  The GeoJSON elements can continue to operate as always but JSON-FG element can avail themselves of enhanced coordinate reference system support.
+JSON-FG is not bound by these restrictions and so this document outlines a proposal for handling reference systems in JSON-FG documents that does not interfere with anything, past or present, defined in any of the GeoJSON specifications.  The GeoJSON elements can continue to operate as always but JSON-FG elements can avail themselves of enhanced coordinate reference system support.
 
 == Considerations
 
@@ -59,51 +56,49 @@ The following were taken into account in this proposal:
 
 . Reuse GeoJSON CRS mechanism
 ** **Consideration**: Should we reuse the `crs` mechanism from the https://geojson.org/geojson-spec.html[legacy version of GeoJSON]?
-** **Decision**: No. It is tempting to reuse the legacy mechanism because over the years a large number of GeoJSON clients have emerged that can handle the `crs` key and make use of the prior arrangement provisions of the https://geojson.org/geojson-spec.html[legacy GeoJSON specification].  However, reusing this mechanism would introduce a significant amount of ambiguity.  It would be unclear whether the presence of the `crs` key was targeting the GeoJSON keys (i.e. geometry) or the JSON-FG keys (i.e. where).  Even though the https://tools.ietf.org/html/rfc7946[GeoJSON RFC] does not define a CRS mechnism, the mere fact that dependencies have been built on the legacy mechanism disqualifies it from being redefined for JSON-FG use.  
+** **Decision**: No. It is tempting to reuse the legacy mechanism because over the years a large number of GeoJSON clients have emerged that can handle the `crs` key and make use of the _prior arrangement_ provision of the https://geojson.org/geojson-spec.html[legacy GeoJSON specification].  However, reusing this mechanism would introduce a significant amount of ambiguity.  It would be unclear whether the presence of the `crs` key was targeting the GeoJSON keys (i.e. geometry) or the JSON-FG keys (i.e. where).  Even though the https://tools.ietf.org/html/rfc7946[GeoJSON RFC] does not define a CRS mechnism, the mere fact that dependencies have been built on the legacy mechanism disqualifies it from being redefined for JSON-FG use.  
 
 . Scope of applicability
 ** **Consideration**: To which values in a JSON-FG file should the specified reference systems apply?
-** **Decision**: The key(s) defined in this proposal only apply to JSON-FG spatio-temporal objects (e.g. `where`, `when`) and any spatio-temporal value in the `properties` section.  So, the herein defined key(s) **don't** apply to any defined GeoJSON spatio-temporal element such as `geometry`.
+** **Decision**: The key(s) defined in this proposal only apply to JSON-FG spatio-temporal objects (e.g. `where`, `when`) and any spatio-temporal value in the `properties` section which are not bound by GeoJSON requirements.  So, the herein defined key(s) **don't** apply to any defined GeoJSON spatio-temporal element such as `geometry`.
 
 . Temporal and vertical reference systems.
 ** **Consideration**: Do we need to handle temporal and vertical reference systems? 
 ** **Decision**: I would say that 80+% of the use cases are probably for geographic or projected coordinate reference systems and we should focus on correctly tagging those in a JSON-FG document.  However, techincally, temporal and vertical reference systems are just coordinate reference systems too and so the proposed CRS mechanism should handle these as well.
 
 . Coordinate order
-** **Consideration**: GeoJSON, in all its forms, fixes the coordinate order to lon/lat.  To properly handle reference systems, we can't do that.  So ...
-** **Decision**: For JSON-FG spatio-temporal values, the coordinate order -- following OGC policy -- shall be in the order specified by the reference system. PERIOD!
+** **Consideration**: According to the GeoJSON RFC: "The coordinate reference system for all GeoJSON coordinates is a geographic coordinate reference system, using the World Geodetic System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units of decimal degrees.  This is equivalent to the coordinate reference system identified by the Open Geospatial Consortium (OGC) URN urn:ogc:def:crs:OGC::CRS84.  An OPTIONAL third-position element SHALL be the height in meters above or below the WGS 84 reference ellipsoid.  In the absence of elevation values, applications sensitive to height or depth SHOULD interpret positions as being at local ground or sea level." There is also the _prior agreement_ provision that loosens this requirement if all parties agree.  What shall we do in JSON-FG with regard to coordinate order?
+** **Decision**: For JSON-FG spatio-temporal values, the coordinate order -- following OGC policy -- shall be in the order specified by the CRS. PERIOD!
 
 . Scoping rules
 ** **Consideration**: Do we need to be able to tag reference system information at various levels (i.e. collection level, feature level, value level)?
-** **Decision**: Reference system information for JSON-FG spatio-temporal values will primarily be asserted at the collection-level since it is likely that all values in a document will be in the same reference system.  However, having defined a structure for asserting reference system information at that level, it is a fairly simple matter to reuse the key(s) to assert reference system information at deeper levels (i.e. feature-level or value-level).
+** **Decision**: Reference system information for JSON-FG spatio-temporal values will primarily be asserted at the top level of a file (collection or feature) since it is likely that all values in a document will be in the same CRS.  However, having defined a structure for asserting reference system information at the top level, it is a fairly simple matter to reuse the key(s) to assert reference system information at deeper levels (i.e. feature-level or value-level).
 
 . Specifying reference system information by value or by reference
 ** **Consideration**: Do we need to handle specifying reference system information by reference and by value?
-** **Decision**: Yes. If specified by value, a mechanism is defined to indicate the notation/encoding being used (e.g. OGCWKT, PROJJSON, etc.).  Only OGCWKT and PROJJSON will be discussed in this proposal but other notations/encodings are be allowed.
+** **Decision**: Handling reference systems by reference seems reasonable for JSON-FG core and also aligns with https://docs.ogc.org/is/18-058/18-058.html[Features Part 2]. While being able to specify CRSs by value might be a useful capability, it is unclear that this is something that should be in the core of JSON-FG.  A schema was defined to handle this use case but is specified in the <<value-schema-annex,ANNEX>> of this document until more feedback on the requirement is gathered.
 
 . Compound reference systems
 ** **Consideration**: Do we need to handle compound reference systems?
-** **Decision**: Yes.  A mechanism is defined for specifying compound reference systems.
+** **Decision**: Yes.  A mechanism is defined in this proposal for specifying compound reference systems.
 
 . Dictionary of reference systems
 ** **Consideration**: Is there a need to specify the reference systems used in a JSON-FG file up-front in a dictionary?
-** **Decision**: Not by default but a mechanism is defined for supporting this capability.
+** **Decision**: This capability closely mirrors what is done in https://www.ogc.org/standards/geopackage[GeoPackage] and might be useful for the "offline container" use case of TB17.  However, it is unclear if this is something that should be defined in the core of JSON-FG.  A mechanism was defined to handle this use case but is specified in the <<ref-systems-dictionary,ANNEX>> of this document until more feedback on the requirement is gathered.
 
 . Separate vertical reference system handling
 ** **Consideration**: Is there a requirement for separate vertical CRS handling?
-** **Decision**: Yes.  Many times the elevation component of data is handled as a separate property rather than being in the geometry.  Such properties are typically defined using a simple type (i.e. double) and so, unlike object values, an additional key conveying reference system information cannot be conveniently and unambiguously added.  An association mechanism is defined for handling this case.
+** **Decision**: Many times the elevation component of data is handled as a separate property rather than being in the geometry.  Such properties are typically defined using a simple type (i.e. double) and so, unlike object values, an additional key conveying reference system information cannot be conveniently and unambiguously added.  While this might be another useful capability, it is unclear that this is something that should be in the core of JSON-FG.  A mechanism was defined to handle this use case but is specified in the <<sc-value-ref-sys,ANNEX>> of this document until more feedback on the requirement is gathered.
 
 == Reference system values
 
 === Overview
 
-A reference system can be specified in a JSON-FG document in one for four ways:
+A reference system can be specified in a JSON-FG document in one of three ways:
 
 . as a simple reference using a URI,
 
 . as a simple reference using a URI accompanied by an epoch value,
-
-. by value using any well known encoding such as PROJJSON or OGCWKT.  Other encodings are allowed (e.g. GML CRS) but not discussed in this proposal.
 
 . as an array of reference system values denoting a compound reference system.
 
@@ -112,6 +107,300 @@ A reference system can be specified in a JSON-FG document in one for four ways:
 The following JSON Schema fragment defines a reference system value:
 
 [#value-schema,reftext='{listing-caption} {counter:listing-num}']
+.The schema of a reference system value
+====
+[source,json,linenumbers]
+----
+   {
+      "$defs": {
+         "refsys-simple-ref": {
+            "type": "string",
+            "format": "uri"
+         },
+         "refsys-byref": {
+            "type": "object",
+            "required": [ "href" ],
+            "properties": {
+               "href": {
+                  "type": "string",
+                  "format": "uri"
+               },
+               "epoch": {
+                  "type": "string"
+               }
+            }
+         },
+         "refsys": {
+            "oneOf": [
+               { "$ref": "#/$defs/refsys-simpleref" },
+               { "$ref": "#/$defs/refsys-byref" },
+               {
+                  "type": "array",
+                  "items": {
+                     "oneOf": [
+                        { "$ref": "#/$defs/refsys-simpleref" },
+                        { "$ref": "#/$defs/refsys-byref" },
+                     ]
+                  }
+               }
+            ]
+         }
+      },
+      "$ref": "#/$defs/refsys"
+   }
+----
+====
+
+[#rs-by-simple-ref,reftext='{listing-caption} {counter:listing-num}']
+.A simple reference system value by reference.
+====
+[source,json,linenumbers]
+----
+"http://www.opengis.net/def/crs/EPSG/0/3857"
+----
+====
+
+[#rs-by-ref-with-epoch,reftext='{listing-caption} {counter:listing-num}']
+.A reference system value by reference and with an epoch.
+====
+[source,json,linenumbers]
+----
+{
+  "href": "http://www.opengis.net/def/crs/EPSG/0/3857",
+  "epoch": "2016.47"
+}
+----
+====
+
+[#compound-rs-by-value,reftext='{listing-caption} {counter:listing-num}']
+.A ad hoc compound reference system value
+====
+[source,json,linenumbers]
+----
+[
+  {
+    "href": "http://www.opengis.net/def/crs/EPSG/0/25832",
+    "epoch": "2016.47"
+  },
+  "http://www.opengis.net/def/crs/EPSG/0/5783"
+]
+----
+====
+
+== Keys
+
+=== Coordinate reference system
+
+The `coord-ref-sys` key is defined for tagging the coordinate reference system of a JSON-FG spatio-temporal value.
+
+[#coord-ref-systems-schema,reftext='{listing-caption} {counter:listing-num}']
+.The schema of the `coord-ref-sys` key
+====
+[source,json,linenumbers]
+----
+{"$ref": "#/$defs/refsys" }
+----
+====
+
+Used at the collection level, the `coord-ref-sys` key asserts the coordinate reference system for JSON-FG spatio-temporal values found anywhere in the document that are not otherwise tagged with closer-to-scope coordinate reference system information.
+
+[#collection-level-rs-example,reftext='{listing-caption} {counter:listing-num}']
+.An example of assering CRS information at the collection level.
+====
+[source,json,linenumbers]
+----
+
+{
+  "type": "FeatureCollection",
+  "@context": "https://t17.ldproxy.net/airspace/collections/class_all/context",
+  "@type": "geojson:FeatureCollection",
+  "numberReturned": 10,
+  "numberMatched": 5573,
+  "timeStamp": "2021-07-18T23:00:25Z",
+  "coord-ref-sys":  "http://www.opengis.net/...",
+  "features": [ ... ]
+}
+----
+====
+
+Used at the feature level, the `coord-ref-sys` key asserts the coordinate reference system for geometric JSON-FG value found anywhere in the feature that are not otherwise tagged with closer-to-scope coordinate reference system information.
+
+[#feature-level-rs-example,reftext='{listing-caption} {counter:listing-num}']
+.Reference system specified at the feature-level.
+[%collapsible]
+====
+[source,json,linenumbers]
+----
+{
+   "type": "Feature",
+   "id": "DENW19AL0000giv5BL",
+   "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
+   "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+         [
+            [ 8.709204563652449, 51.50352856284526, 100.0 ],
+            [ 8.709312860802727, 51.503457005181794, 100.0 ],
+            [ 8.709391968693081, 51.50350306810203, 100.0 ],
+            [ 8.709283757429898, 51.503574715968284, 100.0 ],
+            [ 8.709204563652449, 51.50352856284526, 100.0 ]
+         ]
+      ]
+   },
+   "when": [ "2014-04-24T10:50:18Z", null ],
+   "where": {
+      "type": "Polyhedron",
+      "coordinates": [
+         [ [ [ 479816.67, 5705861.672, 100 ],
+             [ 479824.155, 5705853.684, 100 ],
+             [ 479829.666, 5705858.785, 100 ],
+             [ 479822.187, 5705866.783, 100 ],
+             [ 479816.67, 5705861.672, 100 ] ]
+         ],
+         [ [ [ 479816.67, 5705861.672, 110 ],
+             [ 479824.155, 5705853.684, 110 ],
+             [ 479829.666, 5705858.785, 120 ],
+             [ 479822.187, 5705866.783, 120 ],
+             [ 479816.67, 5705861.672, 110 ] ]
+         ],
+         [ [ [ 479816.67, 5705861.672, 110 ],
+             [ 479824.155, 5705853.684, 110 ],
+             [ 479824.155, 5705853.684, 100 ],
+             [ 479816.67, 5705861.672, 100 ],
+             [ 479816.67, 5705861.672, 110 ] ]
+         ],
+         [ [ [ 479824.155, 5705853.684, 110 ],
+             [ 479829.666, 5705858.785, 120 ],
+             [ 479829.666, 5705858.785, 100 ],
+             [ 479824.155, 5705853.684, 100 ],
+             [ 479824.155, 5705853.684, 110 ] ]
+         ],
+         [ [ [ 479829.666, 5705858.785, 120 ],
+             [ 479822.187, 5705866.783, 120 ],
+             [ 479822.187, 5705866.783, 100 ],
+             [ 479829.666, 5705858.785, 100 ],
+             [ 479829.666, 5705858.785, 120 ] ]
+         ],
+         [ [ [ 479822.187, 5705866.783, 120 ],
+             [ 479816.67, 5705861.672, 110 ],
+             [ 479816.67, 5705861.672, 100 ],
+             [ 479822.187, 5705866.783, 100 ],
+             [ 479822.187, 5705866.783, 120 ] ]
+         ]
+      ]
+   },
+   "properties": {
+      "lastChange": "2014-04-24T10:50:18Z",
+      "function": "Agricultural building",
+      "height_m": 20.0
+   }
+}
+----
+====
+
+Used at the value level, the `coord-ref-sys` key asserts the coordinate reference system for the geometry JSON-FG value within which the key is contained.
+
+[#value-level-rs-example,reftext='{listing-caption} {counter:listing-num}']
+.Reference system specified at the value-level.
+[%collapsible]
+====
+[source,json,linenumbers]
+----
+{
+   "type": "Feature",
+   "id": "DENW19AL0000giv5BL",
+   "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+         [
+            [ 8.709204563652449, 51.50352856284526, 100.0 ],
+            [ 8.709312860802727, 51.503457005181794, 100.0 ],
+            [ 8.709391968693081, 51.50350306810203, 100.0 ],
+            [ 8.709283757429898, 51.503574715968284, 100.0 ],
+            [ 8.709204563652449, 51.50352856284526, 100.0 ]
+         ]
+      ]
+   },
+   "when": [ "2014-04-24T10:50:18Z", null ],
+   "where": {
+      "type": "Polyhedron",
+      "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
+      "coordinates": [
+         [ [ [ 479816.67, 5705861.672, 100 ],
+             [ 479824.155, 5705853.684, 100 ],
+             [ 479829.666, 5705858.785, 100 ],
+             [ 479822.187, 5705866.783, 100 ],
+             [ 479816.67, 5705861.672, 100 ] ]
+         ],
+         [ [ [ 479816.67, 5705861.672, 110 ],
+             [ 479824.155, 5705853.684, 110 ],
+             [ 479829.666, 5705858.785, 120 ],
+             [ 479822.187, 5705866.783, 120 ],
+             [ 479816.67, 5705861.672, 110 ] ]
+         ],
+         [ [ [ 479816.67, 5705861.672, 110 ],
+             [ 479824.155, 5705853.684, 110 ],
+             [ 479824.155, 5705853.684, 100 ],
+             [ 479816.67, 5705861.672, 100 ],
+             [ 479816.67, 5705861.672, 110 ] ]
+         ],
+         [ [ [ 479824.155, 5705853.684, 110 ],
+             [ 479829.666, 5705858.785, 120 ],
+             [ 479829.666, 5705858.785, 100 ],
+             [ 479824.155, 5705853.684, 100 ],
+             [ 479824.155, 5705853.684, 110 ] ]
+         ],
+         [ [ [ 479829.666, 5705858.785, 120 ],
+             [ 479822.187, 5705866.783, 120 ],
+             [ 479822.187, 5705866.783, 100 ],
+             [ 479829.666, 5705858.785, 100 ],
+             [ 479829.666, 5705858.785, 120 ] ]
+         ],
+         [ [ [ 479822.187, 5705866.783, 120 ],
+             [ 479816.67, 5705861.672, 110 ],
+             [ 479816.67, 5705861.672, 100 ],
+             [ 479822.187, 5705866.783, 100 ],
+             [ 479822.187, 5705866.783, 120 ] ]
+         ]
+      ]
+   },
+   "properties": {
+      "lastChange": "2014-04-24T10:50:18Z",
+      "function": "Agricultural building",
+      "height_m": 20.0
+   }
+}
+----
+====
+
+[[annex]]
+== ANNEX - Deprecated or "awaiting more feedback" items
+
+=== Overview
+
+This section contains content that was originally in the main body of this proposal but, upon review, was deemed unneccessary for the JSON-FG core by the SWG.  If, with additional feedback, any of this content is deemed as being suitable for the core, it can be moved back into the body of this proposal and ultimately included the JSON-FG specification.
+
+=== Tl;dr
+
+* Reference system values can be specified as:
+** by <<rs-by-value-proj,value>>
+* The <<sc-value-ref-sys,`value-ref-sys`>> key defines a lookup table that allows reference systems to be asserted for simple JSON-FG values.  Unlike object values, additional properties (i.e. `coord-ref-sys`) cannot be added to simple values to assert a reference system.
+* The <<ref-systems-dictionary,`ref-systems`>> key can be used to declare, at the collection level, a dictionary of reference systems used in the document.  Values from this dictionary can be referenced within the document using the aforementioned <<coord-ref-systems-schema,`coord-ref-sys`>> key and relative URL references/JSON pointer values.
+
+[[value-schema-annex]]
+=== Reference system values
+
+==== Overview
+
+A reference system can be specified in a JSON-FG document in one for four ways:
+
+. by value using any well known encoding such as PROJJSON or OGCWKT.  Other encodings are allowed (e.g. GML CRS) but not discussed in this proposal.
+
+==== Value schema
+
+The following JSON Schema fragment defines a reference system value:
+
+[reftext='{listing-caption} {counter:listing-num}']
 .The schema of a reference system value
 ====
 [source,json,linenumbers]
@@ -174,27 +463,6 @@ The following JSON Schema fragment defines a reference system value:
       },
       "$ref": "#/$defs/refsys"
    }
-----
-====
-
-[#rs-by-simple-ref,reftext='{listing-caption} {counter:listing-num}']
-.A reference system value specified by a simple URL reference
-====
-[source,json,linenumbers]
-----
-"http://www.opengis.net/def/crs/EPSG/0/3857"
-----
-====
-
-[#rs-by-ref-with-epoch,reftext='{listing-caption} {counter:listing-num}']
-.A reference system value specified by reference with an epoch.
-====
-[source,json,linenumbers]
-----
-{
-  "href": "http://www.opengis.net/def/crs/EPSG/0/3857",
-  "epoch": "2016.47"
-}
 ----
 ====
 
@@ -377,25 +645,13 @@ The following JSON Schema fragment defines a reference system value:
 ----
 ====
 
-[#compound-rs-by-value,reftext='{listing-caption} {counter:listing-num}']
-.A compound reference system value specified by reference.
-====
-[source,json,linenumbers]
-----
-[
-  { "href": "http://www.opengis.net/def/crs/EPSG/0/25832" },
-  { "href": "http://www.opengis.net/def/crs/EPSG/0/5783" }
-]
-----
-====
-
 [#compound-rs-by-value-ref,reftext='{listing-caption} {counter:listing-num}']
 .A compound reference system value specified by reference and value.
 ====
 [source,json,linenumbers]
 ----
 [
-  { "href": "http://www.opengis.net/def/crs/EPSG/0/25832" },
+  "http://www.opengis.net/def/crs/EPSG/0/25832",
   {
     "valueType": "ogcwkt",
     "VERTCRS[\"DHHN92 height\",VDATUM[\"Deutsches Haupthoehennetz 1992\",ID[\"EPSG\",5181]],CS[vertical,1,ID[\"EPSG\",6499]],AXIS[\"Gravity-related height (H)\",up],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",5783]]"
@@ -404,194 +660,10 @@ The following JSON Schema fragment defines a reference system value:
 ----
 ====
 
-== Keys
-
-=== Coordinate reference system
-
-The `coord-ref-sys` key is defined for tagging the coordinate reference system of a JSON-FG spatio-temporal value.
-
-[#coord-ref-systems-schema,reftext='{listing-caption} {counter:listing-num}']
-.The schema of the `coord-ref-sys` key
-====
-[source,json,linenumbers]
-----
-{"$ref": "#/$defs/refsys" }
-----
-====
-
-Used at the collection level, the `coord-ref-sys` key asserts the coordinate reference system for geometric JSON-FG values found anywhere in the document that are not otherwise tagged with closer-to-scope coordinate reference system information.
-
-[#collection-level-rs-example,reftext='{listing-caption} {counter:listing-num}']
-.An example of assering CRS information at the collection level.
-====
-[source,json,linenumbers]
-----
-
-{
-  "type": "FeatureCollection",
-  "@context": "https://t17.ldproxy.net/airspace/collections/class_all/context",
-  "@type": "geojson:FeatureCollection",
-  "numberReturned": 10,
-  "numberMatched": 5573,
-  "timeStamp": "2021-07-18T23:00:25Z",
-  "coord-ref-sys":  "http://www.opengis.net/...",
-  "features": [ ... ]
-}
-----
-====
-
-Used at the feature level, the `coord-ref-sys` key asserts the coordinate reference system for geometric JSON-FG value found anywhere in the feature that are not otherwise tagged with closer-to-scope coordinate reference system information.
-
-[#feature-level-rs-example,reftext='{listing-caption} {counter:listing-num}']
-.Reference system specified at the feature-level.
-[%collapsible]
-====
-[source,json,linenumbers]
-----
-{
-   "type": "Feature",
-   "id": "DENW19AL0000giv5BL",
-   "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
-   "geometry": {
-      "type": "Polygon",
-      "coordinates": [
-         [
-            [ 8.709204563652449, 51.50352856284526, 100.0 ],
-            [ 8.709312860802727, 51.503457005181794, 100.0 ],
-            [ 8.709391968693081, 51.50350306810203, 100.0 ],
-            [ 8.709283757429898, 51.503574715968284, 100.0 ],
-            [ 8.709204563652449, 51.50352856284526, 100.0 ]
-         ]
-      ]
-   },
-   "when": [ "2014-04-24T10:50:18Z", null ],
-   "where": {
-      "type": "Polyhedron",
-      "coordinates": [
-         [ [ [ 479816.67, 5705861.672, 100 ],
-             [ 479824.155, 5705853.684, 100 ],
-             [ 479829.666, 5705858.785, 100 ],
-             [ 479822.187, 5705866.783, 100 ],
-             [ 479816.67, 5705861.672, 100 ] ]
-         ],
-         [ [ [ 479816.67, 5705861.672, 110 ],
-             [ 479824.155, 5705853.684, 110 ],
-             [ 479829.666, 5705858.785, 120 ],
-             [ 479822.187, 5705866.783, 120 ],
-             [ 479816.67, 5705861.672, 110 ] ]
-         ],
-         [ [ [ 479816.67, 5705861.672, 110 ],
-             [ 479824.155, 5705853.684, 110 ],
-             [ 479824.155, 5705853.684, 100 ],
-             [ 479816.67, 5705861.672, 100 ],
-             [ 479816.67, 5705861.672, 110 ] ]
-         ],
-         [ [ [ 479824.155, 5705853.684, 110 ],
-             [ 479829.666, 5705858.785, 120 ],
-             [ 479829.666, 5705858.785, 100 ],
-             [ 479824.155, 5705853.684, 100 ],
-             [ 479824.155, 5705853.684, 110 ] ]
-         ],
-         [ [ [ 479829.666, 5705858.785, 120 ],
-             [ 479822.187, 5705866.783, 120 ],
-             [ 479822.187, 5705866.783, 100 ],
-             [ 479829.666, 5705858.785, 100 ],
-             [ 479829.666, 5705858.785, 120 ] ]
-         ],
-         [ [ [ 479822.187, 5705866.783, 120 ],
-             [ 479816.67, 5705861.672, 110 ],
-             [ 479816.67, 5705861.672, 100 ],
-             [ 479822.187, 5705866.783, 100 ],
-             [ 479822.187, 5705866.783, 120 ] ]
-         ]
-      ]
-   },
-   "properties": {
-      "lastChange": "2014-04-24T10:50:18Z",
-      "function": "Agricultural building",
-      "height_m": 20.0
-   }
-}
-----
-====
-
-Used at the value level, the `coord-ref-sys` key asserts the coordinate reference system for the geometry JSON-FG value within which the key is contained.
-
-[#value-level-rs-example,reftext='{listing-caption} {counter:listing-num}']
-.Reference system specified at the value-level.
-[%collapsible]
-====
-[source,json,linenumbers]
-----
-{
-   "type": "Feature",
-   "id": "DENW19AL0000giv5BL",
-   "geometry": {
-      "type": "Polygon",
-      "coordinates": [
-         [
-            [ 8.709204563652449, 51.50352856284526, 100.0 ],
-            [ 8.709312860802727, 51.503457005181794, 100.0 ],
-            [ 8.709391968693081, 51.50350306810203, 100.0 ],
-            [ 8.709283757429898, 51.503574715968284, 100.0 ],
-            [ 8.709204563652449, 51.50352856284526, 100.0 ]
-         ]
-      ]
-   },
-   "when": [ "2014-04-24T10:50:18Z", null ],
-   "where": {
-      "type": "Polyhedron",
-      "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
-      "coordinates": [
-         [ [ [ 479816.67, 5705861.672, 100 ],
-             [ 479824.155, 5705853.684, 100 ],
-             [ 479829.666, 5705858.785, 100 ],
-             [ 479822.187, 5705866.783, 100 ],
-             [ 479816.67, 5705861.672, 100 ] ]
-         ],
-         [ [ [ 479816.67, 5705861.672, 110 ],
-             [ 479824.155, 5705853.684, 110 ],
-             [ 479829.666, 5705858.785, 120 ],
-             [ 479822.187, 5705866.783, 120 ],
-             [ 479816.67, 5705861.672, 110 ] ]
-         ],
-         [ [ [ 479816.67, 5705861.672, 110 ],
-             [ 479824.155, 5705853.684, 110 ],
-             [ 479824.155, 5705853.684, 100 ],
-             [ 479816.67, 5705861.672, 100 ],
-             [ 479816.67, 5705861.672, 110 ] ]
-         ],
-         [ [ [ 479824.155, 5705853.684, 110 ],
-             [ 479829.666, 5705858.785, 120 ],
-             [ 479829.666, 5705858.785, 100 ],
-             [ 479824.155, 5705853.684, 100 ],
-             [ 479824.155, 5705853.684, 110 ] ]
-         ],
-         [ [ [ 479829.666, 5705858.785, 120 ],
-             [ 479822.187, 5705866.783, 120 ],
-             [ 479822.187, 5705866.783, 100 ],
-             [ 479829.666, 5705858.785, 100 ],
-             [ 479829.666, 5705858.785, 120 ] ]
-         ],
-         [ [ [ 479822.187, 5705866.783, 120 ],
-             [ 479816.67, 5705861.672, 110 ],
-             [ 479816.67, 5705861.672, 100 ],
-             [ 479822.187, 5705866.783, 100 ],
-             [ 479822.187, 5705866.783, 120 ] ]
-         ]
-      ]
-   },
-   "properties": {
-      "lastChange": "2014-04-24T10:50:18Z",
-      "function": "Agricultural building",
-      "height_m": 20.0
-   }
-}
-----
-====
+=== Keys
 
 [[ref-systems-dictionary]]
-=== Reference systems dictionary
+==== Reference systems dictionary
 
 The `ref-systems` key is defined for specifying a dictionary of reference systems used in a JSON-FG document.  The following schema fragment defines the schema of the `ref-systems` key:
 
@@ -618,8 +690,6 @@ Values for the dictionary can be referenced in the rest of the document using th
 ----
 {
   "type": "FeatureCollection",
-  "@context": "https://t17.ldproxy.net/airspace/collections/class_all/context",
-  "@type": "geojson:FeatureCollection",
   "numberReturned": 10,
   "numberMatched": 5573,
   "timeStamp": "2021-07-18T23:00:25Z",
@@ -643,7 +713,7 @@ Values for the dictionary can be referenced in the rest of the document using th
 ====
 
 [[sc-value-ref-sys]]
-=== Reference systems for simple JSON-FG values
+==== Reference systems for simple JSON-FG values
 
 It is a simple matter to assert a reference system for structured JSON-FG values such as `where` because additional properties can be added to the structure that convey the reference system information.  For simple JSON-FG values (e.g. `height` defined as a `double`) this is not possible.  Consider the following example:
 
@@ -691,7 +761,7 @@ The `value-ref-sys` key is defined for asserting a reference system for simple, 
 }
 ----
 
-NOTE: The key values for this object are meant to be JSON pointers so I will need to find a regex for that and update this schema accordingly.
+NOTE: The key values for this object are meant to be https://github.com/json-path/JsonPath[JSON path] expressions so I will need to find a regex for that and update this schema accordingly.
 ====
 
 Used at the collection level, each key of the `value-ref-sys` object is a JSON pointer to a value in the document.  The value of the key asserts the reference system for the referenced value.
@@ -706,9 +776,9 @@ Used at the collection level, each key of the `value-ref-sys` object is a JSON p
    "id": "DENW19AL0000giv5BL",
    "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
    "value-ref-sys": {
-      "properties/height": {
+      "$.properties.height": {
           "valueType": "ogcwkt",
-          "value": "VERTCRS[\"DHHN92 height\",VDATUM[\"Deutsches Haupthoehennetz 1992\",ID[\"EPSG\",5181]],CS[vertical,1,ID[\"EPSG\",6499]],AXIS[\"Gravity-related height (H)\",up],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]],ID[\"EPSG\",5783]]"
+          "value": "VERTCRS[ ... ]"
       }
    },
    "geometry": {
