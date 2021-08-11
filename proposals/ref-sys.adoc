@@ -100,7 +100,7 @@ A reference system can be specified in a JSON-FG document in one of three ways:
 
 . as a simple reference using a URI accompanied by an epoch value,
 
-. as an array of reference system values denoting a compound reference system.
+. as an array of reference system values denoting an ad hoc compound reference system.
 
 === Value schema
 
