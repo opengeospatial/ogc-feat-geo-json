@@ -90,6 +90,8 @@ A feature instance of an AirportHeliport feature type from the Aeronautical Info
 ----
 ====
 
+Note that in the example, the URI that has been used for the semantic type should really be a persistent URI of an entry in some AIXM registry, but no such registry for the AIXM feature types seems to be exist. 
+
 == Description
 
 The feature types of a feature are declared in a top-level member with the key "featureType". The value is either a string (in case of a single feature type) or an array of strings (to support multiple feature types). Each string should be a code, convenient for the use in filter expressions.
