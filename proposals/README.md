@@ -8,11 +8,8 @@ Current proposals:
 * [Encoding the spatial geometry of a feature](spatial-geometry.adoc) - issue [#13](https://github.com/opengeospatial/ogc-feat-geo-json/issues/13)
 * [Encoding of reference systems](ref-sys.adoc) - issues [#14](https://github.com/opengeospatial/ogc-feat-geo-json/issues/14), [#3](https://github.com/opengeospatial/ogc-feat-geo-json/issues/3)
 * [Identifying the schema](schema-ref.adoc) - issue [#12](https://github.com/opengeospatial/ogc-feat-geo-json/issues/12)
-
-Proposals in preparation:
-
-* Identifying the feature type(s)
-* Relationships and Links - issue [#8](https://github.com/opengeospatial/ogc-feat-geo-json/issues/8); [draft in Testbed-17](https://gitlab.ogc.org/ogc/T17-D008-Enhanced-GeoJSON-ER/-/wikis/Relationships-and-Links) (requires OGC membership and Testbed-17 observer agreement)
+* [Identifying the feature type(s)](feature-types.adoc) - issue [#16](https://github.com/opengeospatial/ogc-feat-geo-json/issues/16)
+* [Relationships and links](relationships-and-links.adoc) - issues [#17](https://github.com/opengeospatial/ogc-feat-geo-json/issues/17), [#8](https://github.com/opengeospatial/ogc-feat-geo-json/issues/8)
 
 To add a new proposal:
 
