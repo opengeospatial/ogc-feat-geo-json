@@ -9,7 +9,17 @@
   ],
   "properties": {
     "featureType": {
-      "type": "string"
+      "oneOf": [
+        {
+          "type": "string"
+        }, 
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
     },
     "links": {
       "type": "array",
