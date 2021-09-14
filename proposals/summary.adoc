@@ -1,0 +1,664 @@
+= Summary of the current proposals
+
+This section is based on the proposals as of 2021-09-13.
+
+== Approach
+
+OGC Features and Geometries JSON (JSON-FG) extends GeoJSON to support a limited set of additional capabilities that are out-of-scope for GeoJSON, but that are essential or important for a variety of use cases involving feature data.
+
+The general approach: Information that is can be represented as GeoJSON is encoded as GeoJSON. Additional information is mainly encoded in additional top-level members of GeoJSON objects. The members use keys that do not conflict with GeoJSON including the obsolete version that pre-dates the IETF standard. GeoJSON clients will be able to parse and understand all aspects that are specified by GeoJSON, JSON-FG clients will also parse and understand the additional capabilities.
+
+== An example feature
+
+The following feature is an example with a building feature that includes all new capabilities proposed for JSON-FG. The JSON-FG extensions are described in the following sections.
+
+[#example_building,reftext='{listing-caption} {counter:listing-num}']
+.Building with a polyhedron geometry and the polygon footprint
+[%collapsible]
+====
+[source,json,linenumbers]
+----
+{
+   "type": "Feature",
+   "id": "DENW19AL0000giv5BL",
+   "featureType": "app:building",
+   "when": { 
+      "interval": [ "2014-04-24T10:50:18Z", null ]
+   },
+   "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
+   "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+         [
+            [ 8.709204563652449, 51.50352856284526, 100 ],
+            [ 8.709312860802727, 51.503457005181794, 100 ],
+            [ 8.709391968693081, 51.50350306810203, 100 ],
+            [ 8.709283757429898, 51.503574715968284, 100 ],
+            [ 8.709204563652449, 51.50352856284526, 100 ]
+         ]
+      ]
+   },
+   "where": {
+      "type": "Polyhedron",
+      "coordinates": [
+         [
+            [
+               [ 479816.67, 5705861.672, 100 ],
+               [ 479824.155, 5705853.684, 100 ],
+               [ 479829.666, 5705858.785, 100 ],
+               [ 479822.187, 5705866.783, 100 ],
+               [ 479816.67, 5705861.672, 100 ]
+            ]
+         ],
+         [
+            [
+               [ 479816.67, 5705861.672, 110 ],
+               [ 479824.155, 5705853.684, 110 ],
+               [ 479829.666, 5705858.785, 120 ],
+               [ 479822.187, 5705866.783, 120 ],
+               [ 479816.67, 5705861.672, 110 ]
+            ]
+         ],
+         [
+            [
+               [ 479816.67, 5705861.672, 110 ],
+               [ 479824.155, 5705853.684, 110 ],
+               [ 479824.155, 5705853.684, 100 ],
+               [ 479816.67, 5705861.672, 100 ],
+               [ 479816.67, 5705861.672, 110 ]
+            ]
+         ],
+         [
+            [
+               [ 479824.155, 5705853.684, 110 ],
+               [ 479829.666, 5705858.785, 120 ],
+               [ 479829.666, 5705858.785, 100 ],
+               [ 479824.155, 5705853.684, 100 ],
+               [ 479824.155, 5705853.684, 110 ]
+            ]
+         ],
+         [
+            [
+               [ 479829.666, 5705858.785, 120 ],
+               [ 479822.187, 5705866.783, 120 ],
+               [ 479822.187, 5705866.783, 100 ],
+               [ 479829.666, 5705858.785, 100 ],
+               [ 479829.666, 5705858.785, 120 ]
+            ]
+         ],
+         [
+            [
+               [ 479822.187, 5705866.783, 120 ],
+               [ 479816.67, 5705861.672, 110 ],
+               [ 479816.67, 5705861.672, 100 ],
+               [ 479822.187, 5705866.783, 100 ],
+               [ 479822.187, 5705866.783, 120 ]
+            ]
+         ]
+      ]
+   },
+   "links": [
+      {
+         "href": "https://ogc-api.nrw.de/lika/v1/collections/gebaeude_bauwerk/items/DENW19AL0000giv5BL?f=json",
+         "rel": "self",
+         "type": "application/geo+json",
+         "title": "This document"
+      },
+      {
+         "href": "https://ogc-api.nrw.de/lika/v1/collections/gebaeude_bauwerk/items/DENW19AL0000giv5BL?f=html",
+         "rel": "alternate",
+         "type": "text/html",
+         "title": "This document as HTML"
+      },
+      {
+         "href": "https://ogc-api.nrw.de/lika/v1/collections/gebaeude_bauwerk?f=json",
+         "rel": "collection",
+         "type": "application/json",
+         "title": "The collection the feature belongs to"
+      },
+      { 
+         "href" : "https://ogc-api.nrw.de/lika/v1/collections/flurstueck/items/05297001600313______",
+         "rel" : "http://www.opengis.net/def/rel/ogc/1.0/within",
+         "title" : "Cadastral parcel 313 in district Wünnenberg (016)"
+      },
+      {
+         "href":"https://inspire.ec.europa.eu/featureconcept/Building",
+         "rel":"type",
+         "title":"This feature is of type 'building'"
+      },
+      {
+         "href": "https://ogc-api.nrw.de/lika/v1/collections/gebaeude_bauwerk/schema",
+         "rel": "describedby",
+         "type": "application/schema+json",
+         "title": "JSON Schema of this document"
+      },
+      {
+         "href":"http://schemas.opengis.net/tbd/Feature.json",
+         "rel":"describedby",
+         "type":"application/schema+json",
+         "title":"This document is a JSON-FG Feature"
+      },
+      {
+         "href":"https://geojson.org/schema/Feature.json",
+         "rel":"describedby",
+         "type":"application/schema+json",
+         "title":"This document is a GeoJSON Feature"
+      }
+   ],
+   "properties": {
+      "lastChange": "2014-04-24T10:50:18Z",
+      "built": "2012-03",
+      "function": "Agricultural building",
+      "height_m": 20.0,
+      "owners": [ 
+         {
+            "href": "https://example.org/john-doe",
+            "title": "John Doe"
+         },
+         {
+            "href": "https://example.org/jane-doe",
+            "title": "Jane Doe"
+         } 
+      ]
+   }
+}
+----
+====
+
+[[feature-types]]
+== Identifying the feature type(s)
+
+=== Overview
+
+Features are often categorized by type. Typically all features of the same type have the same schema, the same properties.
+
+Many GIS clients depend on knowledge about the feature type when processing feature data, for example, to associate a style to render the feature on a map with the feature.
+
+GeoJSON is schema-less in the sense that it has no concept of feature types or feature schemas.
+
+In most cases, a feature is an instance of a single feature type. The current draft revision of the Simple Features standard supports features that are instances of multiple types. JSON-FG, therefore, also supports multiple feature types.
+
+The related element <<schema-ref,Identifying the schema>> specifies how the JSON Schema documents are identified that the JSON document conforms to. This element specifies how to represent feature type information in the JSON object that represents the feature.
+
+=== Description
+
+The feature types of a feature are declared in a top-level member with the key "featureType". The value is either a string (in case of a single feature type) or an array of strings (to support multiple feature types). Each string should be a code, convenient for the use in filter expressions.
+
+If a persistent resource exists, e.g. in a registry, that describes a feature type, a link to that resource with link relation type `type` should be added. In the case of multiple feature types per feature, multiple links are added.
+
+OGC API Features already specifies a general "links" member with an array of link objects based on https://tools.ietf.org/html/rfc8288[RFC 8288 (Web linking)] and feature responses from APIs implementing OGC API Features will already include a "links" member. JSON-FG builds on this approach and includes a "type" link to a resource identifying the abstract semantic type of which the feature is considered to be an instance.
+
+.Link properties
+[cols="20,10,70",options="header"]
+!===
+|Property |Type |Description
+|href |URI |**REQUIRED**. The URI of a persistent resource that describes a feature type that is instantiated by the feature that is the link context.
+|rel |String |**REQUIRED**. The link relation type, always "type".
+|type |String |To indicate a hint about a specific media type in which the target of the link is available, set the value to that media type; for example, "text/html".
+|title |String |Include this link attribute for a human readable label of the link, e.g. for use in a derived HTML representation.
+!===
+
+Additional link attributes may be added to the Link object.
+
+[[schema-ref]]
+== Identifying the schema
+
+=== Overview
+
+A schema is metadata about a JSON document that clients can use to validate the JSON document or to derive additional information about the content of the JSON document, e.g. a textual description of the feature properties or their value range.
+
+NOTE: The OGC Features API Standards Working Group is working on a [specification in the OGC API Features series](https://github.com/opengeospatial/ogcapi-features/tree/master/proposals/schemas) for using JSON schemas to describe the schema of features. 
+
+JSON-FG will provide guidance on how to include information about the schema of a JSON document that is a single feature or a feature collection. 
+
+=== Description
+
+The JSON Schema spec https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.9.5[recommends to use a `describedby` link relation to the schema]:
+
+> It is RECOMMENDED that instances described by a schema provide a link to a downloadable JSON Schema using the link relation "describedby", as defined by Linked Data Protocol 1.0, section 8.1.
+
+OGC API Features already specifies a general "links" member with an array of link objects based on https://tools.ietf.org/html/rfc8288[RFC 8288 (Web linking)] and feature responses from APIs implementing OGC API Features will already include a "links" member. JSON-FG builds on this approach and includes a "describedby" link to a JSON Schema document, if schema information is important for the target users of the JSON feature documents. 
+
+.Link properties
+[cols="20,10,70",options="header"]
+!===
+|Property |Type |Description
+|href |URI |**REQUIRED**. The URI of a JSON Schema document that describes the JSON document that is the link context.
+|rel |String |**REQUIRED**. The link relation type, which is always "describedby" for the link to the JSON Schema document.
+|type |String |**REQUIRED**. To indicate that the target of the link is a JSON Schema document, set the value to "application/schema+json".
+|title |String |Include this link attribute for a human readable label of the link, e.g. for use in a derived HTML representation.
+!===
+
+An example of a link object:
+
+[source,json]
+----
+{
+  "href": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
+  "rel": "describedby",
+  "type": "application/schema+json",
+  "title": "JSON Schema of this document"
+}
+----
+
+Additional link attributes may be added to the Link object.
+
+Each JSON-FG document is either a feature or a feature collection. 
+
+A feature collection document must contain a link to the JSON-FG feature collection schema at `http://schemas.opengis.net/tbd/FeatureCollection.json`. If the document is also a GeoJSON feature collection, it must contain a link to the GeoJSON feature collection schema at `https://geojson.org/schema/FeatureCollection.json`. The document should also contain another link to a schema document that specifies the properties of the features in the collection.
+
+A feature document must contain a link to the JSON-FG feature schema at `http://schemas.opengis.net/tbd/Feature.json`. If the document is also a GeoJSON feature, it must contain a link to the GeoJSON feature schema at `https://geojson.org/schema/Feature.json`. The document should also contain another link to a schema document that specifies the properties of the feature.
+
+[[when]]
+== Encoding the temporal extent
+
+=== Overview
+
+Many features have a spatial geometry that provides information about the location of the feature. In GeoJSON, this information is encoded in the top-level "geometry" member. Features are often associated with temporal information, too. In most cases this is either an instant (e.g., an event) or an interval (e.g., an activity or a temporal validity). In OGC API Features this is reflected in the http://www.opengis.net/doc/IS/ogcapi-features-1/1.0#_parameter_datetime[`datetime` parameter] for temporal filtering of features. 
+
+JSON-FG adds support for the most common case: associating a feature with a single temporal instant or interval in the Gregorian calendar.
+
+More complex cases and other temporal coordinate reference systems are out-of-scope of JSON-FG for now and might be specified in extensions.
+
+=== Description
+
+Features can have temporal properties, these will typically be included in the "properties" member.
+
+* In many datasets all temporal properties are instants (a date or a timestamp) and intervals will be described using two temporal instants, one for the start and one for the end.
+* Multiple temporal properties are sometimes used to describe different temporal characteristics of a feature. For example, the time instant or interval when the information in the feature is valid (sometimes called "valid time") and the time when the feature was recorded in the dataset (sometimes called "transaction time"). Another example is the https://www.ogc.org/standards/om[Observations & Measurements standard], where an observation has multiple temporal properties including "phenomenon time", "result time" and "valid time".
+
+This specification does not place constraints on the information in the "properties" member. It specifies a new top-level JSON member in a feature object (key: "when"). The member describes a default temporal extent (an instant or an interval) that can be used by clients without a need to inspect the "properties" member or to understand the schema of the feature. Clients that are familiar with a dataset can, of course, inspect then information in the "properties" member instead of inspecting the "when" member.
+
+It is up to the publisher of the data to decide which temporal feature properties are used in the "when" member.
+
+The value of "when" is an object.
+
+.Properties of the "when" object
+[cols="20,10a,70a",options="header"]
+!===
+|Property |Type |Description
+|instant |string |The temporal extent as an instant. See below for more details about instants.
+|interval |[ string ] |The temporal extent as an interval, an array of two instants. See below for more details about intervals.
+!===
+
+It is valid to include both an instant and an interval, if both values intersect. Clients should use the interval and may us the instant to determine the temporal extent of the feature.
+
+The "when" object may be extended with additional members. Clients processing a "when" object must be prepared to parse additional members. Clients may ignore members that they do not understand. For example, in cases where the "when" member neither includes an "instant" or "interval", a client may process the feature as a feature without a temporal extent.
+
+=== Instants
+
+An instant is a value that conforms to https://datatracker.ietf.org/doc/html/rfc3339[RFC 3339 (Date and Time on the Internet: Timestamps)] and is consistent with one of the following production rules of the ISO 8601 profile specified in the RFC:
+
+* `full-date` (e.g., `"1969-07-20"`)
+* `date-time` (e.g., `"1969-07-20T20:17:40Z"`)
+
+Note that all timestamps have to include a timezone. The use of UTC is recommended ("Z").
+
+The JSON schema for an instant:
+
+[source,YAML]
+----
+oneOf:
+- type: string
+  format: date
+- type: string
+  format: date-time
+----
+
+This describes the initial range of instant values. This range may be extended in the future to support additional use cases. Clients processing instant values must be prepared to receive other values. Clients may ignore values that they do not understand.
+
+=== Intervals
+
+An interval is described by the start and end instants. Both start and end instants are included in the interval.
+
+Open ranges at the start or end are represented by a `null` value for the start/end.
+
+[source,YAML]
+----
+type: array
+minItems: 2
+maxItems: 2
+items:
+  oneOf:
+  - oneOf:
+    - type: string
+      format: date
+    - type: string
+      format: date-time
+  - null
+----
+
+This describes the initial range of interval values. This range may be extended in the future to support additional use cases. Clients processing interval values must be prepared to receive other values. Clients may ignore values that they do not understand.
+
+[[where]]
+== Encoding a spatial geometry
+
+=== Overview
+
+Features typically have a spatial geometry that provides information about the location of the feature. 
+
+In GeoJSON, this information is encoded in the top-level "geometry" member. Supported are geometries according to the Simple Features standard (2D or 2.5D points, line strings, polygons or aggregations of them) in WGS 84 as the coordinate reference system (OGC:CRS84 or OGC:CRS84h).
+
+It is a key motivation for JSON-FG to support additional requirements, including other coordinate reference systems as well as solids, where the boundary is specified using polygons.
+
+To avoid confusing GeoJSON readers, such geometries will be provided in a new top-level member with the key "where" (or another key).
+
+=== Description
+
+The main spatial location of a feature is provided in the "geometry" and "where" members of the feature object. The value of both keys is an object representing a spatial geometry - or `null`.
+
+The value of the "geometry" member is specified in the GeoJSON standard.
+
+The value range of the "where" member is an extended and extensible version of the value range of the value range of the "geometry" member:
+
+* It is extended by the value options (additional JSON-FG geometry types <<Polyhedron>> and <<MultiPolyhedron>>) as well as by the capabilities to link:ref-sys.adoc[declare the coordinate reference system of the coordinates of the geometry].
+* It is extensible and future parts of Features and Geometries JSON or community extensions may specify additional members or additional geometry types. JSON-FG readers should be prepared to parse values of "where" that go beyond the schema that is implemented by the reader. Unknown members should be ignored and geometries that include an unknown geometry type should be mapped to `null`.
+
+==== Use of "geometry" and/or "where"
+
+If the geometry that describes the main geometry of the feature can be represented as a valid GeoJSON geometry (one of the GeoJSON geometry types, in WGS84), it is encoded as the value of the "geometry" member. The "where" member has the value `null`.
+
+If the geometry cannot be represented as a valid GeoJSON geometry, it is encoded as the value of the "where" member. In addition, a valid GeoJSON geometry may be provided in the "geometry" member in the coordinate reference system WGS84 as specified in the GeoJSON standard (otherwise "geometry" is set to `null`). The geometry in "geometry" is a fallback for readers that support GeoJSON, but not JSON-FG. This could be a simplified geometry, like the building footprint in <<example_building>> instead of the solid geometry or the same point/line string/polygon geometry, but in WGS 84 (potentially with less vertices to reduce the file size).
+
+==== Metrics
+
+If the coordinate reference system uses longitude and latitude, clients should perform geometrical computations including computation of length or area should be computed on the curved surface that approximates the earth's surface. Details are provided in John Herring's drafts of "Features and Geometry - Part 2: Metrics".
+
+Note that this differs from GeoJSON which states: 
+
+[quote, GeoJSON (RFC 7946)]
+A line between two positions is a straight Cartesian line, the shortest line between those two points in the coordinate reference system.
+In other words, every point on a line that does not cross the antimeridian between a point (lon0, lat0) and (lon1, lat1) can be calculated as `F(lon, lat) = (lon0 + (lon1 - lon0) * t, lat0 + (lat1 - lat0) * t)` with t being a real number greater than or equal to 0 and smaller than or equal to 1. Note that this line may markedly differ from the geodesic path along the curved surface of the reference ellipsoid.
+
+==== Polyhedron
+
+A _polyhedron_ is an non-empty array of _multi-polygon_ arrays. Each _multi-polygon_ array is a shell and must be closed. The first shell is the exterior boundary, all other shells are holes.
+
+[#jsonschema_polyhedron,reftext='{listing-caption} {counter:listing-num}']
+.JSON Schema for a polyhedron geometry
+[%collapsible]
+====
+[source,json,linenumbers]
+----
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://schemas.opengis.net/tbd/Polyhedron.json",
+  "title": "A polyhedron geometry",
+  "type": "object",
+  "required": [
+    "type",
+    "coordinates"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "Polyhedron"
+      ]
+    },
+    "coordinates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 4,
+            "items": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "bbox": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "number"
+      }
+    }
+  }
+}
+----
+====
+
+==== MultiPolyhedron
+
+A _multi-polyhedron_ is an array of _polyhedron_ arrays. The order of the polyhedra is not significant.
+
+[#jsonschema_multipolyhedron,reftext='{listing-caption} {counter:listing-num}']
+.JSON Schema for a multi-polyhedron geometry
+[%collapsible]
+====
+[source,json,linenumbers]
+----
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://schemas.opengis.net/tbd/MultiPolyhedron.json",
+  "title": "A multi-polyhedron geometry",
+  "type": "object",
+  "required": [
+    "type",
+    "coordinates"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "MultiPolyhedron"
+      ]
+    },
+    "coordinates": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "array",
+              "minItems": 4,
+              "items": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "bbox": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "number"
+      }
+    }
+  }
+}
+----
+====
+
+[[ref-sys]]
+== Encoding of reference systems
+
+=== Overview
+
+Without any other information, the following defaults apply in a JSON-FG file:
+
+* spatial coordinate reference system: OGC:CRS84 (2D) or OGC:CRS84h (3D)
+* temporal coordinate reference system: Gregorian
+
+For asserting CRS information in a JSON-FG file:
+
+* The key <<coord-ref-systems-schema,`coord-ref-sys`>> is defined and can be used to assert a CRS at the collection, feature or value levels.
+* The value of the <<coord-ref-systems-schema,`coord-ref-sys`>> key can be:
+** a <<rs-by-simple-ref,simple URI reference>>,
+** a <<rs-by-ref-with-epoch,URI reference>> with an epoch,
+** or as an array of CRS references (with or without epoch) for an ad hoc compound CRS.
+
+It is anticipated that if a CRS is asserted for a JSON-FG file, that assertion will be made at the top level of the document; either at the collection level or the feature level depending on the contents of the document.
+
+=== Description
+
+Spatio-temporal objects are specified relative to some reference system.
+
+GeoJSON (both the current https://tools.ietf.org/html/rfc7946[RFC] and the https://geojson.org/geojson-spec.html[legacy version]) fixed the reference system for geometric values to "WGS84 datum, and with longitude and latitude units of decimal degrees".  The https://geojson.org/geojson-spec.html[legacy version] included a "prior arrangment" provision to allow other reference systems to be used and also defined the `crs` key for specifying the reference system.  This _prior arrangement_ mechanism survived into the https://tools.ietf.org/html/rfc7946[RFC] but the accompanying `crs` key did not.  The result is that there is no interoperable way to unambiguously assert a different CRS if GeoJSON files and the safest thing to do is to stick with CRS84(h) for GeoJSON members and ignore the _prior arragment_ provision and the old `crs` key.
+
+JSON-FG is not bound by these restrictions and so this document outlines a proposal for handling reference systems in JSON-FG documents that does not interfere with anything, past or present, defined in any of the GeoJSON specifications.  The GeoJSON elements can continue to operate as always but JSON-FG elements can avail themselves of enhanced coordinate reference system support.
+
+==== Reference system values
+
+A reference system can be specified in a JSON-FG document using a `coord-ref-sys` member in one of three ways:
+
+* as a simple reference using a URI,
+* as a simple reference using a URI accompanied by an epoch value,
+* as an array of reference system values denoting an ad hoc compound reference system.
+
+Used at the collection level, the `coord-ref-sys` key asserts the coordinate reference system for JSON-FG spatio-temporal values found anywhere in the document that are not otherwise tagged with closer-to-scope coordinate reference system information.
+
+Used at the feature level, the `coord-ref-sys` key asserts the coordinate reference system for geometric JSON-FG value found anywhere in the feature that are not otherwise tagged with closer-to-scope coordinate reference system information.
+
+Used at the geometry level, the `coord-ref-sys` key asserts the coordinate reference system for the geometry JSON-FG value within which the key is contained.
+
+==== Value schema
+
+The following JSON Schema fragment defines a reference system value:
+
+[#value-schema,reftext='{listing-caption} {counter:listing-num}']
+.The schema of a reference system value
+====
+[source,json,linenumbers]
+----
+   {
+      "$defs": {
+         "refsys-simple-ref": {
+            "type": "string",
+            "format": "uri"
+         },
+         "refsys-byref": {
+            "type": "object",
+            "required": [ "href" ],
+            "properties": {
+               "href": {
+                  "type": "string",
+                  "format": "uri"
+               },
+               "epoch": {
+                  "type": "string"
+               }
+            }
+         },
+         "refsys": {
+            "oneOf": [
+               { "$ref": "#/$defs/refsys-simpleref" },
+               { "$ref": "#/$defs/refsys-byref" },
+               {
+                  "type": "array",
+                  "items": {
+                     "oneOf": [
+                        { "$ref": "#/$defs/refsys-simpleref" },
+                        { "$ref": "#/$defs/refsys-byref" },
+                     ]
+                  }
+               }
+            ]
+         }
+      },
+      "$ref": "#/$defs/refsys"
+   }
+----
+====
+
+[#rs-by-simple-ref,reftext='{listing-caption} {counter:listing-num}']
+.A simple reference system value by reference.
+====
+[source,json,linenumbers]
+----
+"http://www.opengis.net/def/crs/EPSG/0/3857"
+----
+====
+
+[#rs-by-ref-with-epoch,reftext='{listing-caption} {counter:listing-num}']
+.A reference system value by reference and with an epoch.
+====
+[source,json,linenumbers]
+----
+{
+  "href": "http://www.opengis.net/def/crs/EPSG/0/3857",
+  "epoch": "2016.47"
+}
+----
+====
+
+[#compound-rs-by-value,reftext='{listing-caption} {counter:listing-num}']
+.A ad hoc compound reference system value
+====
+[source,json,linenumbers]
+----
+[
+  {
+    "href": "http://www.opengis.net/def/crs/EPSG/0/25832",
+    "epoch": "2016.47"
+  },
+  "http://www.opengis.net/def/crs/EPSG/0/5783"
+]
+----
+====
+
+[[rel-links]]
+== Relationships and links
+
+Features can have properties that are relationships with other features or resources like codelists, etc. There are multiple options how to encode such relationships and JSON-FG could provide guidance how to represent such relationships.
+
+Relationships will often be direct properties of the feature, but they may also occur in embedded JSON objects.
+
+Like all other properties, properties that are relationships may have a maximum multiplicity greater than one. That is, the JSON representation may be an array of relationships.
+
+JSON-FG will not mandate a specific way to represent relationships and links in the feature object. It has, however, three basic patterns how to represent relationships and links. Each pattern may or may not be applicable to the intended use of the data.
+
+Pattern 1 seems best suited, if the intended use of the data benefits from a consistent place where links are included in the JSON document.
+
+Pattern 2 seems best suited, if the JSON features should closely reflect the application schema of the features (in case a schema is available).
+
+The same applies to pattern 3, too, but this option seems mainly useful in combination with JSON-LD. Also, the information is not sufficient to render a useful HTML representation from the JSON representation without fetching the linked resources.
+
+Depending on the data and how the data is expected to be used, the preferences of data publishers for one or the other pattern will vary.
+
+=== Pattern 1: Add all relationships to a "links" member of the JSON object that is the link anchor
+
+This option is consistent with the general approach in the OGC API standards. It uses Web linking and a consistently named JSON member with an array of OGC API Link objects.
+
+The semantics of the relationship / association role is expressed via the link relation type. Where possible, link relation types registered with IANA or OGC should be used, but the data publisher can also define their own link relation types. Note that this introduces overhead, because it requires minting persistent URIs for the link relation types. Where this is too much, an existing link relation type should be used and "related" could be used as a fallback.
+
+=== Pattern 2: Encode links like other feature properties - using a simplified link object
+
+This option treats the relationships like other properties and uses a simplified OGC API Link object without a "rel" attribute, since the semantics of the link is already expressed by the property. 
+
+A variation could be to require the use of a valid link relation type as the key of the JSON member, which would basically move the link relation type to a key to group all links with the same link relation type.
+
+A variation of this option would be to flatten the link objects.
+
+=== Pattern 3: Only use the URI
+
+This option is similar to option 2, but the link objects are reduced to the href value. As a result, this option is more concise, but it lacks information that would be useful for the human (unless the URIs are dereferenced to fetch a label/title). In addition, since this approach does not use web linking according to RFC 8288, no link relation types for the links are available.
