@@ -12,6 +12,8 @@ The editor's draft of the specification can be found at [docs.ogc.org/DRAFTS/21-
 
 This is a new OGC working group and the work is starting on June 1st, 2021. The initial goal is to have a draft of a candidate standard with initial implementations for review by the end of 2021.
 
+The current status is documented in the [proposals](https://github.com/opengeospatial/ogc-feat-geo-json/tree/main/proposals).
+
 ## Overview
 
 JSON is a popular encoding format for geospatial data. The light weight, simple syntax, and clear human and machine readability of JSON appeals to developers. GeoJSON has become a very popular encoding and is supported in most deployments of APIs implementing OGC API Features, but has limitations that prevent or limit its use in some cases.
