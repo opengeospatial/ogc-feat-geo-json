@@ -8,7 +8,7 @@ OGC Features and Geometries JSON (JSON-FG) extends GeoJSON to support a limited 
 
 The general approach: Information that is can be represented as GeoJSON is encoded as GeoJSON. Additional information is mainly encoded in additional top-level members of GeoJSON objects. The members use keys that do not conflict with GeoJSON including the obsolete version that pre-dates the IETF standard. GeoJSON clients will be able to parse and understand all aspects that are specified by GeoJSON, JSON-FG clients will also parse and understand the additional capabilities.
 
-Extensions:
+== Extensions
 
 * <<feature-types,Identifying the feature type(s)>>
 * <<schema-ref,Identifying the schema>>
