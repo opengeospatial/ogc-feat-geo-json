@@ -17,6 +17,20 @@ Extensions:
 * <<ref-sys,Encoding of reference systems>>
 * <<rel-links,Relationships and links>>
 
+.JSON Schema of the JSON-FG extensions
+[%collapsible]
+====
+ifdef::env-github[]
+include::Feature.json[]
+endif::[]
+ifndef::env-github[]
+[source,JSON]
+----
+include::Feature.json[]
+----
+endif::[]
+====
+
 == An example feature
 
 The following feature is an example with a building feature that includes all new capabilities proposed for JSON-FG. The JSON-FG extensions are described in the following sections.
