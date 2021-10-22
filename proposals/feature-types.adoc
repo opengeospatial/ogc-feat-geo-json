@@ -26,7 +26,7 @@ A feature instance of an AirportHeliport feature type from the Aeronautical Info
 {
    "type":"Feature",
    "featureType":"aixm:AirportHeliport",
-   "coord-ref-sys":"http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+   "coordRefSys":"http://www.opengis.net/def/crs/OGC/1.3/CRS84",
    "id":38,
    "geometry":{
       "type":"Point",

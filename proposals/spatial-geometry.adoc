@@ -66,7 +66,7 @@ The following example is a valid GeoJSON feature and includes a polygon geometry
 ----
 ====
 
-The next example is the same building feature as in <<example_building_geojson>>, but the geometry is a solid in the EPSG CRS with code 5555 (ETRS89/UTM zone 32N with height). The geometry is on the JSON-FG member "where" and the coordinate reference system is declared using the "coord-ref-sys" member from the [reference systems proposal](ref-sys.adoc).
+The next example is the same building feature as in <<example_building_geojson>>, but the geometry is a solid in the EPSG CRS with code 5555 (ETRS89/UTM zone 32N with height). The geometry is on the JSON-FG member "where" and the coordinate reference system is declared using the "coordRefSys" member from the [reference systems proposal](ref-sys.adoc).
 
 The example also includes a "when" member to express the default temporal extent (an open interval).
 
@@ -81,7 +81,7 @@ The feature is still a valid GeoJSON feature, but without information about the 
 {
    "type": "Feature",
    "id": "DENW19AL0000giv5BL",
-   "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
+   "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/5555",
    "geometry": null,
    "when": { 
       "interval": [ "2014-04-24T10:50:18Z", null ]
@@ -289,7 +289,7 @@ It also includes encodes proposed JSON-FG capabilities that go beyond the scope 
 {
    "type": "Feature",
    "id": "DENW19AL0000giv5BL",
-   "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
+   "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/5555",
    "geometry": {
       "type": "Polygon",
       "coordinates": [
