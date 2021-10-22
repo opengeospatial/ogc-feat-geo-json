@@ -48,7 +48,7 @@ The following feature is an example with a building feature that includes all ne
    "when": { 
       "interval": [ "2014-04-24T10:50:18Z", null ]
    },
-   "coord-ref-sys": "http://www.opengis.net/def/crs/EPSG/0/5555",
+   "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/5555",
    "where": {
       "type": "Polyhedron",
       "coordinates": [
@@ -534,8 +534,8 @@ Without any other information, the following defaults apply in a JSON-FG file:
 
 For asserting CRS information in a JSON-FG file:
 
-* The key <<coord-ref-systems-schema,`coord-ref-sys`>> is defined and can be used to assert a CRS at the collection, feature or value levels.
-* The value of the <<coord-ref-systems-schema,`coord-ref-sys`>> key can be:
+* The key <<coord-ref-systems-schema,`coordRefSys`>> is defined and can be used to assert a CRS at the collection, feature or value levels.
+* The value of the <<coord-ref-systems-schema,`coordRefSys`>> key can be:
 ** a <<rs-by-simple-ref,simple URI reference>>,
 ** a <<rs-by-ref-with-epoch,URI reference>> with an epoch,
 ** or as an array of CRS references (with or without epoch) for an ad hoc compound CRS.
@@ -552,17 +552,17 @@ JSON-FG is not bound by these restrictions and so this document outlines a propo
 
 ==== Reference system values
 
-A reference system can be specified in a JSON-FG document using a `coord-ref-sys` member in one of three ways:
+A reference system can be specified in a JSON-FG document using a `coordRefSys` member in one of three ways:
 
 * as a simple reference using a URI,
 * as a simple reference using a URI accompanied by an epoch value,
 * as an array of reference system values denoting an ad hoc compound reference system.
 
-Used at the collection level, the `coord-ref-sys` key asserts the coordinate reference system for JSON-FG spatio-temporal values found anywhere in the document that are not otherwise tagged with closer-to-scope coordinate reference system information.
+Used at the collection level, the `coordRefSys` key asserts the coordinate reference system for JSON-FG spatio-temporal values found anywhere in the document that are not otherwise tagged with closer-to-scope coordinate reference system information.
 
-Used at the feature level, the `coord-ref-sys` key asserts the coordinate reference system for geometric JSON-FG value found anywhere in the feature that are not otherwise tagged with closer-to-scope coordinate reference system information.
+Used at the feature level, the `coordRefSys` key asserts the coordinate reference system for geometric JSON-FG value found anywhere in the feature that are not otherwise tagged with closer-to-scope coordinate reference system information.
 
-Used at the geometry level, the `coord-ref-sys` key asserts the coordinate reference system for the geometry JSON-FG value within which the key is contained.
+Used at the geometry level, the `coordRefSys` key asserts the coordinate reference system for the geometry JSON-FG value within which the key is contained.
 
 ==== Value schema
 
