@@ -1,0 +1,98 @@
+[[considerations]]
+[appendix]
+:appendix-caption: Annex
+== Considerations (Informative)
+
+#This is a temporary annex that will be removed from the document in a later stage.# 
+
+This annex includes considerations for each of the JSON-FG building blocks.
+
+=== Primary temporal geometry ("when")
+
+The following aspects were discussed:
+
+1. The current specification of the "when" member could be extended with minimal extensions beyond the RFC 3339 timestamps to support additional use cases, but this would be left to a future extension:
+
+  * Supporting instant values of a year (e.g., "1969") or a month (e.g., "1967-07") in addition to dates and timestamps could useful for extents that cover a complete month or year.
+  * Supporting instant values of the proleptic Gregorian calendar (i.e., dates before 1582 including negative years) could be useful for historic information.
+
+2. An alternative interval encoding would be to use ISO 8601-1/8601-2 and represent intervals as a string, too, instead of an array. In this case, the value of "interval" would be encoded as:
+
+  * `"1969-07-16/1969-07-24"`
+  * `"1969-07-16T05:32:00Z/1969-07-24T16:50:35Z"`
+  * `"2019-10-14/.."`
+
++
+The main reason for the current design is that this is easier to parse. In a structured language like JSON it is natural to be explicit and use the structures. For example, GeoJSON does not represent the geometry as a WKT string, but as a JSON structure. The JSON encoding of the candidate Common Query Language (CQL2) standard also follows that approach for spatial and temporal geometries.
+
++
+Another reason for the current design is that an object-based approach can support additional temporal types in the future besides instants and intervals. An example is a time series with an array of timestamps.
+
+3. The current proposal only specifies the use of "when" in the context of a feature. Other contexts could also be supported in the future. For example, a temporal extent for each geometry in a geometry collection, for properties where the value changes over time or a summary information in the feature collection.
+
+4. https://stacspec.org[SpatioTemporal Asset Catalog (STAC)] specifies a property https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#datetime[datetime] that is included in the "properties" member. This approach was not followed for two reasons:
+
+  * Like the feature identifier and the default spatial geometry of a feature, the default temporal extent of a feature should be a "first-class" citizen in the JSON encoding of the feature.
+  * The use of reserved property names might conflict with existing features that include a "datetime" property with a different specification.
+
+5. Currently there is no information about the semantics of the temporal extent. Is it a temporal extent of a feature that is a version of a real-world entity and there are potential predecessor/successors features of the same entity? Or, in case of a bitemporal dataset, is it the valid time or the transaction/record time? Etc. One potential approach could be the use of a JSON-LD context to associate the "when" member with a property definition in a vocabulary. It was decided to keep the JSON-FG core simple and leave support for more complex requirements to extensions. Support for versioned feature data is one of the planned future work items of the Features API SWG.
+
+=== Primary spatial geometry ("where", "coordRefSys", "geometry")
+
+The following aspects were discussed:
+
+1. JSON-FG will not support multiple geometries per feature (note that multiple geometries can be included inside the "properties" member) or any hints about the semantics of the geometry. The latter could potentially be addressed using JSON-LD contexts where this is important.
+
+2. The OGC Code Sprint in November 2021 also tested JSON-FG data with draft OGC API Features building blocks to access feature data suitable for display at a certain map scale / zoom level. This included API building blocks for simplifying geometries that are not points as well as filtering features that are typically not shown in maps at the scale or zoom level. This was validated with multiple implementations (a JSON-FG client and three OGC API Features servers).
+
+Also see the <<ogc21_018,Testbed-17 Features and Geometries JSON CRS Analysis of Alternatives Engineering Report>>.
+
+=== Feature type ("featureType")
+
+The following aspects were discussed:
+
+1. Initial experiments used JSON-LD `@type` member to identify the feature type(s) of the feature. This approach, however, was changed to the current approach for the following reasons:
++
+  * In many cases, feature types are specified by communities or data publishers without a persistent URI.
+  * There is demand for feature type tokens that can be processed and filtered with simple string comparisons, with URI expansions.
+  * While JSON-FG can be used with additional JSON-LD annotations, it is a design goal to avoid normative dependencies on JSON-LD.
++
+If JSON-LD is used, the "featureType" member can be mapped to "@type".
+
+2. This approach is similar to the approach taken by OGC API Records to identify the type of a record.
+
+3. In a JSON-FG extension to OGC API Features (or maybe in the new part "Schemas"), the Collection resources should be extended to include (optional) information about the feature types and geometry types included the collection. There could be a recommendation for "featureType" and "geometryDimension" as queryables for such collections.
+
+=== Schemas ("describedby" links)
+
+The following aspects were discussed:
+
+1. Some environments use a "$schema" member to reference the schema of a JSON document. However, that is not the approach recommended by the JSON Schema specification itself. In JSON Schema, the value of a "$schema" property is always the URI of a meta-schema.
+
+2. The OGC API specification for feature schemas should support at least the following two types of schemas so that they can be referenced from JSON documents retrieved from an API:
+
+  - The schema of a feature, and
+  - The schema of a feature collection, which is basically a FeatureCollection object that references the feature schema.
+
++
+This issue will be addressed by the Features API SWG (see https://github.com/opengeospatial/ogcapi-features/issues/612[issue #612]). This topic was a topic in the November 2021 Code Sprint on OGC API Features and link relation types, relative API paths to the schema resources and JSON schema profiles were discussed.
+
+=== Links
+
+The following aspects were discussed:
+
+1. A GeoJSON feature that is encoded by a Web API implementing OGC API standards will often already include a "links" member with an array of OGC API Link objects. The OGC API Link object is a JSON implementation of web links according to RFC 8288. The OGC API Features standard currently only specifies requirements for links to resources in the API to support clients navigating the API.
+
+2. Are links part of the resource or metainformation? There is a general, somewhat philosophical discussion topic related to links between resources.
++
+In general, the links of a web resource are considered metainformation, and strictly the links do not have to be part of the cachable representations of the resource. RFC 8288 (Web linking) supports this by supporting that links are only represented as HTTP headers, outside of the representations. Changes to a link would not impact the ETag or Last-Modified headers of the resource.
++
+The links in feature (collection) resources specified in OGC API Features ("self", "alternate", "next", "collection") or in JSON Schema ("describedby") are a good example. A change in any of those links does not indicate a change in the resource itself, but it indicates a technical change in the implementation. For example, another alternate representation has been added or the schema has moved to a different URI.
++
+However, because the OGC API standards include the links in the JSON representation - like most of the existing approaches to JSON-based Web APIs, a change in the links will also invalidate cached representations of the resource (and update the ETag and Last-Modified headers). A conscious decision is to include the links in the JSON representation. This approach seems to meet the expectations of developers today.
++
+The same applies to many of the explicit or implicit relationships that are expressed in geospatial datasets today. Whether a second building is erected on the parcel or not does not really change the parcel. It could be argued that the relationship between the parcel and the building is metainformation and a change to a relation does not change the parcel - and should not invalidate any cached representations. Links between the resources could be managed - and accessed - as separate resources (e.g. linksets).
++
+Nevertheless, many users and developers will prefer a more "traditional" way of sharing geospatial features with relationships included in the resource representation and the discussion below is based on this assumption.
+
+3. An extension to CQL2 to properly support filtering links should be considered by the Features API SWG.

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://beta.schemas.opengis.net/json-fg/geometry.json",
+  "title": "geometry",
+  "oneOf": [
+    {
+      "type": "null"
+    },
+    {
+      "$ref": "geometry-objects.json#/$defs/Point"
+    },
+    {
+      "$ref": "geometry-objects.json#/$defs/MultiPoint"
+    },
+    {
+      "$ref": "geometry-objects.json#/$defs/LineString"
+    },
+    {
+      "$ref": "geometry-objects.json#/$defs/MultiLineString"
+    },
+    {
+      "$ref": "geometry-objects.json#/$defs/Polygon"
+    },
+    {
+      "$ref": "geometry-objects.json#/$defs/MultiPolygon"
+    },
+    {
+      "$ref": "geometry-objects.json#/$defs/GeometryCollection"
+    }
+  ]
+}

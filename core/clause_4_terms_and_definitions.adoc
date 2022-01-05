@@ -1,12 +1,44 @@
-== Terms and Definitions
-This document used the terms defined in https://portal.ogc.org/public_ogc/directives/directives.php[OGC Policy Directive 49], which is based on the ISO/IEC Directives, Part 2, Rules for the structure and drafting of International Standards. In particular, the word “shall” (not “must”) is the verb form used to indicate a requirement to be strictly followed to conform to this standard and OGC documents do not use the equivalent phrases in the ISO/IEC Directives, Part 2.
+== Terms, Definitions and Abbreviated Terms
+
+=== Terms and Definitions
+
+This document uses the terms defined in https://portal.ogc.org/public_ogc/directives/directives.php[OGC Policy Directive 49], which is based on the ISO/IEC Directives, Part 2, Rules for the structure and drafting of International Standards. In particular, the word “shall” (not “must”) is the verb form used to indicate a requirement to be strictly followed to conform to this Standard and OGC documents do not use the equivalent phrases in the ISO/IEC Directives, Part 2.
 
 This document also uses terms defined in the OGC Standard for Modular specifications (https://portal.opengeospatial.org/files/?artifact_id=34762[OGC 08-131r3]), also known as the 'ModSpec'. The definitions of terms such as standard, specification, requirement, and conformance test are provided in the ModSpec.
 
 For the purposes of this document, the following additional terms and definitions apply.
 
-term name::
-text of the definition
+coordinate reference system::
+coordinate system that is related to an object by a datum [OGC Topic 2, version 5.0]
 
-term name::
-text of the definition
+feature::
+abstraction of real world phenomena [ISO 19101-1:2014]
+
+NOTE: More details about the term 'feature' may be found in the <<SDWBP,W3C/OGC Spatial Data on the Web Best Practice>> in the section link:https://www.w3.org/TR/sdw-bp/#spatial-things-features-and-geometry['Spatial Things, Features and Geometry'].
+
+feature collection::
+a set of *features* from a dataset
+
+JSON document::
+an information resource (series of octets) described by the application/json media type [JSON Schema 2019-09]
+
+NOTE: The terms "JSON document", "JSON text", and "JSON value" are interchangeable.
+
+JSON-FG document::
+a **JSON document** that conforms to the Requirements Class "Core" of OGC Features and Geometries JSON - Part 1: Core
+
+=== Abbreviated Terms
+
+API:: Application Programming Interface
+
+CRS:: Coordinate Reference System
+
+JSON:: JavaScript Object Notation
+
+JSON-FG:: OGC Features and Geometries JSON
+
+JSON-LD:: JSON for Linking Data
+
+OGC:: Open Geospatial Consortium
+
+SWG:: Standards Working Group

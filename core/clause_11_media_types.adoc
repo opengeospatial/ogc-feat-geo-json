@@ -1,0 +1,57 @@
+== Media Types
+
+Implementations should use `application/vnd.ogc.fg+json` as a preliminary media type until this Standard is stable to avoid confusing future implementations accessing JSON documents from draft versions of this Standard.
+
+The media type `application/fg+json` will be registered for JSON-FG, if and once this Standard will be approved by OGC.
+
+Since a JSON-FG document also conforms to GeoJSON, both the GeoJSON and the JSON-FG media types can be used. APIs that provide feature data that conforms to both GeoJSON and JSON-FG should declare support for both media types in the API definition to support clients that know JSON-FG and also those that only support GeoJSON.
+
+[[application_fg_json]]
+=== application/fg+json
+
+----
+Type name: application
+
+Subtype name: fg+json
+
+Required parameters: n/a
+
+Optional parameters:
+
+  "compatibility": If provided, the value "geojson" indicates that JSON-FG features 
+  with a "where" member that is not 'null' will also include a GeoJSON geometry 
+  in the "geometry" member (a point, line string, polygon or an aggregation of them 
+  in WGS 84). If the parameter is missing, the "geometry" member of a JSON-FG feature 
+  will be 'null', if the "where" member is not 'null'. For any other parameter value, 
+  the behavior is unspecified.
+
+Encoding considerations: binary
+
+Security considerations: See Security Considerations
+
+Interoperability considerations: TODO
+
+Published specification: this document
+
+Applications that use this media type: TODO
+
+Additional information:
+
+  Magic number(s): none
+
+  File extension(s): .json, .jsonfg
+
+  Macintosh file type code: TEXT
+
+Person to contact for further information: TODO
+
+Intended usage: COMMON
+
+Restrictions on usage: none
+
+Restrictions on usage: none
+
+Author: see the editors of this Standard
+
+Change controller:  Open Geospatial Consortium (OGC)
+----

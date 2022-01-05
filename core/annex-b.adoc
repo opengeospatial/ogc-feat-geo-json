@@ -1,0 +1,84 @@
+[[schemas]]
+[appendix]
+:appendix-caption: Annex
+== Schemas (Normative)
+
+NOTE: #The current JSON Schema version is 2020-12, which is also used in OpenAPI 3.1, but that version is not yet widely implemented. The JSON-FG schemas have been created using version 2019-09. Should schemas be published in multiple versions?#
+
+NOTE: #The JSON-FG schema documents will only be published on `schemas.opengis.net` once the JSON-FG standard has been approved. Until then, the schema documents will be made available in the schema repository for drafts.#
+
+[[schema-feature-collection]]
+=== JSON schema of a JSON-FG feature collection 
+
+[source,json,linenumbers]
+----
+include::schemas/featurecollection.json[]
+----
+
+[[schema-feature]]
+=== JSON schema of a JSON-FG feature 
+
+[source,json,linenumbers]
+----
+include::schemas/feature.json[]
+----
+
+[[schema-when]]
+=== JSON schema of the "when" member
+
+[source,json,linenumbers]
+----
+include::schemas/when.json[]
+----
+
+[[schema-where]]
+=== JSON schema of the "where" member
+
+[source,json,linenumbers]
+----
+include::schemas/where.json[]
+----
+
+[[schema-coordrefsys]]
+=== JSON schema of the "coordRefSys" member
+
+[source,json,linenumbers]
+----
+include::schemas/coordrefsys.json[]
+----
+
+[[schema-geometry]]
+=== JSON schema of the "geometry" member
+
+[source,json,linenumbers]
+----
+include::schemas/geometry.json[]
+----
+
+[[schema-geometry-objects]]
+=== JSON schema of geometry objects
+
+[source,json,linenumbers]
+----
+include::schemas/geometry-objects.json[]
+----
+
+[[schema-featuretype]]
+=== JSON schema of the "featureType" member
+
+[source,json,linenumbers]
+----
+include::schemas/featuretype.json[]
+----
+
+[[schema-link]]
+=== JSON schema of a link
+
+NOTE: This schema will be removed, once a general 2019-09 schema for Link objects is published in the OGC Schema Repository.
+
+[source,json,linenumbers]
+----
+include::schemas/link.json[]
+----
+
+

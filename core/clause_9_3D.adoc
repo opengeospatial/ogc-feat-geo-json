@@ -1,0 +1,34 @@
+:req-class: 3d
+[#rc_{req-class}]
+== Requirements Class "3D"
+
+The Requirements Class "3D" add provisions for geometries in a 3D CRS and that may be a <<Polyhedron>> or <<MultiPolyhedron>>. 
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |JSON documents
+|Dependency |<<rc_core>>
+|===
+
+=== Encoding the primary spatial geometry
+
+:req: coordinate-dimension
+[#{req-class}_{req}]
+==== Coordinate dimension
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |All positions in a geometry object in the "where" member in any JSON-FG feature in the JSON document SHALL have dimension 3.
+|===
+
+:req: geom-valid
+[#{req-class}_{req}]
+==== Geometries are valid
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "where" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Polyhedron" or "MultiPolyhedron", the geometry objects SHALL be valid geometries according to #TODO#.
+|===

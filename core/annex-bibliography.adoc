@@ -3,23 +3,10 @@
 [[Bibliography]]
 = Bibliography
 
-[NOTE]
-.Example Bibliography (Delete this note).
-===============================================
-The TC has approved Springer LNCS as the official document citation type.
+[[json-schema]] **JSON Schema: A Media Type for Describing JSON Documents**. Edited by A. Wright, H. Andrews, B. Hutton. 2019. Available at https://json-schema.org/draft/2019-09/json-schema-core.html
 
-Springer LNCS is widely used in technical and computer science journals and other publications
+[[json-schema-validation]] **JSON Schema Validation: A Vocabulary for Structural Validation of JSON**. Edited by A. Wright, H. Andrews, B. Hutton. 2019. Available at https://json-schema.org/draft/2019-09/json-schema-validation.html
 
-* For citations in the text please use square brackets and consecutive numbers: [1], [2], [3]
+[[ogc20_070]] Open Geospatial Consortium (OGC). OGC 20-070: **Geographic information - Features and geometry — Part 2: Metrics**. Edited by J. Herring. 2019. Available at https://portal.ogc.org/files/?artifact_id=94178 (access requires OGC membership)
 
-– Actual References:
-
-[n] Journal: Author Surname, A.: Title. Publication Title. Volume number, Issue number, Pages Used (Year Published)
-
-[n] Web: Author Surname, A.: Title, http://Website-Url
-
-===============================================
-
-((( Example )))
-[[OGC2015]]
-[1] OGC: OGC Testbed 12 Annex B: Architecture. (2015).
+[[ogc21_018]] Open Geospatial Consortium (OGC). OGC 21-018: **OGC Testbed-17: Features and Geometries JSON CRS Analysis of Alternatives ER**. Edited by P. Vretanos. 2021. Available at https://portal.ogc.org/files/?artifact_id=99382 (access requires OGC membership)

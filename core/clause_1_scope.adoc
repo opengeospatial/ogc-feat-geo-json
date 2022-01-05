@@ -1,5 +1,15 @@
 == Scope
-[NOTE]
-====
-Insert Scope text here. Give the subject of the document and the aspects of that scope covered by the document.
-====
+
+OGC Features and Geometries JSON (JSON-FG) extends GeoJSON to support a limited set of additional capabilities that are out-of-scope for GeoJSON, but that are important for a variety of use cases involving feature data.
+
+This Standard specifies the following minimal extensions to the GeoJSON Standard:
+
+* The ability to use Coordinate Reference Systems (CRSs) other than WGS 84;
+* Allow the use of non-Euclidean metrics, in particular ellipsoidal metrics;
+* Solids and multi-solids as geometry types;
+* The ability to encode the primary temporal geometry of a feature; and
+* The ability to declare the type and the schema of a feature.
+
+Information that can be represented as GeoJSON is encoded as GeoJSON. Additional information is mainly encoded in additional members of the GeoJSON objects. The members use keys that do not conflict with GeoJSON so that GeoJSON clients will be able to parse and understand all aspects that are specified by GeoJSON; JSON-FG clients will also parse and understand the additional capabilities.
+
+JSON Schema is used to formally specify the JSON-FG syntax.

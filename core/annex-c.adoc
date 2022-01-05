@@ -1,0 +1,19 @@
+[#examples]
+[appendix]
+:appendix-caption: Annex
+== Examples (Informative)
+
+<add more examples, e.g. of a homogenous feature collection>
+
+=== An example feature
+
+The following feature instance is an example of a building feature that includes all new JSON-FG capabilities.
+
+[#example_building,reftext='{listing-caption} {counter:listing-num}']
+.Building with a polyhedron geometry and the polygon footprint
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/feature.json[]
+----
+====

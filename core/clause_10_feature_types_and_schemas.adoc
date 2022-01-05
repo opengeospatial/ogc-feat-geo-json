@@ -1,0 +1,91 @@
+:req-class: types-schemas
+[#rc_{req-class}]
+== Requirements Class "Feature Types and Schemas"
+
+The Requirements Class "Feature Types and Schemas" adds provisions for feature type classifications and schemas.
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |JSON documents
+|Dependency |<<rc_core>>
+|===
+
+=== Identifying the feature type(s)
+
+:req: feature-type
+[#{req-class}_{req}]
+==== "featureType"
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the JSON document is a JSON-FG feature, the feature object SHALL have a member "featureType".
+^|B |If the JSON document is a JSON-FG feature collection, either the feature collection object SHALL have a member "featureType" or each feature object SHALL have a member "featureType".
+|===
+
+:req: geometry-dimension
+[#{req-class}_{req}]
+==== "geometryDimension"
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the JSON document is a JSON-FG feature collection with a member "geometryDimension" that is not `null`, the geometry type of the primary geometry of each feature SHALL be consistent with the value (0: a Point or MultiPoint, 1: a LineString or MultiLineString, 2: a Polygon or MultiPolygon, 3: a Polyhedron or MultiPolyhedron).
+|===
+
+:rec: homogenuous-collection
+[#{req-class}_{rec}]
+==== Homogenous feature collections
+
+[width="90%",cols="2,7a"]
+|===
+^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
+^|A |If the JSON document is a JSON-FG feature collection and each feature is of the same feature type, the feature type information SHOULD be specified in the feature collection.
+^|B |If the JSON document is a JSON-FG feature collection and the primary geometry of each feature has the same dimension (0 for a Point/MultiPoint, 1 for a LineString/MultiLineString, 2 for a Polygon/MultiPolygon, 3 for a Polyhedron/MultiPolyhedron), the feature collection object SHOULD contain a member "geometryDimension".
+|===
+
+:rec: type-links
+[#{req-class}_{rec}]
+==== Links to a semantic type
+
+[width="90%",cols="2,7a"]
+|===
+^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
+^|A |The "links" array in any JSON-FG feature in the JSON document SHOULD include at least one link object where the "rel" member is set to "type".
+|===
+
+=== Identifying the schema(s)
+
+:req: schema-link-jsonfg
+[#{req-class}_{req}]
+==== Link to the JSON-FG schema
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the JSON document is a JSON-FG feature, the feature object SHALL have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to the value of the "$id" member of the <<schema-feature>>.
+^|B |If the JSON document is a JSON-FG feature collection, the feature collection object SHALL have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to the value of the "$id" member of the <<schema-feature-collection>>.
+|===
+
+:rec: schema-link-geojson
+[#{req-class}_{rec}]
+==== Link to the GeoJSON schema
+
+[width="90%",cols="2,7a"]
+|===
+^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
+^|A |If the JSON document is a GeoJSON feature, the feature object SHOULD have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to "https://geojson.org/schema/Feature.json".
+^|B |If the JSON document is a GeoJSON feature collection, the feature collection object SHALL have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to "https://geojson.org/schema/FeatureCollection.json".
+|===
+
+:rec: schema-link-properties
+[#{req-class}_{rec}]
+==== Link to the schema describing the feature properties
+
+[width="90%",cols="2,7a"]
+|===
+^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
+^|A |If the JSON document is a GeoJSON feature, the feature object SHOULD have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to a JSON schema that includes schema information about the members of the "properties" member.
+^|B |If the JSON document is a GeoJSON feature collection, the feature collection object SHALL have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to a JSON schema that includes schema information about the members of the "properties" member.
+|===

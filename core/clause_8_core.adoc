@@ -1,0 +1,163 @@
+:req-class: core
+[#rc_{req-class}]
+== Requirements Class "Core"
+
+The Requirements Class "Core" specifies provisions for encoding information about the primary spatial and temporal geometry of a feature in JSON. 
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |JSON documents
+|Dependency |<<rfc7946,RFC 7946: The GeoJSON Format>>
+|Indirect Dependency |<<rfc3339,RFC 3339: Date and Time on the Internet: Timestamps>>
+|Indirect Dependency |<<ogc06_103r4,Simple feature access - Part 1: Common architecture>>
+|===
+
+A JSON-FG document is either a feature or feature collection that meets all requirements described in this chapter and that also meets all requirements stated in the <<rfc7946,GeoJSON standard>> for GeoJSON features or feature collections.
+
+:req: schema-valid
+[#{req-class}_{req}]
+=== Syntax
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The JSON document SHALL validate against <<schema-feature>> (a JSON-FG feature) or <<schema-feature-collection>> (a JSON-FG feature collection).
+|===
+
+=== Encoding the primary temporal geometry
+
+:req: instant
+[#{req-class}_{req}]
+==== Instants
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "when" object in any JSON-FG feature in the JSON document includes an "instant" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match one of the following production rules: `full-date` (a date) or `date-time` (a timestamp).
+|===
+
+:req: interval
+[#{req-class}_{req}]
+==== Intervals
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "when" object in any JSON-FG feature in the JSON document includes an "interval" member, each array item that is a string SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match one of the following production rules: `full-date` (a date) or `date-time` (a timestamp).
+|===
+
+:req: instant-and-interval
+[#{req-class}_{req}]
+==== Instants and intervals
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "when" object in any JSON-FG feature in the JSON document includes both "instant" and "interval" members, the interval SHALL contain the instant.
+|===
+
+:rec: utc
+[#{req-class}_{rec}]
+==== Time zones
+
+[width="90%",cols="2,7a"]
+|===
+^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
+^|A |Timestamps in the "when" member in any JSON-FG feature in the JSON document SHOULD use UTC ("Z") as the time zone.
+|===
+
+=== Encoding the primary spatial geometry
+
+:req: coordinate-dimension
+[#{req-class}_{req}]
+==== Coordinate dimension
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |All positions in a geometry object in the "geometry" or "where" members in any JSON-FG feature in the JSON document SHALL have the same dimension.
+|===
+
+:req: geometry-wgs84
+[#{req-class}_{req}]
+==== WGS84 in "geometry"
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "geometry" member in a JSON-FG feature in the JSON document is not `null`, the first element of each position SHALL be between -180 and +180.
+^|B |If the "geometry" member in a JSON-FG feature in the JSON document is not `null`, the second element of each position SHALL be between -90 and +90.
+|===
+
+:req: geom-valid
+[#{req-class}_{req}]
+==== Geometries are valid
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "where" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the geometry objects SHALL be valid geometries according to <<ogc06_103r4,Simple feature access - Part 1: Common architecture>>.
+|===
+
+:req: where
+[#{req-class}_{req}]
+==== No GeoJSON geometry in "where"
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "where" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the CRS SHALL not use WGS84 longitude/latitude as the first two coordinate axes.
+|===
+
+The coordinate reference system of a geometry object is determined as follows: 
+
+* If the geometry object has a member "coordRefSys", the CRS is identified by the value. 
+** Otherwise inspect the parent object and repeat until the root object.
+* If no "coordRefSys" member has been found, the CRS has WGS84 longitude/latitude as the first two coordinate axes (that is, the requirement above is not met).
+* Otherwise inspect the CRS URI or CRS object to determine the datum and the first two coordinate axes.
+
+:req: fallback
+[#{req-class}_{req}]
+==== Fallback geometry in "geometry"
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If both the "where" and the "geometry" member in a JSON-FG feature in the JSON document are not `null`, the values SHALL not be identical.
+^|B |If both the "where" and the "geometry" member in a JSON-FG feature in the JSON document are not `null` and the JSON document is associated with a media type (e.g., the JSON document is fetched with a HTTP request), the media type SHALL include a parameter "compatibility" with a value "geojson".
+|===
+
+:rec: where-crs
+[#{req-class}_{rec}]
+==== WGS84 in "where"
+
+[width="90%",cols="2,7a"]
+|===
+^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
+^|A |If the "where" member in any JSON-FG feature in the JSON document is not `null`, the first element of each position SHOULD be in the valid range for the first coordinate axis of the CRS.
+^|B |If the "geometry" member in any JSON-FG feature in the JSON document is not `null`, the second element of each position SHOULD be in the valid range for the second coordinate axis of the CRS.
+|===
+
+See above for a description how to determine the CRS of a geometry object.
+
+
+
+
+
+
+
+
+
+
+////
+===== Polyhedron
+
+A _polyhedron_ is an non-empty array of _multi-polygon_ arrays. Each _multi-polygon_ array is a shell and must be closed. The first shell is the exterior boundary, all other shells are holes.
+
+The dimension of all positions is three.
+
+===== MultiPolyhedron
+
+A _multi-polyhedron_ is an array of _polyhedron_ objects. The order of the polyhedron geometry objects in the array is not significant.
+////
