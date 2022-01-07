@@ -2,20 +2,7 @@
 
 ## Current proposals
 
-This folder contains proposals for building blocks of OGC Features and Geometries JSON for discussion before content is eventually moved to the specification document.
-
-Current proposals:
-
-* [Encoding the temporal extent of a feature](temporal-extent.adoc) - issue [#11](https://github.com/opengeospatial/ogc-feat-geo-json/issues/11)
-* [Encoding the spatial geometry of a feature](spatial-geometry.adoc) - issue [#13](https://github.com/opengeospatial/ogc-feat-geo-json/issues/13)
-* [Encoding of reference systems](ref-sys.adoc) - issues [#14](https://github.com/opengeospatial/ogc-feat-geo-json/issues/14), [#3](https://github.com/opengeospatial/ogc-feat-geo-json/issues/3)
-* [Identifying the schema](schema-ref.adoc) - issue [#12](https://github.com/opengeospatial/ogc-feat-geo-json/issues/12)
-* [Identifying the feature type(s)](feature-types.adoc) - issue [#16](https://github.com/opengeospatial/ogc-feat-geo-json/issues/16)
-* [Relationships and links](relationships-and-links.adoc) - issues [#17](https://github.com/opengeospatial/ogc-feat-geo-json/issues/17), [#8](https://github.com/opengeospatial/ogc-feat-geo-json/issues/8)
-
-A consolidated summary is available in [summary.adoc](summary.adoc). 
-
-A JSON Schema document for the JSON-FG extensions is in [Feature.json](Feature.json).
+This folder was originally used to develop proposals for various aspects of JSON-FG. All previous proposals have been included in the [current draft specification](https://github.com/opengeospatial/ogc-feat-geo-json/tree/main/core).
 
 ## Adding a new proposal
 
