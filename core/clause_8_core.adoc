@@ -81,7 +81,7 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 
 :req: geometry-wgs84
 [#{req-class}_{req}]
-==== WGS84 in "geometry"
+==== "geometry" in longitude/latitude
 
 [width="90%",cols="2,7a"]
 |===
@@ -130,7 +130,7 @@ The coordinate reference system of a geometry object is determined as follows:
 
 :rec: where-crs
 [#{req-class}_{rec}]
-==== WGS84 in "where"
+==== Coordinate values in "where"
 
 [width="90%",cols="2,7a"]
 |===
@@ -141,23 +141,4 @@ The coordinate reference system of a geometry object is determined as follows:
 
 See above for a description how to determine the CRS of a geometry object.
 
-
-
-
-
-
-
-
-
-
-////
-===== Polyhedron
-
-A _polyhedron_ is an non-empty array of _multi-polygon_ arrays. Each _multi-polygon_ array is a shell and must be closed. The first shell is the exterior boundary, all other shells are holes.
-
-The dimension of all positions is three.
-
-===== MultiPolyhedron
-
-A _multi-polyhedron_ is an array of _polyhedron_ objects. The order of the polyhedron geometry objects in the array is not significant.
-////
+NOTE: This is only a recommendation, not a requirement as there are often valid reasons to have have coordinates outside of the range, for example outside of a UTM zone that covers most of the area of a dataset.
