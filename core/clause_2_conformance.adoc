@@ -1,9 +1,7 @@
 == Conformance
-This Standard defines three requirements classes. 
+This Standard defines three requirements classes. The standardization target for all requirements classes are JSON documents.
 
-The standardization target for all requirements classes are JSON documents.
-
-Requirements for three standardization target types are considered:
+The requirements classes are:
 
 * "Core": Support for <<when>>, <<where>> and <<ref-sys>>, except support for <<Polyhedron>> and <<MultiPolyhedron>>. Depends on GeoJSON.
 * "3D": Geometries are in a 3D CRS and may be a <<Polyhedron>> or <<MultiPolyhedron>>. Depends on "Core".
