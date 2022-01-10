@@ -28,7 +28,7 @@ Like all other properties, properties that are relationships may have a maximum 
 
 A GeoJSON feature that is encoded by a Web API implementing OGC API standards will often already include a "links" member with an array of OGC API Link objects. The OGC API Link object is a JSON implementation of web links according to RFC 8288. As discussed above, the OGC API Features standard currently only specifies requirements for links to resources in the API to support clients navigating the API.
 
-=== Patters
+=== Patterns
 
 Three patterns for representing relationships with other features or resources are discussed below. They all address different use cases.
 
