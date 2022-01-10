@@ -6,7 +6,7 @@
 
 The following are keywords to be used by search engines and document catalogues.
 
-ogcdoc, OGC document, JSON, JSON-FG, GeoJSON
+ogcdoc, OGC document, JSON, JSON-FG, GeoJSON, feature, geometry
 
 [big]*iii.   Preface*
 
