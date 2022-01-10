@@ -4,7 +4,7 @@ This page lists endpoints that implement draft versions of JSON-FG.
 
 The current list is from OGC Testbed-17:
 
-[cols="2h,2a,4a",options="header",grid="rows",stripes="hover"]
+[cols="2h,2a,2a,4a",options="header",grid="rows",stripes="hover"]
 |===
 | Type | Software Tool | Provider | URL
 | OGC Web API | CubeServ | CubeWerx Inc. | https://test.cubewerx.com/cubewerx/cubeserv/tb17
