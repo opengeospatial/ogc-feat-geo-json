@@ -34,7 +34,7 @@ JSON-FG adds support for the most common case: Associating a feature with a sing
 
 More complex cases and other temporal coordinate reference systems are out-of-scope for this Standard and might be specified in future extensions.
 
-NOTE: #There is an existing initiative for a https://github.com/kgeographer/geojson-t[temporal GeoJSON extension ("GeoJSON-T")]. The proposal also uses "when" as a key, but with a different schema for the "when" object. The GeoJSON-T design supports more complex use cases that go beyond the scope of the proposal. To avoid confusion, the SWG should either use a different key than "when" or agree on a joint approach with the GeoJSON-T author (there should be support for simple instants/intervals as a minimal profile, additional capabilities would then extend that minimal profile).#
+NOTE: #There is an existing initiative for a https://github.com/kgeographer/geojson-t[temporal GeoJSON extension ("GeoJSON-T")]. The proposal also uses "when" as a key, but with a different schema for the "when" object. The GeoJSON-T design supports more complex use cases that go beyond the scope of the proposal. To avoid confusion, the SWG should either use a different key than "when" or agree on a joint approach with the GeoJSON-T author (there should be support for simple instants/intervals as a minimal profile, additional capabilities would then extend that minimal profile). The current assumption is we should use a different key to avoid confusion with GeoJSON-T instances.#
 
 ==== Description
 
@@ -206,6 +206,8 @@ Spatio-temporal objects are specified relative to some reference system.
 GeoJSON (both the current https://tools.ietf.org/html/rfc7946[RFC] and the https://geojson.org/geojson-spec.html[legacy version]) fixed the reference system for geometric values to the "WGS84 datum, and with longitude and latitude units of decimal degrees".  The https://geojson.org/geojson-spec.html[legacy version] included a "prior arrangement" provision to allow other reference systems to be used and also defined the "crs" key for specifying the reference system.  This _prior arrangement_ mechanism survived into the https://tools.ietf.org/html/rfc7946[RFC] but the accompanying "crs" key did not. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON and the only safe approach is to stick with OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
 
 Additional JSON-FG building blocks like the "where" member are not bound by these restrictions and so this Standard provides for handling reference systems in JSON-FG documents that does not interfere with anything, past or present, defined in any of the GeoJSON specifications. The GeoJSON building blocks can continue to operate as always but JSON-FG building blocks can avail themselves of enhanced CRS support.
+
+NOTE: #Check original proposal for another alternative how to disambiguate between different JSON objects that represent a CRS by-reference, by-value, etc.#
 
 ===== Reference system values
 
