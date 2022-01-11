@@ -8,7 +8,7 @@ OGC Features and Geometries JSON will build on the widely used [GeoJSON standard
 
 This is a new OGC working group and the work has started on June 1st, 2021. An initial draft of a candidate standard is available.
 
-The editor's draft of the specification can be found at [docs.ogc.org/DRAFTS/21-045.html](https://docs.ogc.org/DRAFTS/21-045.html).
+The editor's draft of the specification can be found at [docs.ogc.org/DRAFTS/21-045.html](https://docs.ogc.org/DRAFTS/21-045.html). A [PDF version](https://docs.ogc.org/DRAFTS/21-045.pdf) is available, too.
 
 Next steps:
 
