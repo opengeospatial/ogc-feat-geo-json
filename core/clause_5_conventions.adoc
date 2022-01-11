@@ -20,3 +20,5 @@ Readers of JSON-FG documents should therefore be prepared to process documents w
 The JSON schemas have been designed to support extensions. JSON-FG documents that include extensions will still validate against the JSON-FG schemas.
 
 The "$id" member of the schemas does not include information about the version of the Standard or the part of the JSON-FG standard. Future revisions of this Standard or additional parts of JSON-FG will update and extend the JSON-FG schemas. Any change will not invalidate existing JSON-FG documents.
+
+<add an Annex with examples how future parts or communities can extend the schemas>

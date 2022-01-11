@@ -10,6 +10,11 @@ This is a new OGC working group and the work has started on June 1st, 2021. An i
 
 The editor's draft of the specification can be found at [docs.ogc.org/DRAFTS/21-045.html](https://docs.ogc.org/DRAFTS/21-045.html).
 
+Next steps:
+
+* It is planned to release a draft version 0.1 in Q1 2022 after a review of all open issues and placeholders in the document. This version should be the basis for testing JSON-FG by communities, in code sprints, etc.
+* We target an updated draft version 0.2 approximately 6 to 12 months after the release of version 0.1 to have a stable version for testing.
+
 ## Overview
 
 JSON is a popular encoding format for geospatial data. The light weight, simple syntax, and clear human and machine readability of JSON appeals to developers. GeoJSON has become a very popular encoding and is supported in most deployments of APIs implementing OGC API Features, but has limitations that prevent or limit its use in some cases.
