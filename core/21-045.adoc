@@ -24,7 +24,7 @@
 |Internal reference number of this OGC(R) document:    21-045
 |Version: {m_n} (Editor's Draft)
 |Category: OGC(R) Implementation Standard
-|Editor:   <Name(s) of Editor or Editors>
+|Editor:   Clemens Portele, Panagiotis (Peter) A. Vretanos, ... 
 |===
 
 [cols = "^", frame = "none"]

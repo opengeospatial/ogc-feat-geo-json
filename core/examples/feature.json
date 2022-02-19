@@ -2,11 +2,11 @@
    "type": "Feature",
    "id": "DENW19AL0000giv5BL",
    "featureType": "app:building",
-   "when": {
+   "time": {
       "interval": [ "2014-04-24T10:50:18Z", null ]
    },
    "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/5555",
-   "where": {
+   "place": {
       "type": "Polyhedron",
       "coordinates": [
          [

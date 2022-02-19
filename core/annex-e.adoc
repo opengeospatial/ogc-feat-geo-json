@@ -7,11 +7,11 @@
 
 This annex includes considerations for each of the JSON-FG building blocks.
 
-=== Primary temporal geometry ("when")
+=== Primary temporal information ("time")
 
 The following aspects were discussed:
 
-1. The current specification of the "when" member could be extended with minimal extensions beyond the RFC 3339 timestamps to support additional use cases, but this would be left to a future extension:
+1. The current specification of the "time" member could be extended with minimal extensions beyond the RFC 3339 timestamps to support additional use cases, but this would be left to a future extension:
 
   * Supporting instant values of a year (e.g., "1969") or a month (e.g., "1967-07") in addition to dates and timestamps could useful for extents that cover a complete month or year.
   * Supporting instant values of the proleptic Gregorian calendar (i.e., dates before 1582 including negative years) could be useful for historic information.
@@ -23,21 +23,23 @@ The following aspects were discussed:
   * `"2019-10-14/.."`
 
 +
-The main reason for the current design is that this is easier to parse. In a structured language like JSON it is natural to be explicit and use the structures. For example, GeoJSON does not represent the geometry as a WKT string, but as a JSON structure. The JSON encoding of the candidate Common Query Language (CQL2) standard also follows that approach for spatial and temporal geometries.
+The main reason for the current design is that this is easier to parse. In a structured language like JSON it is natural to be explicit and use the structures. For example, GeoJSON does not represent the geometry as a WKT string, but as a JSON structure. The JSON encoding of the candidate Common Query Language (CQL2) standard also follows that approach for spatial and temporal literals.
 
 +
 Another reason for the current design is that an object-based approach can support additional temporal types in the future besides instants and intervals. An example is a time series with an array of timestamps.
 
-3. The current proposal only specifies the use of "when" in the context of a feature. Other contexts could also be supported in the future. For example, a temporal extent for each geometry in a geometry collection, for properties where the value changes over time or a summary information in the feature collection.
+3. The current proposal only specifies the use of "time" in the context of a feature. Other contexts could also be supported in the future. For example, temporal information for each geometry in a geometry collection, for properties where the value changes over time or a summary information in the feature collection.
 
 4. https://stacspec.org[SpatioTemporal Asset Catalog (STAC)] specifies a property https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#datetime[datetime] that is included in the "properties" member. This approach was not followed for two reasons:
 
-  * Like the feature identifier and the default spatial geometry of a feature, the default temporal extent of a feature should be a "first-class" citizen in the JSON encoding of the feature.
+  * Like the feature identifier and the primary geometry of a feature, the primary temporal information of a feature should be a "first-class" citizen in the JSON encoding of the feature.
   * The use of reserved property names might conflict with existing features that include a "datetime" property with a different specification.
 
-5. Currently there is no information about the semantics of the temporal extent. Is it a temporal extent of a feature that is a version of a real-world entity and there are potential predecessor/successors features of the same entity? Or, in case of a bitemporal dataset, is it the valid time or the transaction/record time? Etc. One potential approach could be the use of a JSON-LD context to associate the "when" member with a property definition in a vocabulary. It was decided to keep the JSON-FG core simple and leave support for more complex requirements to extensions. Support for versioned feature data is one of the planned future work items of the Features API SWG.
+5. Currently there is no information about the semantics of the temporal information. Is it the validity in time of a feature that is a version of a real-world entity and there are potential predecessor/successors features of the same entity? Or, in case of a bitemporal dataset, is it the valid time or the transaction/record time? Etc. One potential approach could be the use of a JSON-LD context to associate the "time" member with a property definition in a vocabulary. It was decided to keep the JSON-FG core simple and leave support for more complex requirements to extensions. Support for versioned feature data is one of the planned future work items of the Features API SWG.
 
-=== Primary spatial geometry ("where", "coordRefSys", "geometry")
+6. There is an existing initiative for a https://github.com/kgeographer/geojson-t[temporal GeoJSON extension ("GeoJSON-T")]. The GeoJSON-T design supports more complex use cases that go beyond the scope of the proposal. To avoid confusion, the SWG is using a different key ("time").
+
+=== Primary geometry ("place", "coordRefSys", "geometry")
 
 The following aspects were discussed:
 

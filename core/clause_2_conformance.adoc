@@ -3,7 +3,7 @@ This Standard defines three requirements classes. The standardization target for
 
 The requirements classes are:
 
-* "Core": Support for <<when>>, <<where>> and <<ref-sys>>, except support for <<Polyhedron>> and <<MultiPolyhedron>>. Depends on GeoJSON.
+* "Core": Support for <<time>>, <<place>> and <<ref-sys>>, except support for <<Polyhedron>> and <<MultiPolyhedron>>. Depends on GeoJSON.
 * "3D": Geometries are in a 3D CRS and may be a <<Polyhedron>> or <<MultiPolyhedron>>. Depends on "Core".
 * "Feature Types and Schemas": Support for <<feature-types>> and <<schema-ref>>. Depends on "Core".
 

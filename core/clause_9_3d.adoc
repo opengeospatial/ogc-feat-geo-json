@@ -11,7 +11,7 @@ The Requirements Class "3D" add provisions for geometries in a 3D CRS and that m
 |Dependency |<<rc_core>>
 |===
 
-=== Encoding the primary spatial geometry
+=== Geometry
 
 :req: coordinate-dimension
 [#{req-class}_{req}]
@@ -20,7 +20,7 @@ The Requirements Class "3D" add provisions for geometries in a 3D CRS and that m
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |All positions in a geometry object in the "where" member in any JSON-FG feature in the JSON document SHALL have coordinate dimension 3.
+^|A |All positions in a geometry object in the "place" member in any JSON-FG feature in the JSON document SHALL have coordinate dimension 3.
 |===
 
 :req: geom-valid
@@ -30,5 +30,5 @@ The Requirements Class "3D" add provisions for geometries in a 3D CRS and that m
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "where" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Polyhedron" or "MultiPolyhedron", the geometry objects SHALL be valid geometries according to #TODO#.
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Polyhedron" or "MultiPolyhedron", the geometry objects SHALL be valid geometries according to #TODO#.
 |===

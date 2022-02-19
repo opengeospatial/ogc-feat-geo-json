@@ -2,7 +2,7 @@
 [#rc_{req-class}]
 == Requirements Class "Core"
 
-The Requirements Class "Core" specifies provisions for encoding information about the primary spatial and temporal geometry of a feature in JSON. 
+The Requirements Class "Core" specifies provisions for encoding information about the primary geometry and temporal information of a feature in JSON. 
 
 [cols="2,7",width="90%"]
 |===
@@ -25,7 +25,7 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 ^|A |The JSON document SHALL validate against <<schema-feature>> (a JSON-FG feature) or <<schema-feature-collection>> (a JSON-FG feature collection).
 |===
 
-=== Encoding the primary temporal geometry
+=== Temporal information
 
 :req: instant
 [#{req-class}_{req}]
@@ -34,7 +34,7 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "when" object in any JSON-FG feature in the JSON document includes an "instant" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match one of the following production rules: `full-date` (a date) or `date-time` (a timestamp).
+^|A |If the "time" object in any JSON-FG feature in the JSON document includes an "instant" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match one of the following production rules: `full-date` (a date) or `date-time` (a timestamp).
 |===
 
 :req: interval
@@ -44,7 +44,7 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "when" object in any JSON-FG feature in the JSON document includes an "interval" member, each array item that is a string SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match one of the following production rules: `full-date` (a date) or `date-time` (a timestamp).
+^|A |If the "time" object in any JSON-FG feature in the JSON document includes an "interval" member, each array item that is a string SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match one of the following production rules: `full-date` (a date) or `date-time` (a timestamp).
 |===
 
 :req: instant-and-interval
@@ -54,7 +54,7 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "when" object in any JSON-FG feature in the JSON document includes both "instant" and "interval" members, the interval SHALL contain the instant.
+^|A |If the "time" object in any JSON-FG feature in the JSON document includes both "instant" and "interval" members, the interval SHALL contain the instant.
 |===
 
 :rec: utc
@@ -64,10 +64,10 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 [width="90%",cols="2,7a"]
 |===
 ^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
-^|A |Timestamps in the "when" member in any JSON-FG feature in the JSON document SHOULD use UTC ("Z") as the time zone.
+^|A |Timestamps in the "time" member in any JSON-FG feature in the JSON document SHOULD use UTC ("Z") as the time zone.
 |===
 
-=== Encoding the primary spatial geometry
+=== Geometry
 
 :req: coordinate-dimension
 [#{req-class}_{req}]
@@ -76,7 +76,7 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |All positions in a geometry object in the "geometry" or "where" members in any JSON-FG feature in the JSON document SHALL have the same dimension.
+^|A |All positions in a geometry object in the "geometry" or "place" members in any JSON-FG feature in the JSON document SHALL have the same dimension.
 |===
 
 :req: geometry-wgs84
@@ -97,17 +97,17 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "where" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the geometry objects SHALL be valid geometries according to <<ogc06_103r4,Simple feature access - Part 1: Common architecture>>.
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the geometry objects SHALL be valid geometries according to <<ogc06_103r4,Simple feature access - Part 1: Common architecture>>.
 |===
 
-:req: where
+:req: place
 [#{req-class}_{req}]
-==== No GeoJSON geometry in "where"
+==== No GeoJSON geometry in "place"
 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "where" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the CRS SHALL not use WGS84 longitude/latitude as the first two coordinate axes.
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the CRS SHALL not use WGS84 longitude/latitude as the first two coordinate axes.
 |===
 
 The coordinate reference system of a geometry object is determined as follows: 
@@ -124,18 +124,18 @@ The coordinate reference system of a geometry object is determined as follows:
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If both the "where" and the "geometry" member in a JSON-FG feature in the JSON document are not `null`, the values SHALL not be identical.
-^|B |If both the "where" and the "geometry" member in a JSON-FG feature in the JSON document are not `null` and the JSON document is associated with a media type (e.g., the JSON document is fetched with a HTTP request), the media type SHALL include a parameter "compatibility" with a value "geojson".
+^|A |If both the "place" and the "geometry" member in a JSON-FG feature in the JSON document are not `null`, the values SHALL not be identical.
+^|B |If both the "place" and the "geometry" member in a JSON-FG feature in the JSON document are not `null` and the JSON document is associated with a media type (e.g., the JSON document is fetched with a HTTP request), the media type SHALL include a parameter "compatibility" with a value "geojson".
 |===
 
-:rec: where-crs
+:rec: place-crs
 [#{req-class}_{rec}]
-==== Coordinate values in "where"
+==== Coordinate values in "place"
 
 [width="90%",cols="2,7a"]
 |===
 ^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
-^|A |If the "where" member in any JSON-FG feature in the JSON document is not `null`, the first element of each position SHOULD be in the valid range for the first coordinate axis of the CRS.
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null`, the first element of each position SHOULD be in the valid range for the first coordinate axis of the CRS.
 ^|B |If the "geometry" member in any JSON-FG feature in the JSON document is not `null`, the second element of each position SHOULD be in the valid range for the second coordinate axis of the CRS.
 |===
 

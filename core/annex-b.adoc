@@ -23,20 +23,20 @@ include::schemas/featurecollection.json[]
 include::schemas/feature.json[]
 ----
 
-[[schema-when]]
-=== JSON schema of the "when" member
+[[schema-time]]
+=== JSON schema of the "time" member
 
 [source,json,linenumbers]
 ----
-include::schemas/when.json[]
+include::schemas/time.json[]
 ----
 
-[[schema-where]]
-=== JSON schema of the "where" member
+[[schema-place]]
+=== JSON schema of the "place" member
 
 [source,json,linenumbers]
 ----
-include::schemas/where.json[]
+include::schemas/place.json[]
 ----
 
 [[schema-coordrefsys]]

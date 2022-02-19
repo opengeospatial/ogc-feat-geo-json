@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "http://beta.schemas.opengis.net/json-fg/when.json",
-  "title": "when",
+  "$id": "http://beta.schemas.opengis.net/json-fg/time.json",
+  "title": "time",
   "oneOf": [
     {
       "type": "null"
