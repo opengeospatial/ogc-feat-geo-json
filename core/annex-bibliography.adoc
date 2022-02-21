@@ -7,10 +7,12 @@
 
 [[json-schema-validation]] **JSON Schema Validation: A Vocabulary for Structural Validation of JSON**. Edited by A. Wright, H. Andrews, B. Hutton. 2019. Available at https://json-schema.org/draft/2019-09/json-schema-validation.html
 
+[[ogc18_005r4]] Open Geospatial Consortium (OGC). OGC 18-005r4: **OGC Abstract Specification Topic 2: Referencing by coordinates**. Edited by R. Lott. 2019. Available at https://docs.ogc.org/as/18-005r4/18-005r4.html 
+
 [[ogc20_070]] Open Geospatial Consortium (OGC). OGC 20-070: **Geographic information - Features and geometry — Part 2: Metrics**. Edited by J. Herring. 2019. Available at https://portal.ogc.org/files/?artifact_id=94178 (access requires OGC membership)
 
 [[ogc21_018]] Open Geospatial Consortium (OGC). OGC 21-018: **OGC Testbed-17: Features and Geometries JSON CRS Analysis of Alternatives ER**. Edited by P. Vretanos. 2021. Available at https://portal.ogc.org/files/?artifact_id=99382 (access requires OGC membership)
 
 [[sdwbp]] Open Geospatial Consortium (OGC) / World Wide Web Consortium (W3C): **Spatial Data on the Web Best Practices** [online]. Edited by J. Tandy, L. van den Brink, P. Barnaghi. 2017 [viewed 2020-03-16]. Available at https://www.w3.org/TR/sdw-bp/
 
-[[ogc18_005r4]] Open Geospatial Consortium (OGC). OGC 18-005r4: **OGC Abstract Specification Topic 2: Referencing by coordinates**. Edited by R. Lott. 2019. Available at https://docs.ogc.org/as/18-005r4/18-005r4.html 
+[[owl-time]] Open Geospatial Consortium (OGC) / World Wide Web Consortium (W3C). **Time Ontology in OWL** [online]. Edited by S. Cox, C. Little. 2020 [viewed 2020-11-22]. Available at https://www.w3.org/TR/owl-time

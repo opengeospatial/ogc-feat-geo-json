@@ -9,8 +9,11 @@
     {
       "type": "object",
       "properties": {
-        "instant": {
-          "$ref": "#/$defs/instant"
+        "date": {
+          "$ref": "#/$defs/date"
+        },
+        "timestamp": {
+          "$ref": "#/$defs/timestamp"
         },
         "interval": {
           "$ref": "#/$defs/interval"
@@ -19,8 +22,13 @@
     }
   ],
   "$defs": {
-    "instant": {
-      "type": "string"
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
     },
     "interval": {
       "type": "array",
@@ -29,10 +37,14 @@
       "items": {
         "oneOf": [
           {
-            "$ref": "#/$defs/instant"
+            "$ref": "#/$defs/date"
           },
           {
-            "type": "null"
+            "$ref": "#/$defs/timestamp"
+          },
+          {
+            "type": "string",
+            "enum": [ ".." ]
           }
         ]
       }

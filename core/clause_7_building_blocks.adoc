@@ -38,7 +38,7 @@ More complex cases and other temporal coordinate reference systems are out-of-sc
 
 Features can have temporal properties. These will typically be included in the "properties" member.
 
-* In many datasets all temporal properties are instants (a date or a timestamp) and intervals will be described using two temporal instants, one for the start and one for the end.
+* In many datasets all temporal properties are instants (represented by a date or a timestamp) and intervals will be described using two temporal instants, one for the start and one for the end.
 * Multiple temporal properties are sometimes used to describe different temporal characteristics of a feature. For example, the time instant or interval when the information in the feature is valid (sometimes called "valid time") and the time when the feature was recorded in the dataset (sometimes called "transaction time"). Another example is the https://www.ogc.org/standards/om[Observations & Measurements standard], where an observation has multiple temporal properties including "phenomenon time", "result time" and "valid time".
 
 Like GeoJSON, JSON-FG does not place constraints on the information in the "properties" member. JSON-FG specifies a new JSON member in a feature object (key: "time"). The member describes temporal information (an instant or an interval) that can be used by clients without a need to inspect the "properties" member or to understand the schema of the feature. Clients that are familiar with a dataset can, of course, inspect the information in the "properties" member instead of inspecting the "time" member.
@@ -51,7 +51,8 @@ The value of "whtimeen" is either `null` (no temporal information) or an object.
 [cols="20,10a,70a",options="header"]
 !===
 |Property |Type |Description
-|instant |string |A timestamp or a date. See below for more details about instants.
+|date |string |An instant with a granularity of a date. See below for more details about instants.
+|timestamp |string |An instant with the granularity of a timestamp. See below for more details about instants.
 |interval |[ string ] |An interval, described by an array of the two instants (start and end). See below for more details about intervals.
 !===
 
@@ -68,16 +69,20 @@ An instant is a value that conforms to https://datatracker.ietf.org/doc/html/rfc
 * `full-date` (e.g., `"1969-07-20"`)
 * `date-time` (e.g., `"1969-07-20T20:17:40Z"`)
 
-Note that all timestamps have to include a time zone. The use of UTC is recommended ("Z").
+Conceptually, an instant is a "temporal entity with zero extent or duration" [<<owl-time,Time Ontology in OWL>>]. In practice, the temporal position of an instant is described using data types where each value has some duration or granularity. The value should be described with a granularity that is sufficient for the intended use of the data.
 
-NOTE: #GeoPackage, the next versions of CDB and the Common Query Language will only support UTC as a time zone in literal values. Should JSON-FG follow this approach?#
+In the case of a timestamp the granularity is a second or smaller. All timestamps have to be in the time zone UTC ("Z").
+
+In the case of a date the granularity is a day and dates as instants will be used when a granularity of a day independent of its timezone is sufficient for the intended use of the data. If that is not the case and, for example, the timezone is important for the intended use, the temporal information should be provided as an interval with start and end timestamps.
+
+NOTE: This Standard only provides guidance how to represent feature data in JSON. It is out-of-scope for this Standard to provide guidance how to cast JSON-FG data to other data types. The Common Query Language (CQL2) standard uses the same model of instants and intervals as JSON-FG and will include additional rules how to cast temporal data types to other temporal data types for the purpose of comparing values. #Add a link to CQL2 once the text is available.#
 
 [#ex-time-1,reftext='{listing-caption} {counter:listing-num}']
 .A date
 ====
 [source,json,linenumbers]
 ----
-"time" : { "instant": "1969-07-20" }
+"time" : { "date": "1969-07-20" }
 ----
 ====
 
@@ -86,7 +91,7 @@ NOTE: #GeoPackage, the next versions of CDB and the Common Query Language will o
 ====
 [source,json,linenumbers]
 ----
-"time" : { "instant": "1969-07-20T20:17:40Z" }
+"time" : { "timestamp": "1969-07-20T20:17:40Z" }
 ----
 ====
 
@@ -94,9 +99,9 @@ This describes the initial range of instant values. This range may be extended i
 
 ==== Intervals
 
-An interval is described by the start and end instants. Both start and end instants are included in the interval.
+An interval is described by start and end instants. Both start and end instants are included in the interval, i.e., the interval is closed.
 
-Unbounded intervals ends are represented by a `null` value for the start/end.
+Unbounded intervals ends are represented by a double-dot string ("..") for the start/end. This follows the convention of ISO 8601-2 for an open start or end.
 
 [#ex-time-3,reftext='{listing-caption} {counter:listing-num}']
 .An interval with dates
@@ -121,13 +126,11 @@ Unbounded intervals ends are represented by a `null` value for the start/end.
 ====
 [source,json,linenumbers]
 ----
-"time" : { "interval": [ "2014-04-24T10:50:18Z", null ] }
+"time" : { "interval": [ "2014-04-24T10:50:18Z", ".." ] }
 ----
 ====
 
 This describes the initial range of interval values. This range may be extended in the future to support additional use cases. Clients processing interval values must be prepared to receive other values. Clients may ignore values that they do not understand.
-
-NOTE: #ISO 8601 also supports intervals by a duration (a start instant and the duration or the duration and an end instant). Should this also be supported or does that make parsing just more complex for clients?#
 
 [[place]]
 === Geometry
