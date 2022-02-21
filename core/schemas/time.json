@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://beta.schemas.opengis.net/json-fg/time.json",
+  "title": "time",
+  "oneOf": [
+    {
+      "type": "null"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "date": {
+          "$ref": "#/$defs/date"
+        },
+        "timestamp": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "interval": {
+          "$ref": "#/$defs/interval"
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "interval": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/date"
+          },
+          {
+            "$ref": "#/$defs/timestamp"
+          },
+          {
+            "type": "string",
+            "enum": [ ".." ]
+          }
+        ]
+      }
+    }
+  }
+}

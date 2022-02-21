@@ -11,7 +11,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 |Dependency |<<rc_core>>
 |===
 
-=== Identifying the feature type(s)
+=== Feature type(s)
 
 :req: feature-type
 [#{req-class}_{req}]
@@ -55,7 +55,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 ^|A |The "links" array in any JSON-FG feature in the JSON document SHOULD include at least one link object where the "rel" member is set to "type".
 |===
 
-=== Identifying the schema(s)
+=== Schema(s)
 
 :req: schema-link-jsonfg
 [#{req-class}_{req}]

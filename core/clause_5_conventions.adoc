@@ -9,7 +9,7 @@ All requirements and conformance tests that appear in this document are denoted 
 
 === Use of JSON Schema
 
-JSON Schema is used to formally specify the JSON-FG syntax, where possible. Additional requirements are only used where it is not possible to express the requirement in JSON Schema or where this would result in a schema that is considered as too complex. All schemas are in Annex <<schemas>>.
+JSON Schema is used to formally specify the JSON-FG syntax, where possible. Additional requirements are only used where it is not possible to express the requirement in JSON Schema or where this would result in a schema that is considered as too complex. All schemas are in Annex '<<schemas>>'.
 
 === Extensibility
 

@@ -31,5 +31,7 @@ All questions regarding this submission should be directed to the editor or the 
 
 |===
 |*Name* |*Affiliation*
-| |
+|Clemens Portele _(editor)_ |interactive instruments GmbH
+|Panagiotis (Peter) A. Vretanos _(editor)_ |CubeWerx Inc.
+|... |...
 |===

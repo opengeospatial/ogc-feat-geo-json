@@ -19,10 +19,10 @@ Required parameters: n/a
 Optional parameters:
 
   "compatibility": If provided, the value "geojson" indicates that JSON-FG features 
-  with a "where" member that is not 'null' will also include a GeoJSON geometry 
+  with a "place" member that is not 'null' will also include a GeoJSON geometry 
   in the "geometry" member (a point, line string, polygon or an aggregation of them 
   in WGS 84). If the parameter is missing, the "geometry" member of a JSON-FG feature 
-  will be 'null', if the "where" member is not 'null'. For any other parameter value, 
+  will be 'null', if the "place" member is not 'null'. For any other parameter value, 
   the behavior is unspecified.
 
 Encoding considerations: binary

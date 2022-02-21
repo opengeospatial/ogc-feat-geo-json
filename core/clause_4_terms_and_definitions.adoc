@@ -9,23 +9,41 @@ This document also uses terms defined in the OGC Standard for Modular specificat
 For the purposes of this document, the following additional terms and definitions apply.
 
 coordinate reference system::
-coordinate system that is related to an object by a datum [OGC Topic 2, version 5.0]
+coordinate system that is related to an object by a datum [<<ogc18_005r4,OGC Topic 2>>]
+
+NOTE: More information about coordinate reference systems and common problems when dealing with coordinates may be found in the <<sdwbp,W3C/OGC Spatial Data on the Web Best Practice>> in the section link:https://www.w3.org/TR/2017/NOTE-sdw-bp-20170928/#CRS-background['Coordinate Reference Systems (CRS)'].
 
 feature::
 abstraction of real world phenomena [ISO 19101-1:2014]
 
-NOTE: More details about the term 'feature' may be found in the <<SDWBP,W3C/OGC Spatial Data on the Web Best Practice>> in the section link:https://www.w3.org/TR/sdw-bp/#spatial-things-features-and-geometry['Spatial Things, Features and Geometry'].
+NOTE: More details about the term 'feature' may be found in the <<sdwbp,W3C/OGC Spatial Data on the Web Best Practice>> in the section link:https://www.w3.org/TR/2017/NOTE-sdw-bp-20170928/#spatial-things-features-and-geometry['Spatial Things, Features and Geometry'].
 
 feature collection::
 a set of *features* from a dataset
 
 JSON document::
-an information resource (series of octets) described by the application/json media type [JSON Schema 2019-09]
+an information resource (series of octets) described by the application/json media type [<<json-schema,JSON Schema 2019-09>>]
 
 NOTE: The terms "JSON document", "JSON text", and "JSON value" are interchangeable.
 
 JSON-FG document::
 a **JSON document** that conforms to the Requirements Class "Core" of OGC Features and Geometries JSON - Part 1: Core
+
+<JSON> key::
+the name of a *member*
+
+<JSON> member::
+a name/value pair in a JSON object
+
+primary geometry::
+the geometry that best represents the spatial characteristics of a *feature*
+
+NOTE: A feature can be described by multiple properties with a geometry. For example, a radio tower can have a property with a point value that describes the location of the tower and another property with a multi-polygon value that describes the transmission area. In GeoJSON and JSON-FG, multiple properties with a geometry value can be encoded in the "properties" member. In those cases, it is the decision of the generator of the JSON-FG document what geometry is considered "primary" for the expected use of the feature.
+
+primary temporal information::
+the position or extent in time that best represents the temporal characteristics of a *feature*
+
+NOTE: A feature can be described by multiple properties with temporal information. For example, an event can have a property with an instant or interval when the event occurred or will occur and another property when the event was recorded in the dataset. In GeoJSON and JSON-FG, multiple properties with a temporal value can be encoded in the "properties" member. In those cases, it is the decision of the generator of the JSON-FG document what temporal information is considered "primary" for the expected use of the feature. The primary temporal information can also be built from two properties, e.g., when the feature has two properties describing the begin and end instants of an interval.
 
 === Abbreviated Terms
 
@@ -42,3 +60,5 @@ JSON-LD:: JSON for Linking Data
 OGC:: Open Geospatial Consortium
 
 SWG:: Standards Working Group
+
+WGS 84:: World Geodetic System 1984 

@@ -6,7 +6,7 @@ JavaScript Object Notation (JSON) is a popular encoding format for geospatial da
 
 * WGS 84 is the only coordinate reference system that is supported;
 * Geometries are restricted to points, curves and surfaces with linear interpolation; and
-* No general capability is available to specify the schema of a feature, its type or its temporal extent.
+* No general capability is available to specify the schema of a feature, its type or its temporal characteristics.
 
 === Scenarios
 
@@ -29,6 +29,6 @@ In the second scenario (file access), the client has no access to a media type a
 
 The client supports GeoJSON and JSON-FG.
 
-In the first scenario (API access), the client will typically request the JSON-FG representation of the feature using an HTTP header like `Accept: application/vnd.ogc.fg+json, application/geo+json;q=0.8` and a `crs=http://www.opengis.net/def/crs/EPSG/0/5555` query parameter. The header states that the client prefers JSON-FG, but will also accept GeoJSON, if JSON-FG is not available. The response will include the headers `Content-Type: application/vnd.ogc.fg+json` as well as `Content-Crs: \http://www.opengis.net/def/crs/EPSG/0/5555` and include the JSON-FG building blocks including the spatial geometry in the requested projected CRS and the temporal extent.
+In the first scenario (API access), the client will typically request the JSON-FG representation of the feature using an HTTP header like `Accept: application/vnd.ogc.fg+json, application/geo+json;q=0.8` and a `crs=http://www.opengis.net/def/crs/EPSG/0/5555` query parameter. The header states that the client prefers JSON-FG, but will also accept GeoJSON, if JSON-FG is not available. The response will include the headers `Content-Type: application/vnd.ogc.fg+json` as well as `Content-Crs: \http://www.opengis.net/def/crs/EPSG/0/5555` and include the JSON-FG building blocks including the geometry in the requested projected CRS and temporal information.
 
-In the second scenario (file access), the client is in the same position as the GeoJSON client - it has no access to a media type and has to inspect the file to determine - if the file is a GeoJSON, JSON-FG or some other kind of document that it does not understand. JSON-FG documents include explicit declarations that conform to both GeoJSON and JSON-FG. Therefore, the client can identify the document as a JSON-FG document and process the content. Since the JSON-FG document identifies the spatial and temporal extent of each feature, the scene extent and, for example, a time slider can be provided by the client so that the user can filter the features to display in the scene.
+In the second scenario (file access), the client is in the same position as the GeoJSON client - it has no access to a media type and has to inspect the file to determine - if the file is a GeoJSON, JSON-FG or some other kind of document that it does not understand. JSON-FG documents include explicit declarations that conform to both GeoJSON and JSON-FG. Therefore, the client can identify the document as a JSON-FG document and process the content. Since the JSON-FG document provides spatial and temporal information about each feature, the client can zoom in on the features and, for example, provide a time slider so that the user can filter the features that are displayed.
