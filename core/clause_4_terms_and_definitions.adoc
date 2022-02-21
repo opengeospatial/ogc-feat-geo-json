@@ -43,7 +43,7 @@ NOTE: A feature can be described by multiple properties with a geometry. For exa
 primary temporal information::
 the position or extent in time that best represents the temporal characteristics of a *feature*
 
-NOTE: A feature can be described by multiple properties with temporal information. For example, an event can have a property with an instant or interval when the event occurred or will occur and another property when the event was recorded in the dataset. In GeoJSON and JSON-FG, multiple properties with a temporal value can be encoded in the "properties" member. In those cases, it is the decision of the generator of the JSON-FG document what temporal information is considered "primary" for the expected use of the feature. The primary temporal information can also be built from two two properties, e.g., when the feature has two properties describing the begin and end instant of an interval.
+NOTE: A feature can be described by multiple properties with temporal information. For example, an event can have a property with an instant or interval when the event occurred or will occur and another property when the event was recorded in the dataset. In GeoJSON and JSON-FG, multiple properties with a temporal value can be encoded in the "properties" member. In those cases, it is the decision of the generator of the JSON-FG document what temporal information is considered "primary" for the expected use of the feature. The primary temporal information can also be built from two properties, e.g., when the feature has two properties describing the begin and end instant of an interval.
 
 === Abbreviated Terms
 
