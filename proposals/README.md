@@ -2,7 +2,9 @@
 
 ## Current proposals
 
-This folder was originally used to develop proposals for various aspects of JSON-FG. All previous proposals have been included in the [current draft specification](https://github.com/opengeospatial/ogc-feat-geo-json/tree/main/core).
+Current proposals:
+
+* [Circular geometry objects](circular-geometry-objects.adoc) - issue [#35](https://github.com/opengeospatial/ogc-feat-geo-json/issues/35)
 
 ## Adding a new proposal
 
