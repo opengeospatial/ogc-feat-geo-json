@@ -19,7 +19,7 @@ The following JSON building blocks are specified by this Standard:
 * <<feature-types>>
 * <<schema-ref>>
 
-An additional topic that was discussed are relationships between a feature and other web resources that are represented as links. This standard does not mandate a specific approach for representing relationships as links. However, Annex '<<relationships_and_links>>' documents and discusses patterns of how to represent relationships as links.
+An additional discussion topic was the relationship between a feature and other web resources that are represented as links. The JSON-FG Standard does not mandate a specific approach for representing relationships as links. However, Annex '<<relationships_and_links>>' documents and discusses patterns of how to represent relationships as links.
 
 Annex '<<examples>>' has examples of JSON-FG documents.
 
@@ -28,7 +28,7 @@ Annex '<<examples>>' has examples of JSON-FG documents.
 
 ==== Overview
 
-Many features have a geometry that provides information about the primary spatial characteristics of the feature. In GeoJSON, this information is encoded in the "geometry" member. Features often also include temporal information. In most cases this is either an instant (e.g., an event) or an interval (e.g., an activity or a temporal validity). In OGC API Features this is reflected in the http://www.opengis.net/doc/IS/ogcapi-features-1/1.0#_parameter_datetime[parameter "datetime"] for temporal filtering of features that is supported by all compliant APIs.
+Many features have a geometry property that provides information about the primary spatial characteristics of the feature. In GeoJSON, this information is encoded in the "geometry" member. Features often also have temporal information. In most cases time is either an instant (e.g., an event) or an interval (e.g., an activity or a temporal validity). In OGC API Features the temporal property is reflected in the http://www.opengis.net/doc/IS/ogcapi-features-1/1.0#_parameter_datetime[parameter "datetime"] for temporal filtering of features that is supported by all compliant Feature API instances.
 
 JSON-FG adds support for the most common case: Associating a feature with a single temporal instant or interval in the Gregorian calendar.
 
@@ -36,9 +36,9 @@ More complex cases and other temporal coordinate reference systems are out-of-sc
 
 ==== Description
 
-Features can have temporal properties. These will typically be included in the "properties" member.
+Features can have temporal properties. These properties will typically be included in the "properties" member.
 
-* In many datasets all temporal properties are instants (represented by a date or a timestamp) and intervals will be described using two temporal instants, one for the start and one for the end.
+* In many datasets all temporal properties are instants (represented by a date or a timestamp) and intervals are described using two temporal instants, one for the start and one for the end.
 * Multiple temporal properties are sometimes used to describe different temporal characteristics of a feature. For example, the time instant or interval when the information in the feature is valid (sometimes called "valid time") and the time when the feature was recorded in the dataset (sometimes called "transaction time"). Another example is the https://www.ogc.org/standards/om[Observations & Measurements standard], where an observation has multiple temporal properties including "phenomenon time", "result time" and "valid time".
 
 Like GeoJSON, JSON-FG does not place constraints on the information in the "properties" member. JSON-FG specifies a new JSON member in a feature object (key: "time"). The member describes temporal information (an instant or an interval) that can be used by clients without a need to inspect the "properties" member or to understand the schema of the feature. Clients that are familiar with a dataset can, of course, inspect the information in the "properties" member instead of inspecting the "time" member.
@@ -56,7 +56,7 @@ The value of "whtimeen" is either `null` (no temporal information) or an object.
 |interval |[ string ] |An interval, described by an array of the two instants (start and end). See below for more details about intervals.
 !===
 
-It is valid to include both an instant and an interval, if both values intersect. Clients should use the interval and may use the instant to determine the temporal characteristics of the feature.
+If both values intersect including both an instant and an interval is valid. Clients should use the interval property and may use the date or timestamp property to determine the temporal characteristics of the feature.
 
 The "time" object may be extended with additional members. Clients processing a "time" object must be prepared to parse additional members. Clients should ignore members that they do not understand. For example, in cases where the "time" member neither includes an "instant" or "interval", a client may process the feature as a feature without temporal information.
 
@@ -97,11 +97,13 @@ NOTE: This Standard only provides guidance how to represent feature data in JSON
 
 This describes the initial range of instant values. This range may be extended in the future to support additional use cases. Clients processing instant values must be prepared to receive other values. Clients may ignore values that they do not understand.
 
+NOTE: CNR Comment: What is "This"?  This clause?  This(these) example(s)?
+
 ==== Intervals
 
 An interval is described by start and end instants. Both start and end instants are included in the interval, i.e., the interval is closed.
 
-Unbounded intervals ends are represented by a double-dot string ("..") for the start/end. This follows the convention of ISO 8601-2 for an open start or end.
+The end of unbounded intervals are represented by a double-dot string ("..") for the start/end. This follows the convention of ISO 8601-2 for an open start or end.
 
 [#ex-time-3,reftext='{listing-caption} {counter:listing-num}']
 .An interval with dates
@@ -132,6 +134,8 @@ Unbounded intervals ends are represented by a double-dot string ("..") for the s
 
 This describes the initial range of interval values. This range may be extended in the future to support additional use cases. Clients processing interval values must be prepared to receive other values. Clients may ignore values that they do not understand.
 
+NOTE: CNR Comment: What is "This"?  This clause?  This(these) example(s)?
+
 [[place]]
 === Geometry
 
@@ -139,11 +143,11 @@ This describes the initial range of interval values. This range may be extended 
 
 Features typically have a geometry that provides information about the primary spatial characteristics of the feature.
 
-In GeoJSON, this information is encoded in the "geometry" member. Geometries are according to the Simple Features Standard (2D or 2.5D points, line strings, polygons or aggregations of them) in WGS 84 as the coordinate reference system (OGC:CRS84 or OGC:CRS84h).
+In GeoJSON, geometry information is encoded in the "geometry" member. Geometries are encoded according to the Simple Features Standard (2D or 2.5D points, line strings, polygons or aggregations of them) using WGS 84 as the CRS (OGC:CRS84 or OGC:CRS84h).
 
-A key motivation for JSON-FG is to support additional requirements, especially other coordinate reference systems and solids.
+A key motivation for the JSON-FG Standard is to support additional requirements, especially the ability to express other CRSs and solids geometries.
 
-To avoid confusing existing GeoJSON readers, such geometries will be provided in a new member in the feature object with the key "place".
+To avoid confusing existing GeoJSON readers, such geometries are provided in a new member in the feature object with the key "place".
 
 ==== Description
 
@@ -154,19 +158,19 @@ The value of the "geometry" member is specified in the GeoJSON standard.
 The value range of the "place" member is an extended and extensible version of the value range of the "geometry" member:
 
 * Extended by additional geometry objects (additional JSON-FG geometry types <<Polyhedron>> and <<MultiPolyhedron>>) as well as by the capabilities to <<ref-sys,declare the coordinate reference system of the coordinates>>.
-* Future parts of Features and Geometries JSON or community extensions may specify additional members or additional geometry types. JSON-FG readers should be prepared to parse values of "place" that go beyond the schema that is implemented by the reader. Unknown members should be ignored and geometries that include an unknown geometry type should be mapped to `null`.
+* Future parts of Features and Geometries JSON or community extensions may specify additional members or additional geometry types. JSON-FG readers should be prepared to parse values of "place" that are beyond the schema that is implemented by the reader. Unknown members should be ignored and geometries that include an unknown geometry type should be mapped to `null`.
 
 ===== Use of "geometry" and/or "place"
 
-If the geometry can be represented as a valid GeoJSON geometry (one of the GeoJSON geometry types, in WGS84), it is encoded as the value of the "geometry" member. The "place" member has the value `null`.
+If the geometry can be represented as a valid GeoJSON geometry (one of the GeoJSON geometry types, in WGS84), it is encoded as the value of the "geometry" member. The "place" member then has the value `null`.
 
-If the geometry cannot be represented as a valid GeoJSON geometry, it is encoded as the value of the "place" member. In addition, a valid GeoJSON geometry may be provided in the "geometry" member in the coordinate reference system WGS84 as specified in the GeoJSON standard (otherwise "geometry" is set to `null`). The geometry in "geometry" is a fallback for readers that support GeoJSON, but not JSON-FG. This could be a simplified geometry, like the building footprint in the <<example_building,example "building with a polyhedron geometry and the polygon footprint">> instead of the solid geometry or the same point/line string/polygon geometry, but in WGS 84 (potentially with fewer vertices to reduce the file size).
+If the geometry cannot be represented as a valid GeoJSON geometry, the geometry is encoded as the value of the "place" member.  In addition, a valid GeoJSON geometry may be provided as the value of the "geometry" member in the WGS84 CRS as specified in the GeoJSON standard. Otherwise, the "geometry" member is set to `null`.  If present, the geometry that is the value of the "geometry" member is a fallback for readers that support GeoJSON, but not JSON-FG.  This fallback geometry could be a simplified version of the value of the "place" member -- like the building footprint in the example <<example_building,"building with a polyhedron geometry and the polygon footprint">> which is the polygon projection of the solid geometry -- or the fallback geometry can be the same point/line string/polygon geometry that is the value of the "place" member, but in WGS 84 (potentially with fewer vertices to reduce the file size).
 
 The presence of such fallback geometries in a JSON-FG document is indicated by a value "geojson" in the media type parameter "compatibility" (see <<application_fg_json>>).
 
 ===== Metrics
 
-If the CRS uses longitude and latitude as coordinate axes, clients should perform geometrical computations - including computation of length or area on the curved surface that approximates the earth's surface. Details are provided in the drafts of <<ogc20_070,Features and Geometry - Part 2: Metrics>>.
+If the CRS uses longitude and latitude or latitude and longitude as coordinate axes definition, clients should perform geometrical computations - including computation of length or area on the curved surface that approximates the earth's surface. Details are provided in the drafts of <<ogc20_070,Features and Geometry - Part 2: Metrics>>.
 
 Note that this differs from GeoJSON which states:
 
@@ -203,20 +207,20 @@ NOTE: #Should a 3D geometry that represents a simple solid constructed using an 
 
 Without any other information, the following coordinate reference system (CRS) defaults apply in a JSON-FG document:
 
-* spatial CRS: [OGC:CRS84] (2D) or [OGC:CRS84h] (3D)
-* temporal CRS: A Temporal CRS "DateTime in Gregorian calendar" based on https://docs.ogc.org/as/18-005r4/18-005r4.html#118[OGC Topic 2, Example E.4.1]
+* Spatial CRS: [OGC:CRS84] (2D) or [OGC:CRS84h] (3D)
+* Temporal CRS: A Temporal CRS "DateTime in Gregorian calendar" based on https://docs.ogc.org/as/18-005r4/18-005r4.html#118[OGC Topic 2, Example E.4.1]
 
 NOTE: It is planned to register the Temporal CRS with the OGC Naming Authority and eventually update this document with its URI.
 
-A new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry object at the collection, feature or value levels.
+A new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry object at the collection, feature, or value levels.
 
-It is anticipated that if a CRS is asserted for a JSON-FG document, that assertion will typically be made at the top level of the document, either at the collection level or the feature level depending on the contents of the document.
+If a CRS is asserted for a JSON-FG document, that assertion will typically be made at the top level of the document, either at the collection level or the feature level depending on the contents of the document.
 
 ==== Description
 
 Spatio-temporal objects are specified relative to some reference system.
 
-GeoJSON (both the current https://tools.ietf.org/html/rfc7946[RFC] and the https://geojson.org/geojson-spec.html[legacy version]) fixed the reference system for geometric values to the "WGS84 datum, and with longitude and latitude units of decimal degrees".  The https://geojson.org/geojson-spec.html[legacy version] included a "prior arrangement" provision to allow other reference systems to be used and also defined the "crs" key for specifying the reference system.  This _prior arrangement_ mechanism survived into the https://tools.ietf.org/html/rfc7946[RFC] but the accompanying "crs" key did not. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON and the only safe approach is to stick with OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
+GeoJSON (both the current https://tools.ietf.org/html/rfc7946[RFC] and the https://geojson.org/geojson-spec.html[legacy version]) fixed the reference system for geometric values to the "WGS84 datum, and with longitude and latitude units of decimal degrees".  The https://geojson.org/geojson-spec.html[legacy version] included a "prior arrangement" provision to allow other reference systems to be used and also defined the "crs" key for specifying the reference system.  This _prior arrangement_ mechanism survived into the https://tools.ietf.org/html/rfc7946[RFC] but the accompanying "crs" key did not. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON.  As such the only safe approach is to stick with OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
 
 Additional JSON-FG building blocks like the "place" member are not bound by these restrictions and so this Standard provides for handling reference systems in JSON-FG documents that does not interfere with anything, past or present, defined in any of the GeoJSON specifications. The GeoJSON building blocks can continue to operate as always but JSON-FG building blocks can avail themselves of enhanced CRS support.
 
@@ -270,13 +274,13 @@ A reference system can be specified in a JSON-FG document using a "coordRefSys" 
 
 ===== Scoping rules
 
-Used at the feature collection level, the "coordRefSys" key asserts the coordinate reference system for JSON-FG geometry objects found anywhere in the document that are not otherwise tagged with closer-to-scope coordinate reference system information.
+Used at the feature collection level, the "coordRefSys" key asserts the CRS for JSON-FG geometry objects found anywhere in the document that are not otherwise tagged with closer-to-scope CRS information.
 
-Used at the feature level, the "coordRefSys" key asserts the coordinate reference system for JSON-FG geometry objects found anywhere in the feature that are not otherwise tagged with closer-to-scope coordinate reference system information.
+Used at the feature level, the "coordRefSys" key asserts the CRS for JSON-FG geometry objects found anywhere in the feature that are not otherwise tagged with closer-to-scope CRS information.
 
-Used at the geometry level, the "coordRefSys" key asserts the coordinate reference system for the JSON-FG geometry object within which the key is contained.
+Used at the geometry level, the "coordRefSys" key asserts the CRS for the JSON-FG geometry object within which the key is contained.
 
-Where all objects on the same level are in the same coordinate reference system, it is recommended to declare the coordinate reference system on the parent level instead of declaring it in all parallel objects.
+Where all objects on the same level are in the same CRS, declaring the CRS on the parent level instead of declaring it in all parallel objects is recommended.
 
 [[feature-types]]
 === Feature type(s)
@@ -285,11 +289,11 @@ Where all objects on the same level are in the same coordinate reference system,
 
 Features are often categorized by type. Typically, all features of the same type have the same schema and the same properties.
 
-Many GIS clients depend on knowledge about the feature type when processing feature data. For example, associating a style to a feature in order to render that feature on a map.
+Many GIS clients depend on knowledge about the feature type when processing feature data. For example, when associating a style to a feature in order to render that feature on a map.
 
 GeoJSON is schema-less in the sense that it has no concept of feature types or feature schemas.
 
-In most cases, a feature is an instance of a single feature type. The current draft revision of the Simple Features standard supports features that are instances of multiple types. JSON-FG, therefore, also supports multiple feature types.
+In most cases, a feature is an instance of a single feature type. The current draft revision of the Simple Features Standard supports features that are instances of multiple types. JSON-FG, therefore, also supports multiple feature types.
 
 The related element <<schema-ref>> specifies which elements of the JSON Schema documents are identified that the JSON-FG document conforms to. This element specifies how to represent feature type information in the JSON object that represents the feature.
 
@@ -304,11 +308,11 @@ NOTE: #Should there be a capability to distinguish between feature types that "j
 [[homogeneous-collections]]
 ===== Homogeneous feature collections
 
-Some clients will process feature collections differently depending on whether the collection is homogenous with respect to the feature type or the geometry type. These clients will benefit from information that declares the feature and/or geometry type for all features in a collection.
+Some clients will process feature collections differently depending on whether the collection is homogeneous with respect to the feature type or the geometry type. These clients will benefit from information that declares the feature and/or geometry type for all features in a collection.
 
 If the JSON document is a feature collection and all features in the feature collection have the same "featureType" value, the "featureType" member can and should be added once for the feature collection. The "featureType" member can then be omitted in the feature objects. Declaring the feature type(s) once signals to clients that the feature collection is homogeneous with respect to the type, which clients can use to optimize their processing.
 
-If the JSON document is a feature collection and all features in the feature collection have the same geometry type as their primary geometry (point, curve, surface, solid, including homogenous aggregates), a "geometryDimension" member can and should be added once for the feature collection with the dimension of the geometry (0 for points, 1 for curves, 2 for surfaces, 3 for solids, null/not set for mixed dimensions or unknown). Declaring the geometry dimension once signals to clients that the feature collection is homogeneous with respect to the dimension, which clients can use to optimize their processing.
+If the JSON document is a feature collection and all features in the feature collection have the same geometry type as their primary geometry (point, curve, surface, solid, including homogeneous aggregates), a "geometryDimension" member can and should be added once for the feature collection with the dimension of the geometry (0 for points, 1 for curves, 2 for surfaces, 3 for solids, null/not set for mixed dimensions or unknown). Declaring the geometry dimension once signals to clients that the feature collection is homogeneous with respect to the dimension, which clients can use to optimize their processing.
 
 ===== Links to a semantic type
 
@@ -343,7 +347,7 @@ This Standard provides guidance on how to include information about the schema o
 
 The <<json-schema,JSON Schema specification>> recommends to use https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.9.5[a "describedby" link relation to the schema]:
 
-> It is RECOMMENDED that instances described by a schema provide a link to a downloadable JSON Schema using the link relation "describedby" [...].
+RECOMMENDATION: Instances described by a schema provide a link to a downloadable JSON Schema using the link relation "describedby" [...].
 
 OGC API Features already specifies a general "links" member with an array of link objects based on https://tools.ietf.org/html/rfc8288[RFC 8288 (Web linking)]. Therefore, feature responses from APIs implementing OGC API Features will already include a "links" member. JSON-FG builds on this approach and includes a "describedby" link to a JSON Schema document, if schema information is important for the target users of the JSON feature documents.
 
@@ -373,9 +377,9 @@ Additional link attributes may be added to the Link object.
 
 Each JSON-FG document is either a feature or a feature collection.
 
-A JSON-FG feature collection must contain a link to the JSON-FG feature collection schema at `\http://beta.schemas.opengis.net/json-fg/featurecollection.json`. Since the feature collection is is also a GeoJSON feature collection, it should also contain a link to the GeoJSON feature collection schema at `\https://geojson.org/schema/FeatureCollection.json`. The document should also contain another link to a schema document that specifies the properties of the features in the collection.
+A JSON-FG feature collection must contain a link to the JSON-FG feature collection schema at `\http://beta.schemas.opengis.net/json-fg/featurecollection.json`. Since the feature collection is also a GeoJSON feature collection, it should also contain a link to the GeoJSON feature collection schema at `\https://geojson.org/schema/FeatureCollection.json`. The document should also contain another link to a schema document that specifies the properties of the features in the collection.
 
-A JSON-FG feature must contain a link to the JSON-FG feature schema at `\http://beta.schemas.opengis.net/json-fg/feature.json`. Since the feature is is also a GeoJSON feature, it should also contain a link to the GeoJSON feature schema at `\https://geojson.org/schema/Feature.json`. The document should also contain another link to a schema document that specifies the properties of the feature.
+A JSON-FG feature must contain a link to the JSON-FG feature schema at `\http://beta.schemas.opengis.net/json-fg/feature.json`. Since the feature is also a GeoJSON feature, it should also contain a link to the GeoJSON feature schema at `\https://geojson.org/schema/Feature.json`. The document should also contain another link to a schema document that specifies the properties of the feature.
 
 NOTE: These are (or will be) canonical URIs. Clients can identify that a JSON document is a GeoJSON and JSON-FG feature collection or feature by string comparisons.
 
@@ -390,6 +394,6 @@ NOTE: #Check stability of the GeoJSON URIs with the GeoJSON maintainers.#
 - #A separate schema per feature type.#
 ====
 
-NOTE: #JSON Schema is a rich language and it should be considered to limit the language constructs that should be used in describing the properties in the feature schema. A potential starting point is the current proposal for https://docs.ogc.org/DRAFTS/19-079r1.html#rec_filter_queryables-schema[a JSON Schema profile for queryable feature properties].#
+NOTE: #JSON Schema is a rich language and it should be considered limiting the language constructs that should be used in describing the properties in the feature schema. A potential starting point is the current proposal for https://docs.ogc.org/DRAFTS/19-079r1.html#rec_filter_queryables-schema[a JSON Schema profile for queryable feature properties].#
 
 NOTE: #The schema of a feature type will typically specify the details of the feature properties, but it can also profile the feature-level members including the "geometry", "place" and "time" members. A typical example is to restrict the list of allowed geometry types. To simplify parsing the feature schemas it could be discussed, if canonical schemas for well-known types should be used in "$ref" members. For example, if the geometry is restricted to points, the "geometry" and "place" members could reference `\https://geojson.org/schema/Point.json` or some other canonical URI.#

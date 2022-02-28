@@ -17,7 +17,7 @@ Recipients of this document are requested to submit, with their comments, notifi
 [[security-considerations]]
 [big]*iv.    Security Considerations*
 
-The GeoJSON security considerations apply to JSON-FG, too. See https://datatracker.ietf.org/doc/html/rfc7946#section-10[RFC 7946, Section 10].
+The security considerations for GeoJSON as specified in Section 10 of IETF RFC 8946 also apply to JSON-FG.
 
 [big]*v.    Submitting organizations*
 
