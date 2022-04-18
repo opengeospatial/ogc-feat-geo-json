@@ -153,7 +153,7 @@ The value of the "geometry" member is specified in the GeoJSON standard.
 
 The value range of the "place" member is an extended and extensible version of the value range of the "geometry" member:
 
-* Extended by additional geometry objects (additional JSON-FG geometry types <<Polyhedron>> and <<MultiPolyhedron>>) as well as by the capabilities to <<ref-sys,declare the coordinate reference system of the coordinates>>.
+* Extended by additional geometry objects (additional JSON-FG geometry types <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>> and <<MultiPrism>>) as well as by the capabilities to <<ref-sys,declare the coordinate reference system of the coordinates>>.
 * Future parts of Features and Geometries JSON or community extensions may specify additional members or additional geometry types. JSON-FG readers should be prepared to parse values of "place" that go beyond the schema that is implemented by the reader. Unknown members should be ignored and geometries that include an unknown geometry type should be mapped to `null`.
 
 ===== Use of "geometry" and/or "place"
@@ -194,7 +194,27 @@ A _multi-polyhedron_ is an array of _polyhedron_ objects. The order of the polyh
 
 ===== Prism
 
+A _prism_ is defined by a base shape (e.g. Polygon or Circle) that is then extruded from some optional lower limit to an upper limit.
+
+The limits are measured relative to a specified 3D CRS.  That is either the default 3D CRS (OGC:CRS84h) or a 3D CRS specified using <<ref-sys,coordRefSys>> key.
+
+If the base shape is a point type then the extrusion is a line extending from the lower limit to the upper limit.
+
+<Add figure(s) illustrating point extrusion.>
+
+If the base shape is a line string type then the extrusion is a ribbon following the path of the line string and extending from the lower limit to the upper limit.
+
+<Add figure(s) illustrating a ribon.>
+
+If the base shape is a polygon type then the extrusion is a solid whose footprint takes the shape of the specified polygon and extended from the lower limit to the upper limit.  If the polygon base shape contains holes, these manifest as voids in the extruded shape.
+
+<Add figure(s) illustrating a polygon extrusion (Toronto City Hall would be nice if I can find the data).>
+
 NOTE: #Should a 3D geometry that represents a simple solid constructed using an extruded polygon also be supported? This would consist of a (horizontal) 2D polygon and separate attributes for the lower and upper limits. How often are such geometries used? With respect to "extruded polygons" it seems like they could be useful, but it is unclear if the added complexity of an additional geometry type is valuable enough. This is a broader topic as to how to handle geometries that are constructed using "regular" feature properties.#
+
+===== MultiPrism
+
+A _multi-prism_ is an array of _prism_ objects.  The order of the prism geometry objects is the array is not significant.
 
 [[ref-sys]]
 === Reference systems
