@@ -75,7 +75,7 @@ In the case of a timestamp the granularity is a second or smaller. All timestamp
 
 In the case of a date the granularity is a day and dates as instants will be used when a granularity of a day independent of its timezone is sufficient for the intended use of the data. If that is not the case and, for example, the timezone is important for the intended use, the temporal information should be provided as an interval with start and end timestamps.
 
-NOTE: This Standard only provides guidance how to represent feature data in JSON. It is out-of-scope for this Standard to provide guidance how to cast JSON-FG data to other data types. The Common Query Language (CQL2) standard uses the same model of instants and intervals as JSON-FG and will include additional rules how to cast temporal data types to other temporal data types for the purpose of comparing values. <Add a link to CQL2 once the text is available.>
+NOTE: This Standard only provides guidance how to represent feature data in JSON. It is out-of-scope for this Standard to provide guidance how to cast JSON-FG data to other data types. The Common Query Language (CQL2) standard uses the same model of instants and intervals as JSON-FG and includes additional guidance how to compare values, see the section https://docs.ogc.org/DRAFTS/21-065.html#basic-cql2_data-types-and-literals[Data types and literal values].
 
 [#ex-time-1,reftext='{listing-caption} {counter:listing-num}']
 .A date
