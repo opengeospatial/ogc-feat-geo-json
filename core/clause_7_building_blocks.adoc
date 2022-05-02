@@ -224,12 +224,12 @@ NOTE: #Check original proposal for another alternative how to disambiguate betwe
 
 A reference system can be specified in a JSON-FG document using a "coordRefSys" member in one of three ways:
 
-* As a CRS reference using the URI of a simple CRS;
-* As a CRS reference using the URI of a simple CRS accompanied by an optional epoch value (for dynamic CRSs);
+* As a CRS reference using the URI or OGC CURIE of a simple CRS;
+* As a CRS reference using the URI or OGC CURIE of a simple CRS accompanied by an optional epoch value (for dynamic CRSs);
 * As an array of simple CRS references denoting an ad hoc compound reference system.
 
 [#rs-by-simple-ref,reftext='{listing-caption} {counter:listing-num}']
-.A simple reference system value by reference.
+.A simple reference system value by reference (URI).
 ====
 [source,json,linenumbers]
 ----
@@ -237,8 +237,17 @@ A reference system can be specified in a JSON-FG document using a "coordRefSys" 
 ----
 ====
 
+[#rs-by-simple-ref-curie,reftext='{listing-caption} {counter:listing-num}']
+.A simple reference system value by reference (CURIE).
+====
+[source,json,linenumbers]
+----
+"[EPSG:3857]"
+----
+====
+
 [#rs-by-ref-with-epoch,reftext='{listing-caption} {counter:listing-num}']
-.A reference system value by reference and with an epoch.
+.A reference system value by reference (URI) and with an epoch.
 ====
 [source,json,linenumbers]
 ----
@@ -251,7 +260,7 @@ A reference system can be specified in a JSON-FG document using a "coordRefSys" 
 ====
 
 [#compound-rs-by-value,reftext='{listing-caption} {counter:listing-num}']
-.A ad hoc compound reference system value
+.A ad hoc compound reference system value (using URIs)
 ====
 [source,json,linenumbers]
 ----
@@ -262,6 +271,22 @@ A reference system can be specified in a JSON-FG document using a "coordRefSys" 
     "epoch": 2016.47
   },
   "http://www.opengis.net/def/crs/EPSG/0/7837"
+]
+----
+====
+
+[#compound-rs-by-value-curie,reftext='{listing-caption} {counter:listing-num}']
+.A ad hoc compound reference system value (using CURIEs)
+====
+[source,json,linenumbers]
+----
+[
+  {
+    "type": "Reference",  
+    "href": "[EPSG:4258]",
+    "epoch": 2016.47
+  },
+  "[EPSG:7837]"
 ]
 ----
 ====
@@ -325,7 +350,7 @@ OGC API Features already specifies a general "links" member with an array of lin
 [cols="20,10,70",options="header"]
 !===
 |Property |Type |Description
-|href |URI |**REQUIRED**. The URI of a persistent resource that describes a feature type that is instantiated by the feature that is the link context.
+|href |URI or CURIE |**REQUIRED**. The URI or OGC CURIE of a persistent resource that describes a feature type that is instantiated by the feature that is the link context.
 |rel |String |**REQUIRED**. The link relation type, always "type".
 |type |String |To indicate a hint about a specific media type in which the target of the link is available, set the value to that media type; for example, "text/html".
 |title |String |Include this link attribute for a human readable label of the link, e.g. for use in a derived HTML representation.

@@ -99,7 +99,7 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 
 :req: geom-valid
 [#{req-class}_{req}]
-==== Geometries are valid
+==== "place" geometries are valid
 
 [width="90%",cols="2,7a"]
 |===
@@ -109,12 +109,12 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 
 :req: place
 [#{req-class}_{req}]
-==== No GeoJSON geometry in "place"
+==== No point, line string or polygon geometry in WGS 84 longitude/latitude in "place"
 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the CRS SHALL not use WGS84 longitude/latitude as the first two coordinate axes.
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the CRS SHALL not be `OGC:CRS84` or `OGC:CRS84h` (WGS 84 with axis order longitude/latitude).
 |===
 
 The coordinate reference system of a geometry object is determined as follows: 
@@ -122,7 +122,7 @@ The coordinate reference system of a geometry object is determined as follows:
 * If the geometry object has a member "coordRefSys", the CRS is identified by the value. 
 ** Otherwise inspect the parent object and repeat until the root object.
 * If no "coordRefSys" member has been found, the CRS has WGS84 longitude/latitude as the first two coordinate axes (that is, the requirement above is not met).
-* Otherwise inspect the CRS URI or CRS object to determine the datum and the first two coordinate axes.
+* Otherwise inspect the CRS URI, CRS CURIE or CRS object to determine the datum and the first two coordinate axes.
 
 :req: fallback
 [#{req-class}_{req}]

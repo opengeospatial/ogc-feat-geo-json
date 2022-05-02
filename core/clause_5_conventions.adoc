@@ -11,11 +11,13 @@ All requirements and conformance tests that appear in this document are denoted 
 
 JSON Schema is used to formally specify the JSON-FG syntax, where possible. Additional requirements are only used where it is not possible to express the requirement in JSON Schema or where this would result in a schema that is considered as too complex. All schemas are in Annex '<<schemas>>'.
 
-=== Use of CURIEs
+=== Use of CURIEs as a compact URI notation
 
-This document uses link:https://www.w3.org/TR/curie/[CURIEs] (Compact URIs) as a compact notation of URIs, in particular for URIs of coordinate reference systems.
+This document uses link:https://www.w3.org/TR/curie/[CURIEs] (Compact URIs) as a compact notation of OGC URIs, in particular for OGC URIs of coordinate reference systems. 
 
-NOTE: The draft policy for using CURIEs in OGC standards is documented https://portal.ogc.org/files/?artifact_id=100119&version=#toc14[here]. Once the updated policy has been published, this note will be converted to regular text.
+NOTE: The draft policy for using CURIEs in OGC standards is documented https://portal.ogc.org/files/?artifact_id=100119&version=#toc14[here] (requires an OGC account). Once the updated policy has been published, the policy will be referenced.
+
+This Standard also allows the use of CURIEs where an OGC URI is expected, e.g. in the "coordRefSys" member or the "href" member of a link. To be unambiguous, the use of safe CURIEs is recommended.
 
 === Extensibility
 
