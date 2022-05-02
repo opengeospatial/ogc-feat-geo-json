@@ -135,6 +135,17 @@ The coordinate reference system of a geometry object is determined as follows:
 ^|B |If both the "place" and the "geometry" member in a JSON-FG feature in the JSON document are not `null` and the JSON document is associated with a media type (e.g., the JSON document is fetched with a HTTP request), the media type SHALL include a parameter "compatibility" with a value "geojson".
 |===
 
+:rec: axis-order
+[#{req-class}_{rec}]
+==== Axis order of coordinate values in "place"
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+
+If the "place" member in any JSON-FG feature in the JSON document is not `null`, the coordinates of each position SHALL be expressed according to the https://portal.opengeospatial.org/files/?artifact_id=76024[OGC Axis Order Policy] and SHALL be in the axis order defined by the closest-to-scope CRS metadata.
+|===
+
 :rec: place-crs
 [#{req-class}_{rec}]
 ==== Coordinate values in "place"

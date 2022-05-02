@@ -296,6 +296,10 @@ Used at the geometry level, the "coordRefSys" key asserts the coordinate referen
 
 Where all objects on the same level are in the same coordinate reference system, it is recommended to declare the coordinate reference system on the parent level instead of declaring it in all parallel objects.
 
+===== Coordinate order
+
+The order in which coordinates for JSON-FG geometry objects are expressed is defined in the https://portal.opengeospatial.org/files/?artifact_id=76024[OGC Axis Order Policy] and shall be in the axis order defined by the closest-to-scope CRS metadata.
+
 [[feature-types]]
 === Feature type(s)
 
