@@ -203,10 +203,8 @@ NOTE: #Should a 3D geometry that represents a simple solid constructed using an 
 
 Without any other information, the following coordinate reference system (CRS) defaults apply in a JSON-FG document:
 
-* spatial CRS: [OGC:CRS84] (2D) or [OGC:CRS84h] (3D)
-* temporal CRS: A Temporal CRS "DateTime in Gregorian calendar" based on https://docs.ogc.org/as/18-005r4/18-005r4.html#118[OGC Topic 2, Example E.4.1]
-
-NOTE: It is planned to register the Temporal CRS with the OGC Naming Authority and eventually update this document with its URI.
+* Spatial CRS: WGS 84 with axis order longitude, latitude and optional ellipsoidal height, either `link:http://www.opengis.net/def/crs/OGC/1.3/CRS84[OGC:CRS84]` (2D) or `link:http://www.opengis.net/def/crs/OGC/0/CRS84h[OGC:CRS84h]` (3D);
+* Temporal CRS: DateTime in Gregorian calendar, `OGC:datetime` (to be registered with the OGC Naming Authority, see <<crs-datetime-gregorian>>).
 
 A new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry object at the collection, feature or value levels.
 
@@ -277,6 +275,13 @@ Used at the feature level, the "coordRefSys" key asserts the coordinate referenc
 Used at the geometry level, the "coordRefSys" key asserts the coordinate reference system for the JSON-FG geometry object within which the key is contained.
 
 Where all objects on the same level are in the same coordinate reference system, it is recommended to declare the coordinate reference system on the parent level instead of declaring it in all parallel objects.
+
+===== Additional coordinate reference systems
+
+For unknown coordinate reference systems, e.g. with engineering data like CAD drawings, the following CRS identifiers can be used:
+
+* `OGC:engineering-2d` for 2D coordinates (x, y), to be registered, see <<crs-engineering-2d>>;
+* `OGC:engineering-3d` for 3D coordinates (x, y, z), to be registered, see <<crs-engineering-3d>>.
 
 [[feature-types]]
 === Feature type(s)

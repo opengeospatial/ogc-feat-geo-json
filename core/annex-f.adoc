@@ -1,0 +1,31 @@
+[#crs]
+[appendix]
+:appendix-caption: Annex
+== Coordinate Reference Systems (Informative)
+
+#This is a temporary annex that will be removed from the document when the coordinate reference systems have been registered.# 
+
+This annex specifies additional coordinate reference systems that do not yet exist in the OGC register for coordinate reference systems and that have been created to support use cases identified in the context of JSON-FG.
+
+[[crs-engineering-2d]]
+=== Engineering CRS (2D) with an unknown origin and a Cartesian CS
+
+[source%unnumbered,xml,linenumbers]
+----
+include::crs/engineering-2d.xml[]
+----
+
+[[crs-engineering-3d]]
+=== Engineering CRS (3D) with an unknown origin and a Cartesian CS
+
+[source%unnumbered,xml,linenumbers]
+----
+include::crs/engineering-3d.xml[]
+----
+
+[[crs-datetime-gregorian]]
+=== Temporal CRS: DateTime in Gregorian calendar
+
+This definition is/will be based on https://docs.ogc.org/as/18-005r4/18-005r4.html#118[OGC Topic 2, Example E.4.1].
+
+#TODO#

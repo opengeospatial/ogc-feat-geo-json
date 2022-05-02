@@ -1,0 +1,37 @@
+<gml:EngineeringCRS xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" gml:id="engineering-2d" xsi:schemaLocation="http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd">
+  <gml:identifier codeSpace="OGC">engineering-2d</gml:identifier>
+  <gml:name>Engineering CRS (2D) with an unknown origin and a Cartesian CS</gml:name>
+  <gml:scope>
+    A coordinate reference system used to describe spatial location over small areas of the Earth using a flat-Earth approximation of the Earth’s surface: corrections for Earth-curvature are not applied. Typical applications are for civil engineering construction and building information management. The origin of the datum is unknown.
+  </gml:scope>
+  <gml:cartesianCS>
+    <gml:CartesianCS gml:id="cartesian-local-3d">
+      <gml:identifier codeSpace="OGC">cartesian-local-3d</gml:identifier>
+      <gml:name>Cartesian 2D CS (right-handed). Axes: x,y. Orientations: unspecified, unspecified. UoM: m.</gml:name>
+      <gml:remarks>The location of the origin is unspecified. The direction of the two axes is unspecified except that the axes form a right-handed CRS. For use in engineering coordinate reference systems.</gml:remarks>
+      <gml:axis>
+        <gml:CoordinateSystemAxis gml:id="x-local" uom="http://www.opengis.net/def/uom/UCUM/0/m">
+          <gml:identifier codeSpace="OGC">x-local</gml:identifier>
+          <gml:remarks>For use in engineering coordinate reference systems.</gml:remarks>
+          <gml:axisAbbrev>x</gml:axisAbbrev>
+          <gml:axisDirection codeSpace="OGC">unspecified</gml:axisDirection>
+        </gml:CoordinateSystemAxis>
+      </gml:axis>
+      <gml:axis>
+        <gml:CoordinateSystemAxis gml:id="y-local" uom="http://www.opengis.net/def/uom/UCUM/0/m">
+          <gml:identifier codeSpace="OGC">y-local</gml:identifier>
+          <gml:remarks>For use in engineering coordinate reference systems.</gml:remarks>
+          <gml:axisAbbrev>y</gml:axisAbbrev>
+          <gml:axisDirection codeSpace="OGC">unspecified</gml:axisDirection>
+        </gml:CoordinateSystemAxis>
+      </gml:axis>
+    </gml:CartesianCS>
+  </gml:cartesianCS>
+  <gml:engineeringDatum>
+    <gml:EngineeringDatum gml:id="engineering-unknown-origin">
+      <gml:identifier codeSpace="OGC">engineering-unknown-origin</gml:identifier>
+      <gml:name>Engineering Datum with an unknown origin</gml:name>
+      <gml:scope>For use in unspecified engineering coordinate reference systems.</gml:scope>
+    </gml:EngineeringDatum>
+  </gml:engineeringDatum>
+</gml:EngineeringCRS>
