@@ -210,8 +210,6 @@ If the base shape is a polygon type then the extrusion is a solid whose footprin
 
 <Add figure(s) illustrating a polygon extrusion (Toronto City Hall would be nice if I can find the data).>
 
-NOTE: #Should a 3D geometry that represents a simple solid constructed using an extruded polygon also be supported? This would consist of a (horizontal) 2D polygon and separate attributes for the lower and upper limits. How often are such geometries used? With respect to "extruded polygons" it seems like they could be useful, but it is unclear if the added complexity of an additional geometry type is valuable enough. This is a broader topic as to how to handle geometries that are constructed using "regular" feature properties.#
-
 ===== MultiPrism
 
 A _multi-prism_ is an array of _prism_ objects.  The order of the prism geometry objects is the array is not significant.
