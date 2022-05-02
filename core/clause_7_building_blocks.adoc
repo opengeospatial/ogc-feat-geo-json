@@ -190,7 +190,11 @@ The dimension of all positions is three.
 
 ===== MultiPolyhedron
 
-A _multi-polyhedron_ is an array of _polyhedron_ objects. The order of the polyhedron geometry objects in the array is not significant.
+A _multi-polyhedron_ is a collection of _polyhedron_ objects. These are arbitrary aggregations; i.e., there is no assumption regarding the topological relationships between the _polyhedron_ objects, but in most cases the _polyhedron_ objects will not intersect each other. 
+
+NOTE: According to ISO 19107:2020 ("Spatial schema"), the geometry of the _multi-polyhedron_ is the set theoretic union of all _polyhedron_ objects. For example, if there are overlapping _polyhedron_ objects, the volume of the _multi-polyhedron_ will be smaller than the sum of the _polyhedron_ volumes.
+
+The collection is represented as a JSON array. The order of the polyhedron geometry objects in the array is not significant.
 
 ===== Prism
 
