@@ -95,9 +95,7 @@ NOTE: This Standard only provides guidance how to represent feature data in JSON
 ----
 ====
 
-This describes the initial range of instant values. This range may be extended in the future to support additional use cases. Clients processing instant values must be prepared to receive other values. Clients may ignore values that they do not understand.
-
-NOTE: CNR Comment: What is "This"?  This clause?  This(these) example(s)?
+Dates and timestamps are the initial range of instant values. The range may be extended in the future to support additional use cases. Clients processing values of `time` must be prepared to receive other values. Clients may ignore values that they do not understand.
 
 ==== Intervals
 
@@ -132,9 +130,7 @@ The end of unbounded intervals are represented by a double-dot string ("..") for
 ----
 ====
 
-This describes the initial range of interval values. This range may be extended in the future to support additional use cases. Clients processing interval values must be prepared to receive other values. Clients may ignore values that they do not understand.
-
-NOTE: CNR Comment: What is "This"?  This clause?  This(these) example(s)?
+The options described above are the initial range of interval values - the granularity is either days or (sub-)seconds and interval ends may be unbounded. The value range may be extended in the future to support additional use cases. Clients processing values of `time` must be prepared to receive other values. Clients may ignore values that they do not understand.
 
 [[place]]
 === Geometry
