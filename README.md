@@ -21,10 +21,12 @@ JSON is a popular encoding format for geospatial data. The light weight, simple 
 
 OGC Features and Geometries JSON will
 
-* include the ability to use Coordinate Reference Systems (CRSs) other than WGS84,
+* include the ability to use Coordinate Reference Systems (CRSs) other than WGS84 
+* follow the https://portal.opengeospatial.org/files/?artifact_id=76024[OGC Axis Order Policy],
 * allow the use of non-Euclidean metrics, in particular ellipsoidal metrics,
 * support solids and multi-solids as geometry types, and
 * provide guidance on how to represent feature properties, e.g., including temporal properties.
+
 
 These capabilities will be supported by Part 1 (Core) or the OGC Features and Geometries JSON standard.
 
