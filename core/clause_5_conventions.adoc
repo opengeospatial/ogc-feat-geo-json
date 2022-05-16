@@ -21,10 +21,8 @@ The JSON schemas are designed to support extensions. JSON-FG documents that incl
 
 The "$id" member of the schemas does not include information about the version of the Standard or the part of the JSON-FG standard. Future revisions of this Standard or additional parts of JSON-FG will update and extend the JSON-FG schemas. Any change will not invalidate existing JSON-FG documents.
 
-NOTE: CNR Comment about this last paragraph: Is some clarification needed? From JSON schema: It is also best practice to include an $id property as a unique identifier for each schema. For now, just set it to a URL at a domain you control, for example:
-{ "$id": "http://yourdomain.com/schemas/myschema.json" }
-The details of $id become more apparent when you start Structuring a complex schema.
+NOTE: The "$id" member identifies a schema resource with its canonical URI. The member is specified by <<json-schema,JSON Schema>>.
 
-NOTE: PAV Comment: I don't understand this last paragraph or Carl's comment about it so we will need to review in the SWG.
+Custom extensions should use a URI in "$id" that is controlled by the community of interest. A HTTP GET request to the URI should return the JSON Schema document.
 
 <add an Annex with examples how future parts or communities can extend the schemas>

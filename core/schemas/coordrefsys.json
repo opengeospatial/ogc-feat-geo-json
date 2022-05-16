@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "http://beta.schemas.opengis.net/json-fg/coordrefsys.json",
+  "$id": "https://beta.schemas.opengis.net/json-fg/coordrefsys.json",
   "oneOf": [
     {
       "$ref": "#/$defs/single-refsys"

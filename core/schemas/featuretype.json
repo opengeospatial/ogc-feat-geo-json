@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "http://beta.schemas.opengis.net/json-fg/featuretype.json",
+  "$id": "https://beta.schemas.opengis.net/json-fg/featuretype.json",
   "title": "Schema of the featureType member",
   "oneOf": [
     {

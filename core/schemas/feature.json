@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "http://beta.schemas.opengis.net/json-fg/feature.json",
+  "$id": "https://beta.schemas.opengis.net/json-fg/feature.json",
   "title": "a JSON-FG Feature",
   "type": "object",
   "required": ["type", "time", "place", "geometry", "properties"],

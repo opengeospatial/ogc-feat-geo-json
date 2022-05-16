@@ -373,9 +373,9 @@ Additional link attributes may be added to the Link object.
 
 Each JSON-FG document is either a feature or a feature collection.
 
-A JSON-FG feature collection must contain a link to the JSON-FG feature collection schema at `\http://beta.schemas.opengis.net/json-fg/featurecollection.json`. Since the feature collection is also a GeoJSON feature collection, it should also contain a link to the GeoJSON feature collection schema at `\https://geojson.org/schema/FeatureCollection.json`. The document should also contain another link to a schema document that specifies the properties of the features in the collection.
+A JSON-FG feature collection must contain a link to the JSON-FG feature collection schema at `\https://beta.schemas.opengis.net/json-fg/featurecollection.json`. Since the feature collection is also a GeoJSON feature collection, it should also contain a link to the GeoJSON feature collection schema at `\https://geojson.org/schema/FeatureCollection.json`. The document should also contain another link to a schema document that specifies the properties of the features in the collection.
 
-A JSON-FG feature must contain a link to the JSON-FG feature schema at `\http://beta.schemas.opengis.net/json-fg/feature.json`. Since the feature is also a GeoJSON feature, it should also contain a link to the GeoJSON feature schema at `\https://geojson.org/schema/Feature.json`. The document should also contain another link to a schema document that specifies the properties of the feature.
+A JSON-FG feature must contain a link to the JSON-FG feature schema at `\https://beta.schemas.opengis.net/json-fg/feature.json`. Since the feature is also a GeoJSON feature, it should also contain a link to the GeoJSON feature schema at `\https://geojson.org/schema/Feature.json`. The document should also contain another link to a schema document that specifies the properties of the feature.
 
 NOTE: These are (or will be) canonical URIs. Clients can identify that a JSON document is a GeoJSON and JSON-FG feature collection or feature by string comparisons.
 
