@@ -5,12 +5,8 @@
 JavaScript Object Notation (JSON) is a popular encoding format for geospatial data. The light weight, simple syntax, and clear human and machine readability of JSON as well as universal support in all modern programming languages appeals to developers. The GeoJSON format as defined in https://datatracker.ietf.org/doc/html/rfc7946[IETF RFC-7946] is a very popular encoding.  GeoJSON is supported by many commercial and open source geospatial techonology product and libraries.  GeoJSON is also supported in most deployments of APIs implementing the OGC API Features Standard. However, GeoJSON has limitations that prevent or limit its use in many cases, including:
 
 * WGS 84 is the only allowed Coordinate Reference System (CRS);
-* No support for metadata so such properties as the provenance of the data cannot be specified;
-* No styling or symbology information is specified;
 * Geometries are restricted to points, curves and surfaces with linear interpolation; and
 * No general capability is available to specify the schema of a feature, its type or its temporal characteristics.
-
-NOTE: PAV Comment.  I added Carl's comments about provenance metadata and styling information but I am not sure they are relevant here.  There is nothing preventing someone from adding additional members to GeoJSON to support these requirements.  They would simply be ignored by GeoJSON clients.  Also, I think these requirements are out-of-scope for the JSON-FG SWG.  The Metadata DWG (?) and the Styling/Symbology SWG (?) would need to consider extending GeoJSON with additional members to accommodate these requirements.
 
 === Scenarios
 
