@@ -118,7 +118,7 @@
          "title": "JSON Schema of building features"
       },
       {
-         "href":"http://beta.schemas.opengis.net/json-fg/feature.json",
+         "href":"https://beta.schemas.opengis.net/json-fg/feature.json",
          "rel":"describedby",
          "type":"application/schema+json",
          "title":"This document is a JSON-FG Feature"

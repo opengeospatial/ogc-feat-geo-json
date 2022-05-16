@@ -9,7 +9,7 @@ All requirements and conformance tests that appear in this document are denoted 
 
 === Use of JSON Schema
 
-JSON Schema is used to formally specify the JSON-FG syntax, where possible. Additional requirements are only used where it is not possible to express the requirement in JSON Schema or where this would result in a schema that is considered as too complex. All schemas are in Annex '<<schemas>>'.
+Where possible, https://json-schema.org/specification.html[JSON Schema] is used to formally specify the JSON-FG syntax.  Additional requirements are only used when JSON-Schema is not sufficient to express aspects of the JSON-FG syntax such as the relationship between the JSON-FG `place` member and the <<fallback>> GeoJSON `geometry` member.  Additional requirements are also used when expressing the aspects of the JSON-FG syntax using JSON-Schema would result is a schema that is considered too complex.  All schemas are in Annex '<<schemas>>'.
 
 === Use of CURIEs as a compact URI notation
 
@@ -21,12 +21,16 @@ This Standard also allows the use of CURIEs where an OGC URI is expected, e.g. i
 
 === Extensibility
 
-JSON-FG has been designed to be extensible. Extensions can be specified in revisions to this Standard, in additional parts of JSON-FG or by a community.
+JSON-FG is designed to be extensible.  Extensions to the core, to any of the other conformance classes defined in this document or the addition of new capabilities can be specified in revisions to this Standard.  Extensions can also be specified in additional documents that would become additional parts to a JSON-FG suite of Standards.  Finally, extensions can be specified by communities of interest in community standards but such documents may not be vetted by the OGC or other standards bodies (e.g. W3C or ISO).
 
-Readers of JSON-FG documents should therefore be prepared to process documents with unknown members or with known members, but unknown value types. Unknown members should be ignored. Values of a known member with an unknown value type should be mapped to `null`.
+Readers of JSON-FG documents should therefore be prepared to encounter members that they may not recognize or encounter known members, but unknown value types. Members that are not recognized should be ignored. Values of a known member with an unknown value type should be mapped to `null`.
 
-The JSON schemas have been designed to support extensions. JSON-FG documents that include extensions will still validate against the JSON-FG schemas.
+The JSON schemas are designed to support extensions. JSON-FG documents that include extensions will still validate against the JSON-FG schemas.
 
 The "$id" member of the schemas does not include information about the version of the Standard or the part of the JSON-FG standard. Future revisions of this Standard or additional parts of JSON-FG will update and extend the JSON-FG schemas. Any change will not invalidate existing JSON-FG documents.
+
+NOTE: The "$id" member identifies a schema resource with its canonical URI. The member is specified by <<json-schema,JSON Schema>>.
+
+Custom extensions should use a URI in "$id" that is controlled by the community of interest. A HTTP GET request to the URI should return the JSON Schema document.
 
 <add an Annex with examples how future parts or communities can extend the schemas>
