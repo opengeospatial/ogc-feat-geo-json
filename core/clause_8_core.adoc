@@ -159,4 +159,4 @@ If the "place" member in any JSON-FG feature in the JSON document is not `null`,
 
 See above for a description how to determine the CRS of a geometry object.
 
-NOTE: This is only a recommendation, not a requirement as there are often valid reasons to have have coordinates outside of the range, for example outside of a UTM zone that covers most of the area of a dataset.
+NOTE: This is only a recommendation, not a requirement as there are often valid reasons to have coordinates outside of the range, for example outside of a UTM zone that covers most of the area of a dataset.

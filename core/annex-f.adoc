@@ -3,7 +3,7 @@
 :appendix-caption: Annex
 == Coordinate Reference Systems (Informative)
 
-#This is a temporary annex that will be removed from the document when the coordinate reference systems have been registered.# 
+NOTE: This is a temporary annex that will be removed from the document when the coordinate reference systems have been registered. 
 
 This annex specifies additional coordinate reference systems that do not yet exist in the OGC register for coordinate reference systems and that have been created to support use cases identified in the context of JSON-FG.
 
@@ -28,4 +28,4 @@ include::crs/engineering-3d.xml[]
 
 This definition is/will be based on https://docs.ogc.org/as/18-005r4/18-005r4.html#118[OGC Topic 2, Example E.4.1].
 
-#TODO#
+<TODO - Add CRS definition.>
