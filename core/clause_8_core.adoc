@@ -132,10 +132,10 @@ The coordinate reference system of a geometry object is determined as follows:
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
 ^|A |If both the "place" and the "geometry" member in a JSON-FG feature in the JSON document are not `null`, the values SHALL not be identical.
-^|B |If both the "place" and the "geometry" member in a JSON-FG feature in the JSON document are not `null` and the JSON document is associated with a media type (e.g., the JSON document is fetched with a HTTP request), the media type SHALL include a parameter "compatibility" with a value "geojson".
+^|B |If both the "place" and the "geometry" member in a JSON-FG feature in the JSON document are not `null` and the JSON document is associated with the JSON-FG media type (e.g., the document is the content of the response to a HTTP GET request), the media type SHALL include a parameter "compatibility" with the value "geojson".
 |===
 
-:rec: axis-order
+:req: axis-order
 [#{req-class}_{rec}]
 ==== Axis order of coordinate values in "place"
 
