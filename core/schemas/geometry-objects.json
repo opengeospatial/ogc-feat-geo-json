@@ -20,6 +20,8 @@
               "MultiPolygon",
               "Polyhedron",
               "MultiPolyhedron",
+              "Prism",
+              "MultiPrism",
               "GeometryCollection"
             ]
           }
@@ -221,6 +223,56 @@
                 }
               }
             }
+          }
+        },
+        "bbox": {
+          "$ref": "#/$defs/bbox3d"
+        }
+      }
+    },
+    "Prism": {
+      "title": "JSON-FG Prism",
+      "type": "object",
+      "required": ["type","base","upper"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["Prism"]
+        },
+        "base": {
+          "oneOf": [
+            { "$ref": "#/$defs/Point" },
+            { "$ref": "#/$defs/LineString" },
+            { "$ref": "#/$defs/Polygon" },
+            { "$ref": "#/$defs/MultiPoint" },
+            { "$ref": "#/$defs/MultiLineString" },
+            { "$ref": "#/$defs/MultiPolygon" }
+          ]
+        },
+        "lower": {
+          "type": "number"
+        },
+        "upper": {
+          "type": "number"
+        },
+        "bbox": {
+          "$ref": "#/$defs/bbox3d"
+        }
+      }
+    },
+    "MultiPrism": {
+      "title": "JSON-FG Multi-Prism",
+      "type": "object",
+      "required": ["type","prisms"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["MultiPrism"]
+        },
+        "prisms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Prism"
           }
         },
         "bbox": {

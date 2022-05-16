@@ -31,7 +31,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the JSON document is a JSON-FG feature collection with a member "geometryDimension" that is not `null`, the geometry type of the primary geometry of each feature SHALL be consistent with the value (0: a Point or MultiPoint, 1: a LineString or MultiLineString, 2: a Polygon or MultiPolygon, 3: a Polyhedron or MultiPolyhedron).
+^|A |If the JSON document is a JSON-FG feature collection with a member "geometryDimension" that is not `null`, the geometry type of the primary geometry of each feature SHALL be consistent with the value (0: a Point or MultiPoint, 1: a LineString or MultiLineString, 2: a Polygon or MultiPolygon, 3: a Polyhedron, MultiPolyhedron, Prism or MultiPrism).
 |===
 
 :rec: homogenuous-collection
@@ -42,7 +42,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 |===
 ^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
 ^|A |If the JSON document is a JSON-FG feature collection and each feature is of the same feature type, the feature type information SHOULD be specified in the feature collection.
-^|B |If the JSON document is a JSON-FG feature collection and the primary geometry of each feature has the same dimension (0 for a Point/MultiPoint, 1 for a LineString/MultiLineString, 2 for a Polygon/MultiPolygon, 3 for a Polyhedron/MultiPolyhedron), the feature collection object SHOULD contain a member "geometryDimension".
+^|B |If the JSON document is a JSON-FG feature collection and the primary geometry of each feature has the same dimension (0 for a Point/MultiPoint, 1 for a LineString/MultiLineString, 2 for a Polygon/MultiPolygon, 3 for a Polyhedron/MultiPolyhedron/Prism/MultiPrism), the feature collection object SHOULD contain a member "geometryDimension".
 |===
 
 :rec: type-links
