@@ -3,7 +3,7 @@
 :appendix-caption: Annex
 == Considerations (Informative)
 
-#This is a temporary annex that will be removed from the document in a later stage.# 
+NOTE: This is a temporary annex during the development of the document that will be removed from the document before publication.
 
 This annex includes considerations for each of the JSON-FG building blocks.
 

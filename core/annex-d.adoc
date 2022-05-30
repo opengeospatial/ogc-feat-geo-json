@@ -42,7 +42,7 @@ Note that the examples use https://www.w3.org/TR/curie/[Safe CURIEs] for better 
 
 The parcel feature could looks like the following example, which uses the "anchor" link attribute to specify the link context. The building relationship has been mapped to a hypothetical "http://www.opengis.net/def/rel/ogc/1.0/contains" link relationship based on the topological relationship "contains" from the Simple Features standard.
 
-NOTE: #Link relation types for the topological interval relationships as specified in OWL Time are already registered with IANA. The registration of the named spatial topological relationships specified in the Simple Feature Access standard cite:[OGC06_103r4] should be considered, either in the IANA or the OGC register. Such link relation types are useful for cases where relationships are pre-computed or are computed on the fly but are presented, because the clients cannot easily compute them.#
+NOTE: Link relation types for the topological interval relationships as specified in OWL Time are already registered with IANA. The registration of the named spatial topological relationships specified in the <<ogc06_103r4,Simple Feature Access standard>> could be considered, either in the IANA or the OGC register. Such link relation types are useful for cases where relationships are pre-computed or are computed on the fly but are presented, because the clients cannot easily compute them.
 
 [source,json,linenumbers]
 ----
