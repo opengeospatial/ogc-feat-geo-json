@@ -184,7 +184,9 @@ Each solid has a unique exterior shell and any number of shells that are inside 
 
 A _polyhedron_ is a solid where each shell is a multi-polygon. 'Closed' means that the multi-polygon shell is watertight, it splits space into two distinct regions: inside and outside of the shell. 'Simple' means that the polygons that make up the shell do not intersect, they only touch each other along their common boundaries.
 
-<Add figure(s) illustrating polyhedra.>
+[#figurePolyhedra]
+.A Polyhedron (Cologne Cathedral).
+image::images/cologne_cathedral_lod2.png[alt=Cologne Cathedral LoD 2,width=90%]
 
 The JSON representation of the coordinates of a polyhedron is a non-empty array of _multi-polygon_ arrays. Each _multi-polygon_ array is a shell. The first shell is the exterior boundary, all other shells are voids.
 
@@ -210,11 +212,13 @@ If the base shape is a point type then the extrusion is a line extending from th
 
 If the base shape is a line string type then the extrusion is a ribbon following the path of the line string and extending from the lower limit to the upper limit.
 
-<Add figure(s) illustrating a ribon.>
+<Add figure(s) illustrating a ribbon.>
 
 If the base shape is a polygon type then the extrusion is a solid whose footprint takes the shape of the specified polygon and extended from the lower limit to the upper limit.  If the polygon base shape contains holes, these manifest as voids in the extruded shape.
 
-<Add figure(s) illustrating a polygon extrusion (Toronto City Hall would be nice if I can find the data).>
+[#figurePolygonExtrusion]
+.Extruded polygons (building footprints extruded with the height of the building, City of Cologne/Germany).
+image::images/buildings_cologne_lod1.png[alt=Buildings LoD 1,width=90%]
 
 ===== MultiPrism
 
