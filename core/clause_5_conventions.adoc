@@ -33,4 +33,4 @@ NOTE: The "$id" member identifies a schema resource with its canonical URI. The 
 
 Custom extensions should use a URI in "$id" that is controlled by the community of interest. A HTTP GET request to the URI should return the JSON Schema document.
 
-<add an Annex with examples how future parts or communities can extend the schemas>
+See <<extending_jsonfg>> for examples how future parts or communities could extend the schemas.
