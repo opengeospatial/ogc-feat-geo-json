@@ -9,13 +9,13 @@ All requirements and conformance tests that appear in this document are denoted 
 
 === Use of JSON Schema
 
-Where possible, https://json-schema.org/specification.html[JSON Schema] is used to formally specify the JSON-FG syntax.  Additional requirements are only used when JSON-Schema is not sufficient to express aspects of the JSON-FG syntax such as the relationship between the JSON-FG `place` member and the <<fallback>> GeoJSON `geometry` member.  Additional requirements are also used when expressing the aspects of the JSON-FG syntax using JSON-Schema would result is a schema that is considered too complex.  All schemas are in Annex '<<schemas>>'.
+Where possible, https://json-schema.org/specification.html[JSON Schema] is used to formally specify the JSON-FG syntax.  Additional requirements are only used when JSON-Schema is not sufficient to express aspects of the JSON-FG syntax such as the relationship between the JSON-FG `place` member and the <<core_fallback,fallback>> GeoJSON `geometry` member.  Additional requirements are also used when expressing the aspects of the JSON-FG syntax using JSON-Schema would result is a schema that is considered too complex.  All schemas are in Annex '<<schemas>>'.
 
 === Use of CURIEs as a compact URI notation
 
 This document uses link:https://www.w3.org/TR/curie/[CURIEs] (Compact URIs) as a compact notation of OGC URIs, in particular for OGC URIs of coordinate reference systems. 
 
-NOTE: The draft policy for using CURIEs in OGC standards is documented https://portal.ogc.org/files/?artifact_id=100119&version=#toc14[here] (requires an OGC account). Once the updated policy has been published, the policy will be referenced.
+The policy for using CURIEs in OGC standards is documented https://docs.opengeospatial.org/pol/09-048r6.html#toc14[here].
 
 This Standard also allows the use of CURIEs where an OGC URI is expected, e.g. in the "coordRefSys" member or the "href" member of a link. To be unambiguous, the use of safe CURIEs is recommended.
 

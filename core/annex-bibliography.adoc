@@ -11,7 +11,7 @@
 
 [[ogc20_070]] Open Geospatial Consortium (OGC). OGC 20-070: **Geographic information - Features and geometry — Part 2: Metrics**. Edited by J. Herring. 2019. Available at https://portal.ogc.org/files/?artifact_id=94178 (access requires OGC membership)
 
-[[ogc21_018]] Open Geospatial Consortium (OGC). OGC 21-018: **OGC Testbed-17: Features and Geometries JSON CRS Analysis of Alternatives ER**. Edited by P. Vretanos. 2021. Available at https://portal.ogc.org/files/?artifact_id=99382 (access requires OGC membership)
+[[ogc21_018]] Open Geospatial Consortium (OGC). OGC 21-018: **OGC Testbed-17: Features and Geometries JSON CRS Analysis of Alternatives ER**. Edited by P. Vretanos. 2021. Available at http://docs.opengeospatial.org/per/21-018.html
 
 [[sdwbp]] Open Geospatial Consortium (OGC) / World Wide Web Consortium (W3C): **Spatial Data on the Web Best Practices** [online]. Edited by J. Tandy, L. van den Brink, P. Barnaghi. 2017 [viewed 2020-03-16]. Available at https://www.w3.org/TR/sdw-bp/
 

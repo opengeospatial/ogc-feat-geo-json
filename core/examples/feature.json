@@ -112,7 +112,7 @@
          "title":"This feature is of type 'building'"
       },
       {
-         "href": "https://example.org/data/v1/collections/buildings/schema/item?type=jsonfg",
+         "href": "https://example.org/data/v1/collections/buildings/schemas/item?type=jsonfg",
          "rel": "describedby",
          "type": "application/schema+json",
          "title": "JSON Schema of building features"

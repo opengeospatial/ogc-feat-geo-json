@@ -17,13 +17,15 @@ Recipients of this document are requested to submit, with their comments, notifi
 [[security-considerations]]
 [big]*iv.    Security Considerations*
 
-The security considerations for GeoJSON as specified in Section 10 of IETF RFC 8946 also apply to JSON-FG.
+The security considerations for GeoJSON as specified in Section 10 of IETF RFC 7946 also apply to JSON-FG.
 
 [big]*v.    Submitting organizations*
 
 The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
 
-Organization name(s)
+* CubeWerx Inc.
+* interactive instruments GmbH
+* ...
 
 [big]*vi.     Submitters*
 
