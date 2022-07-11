@@ -3,9 +3,7 @@
 :appendix-caption: Annex
 == Examples (Informative)
 
-<add more examples, e.g. of a homogenous feature collection>
-
-=== An example feature
+=== A building feature
 
 The following feature instance is an example of a building feature that includes all new JSON-FG capabilities.
 
@@ -14,6 +12,21 @@ The following feature instance is an example of a building feature that includes
 ====
 [source%unnumbered,json,linenumbers]
 ----
-include::examples/feature.json[]
+include::examples/building.json[]
+----
+====
+
+=== A homogeneous feature collection
+
+The following feature collection consists of airport features from the Zoomstack dataset of Ordnance Survey Great Britain. All features have the same feature type ("Airport") with a point geometry (geometry dimension: 0).
+
+The feature collection has been reduced to the first two and the last feature to reduce the size of the example.
+
+[#example_airports,reftext='{listing-caption} {counter:listing-num}']
+.Airports in Great Britain
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/airports.json[]
 ----
 ====
