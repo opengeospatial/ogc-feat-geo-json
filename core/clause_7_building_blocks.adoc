@@ -208,11 +208,11 @@ The limits are measured relative to a specified 3D CRS.  That is either the defa
 
 If the base shape is a point type then the extrusion is a line extending from the lower limit to the upper limit.
 
-<Add figure(s) illustrating point extrusion.>
+A pylon feature with a base shape of a point is provided as an example in <<example_pylon,Annex C>>.
 
 If the base shape is a line string type then the extrusion is a ribbon following the path of the line string and extending from the lower limit to the upper limit.
 
-<Add figure(s) illustrating a ribbon.>
+A fence feature with a base shape of a line string is provided as an example in <<example_fence,Annex C>>.
 
 If the base shape is a polygon type then the extrusion is a solid whose footprint takes the shape of the specified polygon and extended from the lower limit to the upper limit.  If the polygon base shape contains holes, these manifest as voids in the extruded shape.
 

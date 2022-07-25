@@ -16,6 +16,28 @@ include::examples/building.json[]
 ----
 ====
 
+=== Simple prism geometries
+
+The following are simple examples of prism geometries. 
+
+[#example_pylon,reftext='{listing-caption} {counter:listing-num}']
+.A pylon as a entruded point
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/pylon.json[]
+----
+====
+
+[#example_fence,reftext='{listing-caption} {counter:listing-num}']
+.A fence as an extruded line string
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/fence.json[]
+----
+====
+
 === Toronto City Hall
 
 The following object is a feature representing the Toronto City Hall with the geometry as a MultiPrism (extruded polygons).
