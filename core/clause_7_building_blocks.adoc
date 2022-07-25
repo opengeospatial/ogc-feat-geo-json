@@ -244,6 +244,8 @@ Without any other information, the following coordinate reference system (CRS) d
 
 A new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry object at the collection, feature, or value levels.
 
+The `coordRefSys` key _**does not**_ apply to the GeoJSON `geometry` member.  It only applies to JSON-FG geometry objects including those that may appear in the `properties` section.
+
 If a CRS is asserted for a JSON-FG document, that assertion will typically be made at the top level of the document, either at the collection level or the feature level depending on the contents of the document.
 
 ==== Description
