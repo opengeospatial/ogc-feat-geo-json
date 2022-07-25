@@ -51,6 +51,11 @@ include::examples/toronto-city-hall.json[]
 ----
 ====
 
+[[example_cc]]
+=== Cologne Cathedral
+
+The file https://github.com/opengeospatial/ogc-feat-geo-json/blob/cp-edits/core/examples/cologne-cathedral.json[cologne-cathedral.json] is a JSON-FG feature collection that contains a CityGML building feature with 87 building part features representing the Cologne Cathedral in Level of Detail 2. Each building part has a Polyhedron geometry. The building part feature also contain additional geometries in the "properties" section. Due to the size of the example, it is not embedded, but referenced.
+
 === A homogeneous feature collection
 
 The following feature collection consists of airport features from the Zoomstack dataset of Ordnance Survey Great Britain. All features have the same feature type ("Airport") with a point geometry (geometry dimension: 0).

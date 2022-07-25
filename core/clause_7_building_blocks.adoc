@@ -192,6 +192,8 @@ The JSON representation of the coordinates of a polyhedron is a non-empty array 
 
 The dimension of all positions is three.
 
+The Cologne Cathedral with polyhedron geometries is provided as an example in <<example_cc,Annex C>>.
+
 ===== MultiPolyhedron
 
 A _multi-polyhedron_ is a collection of _polyhedron_ objects. These are arbitrary aggregations; i.e., there is no assumption regarding the topological relationships between the _polyhedron_ objects, but in most cases the _polyhedron_ objects will not intersect each other. 
