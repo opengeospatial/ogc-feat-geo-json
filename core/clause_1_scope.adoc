@@ -6,7 +6,7 @@ This Standard specifies the following minimal extensions to the GeoJSON Standard
 
 * The ability to use Coordinate Reference Systems (CRSs) other than WGS 84;
 * Allow the use of non-Euclidean metrics, in particular ellipsoidal metrics;
-* Solids and multi-solids as geometry types;
+* Support solids and prisms as geometry types;
 * The ability to encode temporal characteristics of a feature; and
 * The ability to declare the type and the schema of a feature.
 

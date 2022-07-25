@@ -1,6 +1,18 @@
 [big]*i.     Abstract*
 
-<Insert Abstract Text here>
+https://datatracker.ietf.org/doc/html/rfc7946[GeoJSON] is a very popular encoding for feature data. GeoJSON is widely supported including by in most deployments of APIs implementing the OGC API Features Standard. However, GeoJSON has intentional restrictions that prevent or limit its use in certain geospatial application contexts. For example, GeoJSON is restricted to WGS 84 coordinates, does not support volumetric geometries and has no concept of classifying features according to their type.
+
+OGC Features and Geometries JSON (JSON-FG) is a proposal for GeoJSON extensions that provide standard ways to support such requirements. The goal is to focus on capabilities that may require some geospatial expertise, but that are useful for many. Edge cases are considered out-of-scope of JSON-FG.
+
+Since JSON-FG specifies extensions to GeoJSON that conform to the GeoJSON standard, valid JSON-FG documents are also valid GeoJSON documents.
+
+Work on JSON-FG started in June 2021. After a year of discussion and testing in implementations in OGC Testbed-17 and OGC Code Sprints, this document represents the first complete draft specification. 
+
+The Open Geospatial Consortium (OGC) invites organisations and developers that have a need for the extensions specified by this specification to implement and test the extensions. Please submit feedback in the https://github.com/opengeospatial/ogc-feat-geo-json/issues[GitHub repository of the sepecification]. Are these extensions useful for your use cases? Are they simple enough to implement?
+
+Uptake in implementations and sufficient feedback from implementation experience will be a prerequisite for this specification to eventually progress towards an OGC Standard.
+
+CAUTION: This is a DRAFT. The technical requirements specified in this document can change in future versions.
 
 [big]*ii.    Keywords*
 
@@ -17,13 +29,15 @@ Recipients of this document are requested to submit, with their comments, notifi
 [[security-considerations]]
 [big]*iv.    Security Considerations*
 
-The security considerations for GeoJSON as specified in Section 10 of IETF RFC 8946 also apply to JSON-FG.
+The security considerations for GeoJSON as specified in Section 10 of IETF RFC 7946 also apply to JSON-FG.
 
 [big]*v.    Submitting organizations*
 
 The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
 
-Organization name(s)
+* CubeWerx Inc.
+* interactive instruments GmbH
+* ...
 
 [big]*vi.     Submitters*
 

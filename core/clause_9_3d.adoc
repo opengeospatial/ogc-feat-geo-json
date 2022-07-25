@@ -43,4 +43,4 @@ The Requirements Class "3D" adds provisions for geometries in a 3D CRS and that 
 ^|D |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "MultiPrism", each prism (items in the member "prisms") SHALL be valid Prism geometry.
 |===
 
-NOTE: It is recommended that clients should, if possible, be tolerant and also accept shells with an incorrect orientation.
+It is recommended that clients should, if possible, be tolerant and also accept shells with an incorrect orientation.

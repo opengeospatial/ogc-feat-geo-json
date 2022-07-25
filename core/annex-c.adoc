@@ -3,9 +3,7 @@
 :appendix-caption: Annex
 == Examples (Informative)
 
-<add more examples, e.g. of a homogenous feature collection>
-
-=== An example feature
+=== A building feature
 
 The following feature instance is an example of a building feature that includes all new JSON-FG capabilities.
 
@@ -14,6 +12,119 @@ The following feature instance is an example of a building feature that includes
 ====
 [source%unnumbered,json,linenumbers]
 ----
-include::examples/feature.json[]
+include::examples/building.json[]
 ----
 ====
+
+=== Simple prism geometries
+
+The following are simple examples of prism geometries. 
+
+[#example_pylon,reftext='{listing-caption} {counter:listing-num}']
+.A pylon as a entruded point
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/pylon.json[]
+----
+====
+
+[#example_fence,reftext='{listing-caption} {counter:listing-num}']
+.A fence as an extruded line string
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/fence.json[]
+----
+====
+
+=== Toronto City Hall
+
+The following object is a feature representing the Toronto City Hall with the geometry as a MultiPrism (extruded polygons).
+
+[#example_tch,reftext='{listing-caption} {counter:listing-num}']
+.Toronto City Hall with a prism geometry
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/toronto-city-hall.json[]
+----
+====
+
+[[example_cc]]
+=== Cologne Cathedral
+
+The file https://github.com/opengeospatial/ogc-feat-geo-json/blob/cp-edits/core/examples/cologne-cathedral.json[cologne-cathedral.json] is a JSON-FG feature collection that contains a CityGML building feature with 87 building part features representing the Cologne Cathedral in Level of Detail 2. Each building part has a Polyhedron geometry. The building part feature also contain additional geometries in the "properties" section. Due to the size of the example, it is not embedded, but referenced.
+
+=== A homogeneous feature collection
+
+The following feature collection consists of airport features from the Zoomstack dataset of Ordnance Survey Great Britain. All features have the same feature type ("Airport") with a point geometry (geometry dimension: 0).
+
+The feature collection has been reduced to the first two and the last feature to reduce the size of the example.
+
+[#example_airports,reftext='{listing-caption} {counter:listing-num}']
+.Airports in Great Britain
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/airports.json[]
+----
+====
+
+[#extending_jsonfg]
+=== Extending JSON-FG
+
+This section illustrates how JSON-FG can be extended with 
+
+* new geometry types Arc and Circle;
+* a new temporal data type for a time series;
+* the capability to provide a coordinate reference system definition as a PROJJSON object.
+
+If the extension would be specified in a hypothetical part 2 of JSON-FG, the extension could update the JSON schema definitions as described in the following sub-sections.
+
+If the same extensions are specified by a community, they would copy the relevant JSON-FG schemas and extend them as described in the sub-sections. Unchanged schemas like the JSON schemas for the "geometry" and "featureType" members or for a link do not need to be copied and can reference the JSON-FG schemas.
+
+==== Geometry types Arc and Circle
+
+The schema definition for the new geometry objects "Arc" and "Circle" shown below could be added as `\#/$defs/Arc` and `#/$defs/Circle` in the JSON schema of geometry objects. 
+
+[source,json,linenumbers]
+----
+include::examples/arc.json[]
+----
+
+[source,json,linenumbers]
+----
+include::examples/circle.json[]
+----
+
+"Arc" and "Circle" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum`.
+
+==== A temporal data type for a time series;
+
+The schema definition for the time series object shown below could be added as `#/$defs/timeSeries` in the JSON schema of the "time" member. 
+
+[source,json,linenumbers]
+----
+include::examples/timeSeries.json[]
+----
+
+The following member would then be added to `#/oneOf/1/properties`.
+
+[source,json,linenumbers]
+----
+"timeSeries": { 
+    "$ref": "#/$defs/tileSeries" 
+}
+----
+
+==== Coordinate reference system as PROJJSON
+
+The schema definition for the by-value CRS object shown below could be added as `#/$defs/refsys-byvalue` in the JSON schema of the "coordRefSys" member. 
+
+[source,json,linenumbers]
+----
+include::examples/refsys-byvalue.json[]
+----
+
+"PROJJSON" would also be added to `\#/$defs/refsys-custom/properties/type/not/enum` and `{ "$ref": "#/$defs/refsys-byvalue" }` would be added to `#/$defs/single-refsys/oneOf`.

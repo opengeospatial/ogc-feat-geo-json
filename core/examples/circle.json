@@ -1,0 +1,16 @@
+{
+    "title": "Circle",
+    "description": "A closed circular arc, where the first and the last position are identical. The circle starts at the first position, passes through the second and third position and ends at the fourth position, which is the same as the first position.",
+    "type": "object",
+    "required": ["type", "coordinates"],
+    "properties": {
+        "type": { "type": "string", "enum": ["Circle"] },
+        "coordinates": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {"$ref": "#/$defs/position"}
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+    }
+}

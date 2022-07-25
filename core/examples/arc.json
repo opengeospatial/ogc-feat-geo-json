@@ -1,0 +1,16 @@
+{
+    "title": "Arc",
+    "description": "A circular arc by three points. The arc starts at the first position, passes through the second position and ends at the third position.",
+    "type": "object",
+    "required": ["type", "coordinates"],
+    "properties": {
+        "type": { "type": "string", "enum": ["Arc"] },
+        "coordinates": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {"$ref": "#/$defs/position"}
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+    }
+}
