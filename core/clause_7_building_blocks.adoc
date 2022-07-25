@@ -224,6 +224,12 @@ image::images/buildings_cologne_lod1.png[alt=Buildings LoD 1,width=90%]
 
 A _multi-prism_ is an array of _prism_ objects.  The order of the prism geometry objects is the array is not significant.
 
+The following figure shows a 3D rendering of Toronto City Hall. The feature with a MultiPrism geometry is provided as an example in <<example_tch,Annex C>>.
+
+[#figurePolygonExtrusionTorontoCityHall]
+.Toronto City Hall
+image::images/TorontoCityHall_3D_2.png[alt=Toronto City Hall,width=60%,align="center"]
+
 [[ref-sys]]
 === Reference systems
 
