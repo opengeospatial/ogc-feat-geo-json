@@ -31,6 +31,12 @@
       "$ref": "geometry-objects.json#/$defs/MultiPolyhedron"
     },
     {
+      "$ref": "geometry-objects.json#/$defs/Prism"
+    },
+    {
+      "$ref": "geometry-objects.json#/$defs/MultiPrism"
+    },
+    {
       "$ref": "geometry-objects.json#/$defs/CustomGeometry"
     }
   ]

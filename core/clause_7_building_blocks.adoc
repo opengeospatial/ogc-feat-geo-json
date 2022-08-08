@@ -256,8 +256,6 @@ GeoJSON (both the current https://tools.ietf.org/html/rfc7946[RFC] and the https
 
 Additional JSON-FG building blocks like the "place" member are not bound by these restrictions and so this Standard provides for handling reference systems in JSON-FG documents in a way that does not interfere with anything, past or present, defined in any of the GeoJSON specifications. The GeoJSON building blocks can continue to operate as always but JSON-FG building blocks can avail themselves of enhanced CRS support.
 
-NOTE: TODO - Check original proposal for another alternative how to disambiguate between different JSON objects that represent a CRS by-reference, by-value, etc.?
-
 ===== Reference system values
 
 A reference system can be specified in a JSON-FG document using a "coordRefSys" member in one of three ways:
@@ -407,7 +405,7 @@ Additional link attributes may be added to the Link object.
 
 A schema is metadata about a JSON document that clients can use to validate the JSON document or to derive additional information about the content of the JSON document, such as a textual description of the feature properties or their value range.
 
-NOTE: As of 2021, the OGC Features API Standards Working Group is working on a https://github.com/opengeospatial/ogcapi-features/tree/master/proposals/schemas[specification in the OGC API Features series] for using JSON schemas to describe the schema of features.
+NOTE: As of 2022, the OGC Features API Standards Working Group is working on a https://github.com/opengeospatial/ogcapi-features/tree/master/proposals/schemas[specification in the OGC API Features series] for using JSON schemas to describe the schema of features.
 
 This Standard provides guidance on how to include information about the schema of a JSON document that is a JSON-FG feature or feature collection.
 
@@ -452,8 +450,6 @@ A JSON-FG feature must contain a link to the JSON-FG feature schema at `\https:/
 
 NOTE: These are (or will be) canonical URIs. Clients can identify that a JSON document is a GeoJSON and JSON-FG feature collection or feature by string comparisons.
 
-NOTE: TODO - Check stability of the GeoJSON URIs with the GeoJSON maintainers.
-
 [NOTE]
 ====
 If features are accessed using building blocks from OGC API Features, a collection can be comprised of features with different feature types. The Features API SWG should include guidance in the Schema extension how to construct a feature schema for such a collection. Multiple options exist, including:
@@ -463,6 +459,6 @@ If features are accessed using building blocks from OGC API Features, a collecti
 - A separate schema per feature type.
 ====
 
-NOTE: TODO - JSON Schema is a rich language and it should be considered limiting the language constructs that should be used in describing the properties in the feature schema. A potential starting point is the current proposal for https://docs.ogc.org/DRAFTS/19-079r1.html#rec_filter_queryables-schema[a JSON Schema profile for queryable feature properties].
+NOTE: JSON Schema is a rich language and it should be considered limiting the language constructs that should be used in describing the properties in the feature schema. A potential starting point is the current proposal for https://docs.ogc.org/DRAFTS/19-079r1.html#rec_filter_queryables-schema[a JSON Schema profile for queryable feature properties].
 
-NOTE: TODO - The schema of a feature type will typically specify the details of the feature properties, but it can also profile the feature-level members including the "geometry", "place" and "time" members. A typical example is to restrict the list of allowed geometry types. To simplify parsing the feature schemas it could be discussed, if canonical schemas for well-known types should be used in "$ref" members. For example, if the geometry is restricted to points, the "geometry" and "place" members could reference `\https://geojson.org/schema/Point.json` or some other canonical URI.
+NOTE: The schema of a feature type will typically specify the details of the feature properties, but it can also profile the feature-level members including the "geometry", "place" and "time" members. A typical example is to restrict the list of allowed geometry types. To simplify parsing the feature schemas it could be discussed, if canonical schemas for well-known types should be used in "$ref" members. For example, if the geometry is restricted to points, the "geometry" and "place" members could reference `\https://geojson.org/schema/Point.json` or some other canonical URI.

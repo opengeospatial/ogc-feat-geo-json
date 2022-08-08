@@ -25,6 +25,8 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 ^|A |The JSON document SHALL validate against <<schema-feature>> (a JSON-FG feature) or <<schema-feature-collection>> (a JSON-FG feature collection).
 |===
 
+While every JSON-FG document has to validate against the associated JSON-FG schema, executing the validation is only necessary when testing conformance. Implementations reading or writing JSON-FG do not have to perform validation. It is also not necessary to publish application- or community-specific schemas that describe the schema of the feature properties to conform to the Core requirements class.
+
 === Temporal information
 
 :req: instant
