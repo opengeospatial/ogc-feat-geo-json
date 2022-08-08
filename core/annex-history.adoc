@@ -6,5 +6,5 @@
 |===
 |Date |Release |Editor | Primary clauses modified |Description
 |2022-01-07 |0.0 |C. Portele |all |initial version
-|2022-0x-xx |0.1 |C. Portele, P. Vretanos |all |first draft release
+|2022-08-08 |0.1 |C. Portele, P. Vretanos |all |first draft release
 |===
