@@ -141,7 +141,7 @@ Features typically have a geometry that provides information about the primary s
 
 In GeoJSON, geometry information is encoded in the "geometry" member. Geometries are encoded according to the Simple Features Standard (2D or 2.5D points, line strings, polygons or aggregations of them) using WGS 84 as the CRS (OGC:CRS84 or OGC:CRS84h).
 
-A key motivation for the JSON-FG Standard is to support additional requirements, especially the ability to express other CRSs and solids geometries.
+A key motivation for the JSON-FG Standard is to support additional requirements, especially the ability to express other CRSs and solid geometries.
 
 To avoid confusing existing GeoJSON readers, such geometries are provided in a new member in the feature object with the key "place".
 
@@ -206,7 +206,7 @@ The collection is represented as a JSON array. The order of the polyhedron geome
 
 A _prism_ is defined by a base shape (e.g. Polygon or Circle) that is then extruded from some optional lower limit to an upper limit.
 
-The limits are measured relative to a specified 3D CRS.  That is either the default 3D CRS (OGC:CRS84h) or another 3D CRS specified using <<ref-sys,coordRefSys>> key.
+The limits are measured relative to a specified 3D CRS.  That is either the default 3D CRS (OGC:CRS84h) or another 3D CRS specified using the <<ref-sys,coordRefSys>> key.
 
 If the base shape is a point type then the extrusion is a line extending from the lower limit to the upper limit.
 
@@ -224,7 +224,7 @@ image::images/buildings_cologne_lod1.png[alt=Buildings LoD 1,width=90%]
 
 ===== MultiPrism
 
-A _multi-prism_ is an array of _prism_ objects.  The order of the prism geometry objects is the array is not significant.
+A _multi-prism_ is an array of _prism_ objects.  The order of the prism geometry objects in the array is not significant.
 
 The following figure shows a 3D rendering of Toronto City Hall. The feature with a MultiPrism geometry is provided as an example in <<example_tch,Annex C>>.
 
@@ -254,7 +254,7 @@ Spatio-temporal objects are specified relative to some reference system.
 
 GeoJSON (both the current https://tools.ietf.org/html/rfc7946[RFC] and the https://geojson.org/geojson-spec.html[legacy version]) fixed the reference system for geometric values to the "WGS84 datum, and with longitude and latitude units of decimal degrees".  The https://geojson.org/geojson-spec.html[legacy version] included a "prior arrangement" provision to allow other reference systems to be used and also defined the "crs" key for specifying the reference system.  This _prior arrangement_ mechanism survived into the https://tools.ietf.org/html/rfc7946[RFC] but the accompanying "crs" key did not. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON.  As such the only safe approach is to stick with OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
 
-Additional JSON-FG building blocks like the "place" member are not bound by these restrictions and so this Standard provides for handling reference systems in JSON-FG documents that does not interfere with anything, past or present, defined in any of the GeoJSON specifications. The GeoJSON building blocks can continue to operate as always but JSON-FG building blocks can avail themselves of enhanced CRS support.
+Additional JSON-FG building blocks like the "place" member are not bound by these restrictions and so this Standard provides for handling reference systems in JSON-FG documents in a way that does not interfere with anything, past or present, defined in any of the GeoJSON specifications. The GeoJSON building blocks can continue to operate as always but JSON-FG building blocks can avail themselves of enhanced CRS support.
 
 NOTE: TODO - Check original proposal for another alternative how to disambiguate between different JSON objects that represent a CRS by-reference, by-value, etc.?
 

@@ -36,7 +36,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 
 :rec: homogeneous-collection
 [#{req-class}_{rec}]
-==== homogeneous feature collections
+==== Homogeneous feature collections
 
 [width="90%",cols="2,7a"]
 |===

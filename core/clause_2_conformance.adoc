@@ -3,7 +3,7 @@ This Standard defines three requirements classes. The standardization target for
 
 The requirements classes are:
 
-* "Core": The _Core_ conformance class extends GeoJSON with additional members that allow <<time>>, extended <<place>> information (i.e. geometries in coordinate reference systems (CRS) other than CRS84 which is the GeoJSON CRS, and additional geometry types) and <<ref-sys>> information to be encoded in a JSON-FG document. The _Core_ conformance class has a dependency on GeoJSON.  This means that JSON-FG document that conform to _Core_ must also conform to GeoJSON.
+* "Core": The _Core_ conformance class extends GeoJSON with additional members that allow <<time>>, extended <<place>> information (i.e. geometries in coordinate reference systems (CRS) other than CRS84 which is the GeoJSON CRS, and additional geometry types) and <<ref-sys>> information to be encoded in a JSON-FG document. The _Core_ conformance class has a dependency on GeoJSON.  This means that a JSON-FG document that conforms to _Core_ must also conform to GeoJSON.
 
 * "3D": The _3D_ conformance class adds support for <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>> geometries in a 3D CRS.  The _3D_ conformance class has a dependency on the _Core_ conformance class.  This means that a JSON-FG document that conforms to the _3D_ conformance class must also conform to the _Core_ conformance class.
 

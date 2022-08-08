@@ -34,8 +34,8 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "time" object in any JSON-FG feature in the JSON document includes an "date" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match the production rule `full-date`.
-^|B |If the "time" object in any JSON-FG feature in the JSON document includes an "timestamp" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match the production rule `date-time`.
+^|A |If the "time" object in any JSON-FG feature in the JSON document includes a "date" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match the production rule `full-date`.
+^|B |If the "time" object in any JSON-FG feature in the JSON document includes a "timestamp" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match the production rule `date-time`.
 |===
 
 :req: interval
