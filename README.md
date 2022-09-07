@@ -6,14 +6,14 @@ OGC Features and Geometries JSON will build on the widely used [GeoJSON standard
 
 ## Status
 
-This is a new OGC working group and the work has started on June 1st, 2021. An initial draft of a candidate standard is available.
+This is a new OGC working group and the work has started on June 1st, 2021. A first draft of the candidate standard, version 0.1.0, is available.
 
 The editor's draft of the specification can be found at [docs.ogc.org/DRAFTS/21-045.html](https://docs.ogc.org/DRAFTS/21-045.html). A [PDF version](https://docs.ogc.org/DRAFTS/21-045.pdf) is available, too.
 
 Next steps:
 
-* It is planned to release a draft version 0.1 in Q1 2022 after a review of all open issues and placeholders in the document. This version should be the basis for testing JSON-FG by communities, in code sprints, etc.
-* We target an updated draft version 0.2 approximately 6 to 12 months after the release of version 0.1 to have a stable version for testing.
+* The current draft version 0.1 will be the basis for testing JSON-FG by communities, in code sprints, etc.
+* We currently target an updated draft version 0.2 in mid 2023 to have a stable version for testing.
 
 ## Overview
 
@@ -27,12 +27,11 @@ OGC Features and Geometries JSON will
 * support solids and multi-solids as geometry types, and
 * provide guidance on how to represent feature properties, e.g., including temporal properties.
 
-
 These capabilities will be supported by Part 1 (Core) or the OGC Features and Geometries JSON standard.
 
 JSON Schema will be used to formally specify the syntax of OGC Features and Geometries JSON.
 
-Given the popularity of GeoJSON, the SWG will ensure that OGC Features and Geometries JSON will be specified as a superset of GeoJSON so that valid OGC Features and Geometries JSON instances are also valid GeoJSON instances.
+Given the popularity of GeoJSON, the working group will ensure that OGC Features and Geometries JSON will be specified as a superset of GeoJSON so that valid OGC Features and Geometries JSON instances are also valid GeoJSON instances.
 
 If the first part of the standard sees good adoption by the market, OGC Features and Geometries JSON may in the future be extended to support additional capabilities needed by multiple communities, for example, include more complex geometries such as curves with non-linear interpolation, time-variant geometries, or geometries based on multiple coordinate reference systems.
 
