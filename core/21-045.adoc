@@ -22,7 +22,7 @@
 |Publication Date:   <yyyy-mm-dd>
 |External identifier of this OGC(R) document: http://www.opengis.net/doc/IS/{standard}/{m_n}
 |Internal reference number of this OGC(R) document:    21-045
-|Version: {m_n} (Editor's Draft)
+|Version: {m_n}
 |Category: OGC(R) Implementation Standard
 |Editor:   Clemens Portele, Panagiotis (Peter) A. Vretanos
 |===

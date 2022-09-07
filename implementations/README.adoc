@@ -2,17 +2,17 @@
 
 This page lists endpoints that implement draft versions of JSON-FG.
 
-The current list is from OGC Testbed-17:
+The current list is from OGC Testbed-17. All implementations are supporting version 0.0 from January 7, 2022. It is planned to update some implementations to version 0.1 during the [September 2022 Code Sprint](https://www.ogc.org/ogcevents/2022-joint-ogc-isotc-211-code-sprint-aka-metadata-code-sprint).
 
-[cols="2h,2a,2a,4a",options="header",grid="rows",stripes="hover"]
+[cols="2h,2a,2a,4a,1",options="header",grid="rows",stripes="hover"]
 |===
-| Type | Software Tool | Provider | URL
-| OGC Web API | CubeServ | CubeWerx Inc. | https://test.cubewerx.com/cubewerx/cubeserv/tb17
-| OGC Web API | ldproxy | interactive instruments | https://t17.ldproxy.net/
-| OGC Web API | pygeoapi | Skymantics | https://fgjson.skymantics.com/
-| Web client | MapStore | GeoSolutions | https://geosolutions-it.github.io/mapstore-testbed/fgjson-app/dist/#/
-| Web client | LuciadRIA | Hexagon | https://demo.luciad.com/tb17
-| Desktop client | GNOSIS Cartographer | Ecere | n/a
+| Type | Software Tool | Provider | URL | Version
+| OGC Web API | CubeServ | CubeWerx Inc. | https://test.cubewerx.com/cubewerx/cubeserv/tb17 | 0.0
+| OGC Web API | ldproxy | interactive instruments | https://t17.ldproxy.net/ | 0.0
+| OGC Web API | pygeoapi | Skymantics | https://fgjson.skymantics.com/ | 0.0
+| Web client | MapStore | GeoSolutions | https://geosolutions-it.github.io/mapstore-testbed/fgjson-app/dist/#/ | 0.0
+| Web client | LuciadRIA | Hexagon | https://demo.luciad.com/tb17 | 0.0
+| Desktop client | GNOSIS Cartographer | Ecere | n/a | 0.0
 |===
 
 ## Contribute

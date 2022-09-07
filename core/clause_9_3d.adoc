@@ -20,7 +20,7 @@ The Requirements Class "3D" adds provisions for geometries in a 3D CRS and that 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |All positions in a geometry object in the "place" member in any JSON-FG feature in the JSON document SHALL have coordinate dimension 3.
+^|A |All positions in a "Polyhedron" or "MultiPolyhedron" geometry object in the "place" member in any JSON-FG feature in the JSON document SHALL have coordinate dimension 3.
 |===
 
 :req: geom-valid
