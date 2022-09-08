@@ -9,21 +9,24 @@
       "id": 1,
       "geometry": { "type": "Point", "coordinates": [-1.6930015, 60.3216821] },
       "properties": {"name": "Papa Stour Airstrip"},
-      "place": { "type": "Point", "coordinates": [417057.93, 1159772.2] }
+      "place": { "type": "Point", "coordinates": [417057.93, 1159772.2] },
+      "time": null
     },
     {
       "type": "Feature",
       "id": 2,
       "geometry": { "type": "Point", "coordinates": [-1.2922268, 59.8782666] },
       "properties": {"name": "Sumburgh Airport"},
-      "place": { "type": "Point", "coordinates": [439723.69, 1110559.95] }
+      "place": { "type": "Point", "coordinates": [439723.69, 1110559.95] },
+      "time": null
     },
     {
       "type": "Feature",
       "id": 46,
       "geometry": { "type": "Point", "coordinates": [0.9384272, 50.9556174] },
       "properties": {"name": "Lydd Airport"},
-      "place": { "type": "Point", "coordinates": [606468.75, 121465.11] }
+      "place": { "type": "Point", "coordinates": [606468.75, 121465.11] },
+      "time": null
     }
   ],
   "links": [
