@@ -2,7 +2,7 @@
 
 This page lists endpoints that implement draft versions of JSON-FG.
 
-The current list is from OGC Testbed-17. All implementations are supporting version 0.0 from January 7, 2022. It is planned to update some implementations to version 0.1 during the [September 2022 Code Sprint](https://www.ogc.org/ogcevents/2022-joint-ogc-isotc-211-code-sprint-aka-metadata-code-sprint).
+The current list is mainly from OGC Testbed-17. Most implementations are supporting version 0.0 from January 7, 2022. It is planned to update some implementations to the current version 0.1 during the [September 2022 Code Sprint](https://www.ogc.org/ogcevents/2022-joint-ogc-isotc-211-code-sprint-aka-metadata-code-sprint).
 
 [cols="2h,2a,2a,4a,1",options="header",grid="rows",stripes="hover"]
 |===
@@ -13,6 +13,7 @@ The current list is from OGC Testbed-17. All implementations are supporting vers
 | Web client | MapStore | GeoSolutions | https://geosolutions-it.github.io/mapstore-testbed/fgjson-app/dist/#/ | 0.0
 | Web client | LuciadRIA | Hexagon | https://demo.luciad.com/tb17 | 0.0
 | Desktop client | GNOSIS Cartographer | Ecere | n/a | 0.0
+| Converter | CityJSON to JSON-FG | TU Delft | https://pypi.org/project/cityjson2jsonfg/ | 0.1
 |===
 
 ## Contribute
