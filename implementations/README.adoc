@@ -13,7 +13,7 @@ The current list is mainly from OGC Testbed-17. Most implementations are support
 | Web client | MapStore | GeoSolutions | https://geosolutions-it.github.io/mapstore-testbed/fgjson-app/dist/#/ | 0.0
 | Web client | LuciadRIA | Hexagon | https://demo.luciad.com/tb17 | 0.0
 | Desktop client | GNOSIS Cartographer | Ecere | n/a | 0.0
-| Converter | CityJSON to JSON-FG | TU Delft | https://pypi.org/project/cityjson2jsonfg/ | 0.1
+| Converter | CityJSON to JSON-FG | 3DGI | https://pypi.org/project/cityjson2jsonfg/ | 0.1
 |===
 
 ## Contribute
