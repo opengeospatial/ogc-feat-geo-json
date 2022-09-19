@@ -7,4 +7,5 @@
 |Date |Release |Editor | Primary clauses modified |Description
 |2022-01-07 |0.0 |C. Portele |all |initial version
 |2022-08-08 |0.1 |C. Portele, P. Vretanos |all |first draft release
+|2022-09-19 |0.1.1 |C. Portele |Annex B, Annex C |[#65](https://github.com/opengeospatial/ogc-feat-geo-json/issues/65): correct examples, use pattern for date/time validation, reorganize example files
 |===
