@@ -90,12 +90,12 @@ The schema definition for the new geometry objects "Arc" and "Circle" shown belo
 
 [source,json,linenumbers]
 ----
-include::examples/arc.json[]
+include::examples/extensions/arc.json[]
 ----
 
 [source,json,linenumbers]
 ----
-include::examples/circle.json[]
+include::examples/extensions/circle.json[]
 ----
 
 "Arc" and "Circle" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum`.
@@ -106,7 +106,7 @@ The schema definition for the time series object shown below could be added as `
 
 [source,json,linenumbers]
 ----
-include::examples/timeSeries.json[]
+include::examples/extensions/timeSeries.json[]
 ----
 
 The following member would then be added to `#/oneOf/1/properties`.
@@ -114,7 +114,7 @@ The following member would then be added to `#/oneOf/1/properties`.
 [source,json,linenumbers]
 ----
 "timeSeries": { 
-    "$ref": "#/$defs/tileSeries" 
+    "$ref": "#/$defs/timeSeries" 
 }
 ----
 
@@ -124,7 +124,7 @@ The schema definition for the by-value CRS object shown below could be added as 
 
 [source,json,linenumbers]
 ----
-include::examples/refsys-byvalue.json[]
+include::examples/extensions/refsys-byvalue.json[]
 ----
 
 "PROJJSON" would also be added to `\#/$defs/refsys-custom/properties/type/not/enum` and `{ "$ref": "#/$defs/refsys-byvalue" }` would be added to `#/$defs/single-refsys/oneOf`.
