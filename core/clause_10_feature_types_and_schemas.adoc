@@ -31,7 +31,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the JSON document is a JSON-FG feature collection with a member "geometryDimension" that is not `null`, the geometry type of the primary geometry of each feature SHALL be consistent with the value (0: a Point or MultiPoint, 1: a LineString or MultiLineString, 2: a Polygon or MultiPolygon, 3: a Polyhedron, MultiPolyhedron, Prism or MultiPrism).
+^|A |If the JSON document is a JSON-FG feature collection with a member "geometryDimension" that is not `null`, the geometry type of the primary geometry of each feature in the "place" member - or if "place" is `null`, in the "geometry" member - SHALL be consistent with the value (0: a Point or MultiPoint, 1: a LineString or MultiLineString, 2: a Polygon or MultiPolygon, 3: a Polyhedron, MultiPolyhedron, Prism or MultiPrism).
 |===
 
 :rec: homogeneous-collection

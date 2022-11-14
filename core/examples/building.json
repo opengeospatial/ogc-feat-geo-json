@@ -89,7 +89,7 @@
       {
          "href": "https://example.org/data/v1/collections/buildings/items/DENW19AL0000giv5BL?f=json",
          "rel": "alternate",
-         "type": "text/html",
+         "type": "application/geo+json",
          "title": "This document as GeoJSON"
       },
       {
