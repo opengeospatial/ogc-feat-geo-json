@@ -138,7 +138,7 @@ The CRS of a geometry object is determined as follows:
 |===
 
 :req: axis-order
-[#{req-class}_{rec}]
+[#{req-class}_{req}]
 ==== Axis order of coordinate values in "place"
 
 [width="90%",cols="2,7a"]
@@ -156,7 +156,7 @@ If the "place" member in any JSON-FG feature in the JSON document is not `null`,
 |===
 ^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
 ^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null`, the first element of each position SHOULD be in the valid range for the first coordinate axis of the CRS.
-^|B |If the "geometry" member in any JSON-FG feature in the JSON document is not `null`, the second element of each position SHOULD be in the valid range for the second coordinate axis of the CRS.
+^|B |If the "place" member in any JSON-FG feature in the JSON document is not `null`, the second element of each position SHOULD be in the valid range for the second coordinate axis of the CRS.
 |===
 
 See above for a description how to determine the CRS of a geometry object.

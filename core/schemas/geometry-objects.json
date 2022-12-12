@@ -29,13 +29,16 @@
       }
     },
     "Point": {
-      "title": "GeoJSON Point",
+      "title": "GeoJSON Point with additional 'coordRefSys' member",
       "type": "object",
       "required": ["type", "coordinates"],
       "properties": {
         "type": {
           "type": "string",
           "enum": ["Point"]
+        },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
         },
         "coordinates": {
           "$ref": "#/$defs/position"
@@ -46,13 +49,16 @@
       }
     },
     "LineString": {
-      "title": "GeoJSON LineString",
+      "title": "GeoJSON LineString with additional 'coordRefSys' member",
       "type": "object",
       "required": ["type", "coordinates"],
       "properties": {
         "type": {
           "type": "string",
           "enum": ["LineString"]
+        },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
         },
         "coordinates": {
           "type": "array",
@@ -67,13 +73,16 @@
       }
     },
     "Polygon": {
-      "title": "GeoJSON Polygon",
+      "title": "GeoJSON Polygon with additional 'coordRefSys' member",
       "type": "object",
       "required": ["type", "coordinates"],
       "properties": {
         "type": {
           "type": "string",
           "enum": ["Polygon"]
+        },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
         },
         "coordinates": {
           "type": "array",
@@ -91,13 +100,16 @@
       }
     },
     "MultiPoint": {
-      "title": "GeoJSON MultiPoint",
+      "title": "GeoJSON MultiPoint with additional 'coordRefSys' member",
       "type": "object",
       "required": ["type", "coordinates"],
       "properties": {
         "type": {
           "type": "string",
           "enum": ["MultiPoint"]
+        },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
         },
         "coordinates": {
           "type": "array",
@@ -111,13 +123,16 @@
       }
     },
     "MultiLineString": {
-      "title": "GeoJSON MultiLineString",
+      "title": "GeoJSON MultiLineString with additional 'coordRefSys' member",
       "type": "object",
       "required": ["type", "coordinates"],
       "properties": {
         "type": {
           "type": "string",
           "enum": ["MultiLineString"]
+        },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
         },
         "coordinates": {
           "type": "array",
@@ -135,13 +150,16 @@
       }
     },
     "MultiPolygon": {
-      "title": "GeoJSON MultiPolygon",
+      "title": "GeoJSON MultiPolygon with additional 'coordRefSys' member",
       "type": "object",
       "required": ["type", "coordinates"],
       "properties": {
         "type": {
           "type": "string",
           "enum": ["MultiPolygon"]
+        },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
         },
         "coordinates": {
           "type": "array",
@@ -169,6 +187,9 @@
         "type": {
           "type": "string",
           "enum": ["Polyhedron"]
+        },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
         },
         "coordinates": {
           "type": "array",
@@ -202,6 +223,9 @@
         "type": {
           "type": "string",
           "enum": ["MultiPolyhedron"]
+        },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
         },
         "coordinates": {
           "type": "array",
@@ -269,6 +293,9 @@
           "type": "string",
           "enum": ["MultiPrism"]
         },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
+        },
         "prisms": {
           "type": "array",
           "items": {
@@ -281,13 +308,16 @@
       }
     },
     "GeometryCollection": {
-      "title": "GeoJSON GeometryCollection",
+      "title": "GeoJSON GeometryCollection with additional 'coordRefSys' member",
       "type": "object",
       "required": ["type", "geometries"],
       "properties": {
         "type": {
           "type": "string",
           "enum": ["GeometryCollection"]
+        },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
         },
         "geometries": {
           "type": "array",
