@@ -22,6 +22,7 @@ def remove_keys(js):
     js1 = remove_key(js, "$defs")
     js1 = {k: remove_key(v, "$id") if isinstance(v, dict) else v for k, v in js1.items()}
     js1 = {k: remove_key(v, "$schema") if isinstance(v, dict) else v for k, v in js1.items()}
+    js1 = {k: remove_key(v, "description") if isinstance(v, dict) else v for k, v in js1.items()}
     return js1
 
 #-------------------------------------------------------------------------------------
@@ -35,10 +36,11 @@ def resolve_refs(root_schema_path):
     abs_path = os.path.abspath(os.path.dirname(root_schema))
     base_uri = 'file://{}/'.format(abs_path)
 
-    js = jsonref.loads(fins.read(), jsonschema=True, base_uri=base_uri)
+    js = jsonref.loads(fins.read(), jsonschema=False, base_uri=base_uri)
 
     # -- remove $defs and nested $id and $schema
     js = remove_keys(js)
+    js['$id'] = js['$id'].replace('.json', '.min.json')
 
     json_str = json.dumps(js, separators=(',',':'))
     f = open(root_schema_path.replace('.json', '.min.json'), 'w')
