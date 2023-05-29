@@ -33,6 +33,7 @@ The Requirements Class "3D" adds provisions for geometries in a 3D CRS and that 
 ^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "Polyhedron", the elements in the "coordinates" array SHALL meet the following requirements:
 
 * Each element is a closed, simple multi-polygon geometry (a shell).
+* The coordinates of the first and last position in each ring of each polygon in each shell SHALL be identical.
 * The orientation of each polygon in the first element (the outer shell) SHALL be counter-clockwise, if the shell is viewed from the outside of the solid.
 * The orientation of each polygon in all other shells (the voids) SHALL be clockwise, if the shell is viewed from the outside of the solid.
 * No element (shell) intersects another element (shell).
