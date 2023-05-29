@@ -106,7 +106,7 @@ While every JSON-FG document has to validate against the associated JSON-FG sche
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the geometry objects SHALL be valid geometries according to <<ogc06_103r4,Simple feature access - Part 1: Common architecture>>.
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon",  "MultiPolygon" or "GeometryCollection", the geometry objects SHALL be valid geometries according to <<ogc06_103r4,Simple feature access - Part 1: Common architecture>>.
 |===
 
 :req: place
@@ -116,7 +116,7 @@ While every JSON-FG document has to validate against the associated JSON-FG sche
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", the CRS SHALL not be `OGC:CRS84` or `OGC:CRS84h` (WGS 84 with axis order longitude/latitude).
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon" or "GeometryCollection", the CRS SHALL not be `OGC:CRS84` or `OGC:CRS84h` (WGS 84 with axis order longitude/latitude).
 |===
 
 The CRS of a geometry object is determined as follows: 
@@ -125,6 +125,16 @@ The CRS of a geometry object is determined as follows:
 ** Otherwise inspect the parent object and repeat until the root object.
 * If no "coordRefSys" member has been found, the CRS has WGS84 longitude/latitude as the first two coordinate axes (that is, the requirement above is not met).
 * Otherwise inspect the CRS URI, CRS CURIE or CRS object to determine the datum and the first two coordinate axes.
+
+:req: geometry-collection
+[#{req-class}_{req}]
+==== All coordinates in a geometry collection are in the same CRS
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "GeometryCollection", no geometry in the collection SHALL include a "coordRefSys" member.
+|===
 
 :req: fallback
 [#{req-class}_{req}]
