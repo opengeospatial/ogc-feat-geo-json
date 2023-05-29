@@ -27,6 +27,22 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 
 While every JSON-FG document has to validate against the associated JSON-FG schema, executing the validation is only necessary when testing conformance. Implementations reading or writing JSON-FG do not have to perform validation. It is also not necessary to publish application- or community-specific schemas that describe the schema of the feature properties to conform to the Core requirements class.
 
+=== Metadata
+
+:req: metadata
+[#{req-class}_{req}]
+==== Conformance declaration
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The JSON document SHALL include a "conformsTo" member.
+^|B |The "conformsTo" member of the JSON document SHALL include at least one of the two following values:
+
+* `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`; 
+* `"[ogc-json-fg-1-{m_n}:{req-class}]"`.
+|===
+
 === Temporal information
 
 :req: instant

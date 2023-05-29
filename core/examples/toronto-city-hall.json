@@ -1,6 +1,7 @@
 {
   "type": "Feature",
   "id": "CWFID.Toronto3D.0.177482",
+  "conformsTo" : [ "[ogc-json-fg-1-0.1:core]", "[ogc-json-fg-1-0.1:3d]" ],
   "bbox": [-79.384481,43.653199,-79.383449,43.653866],
   "time": null,
   "geometry": null,
