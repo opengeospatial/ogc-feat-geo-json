@@ -166,6 +166,8 @@ In addition, a valid GeoJSON geometry may be provided as the value of the "geome
 
 The presence of such fallback geometries in a JSON-FG document is indicated by a value "geojson" in the media type parameter "compatibility" (see <<application_fg_json>>).
 
+NOTE: GeoJSON states that in case that a feature is unlocated, "geometry" will be `null`. While the real-world entity is obviously not unlocated, if "place" has a value, the GeoJSON feature can still be "unlocated", if a representation in WGS 84 cannot be determined (e.g. for a local engineering CRS or a planetary CRS) or if the known consumers of the JSON-FG document do not need the fallback geometry.
+
 ===== Metrics
 
 If the CRS uses longitude and latitude or latitude and longitude as coordinate axes definition, clients should perform geometrical computations - including computation of length or area on the curved surface that approximates the earth's surface. Details are provided, for example, in the drafts of <<ogc20_070,Features and Geometry - Part 2: Metrics>>.
