@@ -11,6 +11,21 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 |Dependency |<<rc_core>>
 |===
 
+=== Metadata
+
+:req: metadata
+[#{req-class}_{req}]
+==== Conformance declaration
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The "conformsTo" member of the JSON document SHALL include at least one of the two following values:
+
+* `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`; 
+* `"[ogc-json-fg-1-{m_n}:{req-class}]"`.
+|===
+
 === Feature type(s)
 
 :req: feature-type

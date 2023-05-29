@@ -13,6 +13,7 @@ NOTE: Including information in some kind of 'header' could be helpful. This woul
 
 The following JSON building blocks are specified by this Standard:
 
+* <<metadata>>
 * <<time>>
 * <<place>>
 * <<ref-sys>>
@@ -22,6 +23,36 @@ The following JSON building blocks are specified by this Standard:
 An additional discussion topic during the development of this Standard was the relationship between a feature and other web resources that are represented as links. The JSON-FG Standard does not mandate a specific approach for representing relationships as links. However, Annex '<<relationships_and_links>>' documents and discusses patterns of how to represent relationships as links.
 
 Annex '<<examples>>' has examples of JSON-FG documents.
+
+[[metadata]]
+=== Metadata
+
+To indicate that a JSON document is a JSON-FG document and to indicate the JSON-FG version and conformance classes implemented in the document, a `conformsTo` member is added to the JSON-FG document object. 
+
+The value of the member is an array of strings, where each string is a URI of a conformance class.
+
+[#ex-conformsTo-1,reftext='{listing-caption} {counter:listing-num}']
+.Conformance declaration using URIs
+====
+[source,json,linenumbers]
+----
+"conformsTo" : [ 
+  "http://www.opengis.net/spec/json-fg-1/0.1/conf/core", 
+  "http://www.opengis.net/spec/json-fg-1/0.1/conf/3d" 
+]
+----
+====
+
+As an alternative to URIs, the https://docs.ogc.org/pol/09-048r6.html#toc14[Compact URI (CURIE)] `[ogc-json-fg-1-{x.y}:{conformanceClassId}]` can be used, too. `{x.y}` is the version number (`{m_n}` for this version), `{conformanceClassId}` the local identifier of the implemented conformance class.
+
+[#ex-conformsTo-2,reftext='{listing-caption} {counter:listing-num}']
+.Conformance declaration using CURIEs
+====
+[source,json,linenumbers]
+----
+"conformsTo" : [ "[ogc-json-fg-1-0.1:core]", "[ogc-json-fg-1-0.1:3d]" ]
+----
+====
 
 [[time]]
 === Temporal information
