@@ -190,7 +190,7 @@ image::images/cologne_cathedral_lod2.png[alt=Cologne Cathedral LoD 2,width=90%]
 
 The JSON representation of the coordinates of a polyhedron is a non-empty array of _multi-polygon_ arrays. Each _multi-polygon_ array is a shell. The first shell is the exterior boundary, all other shells are voids.
 
-NOTE: Like in a GeoJSON Polygon, the the first and last positions of each ring are equivalent with identical values.
+NOTE: Like in a GeoJSON Polygon, the first and last positions of each ring have identical values.
 
 The dimension of all positions is three.
 
