@@ -1,6 +1,7 @@
 {
     "type": "Feature",
     "id": "pylon.1",
+    "conformsTo" : [ "[ogc-json-fg-1-0.1:core]", "[ogc-json-fg-1-0.1:3d]" ],
     "featureType": "pylon",
     "time": {
         "interval": [

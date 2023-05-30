@@ -11,6 +11,21 @@ The Requirements Class "3D" adds provisions for geometries in a 3D CRS and that 
 |Dependency |<<rc_core>>
 |===
 
+=== Metadata
+
+:req: metadata
+[#{req-class}_{req}]
+==== Conformance declaration
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The "conformsTo" member of the JSON document SHALL include at least one of the two following values:
+
+* `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`; 
+* `"[ogc-json-fg-1-{m_n}:{req-class}]"`.
+|===
+
 === Geometry
 
 :req: coordinate-dimension
@@ -33,6 +48,7 @@ The Requirements Class "3D" adds provisions for geometries in a 3D CRS and that 
 ^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "Polyhedron", the elements in the "coordinates" array SHALL meet the following requirements:
 
 * Each element is a closed, simple multi-polygon geometry (a shell).
+* The coordinates of the first and last position in each ring of each polygon in each shell SHALL be identical.
 * The orientation of each polygon in the first element (the outer shell) SHALL be counter-clockwise, if the shell is viewed from the outside of the solid.
 * The orientation of each polygon in all other shells (the voids) SHALL be clockwise, if the shell is viewed from the outside of the solid.
 * No element (shell) intersects another element (shell).

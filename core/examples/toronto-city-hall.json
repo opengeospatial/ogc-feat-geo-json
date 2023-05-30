@@ -2,6 +2,7 @@
   "type": "Feature",
   "id": "CWFID.Toronto3D.0.177482",
   "bbox": [-79.384481,43.653199,90.848,-79.383449,43.653866,190.348],
+  "conformsTo" : [ "[ogc-json-fg-1-0.1:core]", "[ogc-json-fg-1-0.1:3d]" ],
   "time": null,
   "geometry": null,
   "coordRefSys": "http://www.opengis.net/def/crs/OGC/0/CRS84h",

@@ -84,9 +84,10 @@ If the extension would be specified in a hypothetical part 2 of JSON-FG, the ext
 
 If the same extensions are specified by a community, they would copy the relevant JSON-FG schemas and extend them as described in the sub-sections. Unchanged schemas like the JSON schemas for the "geometry" and "featureType" members or for a link do not need to be copied and can reference the JSON-FG schemas.
 
+[[geometry_types_arc_and_circle]]
 ==== Geometry types Arc and Circle
 
-The schema definition for the new geometry objects "Arc" and "Circle" shown below could be added as `\#/$defs/Arc` and `#/$defs/Circle` in the JSON schema of geometry objects. 
+The schema definition for the new geometry objects "Arc" and "Circle" shown below could be added as `\#/$defs/Arc` and `#/$defs/Circle` in the JSON schema of geometry objects ("geometry-objects.json"). 
 
 [source,json,linenumbers]
 ----
@@ -98,7 +99,7 @@ include::examples/extensions/arc.json[]
 include::examples/extensions/circle.json[]
 ----
 
-"Arc" and "Circle" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum`.
+"Arc" and "Circle" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum` to declare the two new JSON-FG geometry types.
 
 ==== A temporal data type for a time series;
 
