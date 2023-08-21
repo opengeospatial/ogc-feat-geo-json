@@ -7,8 +7,6 @@ The Annex '<<considerations>>' contains considerations for each of the JSON-FG b
 
 Remarks and known open issues are included in notes.
 
-NOTE: Including information in some kind of 'header' could be helpful. This would support how a client should parse the content (as JSON-FG with its extensions, as standard GeoJSON, etc.), in particular, if the data is parsed as a file, not as an API response with a content type header.
-
 === Overview
 
 The following JSON building blocks are specified by this Standard:
