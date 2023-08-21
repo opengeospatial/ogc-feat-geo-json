@@ -7,8 +7,6 @@ The Annex '<<considerations>>' contains considerations for each of the JSON-FG b
 
 Remarks and known open issues are included in notes.
 
-NOTE: Including information in some kind of 'header' could be helpful. This would support how a client should parse the content (as JSON-FG with its extensions, as standard GeoJSON, etc.), in particular, if the data is parsed as a file, not as an API response with a content type header.
-
 === Overview
 
 The following JSON building blocks are specified by this Standard:
@@ -187,9 +185,12 @@ The value range of the "place" member is an extended and extensible version of t
 * Extended by additional geometry objects (additional JSON-FG geometry types <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>>) as well as by the capabilities to <<ref-sys,declare the coordinate reference system of the coordinates>>.
 * Future parts of Features and Geometries JSON or community extensions may specify additional members or additional geometry types. JSON-FG readers should be prepared to parse values of "place" that go beyond the schema that is implemented by the reader. Unknown members should be ignored and geometries that include an unknown geometry type should be mapped to `null`.
 
-All coordinates in a "place" member are in the same coordinate reference system. This includes GeometryCollection geometries, where all geometries have to be in the same coordinate reference system.
-
 NOTE: This standard does not add a new JSON-FG geometry collection that also includes the new geometry types introduced by JSON-FG, because geometry collections are rarely used as feature geometries.
+
+NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/88[ongoing discussion], which 3D geometries should be included in JSON-FG and how they should be grouped into conformance classes.
+
+NOTE: There is a proposal to https://github.com/opengeospatial/ogc-feat-geo-json/blob/main/proposals/circular-geometry-objects.adoc[add additional geometry types supporting curves with circular arc interpolation]. 
+All coordinates in a "place" member are in the same coordinate reference system. This includes GeometryCollection geometries, where all geometries have to be in the same coordinate reference system.
 
 ===== Use of "geometry" and/or "place"
 
@@ -423,7 +424,7 @@ If the JSON document is a feature collection and all features in the feature col
 
 ===== Links to a semantic type
 
-If a persistent resource exists, such as in a registry, that describes a feature type, a link to that resource with link relation type "type" should be added. In the case of multiple feature types per feature, multiple links are added.
+If a persistent resource exists, such as in a registry, that describes a feature type, a link to that resource with link relation type "type" can be added. In the case of multiple feature types per feature, multiple links are added.
 
 OGC API Features already specifies a general "links" member with an array of link objects based on https://tools.ietf.org/html/rfc8288[RFC 8288 (Web linking)] and feature responses from APIs implementing OGC API Features will already include a "links" member. JSON-FG builds on this approach and includes a "type" link to a resource identifying the abstract semantic type of which the feature is considered to be an instance.
 
