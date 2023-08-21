@@ -187,6 +187,10 @@ The value range of the "place" member is an extended and extensible version of t
 * Extended by additional geometry objects (additional JSON-FG geometry types <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>>) as well as by the capabilities to <<ref-sys,declare the coordinate reference system of the coordinates>>.
 * Future parts of Features and Geometries JSON or community extensions may specify additional members or additional geometry types. JSON-FG readers should be prepared to parse values of "place" that go beyond the schema that is implemented by the reader. Unknown members should be ignored and geometries that include an unknown geometry type should be mapped to `null`.
 
+All coordinates in a "place" member are in the same coordinate reference system. This includes GeometryCollection geometries, where all geometries have to be in the same coordinate reference system.
+
+NOTE: This standard does not add a new JSON-FG geometry collection that also includes the new geometry types introduced by JSON-FG, because geometry collections are rarely used as feature geometries.
+
 ===== Use of "geometry" and/or "place"
 
 If the geometry can be represented as a valid GeoJSON geometry (one of the GeoJSON geometry types, in WGS84), it is encoded as the value of the "geometry" member. The "place" member then has the value `null`.
@@ -370,7 +374,7 @@ Used at the feature collection level, the "coordRefSys" key asserts the CRS for 
 
 Used at the feature level, the "coordRefSys" key asserts the CRS for JSON-FG geometry objects found anywhere in the feature that are not otherwise tagged with closer-to-scope CRS information.
 
-Used at the geometry level, the "coordRefSys" key asserts the CRS for the JSON-FG geometry object within which the key is contained.
+Used at the geometry level, the "coordRefSys" key asserts the CRS for the JSON-FG geometry object within which the key is contained. For a GeometryCollection, all geometries in the collection have to be in the same CRS (this constraint is "inherited" from the <<ogc06_103r4,OGC Simple Feature Access standard>>) and cannot include a "coordRefSys" member.
 
 Where all objects on the same level are in the same CRS, declaring the CRS on the parent level instead of declaring it in all parallel objects is recommended.
 
