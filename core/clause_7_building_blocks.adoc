@@ -158,6 +158,8 @@ The value range of the "place" member is an extended and extensible version of t
 
 All coordinates in a "place" member are in the same coordinate reference system. This includes GeometryCollection geometries, where all geometries have to be in the same coordinate reference system.
 
+NOTE: This standard does not add a new JSON-FG geometry collection that also includes the new geometry types introduced by JSON-FG, because geometry collections are rarely used as feature geometries.
+
 ===== Use of "geometry" and/or "place"
 
 If the geometry can be represented as a valid GeoJSON geometry (one of the GeoJSON geometry types, in WGS84), it is encoded as the value of the "geometry" member. The "place" member then has the value `null`.
