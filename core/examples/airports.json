@@ -4,6 +4,7 @@
   "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/27700",
   "featureType": "Airport",
   "geometryDimension": 0,
+  "featureSchema": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
   "features": [
     {
       "type": "Feature",
@@ -28,38 +29,6 @@
       "properties": {"name": "Lydd Airport"},
       "place": { "type": "Point", "coordinates": [606468.75, 121465.11] },
       "time": null
-    }
-  ],
-  "links": [
-    {
-      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/items?crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F27700&limit=50&f=jsonfg",
-      "rel": "self",
-      "type": "application/vnd.ogc.fg+json",
-      "title": "Dieses Dokument"
-    },
-    {
-      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/items?crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F27700&limit=50&f=json",
-      "rel": "alternate",
-      "type": "application/geo+json",
-      "title": "Dieses Dokument als GeoJSON"
-    },
-    {
-      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/items?crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F27700&limit=50&f=html",
-      "rel": "alternate",
-      "type": "text/html",
-      "title": "Dieses Dokument als HTML"
-    },
-    {
-      "href": "https://demo.ldproxy.net/zoomstack/collections/airports/schemas/collection",
-      "rel": "describedby",
-      "type": "application/schema+json",
-      "title": "Schema of feature collections in 'Airports'"
-    },
-    {
-      "href": "https://geojson.org/schema/FeatureCollection.json",
-      "rel": "describedby",
-      "type": "application/schema+json",
-      "title": "This document is a GeoJSON FeatureCollection"
     }
   ]
 }

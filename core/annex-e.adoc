@@ -65,19 +65,13 @@ If JSON-LD is used, the "featureType" member can be mapped to "@type".
 
 3. In a JSON-FG extension to OGC API Features (or maybe in the new part "Schemas"), the Collection resources should be extended to include (optional) information about the feature types and geometry types included the collection. There could be a recommendation for "featureType" and "geometryDimension" as queryables for such collections.
 
-=== Schemas ("describedby" links)
+=== Feature Schemas ("featureSchema")
 
 The following aspects were discussed:
 
-1. Some environments use a "$schema" member to reference the schema of a JSON document. However, that is not the approach recommended by the JSON Schema specification itself. In JSON Schema, the value of a "$schema" property is always the URI of a meta-schema.
+1. Originally the schema was meant for validation of JSON-FG documents. However, consistent with discussions in the context of OGC API Features, the primary value of a feature schema is not validation, but information about the properties of a feature. Since the same feature will be encoded differently in GeoJSON and JSON-FG (e.g., the same property may be represented in the "properties" member in GeoJSON, but in a "time" member in JSON-FG) instead of having different feature schemas for GeoJSON and JSON-FG, a single JSON Schema describing the logical feature schema with additional annotations to specify the mapping to GeoJSON and JSON-FG was considered more valuable for clients.
 
-2. The OGC API specification for feature schemas should support at least the following two types of schemas so that they can be referenced from JSON documents retrieved from an API:
-
-  - The schema of a feature, and
-  - The schema of a feature collection, which is basically a FeatureCollection object that references the feature schema.
-
-+
-This issue will be addressed by the Features API SWG (see https://github.com/opengeospatial/ogcapi-features/issues/612[issue #612]). This topic was a topic in the November 2021 Code Sprint on OGC API Features and link relation types, relative API paths to the schema resources and JSON schema profiles were discussed.
+2. The JSON Schemas specified for GeoJSON and JSON-FG can be used to validate instance documents against the general requirements of the standards. These schema, however, will not validate the contents of the "properties" member.
 
 === Links
 

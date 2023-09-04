@@ -26,11 +26,8 @@
     "featureType": {
       "$ref": "featuretype.json"
     },
-    "links": {
-      "type": "array",
-      "items": {
-        "$ref": "link.json"
-      }
+    "featureSchema": {
+      "$ref": "featureschema.json"
     },
     "time": {
       "$ref": "time.json"

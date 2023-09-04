@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "https://beta.schemas.opengis.net/json-fg/conformsTo.json",
+  "$id": "https://beta.schemas.opengis.net/json-fg/conformsto.json",
   "title": "the conformsTo member",
   "description": "This JSON Schema is part of JSON-FG version 0.2.0-SNAPSHOT",
   "type": "array",
