@@ -22,6 +22,20 @@ An additional discussion topic during the development of this Standard was the r
 
 Annex '<<examples>>' has examples of JSON-FG documents.
 
+[[general_approach]]
+=== General Approach
+
+JSON-FG extends GeoJSON in two ways:
+
+* by adding new JSON members to the "Feature" and "FeatureCollection" objects;
+* by specifying additional geometry objects.
+
+As a result, JSON-FG does not place constraints on the information in the "properties" member (like GeoJSON) and JSON-FG readers do not have to parse the "properties" container.
+
+The approach to not require specific members in "properties" avoids name clashes with existing feature properties and places the new JSON members on the same level as other JSON members with special semantics, like "id" and "geometry".
+
+Some GeoJSON readers, however, only provide access to the pre-defined JSON members in GeoJSON features, i.e., "id", "geometry", "bbox" and "properties". If the target audience of JSON-FG documents includes such tools, it is recommended to also include the additional top-level members like "time", "place", "featureType", and "coordRefSys" in the "properties" object.
+
 [[metadata]]
 === Metadata
 
