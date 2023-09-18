@@ -9,6 +9,8 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
 |Target type |JSON documents
 |Dependency |<<rc_core>>
+|Indirect Dependency |<<OAFeat-5,OGC API - Features - Part 5: Schemas>>
+
 |===
 
 === Metadata
@@ -60,47 +62,26 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 ^|B |If the JSON document is a JSON-FG feature collection and the primary geometry of each feature has the same dimension (0 for a Point/MultiPoint, 1 for a LineString/MultiLineString, 2 for a Polygon/MultiPolygon, 3 for a Polyhedron/MultiPolyhedron/Prism/MultiPrism), the feature collection object SHOULD contain a member "geometryDimension".
 |===
 
-:rec: type-links
-[#{req-class}_{rec}]
-==== Links to a semantic type
+=== Feature schema
 
-[width="90%",cols="2,7a"]
-|===
-^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
-^|A |The "links" array in any JSON-FG feature in the JSON document SHOULD include at least one link object where the "rel" member is set to "type".
-|===
-
-=== Schema(s)
-
-:req: schema-link-jsonfg
+:req: feature-schemas
 [#{req-class}_{req}]
-==== Link to the JSON-FG schema
+==== Feature schemas conform to OGC API - Features - Part 5: Schemas
 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the JSON document is a JSON-FG feature, the feature object SHALL have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to the value of the "$id" member of the <<schema-feature>>.
-^|B |If the JSON document is a JSON-FG feature collection, the feature collection object SHALL have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to the value of the "$id" member of the <<schema-feature-collection>>.
+^|A |If the JSON document is a JSON-FG feature or feature collection with a "featureSchema" member, all referenced schemas SHALL conform to OGC API - Features - Part 5: Schemas.
 |===
 
-:rec: schema-link-geojson
-[#{req-class}_{rec}]
-==== Link to the GeoJSON schema
+NOTE: A draft of OGC API - Features - Part 5: Schemas should be published soon.
 
-[width="90%",cols="2,7a"]
-|===
-^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
-^|A |If the JSON document is a GeoJSON feature, the feature object SHOULD have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to "https://geojson.org/schema/Feature.json".
-^|B |If the JSON document is a GeoJSON feature collection, the feature collection object SHALL have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to "https://geojson.org/schema/FeatureCollection.json".
-|===
-
-:rec: schema-link-properties
-[#{req-class}_{rec}]
-==== Link to the schema describing the feature properties
+:req: single-feature-schema
+[#{req-class}_{req}]
+==== Single feature schema implies one feature type
 
 [width="90%",cols="2,7a"]
 |===
-^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
-^|A |If the JSON document is a GeoJSON feature, the feature object SHOULD have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to a JSON schema that includes schema information about the members of the "properties" member.
-^|B |If the JSON document is a GeoJSON feature collection, the feature collection object SHALL have a member "link" with an array of link objects where one object has the "rel" member set to "describedby", the "type" member is set to "application/schema+json" and the "href" member is set to a JSON schema that includes schema information about the members of the "properties" member.
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the JSON document is a JSON-FG feature or feature collection with a "featureSchema" member where the value is a string (URI), all "featureType" members in the JSON document SHALL declare a single feature type and all SHALL have the same value.
 |===

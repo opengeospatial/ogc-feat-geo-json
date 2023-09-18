@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://beta.schemas.opengis.net/json-fg/featureschema.json",
+  "title": "the featureSchema member",
+  "description": "This JSON Schema is part of JSON-FG version 0.2.0-SNAPSHOT",
+  "oneOf": [
+    {"type": "string", "format": "uri"},
+    {
+      "type": "object",
+      "additionalProperties": {"type": "string", "format": "uri"}
+    }
+  ]
+}

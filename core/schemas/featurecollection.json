@@ -21,14 +21,11 @@
       "minimum": 0,
       "maximum": 3
     },
+    "featureSchema": {
+      "$ref": "featureschema.json"
+    },
     "coordRefSys": {
       "$ref": "coordrefsys.json"
-    },
-    "links": {
-      "type": "array",
-      "items": {
-        "$ref": "link.json"
-      }
     },
     "features": {
       "type": "array",

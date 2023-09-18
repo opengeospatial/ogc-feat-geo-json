@@ -57857,37 +57857,5 @@
             },
             "time": {"date": "2019-12-27"}
         }
-    ],
-    "links": [
-        {
-            "href": "http://localhost:7080/rest/services/gebaeude_lod2/collections/building/items?fk_buildingpart_parent=1672388&limit=100&crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F5555&f=jsonfg",
-            "rel": "self",
-            "type": "application/vnd.ogc.fg+json",
-            "title": "Dieses Dokument"
-        },
-        {
-            "href": "http://localhost:7080/rest/services/gebaeude_lod2/collections/building/items?fk_buildingpart_parent=1672388&limit=100&crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F5555&f=xml",
-            "rel": "alternate",
-            "type": "application/gml+xml",
-            "title": "Dieses Dokument als GML"
-        },
-        {
-            "href": "http://localhost:7080/rest/services/gebaeude_lod2/collections/building/items?fk_buildingpart_parent=1672388&limit=100&crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F5555&f=json",
-            "rel": "alternate",
-            "type": "application/geo+json",
-            "title": "Dieses Dokument als GeoJSON"
-        },
-        {
-            "href": "http://localhost:7080/rest/services/gebaeude_lod2/collections/building/items?fk_buildingpart_parent=1672388&limit=100&crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F5555&f=cityjson",
-            "rel": "alternate",
-            "type": "application/city+json",
-            "title": "Dieses Dokument als CityJSON"
-        },
-        {
-            "href": "http://localhost:7080/rest/services/gebaeude_lod2/collections/building/items?fk_buildingpart_parent=1672388&limit=100&crs=http%3A%2F%2Fwww.opengis.net%2Fdef%2Fcrs%2FEPSG%2F0%2F5555&f=html",
-            "rel": "alternate",
-            "type": "text/html",
-            "title": "Dieses Dokument als HTML"
-        }
     ]
 }

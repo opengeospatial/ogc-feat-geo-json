@@ -21,6 +21,12 @@ NOTE: More details about the term 'feature' may be found in the <<sdwbp,W3C/OGC 
 feature collection::
 a set of *features* from a dataset
 
+feature schema::
+schema that describes the properties of a *feature type*
+
+feature type::
+class of *features* having common characteristics [ISO 19156:2023]
+
 JSON document::
 an information resource (series of octets) described by the application/json media type [<<json-schema,JSON Schema 2019-09>>]
 

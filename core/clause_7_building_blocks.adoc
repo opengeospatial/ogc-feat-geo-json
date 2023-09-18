@@ -391,19 +391,19 @@ For unknown coordinate reference systems, e.g. with engineering data like CAD dr
 * `OGC:engineering-3d` for 3D coordinates (x, y, z), to be registered, see <<crs-engineering-3d>>.
 
 [[feature-types]]
-=== Feature type(s)
+=== Feature types
 
 ==== Overview
 
 Features are often categorized by type. Typically, all features of the same type have the same schema and the same properties.
 
-Many GIS clients depend on knowledge about the feature type when processing feature data. For example, when associating a style to a feature in order to render that feature on a map.
+Many GIS clients depend on knowledge about the feature type when processing feature data. For example, when associating a style with a feature in order to render that feature on a map.
 
 GeoJSON is schema-less in the sense that it has no concept of feature types or feature schemas.
 
 In most cases, a feature is an instance of a single feature type. The current draft revision of the Simple Features Standard supports features that are instances of multiple types. JSON-FG, therefore, also supports multiple feature types.
 
-The related section <<schema-ref>> specifies which elements of the JSON Schema documents are identified that the JSON-FG document conforms to. This element specifies how to represent feature type information in the JSON object that represents the feature.
+The related section <<schema-ref>> specifies the feature schema for each each feature type, if such information is available. This element specifies how to represent feature type information in the JSON object that represents the feature.
 
 ==== Description
 
@@ -411,7 +411,9 @@ The related section <<schema-ref>> specifies which elements of the JSON Schema d
 
 The feature types of a feature are declared in a member of the feature object with the key "featureType". The value is either a string (in the standard case of a single feature type) or an array of strings (to support features that instantiate multiple feature types). Each string should be a code, convenient for the use in filter expressions.
 
-NOTE: Should there be a capability to distinguish between feature types that "just" identify a concept, but have no associated or no well-defined schema, and feature types that have an associated schema (the schema would be linked using a "describedby" link relation type)?
+NOTE: A feature type that "just" identifies a concept, but has no associated or no well-defined schema, will not include a schema reference in the "featureSchema" member (see below) for the feature type in the JSON-FG document.
+
+NOTE: The https://www.iana.org/assignments/link-relations/link-relations.xml[IANA link relations] include a link relation "type" which can, in addition, be used to reference a resource that describes a feature type beyond the code in the "featureType" member. 
 
 [[homogeneous-collections]]
 ===== Homogeneous feature collections
@@ -422,85 +424,55 @@ If the JSON document is a feature collection and all features in the feature col
 
 If the JSON document is a feature collection and all features in the feature collection have the same geometry type as their primary geometry (point, curve, surface, solid, including homogeneous aggregates), a "geometryDimension" member can and should be added once for the feature collection with the dimension of the geometry (0 for points, 1 for curves, 2 for surfaces, 3 for solids, null/not set for mixed dimensions or unknown). Declaring the geometry dimension once signals to clients that the feature collection is homogeneous with respect to the dimension, which clients can use to optimize their processing.
 
-===== Links to a semantic type
-
-If a persistent resource exists, such as in a registry, that describes a feature type, a link to that resource with link relation type "type" can be added. In the case of multiple feature types per feature, multiple links are added.
-
-OGC API Features already specifies a general "links" member with an array of link objects based on https://tools.ietf.org/html/rfc8288[RFC 8288 (Web linking)] and feature responses from APIs implementing OGC API Features will already include a "links" member. JSON-FG builds on this approach and includes a "type" link to a resource identifying the abstract semantic type of which the feature is considered to be an instance.
-
-.Link properties
-[cols="20,10,70",options="header"]
-!===
-|Property |Type |Description
-|href |URI or CURIE |**REQUIRED**. The URI or OGC CURIE of a persistent resource that describes a feature type that is instantiated by the feature that is the link context.
-|rel |String |**REQUIRED**. The link relation type, always "type".
-|type |String |To indicate a hint about a specific media type in which the target of the link is available, set the value to that media type; for example, "text/html".
-|title |String |Include this link attribute for a human readable label of the link, e.g. for use in a derived HTML representation.
-!===
-
-Additional link attributes may be added to the Link object.
-
 [[schema-ref]]
-=== Schema(s)
+=== Feature schemas
 
 ==== Overview
 
-A schema is metadata about a JSON document that clients can use to validate the JSON document or to derive additional information about the content of the JSON document, such as a textual description of the feature properties or their value range.
+A JSON-FG feature schema is metadata about a feature that clients can use to understand the content of JSON-FG feature objects, such as a textual description of the feature properties or their value range.
 
-NOTE: As of 2022, the OGC Features API Standards Working Group is working on a https://github.com/opengeospatial/ogcapi-features/tree/master/proposals/schemas[specification in the OGC API Features series] for using JSON schemas to describe the schema of features.
+NOTE: As of September 2023, the OGC Features API Standards Working Group is working on OGC API - Features - Part 5: Schemas. JSON Schema will be used to describe the logical schema of features in an encoding-agnostic way. The https://github.com/opengeospatial/ogcapi-features/issues/740#issuecomment-1501758135[discussion and decisions in this issue] will be used as the starting point. The schema uses additional schema keywords to identify special roles of properties, e.g., the feature identifier, the primatry geometry or the primary instant.
 
-This Standard provides guidance on how to include information about the schema of a JSON document that is a JSON-FG feature or feature collection.
+This Standard provides guidance on how to include information about such a feature schema in a JSON-FG feature or feature collection.
 
 ==== Description
 
-The <<json-schema,JSON Schema specification>> recommends to use https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.9.5[a "describedby" link relation to the schema]:
+===== The "featureSchema" member
 
-[quote, JSON Schema]
-RECOMMENDATION: Instances described by a schema provide a link to a downloadable JSON Schema using the link relation "describedby" [...].
-
-OGC API Features already specifies a general "links" member with an array of link objects based on https://tools.ietf.org/html/rfc8288[RFC 8288 (Web linking)]. Therefore, feature responses from APIs implementing OGC API Features will already include a "links" member. JSON-FG builds on this approach and includes a "describedby" link to a JSON Schema document, if schema information is important for the target users of the JSON feature documents.
-
-.Link properties
-[cols="20,10,70",options="header"]
-!===
-|Property |Type |Description
-|href |URI |**REQUIRED**. The URI of a JSON Schema document that describes the JSON document that is the link context.
-|rel |String |**REQUIRED**. The link relation type, which is always "describedby" for the link to the JSON Schema document.
-|type |String |**REQUIRED**. To indicate that the target of the link is a JSON Schema document, set the value to "application/schema+json".
-|title |String |Include this link attribute for a human readable label of the link, e.g. for use in a derived HTML representation.
-!===
-
-An example of a link object:
+If all features in a JSON-FG document (either a single feature or a homogenuous feature collection) have the same feature type, the URI of the feature schema can and should be provided in a top-level JSON member "featureSchema" with the feature schema URI as the value.
 
 [source,json]
 ----
 {
-  "href": "https://demo.ldproxy.net/zoomstack/collections/airports/schemas/feature",
-  "rel": "describedby",
-  "type": "application/schema+json",
-  "title": "JSON Schema of this document"
+  "type": "FeatureCollection",
+  "featureType": "Airport",
+  "featureSchema": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
+  "geometryDimension": 0,
+  "conformsTo": [ "[ogc-json-fg-1-0.2:core]", "[ogc-json-fg-1-0.2:types-schemas]" ],
+  "features": [ ... ]
 }
 ----
 
-Additional link attributes may be added to the Link object.
+If the features in the JSON-FG document reference multiple feature types, the value of "featureSchema" is an object, where each key is the feature type that the schema describes.
 
-Each JSON-FG document is either a feature or a feature collection.
+[source,json]
+----
+{
+  "type": "FeatureCollection",
+  "featureSchema": {
+    "Airport": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
+    "RailwayStation": "https://demo.ldproxy.net/zoomstack/collections/railway_stations/schema"
+  },
+  "conformsTo": [ "[ogc-json-fg-1-0.2:core]", "[ogc-json-fg-1-0.2:types-schemas]" ],
+  "features": [ ... ]
+}
+----
 
-A JSON-FG feature collection must contain a link to the JSON-FG feature collection schema at `\https://beta.schemas.opengis.net/json-fg/featurecollection.json`. Since the feature collection is also a GeoJSON feature collection, it should also contain a link to the GeoJSON feature collection schema at `\https://geojson.org/schema/FeatureCollection.json`. The document should also contain another link to a schema document that specifies the properties of the features in the collection.
+===== Referencing schema for JSON Schema validation
 
-A JSON-FG feature must contain a link to the JSON-FG feature schema at `\https://beta.schemas.opengis.net/json-fg/feature.json`. Since the feature is also a GeoJSON feature, it should also contain a link to the GeoJSON feature schema at `\https://geojson.org/schema/Feature.json`. The document should also contain another link to a schema document that specifies the properties of the feature.
+The <<json-schema,JSON Schema specification>> recommends to use https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.9.5[a "describedby" link relation to a schema] that can be used to validate a JSON document:
 
-NOTE: These are (or will be) canonical URIs. Clients can identify that a JSON document is a GeoJSON and JSON-FG feature collection or feature by string comparisons.
+[quote, JSON Schema]
+RECOMMENDATION: Instances described by a schema provide a link to a downloadable JSON Schema using the link relation "describedby" [...].
 
-[NOTE]
-====
-If features are accessed using building blocks from OGC API Features, a collection can be comprised of features with different feature types. The Features API SWG should include guidance in the Schema extension how to construct a feature schema for such a collection. Multiple options exist, including:
-
-- A schema using "oneOf" with one set of properties for each feature type;
-- A schema with a single properties object with the superset that all features conform to; and
-- A separate schema per feature type.
-====
-
-NOTE: JSON Schema is a rich language and it should be considered limiting the language constructs that should be used in describing the properties in the feature schema. A potential starting point is the current proposal for https://docs.ogc.org/DRAFTS/19-079r1.html#rec_filter_queryables-schema[a JSON Schema profile for queryable feature properties].
-
-NOTE: The schema of a feature type will typically specify the details of the feature properties, but it can also profile the feature-level members including the "geometry", "place" and "time" members. A typical example is to restrict the list of allowed geometry types. To simplify parsing the feature schemas it could be discussed, if canonical schemas for well-known types should be used in "$ref" members. For example, if the geometry is restricted to points, the "geometry" and "place" members could reference `\https://geojson.org/schema/Point.json` or some other canonical URI.
+Where JSON Schema validation is important, such links can be added. For example, OGC API Features already specifies a general "links" member with an array of link objects based on https://tools.ietf.org/html/rfc8288[RFC 8288 (Web linking)] and feature responses from APIs implementing OGC API Features will already include a "links" member.

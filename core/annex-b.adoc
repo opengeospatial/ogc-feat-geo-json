@@ -3,7 +3,7 @@
 :appendix-caption: Annex
 == Schemas (Normative)
 
-NOTE: The current JSON Schema version is 2020-12, which is also used in OpenAPI 3.1, but that version is not yet widely implemented. The JSON-FG schemas have been created using version 2019-09. Should schemas be published in multiple versions?
+NOTE: The current JSON Schema version is 2020-12, which is also used in OpenAPI 3.1, but it is unclear how well supported that version is. The JSON-FG schemas have been created using version 2019-09. Should schemas be published in version 2020-12?
 
 NOTE: The JSON-FG schema documents will only be published on `schemas.opengis.net` once the standard has been approved. Until then, the schema documents will be made available in a schema repository for drafts.
 
@@ -71,14 +71,12 @@ include::schemas/geometry-objects.json[]
 include::schemas/featuretype.json[]
 ----
 
-[[schema-link]]
-=== JSON schema of a link
-
-NOTE: This schema will be removed, once a general 2019-09 schema for Link objects is published in the OGC Schema Repository.
+[[schema-featureschema]]
+=== JSON schema of the "featureSchema" member
 
 [source,json,linenumbers]
 ----
-include::schemas/link.json[]
+include::schemas/featureschema.json[]
 ----
 
 
