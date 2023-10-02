@@ -1,7 +1,7 @@
 {
     "type": "Feature",
     "id": "fence.1",
-    "conformsTo" : [ "[ogc-json-fg-1-0.1:core]", "[ogc-json-fg-1-0.1:3d]" ],
+    "conformsTo" : [ "[ogc-json-fg-1-0.2:core]", "[ogc-json-fg-1-0.2:3d]" ],
     "featureType": "fence",
     "time": {
         "interval": [
