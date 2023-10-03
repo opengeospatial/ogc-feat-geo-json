@@ -3,6 +3,8 @@
 :appendix-caption: Annex
 == Links (Informative)
 
+NOTE: This annex may be removed from the document before publication.
+
 There are multiple ways how to encode feature properties that are relationships with other features or resources like codelists and where the value is not embedded, but represented as a link. This annex discusses the topic.
 
 === A sample feature
