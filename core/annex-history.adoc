@@ -8,4 +8,5 @@
 |2022-01-07 |0.0 |C. Portele |all |initial version
 |2022-08-08 |0.1 |C. Portele, P. Vretanos |all |first draft release
 |2022-09-19 |0.1.1 |C. Portele |Annex B, Annex C |[#65](https://github.com/opengeospatial/ogc-feat-geo-json/issues/65): correct examples, use pattern for date/time validation, reorganize example files
+|2023-10-xx |0.2 |C. Portele, P. Vretanos |all |second draft release; for submission to the OGC Architecture Board for review
 |===

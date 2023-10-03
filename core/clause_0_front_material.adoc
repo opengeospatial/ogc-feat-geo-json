@@ -38,7 +38,7 @@ The following organizations submitted this Document to the Open Geospatial Conso
 * CubeWerx Inc.
 * interactive instruments GmbH
 
-#TODO: add additional submitters, including a voting member.#
+#TODO: add additional submitters#
 
 [big]*vi.     Submitters*
 
