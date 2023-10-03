@@ -35,10 +35,10 @@ The security considerations for GeoJSON as specified in Section 10 of IETF RFC 7
 
 The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
 
-* CubeWerx Inc.
-* interactive instruments GmbH
+* Esri
+* interactive instruments
+* MariaDB Corporation
 
-#TODO: add additional submitters#
 
 [big]*vi.     Submitters*
 
@@ -46,7 +46,8 @@ All questions regarding this submission should be directed to the editor or the 
 
 |===
 |*Name* |*Affiliation*
-|Clemens Portele _(editor)_ |interactive instruments GmbH
+|Clemens Portele _(editor)_ |interactive instruments
 |Panagiotis (Peter) A. Vretanos _(editor)_ |MariaDB Corporation
+|Satish Sankaran |Esri
 |===
 
