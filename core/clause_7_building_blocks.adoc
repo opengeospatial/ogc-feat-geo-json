@@ -49,8 +49,8 @@ The value of the member is an array of strings, where each string is a URI of a 
 [source,json,linenumbers]
 ----
 "conformsTo" : [ 
-  "http://www.opengis.net/spec/json-fg-1/0.1/conf/core", 
-  "http://www.opengis.net/spec/json-fg-1/0.1/conf/3d" 
+  "http://www.opengis.net/spec/json-fg-1/0.2/conf/core", 
+  "http://www.opengis.net/spec/json-fg-1/0.2/conf/3d" 
 ]
 ----
 ====
@@ -62,7 +62,7 @@ As an alternative to URIs, the https://docs.ogc.org/pol/09-048r6.html#toc14[Comp
 ====
 [source,json,linenumbers]
 ----
-"conformsTo" : [ "[ogc-json-fg-1-0.1:core]", "[ogc-json-fg-1-0.1:3d]" ]
+"conformsTo" : [ "[ogc-json-fg-1-0.2:core]", "[ogc-json-fg-1-0.2:3d]" ]
 ----
 ====
 
@@ -144,7 +144,9 @@ Dates and timestamps are the initial range of instant values. The range may be e
 
 An interval is described by start and end instants. Both start and end instants are included in the interval, i.e., the interval is closed.
 
-The end of unbounded intervals are represented by a double-dot string ("..") for the start/end. This follows the convention of ISO 8601-2 for an open start or end.
+The unbounded end of an interval is represented by a double-dot string ("..") for the start/end. This follows the convention of ISO 8601-2 for an open start or end.
+
+NOTE: There is a https://github.com/opengeospatial/ogc-feat-geo-json/issues/69[proposal] to use `null` instead of "..".
 
 [#ex-time-3,reftext='{listing-caption} {counter:listing-num}']
 .An interval with dates
@@ -188,6 +190,8 @@ A key motivation for the JSON-FG Standard is to support additional requirements,
 
 To avoid confusing existing GeoJSON readers, such geometries are provided in a new member in the feature object with the key "place".
 
+NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/97[ongoing discussion] to use a different key instead of "place".
+
 ==== Description
 
 The primary geometry of a feature is provided in the "geometry" and/or "place" members of the feature object. The value of both keys is an object representing a geometry - or `null`.
@@ -203,7 +207,8 @@ NOTE: This standard does not add a new JSON-FG geometry collection that also inc
 
 NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/88[ongoing discussion], which 3D geometries should be included in JSON-FG and how they should be grouped into conformance classes.
 
-NOTE: There is a proposal to https://github.com/opengeospatial/ogc-feat-geo-json/blob/main/proposals/circular-geometry-objects.adoc[add additional geometry types supporting curves with circular arc interpolation]. 
+NOTE: There is a proposal to https://github.com/opengeospatial/ogc-feat-geo-json/blob/main/proposals/circular-geometry-objects.adoc[add additional geometry types supporting curves with circular arc interpolation] to JSON-FG with an https://github.com/opengeospatial/ogc-feat-geo-json/issues/35[ongoing discussion].
+
 All coordinates in a "place" member are in the same coordinate reference system. This includes GeometryCollection geometries, where all geometries have to be in the same coordinate reference system.
 
 ===== Use of "geometry" and/or "place"
@@ -417,7 +422,7 @@ GeoJSON is schema-less in the sense that it has no concept of feature types or f
 
 In most cases, a feature is an instance of a single feature type. The current draft revision of the Simple Features Standard supports features that are instances of multiple types. JSON-FG, therefore, also supports multiple feature types.
 
-The related section <<schema-ref>> specifies the feature schema for each each feature type, if such information is available. This element specifies how to represent feature type information in the JSON object that represents the feature.
+The related section <<schema-ref>> specifies the schema for each feature type, if such information is available.
 
 ==== Description
 
@@ -447,7 +452,7 @@ A JSON-FG feature schema is metadata about a feature that clients can use to und
 
 NOTE: As of September 2023, the OGC Features API Standards Working Group is working on OGC API - Features - Part 5: Schemas. JSON Schema will be used to describe the logical schema of features in an encoding-agnostic way. The https://github.com/opengeospatial/ogcapi-features/issues/740#issuecomment-1501758135[discussion and decisions in this issue] will be used as the starting point. The schema uses additional schema keywords to identify special roles of properties, e.g., the feature identifier, the primatry geometry or the primary instant.
 
-This Standard provides guidance on how to include information about such a feature schema in a JSON-FG feature or feature collection.
+This Standard provides guidance on how to include information about such feature schemas in a JSON-FG feature or feature collection.
 
 ==== Description
 

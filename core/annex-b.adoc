@@ -3,12 +3,10 @@
 :appendix-caption: Annex
 == Schemas (Normative)
 
-NOTE: The current JSON Schema version is 2020-12, which is also used in OpenAPI 3.1, but it is unclear how well supported that version is. The JSON-FG schemas have been created using version 2019-09. Should schemas be published in version 2020-12?
-
-NOTE: The JSON-FG schema documents will only be published on `schemas.opengis.net` once the standard has been approved. Until then, the schema documents will be made available in a schema repository for drafts.
+NOTE: The JSON-FG schema documents will only be published on `schemas.opengis.net` once the standard has been approved. Until then, the schema documents will be made available in the OGC schema repository for drafts.
 
 [[schema-feature-collection]]
-=== JSON schema of a JSON-FG feature collection 
+=== JSON Schema of a JSON-FG feature collection 
 
 [source,json,linenumbers]
 ----
@@ -16,7 +14,7 @@ include::schemas/featurecollection.json[]
 ----
 
 [[schema-feature]]
-=== JSON schema of a JSON-FG feature 
+=== JSON Schema of a JSON-FG feature 
 
 [source,json,linenumbers]
 ----
@@ -24,7 +22,7 @@ include::schemas/feature.json[]
 ----
 
 [[schema-time]]
-=== JSON schema of the "time" member
+=== JSON Schema of the "time" member
 
 [source,json,linenumbers]
 ----
@@ -32,7 +30,7 @@ include::schemas/time.json[]
 ----
 
 [[schema-place]]
-=== JSON schema of the "place" member
+=== JSON Schema of the "place" member
 
 [source,json,linenumbers]
 ----
@@ -40,7 +38,7 @@ include::schemas/place.json[]
 ----
 
 [[schema-coordrefsys]]
-=== JSON schema of the "coordRefSys" member
+=== JSON Schema of the "coordRefSys" member
 
 [source,json,linenumbers]
 ----
@@ -48,7 +46,7 @@ include::schemas/coordrefsys.json[]
 ----
 
 [[schema-geometry]]
-=== JSON schema of the "geometry" member
+=== JSON Schema of the "geometry" member
 
 [source,json,linenumbers]
 ----
@@ -56,7 +54,7 @@ include::schemas/geometry.json[]
 ----
 
 [[schema-geometry-objects]]
-=== JSON schema of geometry objects
+=== JSON Schema of geometry objects
 
 [source,json,linenumbers]
 ----
@@ -64,7 +62,7 @@ include::schemas/geometry-objects.json[]
 ----
 
 [[schema-featuretype]]
-=== JSON schema of the "featureType" member
+=== JSON Schema of the "featureType" member
 
 [source,json,linenumbers]
 ----
@@ -72,7 +70,7 @@ include::schemas/featuretype.json[]
 ----
 
 [[schema-featureschema]]
-=== JSON schema of the "featureSchema" member
+=== JSON Schema of the "featureSchema" member
 
 [source,json,linenumbers]
 ----

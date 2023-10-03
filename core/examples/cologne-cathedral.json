@@ -1,7 +1,7 @@
 {
     "type": "FeatureCollection",
     "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/5555",
-    "conformsTo" : [ "[ogc-json-fg-1-0.1:core]", "[ogc-json-fg-1-0.1:types-schemas]", "[ogc-json-fg-1-0.1:3d]" ],
+    "conformsTo" : [ "[ogc-json-fg-1-0.2:core]", "[ogc-json-fg-1-0.2:types-schemas]", "[ogc-json-fg-1-0.2:3d]" ],
     "features": [
         {
             "type": "Feature",
@@ -16,7 +16,7 @@
                 "externalReferences": [
                     {
                         "name": "DENW37AL1000qmxq",
-                        "informationSystem": "http://repository.gdi-de.org/schemas/adv/citygml/fdv/art.htm#_9100"
+                        "informationSystem": "https://repository.gdi-de.org/schemas/adv/citygml/fdv/art.htm#_9100"
                     }
                 ],
                 "function": "31001_3041",

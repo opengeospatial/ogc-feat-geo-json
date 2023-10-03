@@ -27,31 +27,40 @@ Optional parameters:
 
 Encoding considerations: binary
 
-Security considerations: See Security Considerations
+Security considerations: The security considerations for GeoJSON as specified in Section 10 of IETF RFC 7946 also apply to JSON-FG.
 
-Interoperability considerations: TODO
+Interoperability considerations: The interoperability considerations for GeoJSON as specified in Section 11 of IETF RFC 7946 also apply to JSON-FG. 
 
 Published specification: this document
 
-Applications that use this media type: TODO
+Applications that use this media type: No known applications currently use this media type. 
+   This media type is intended for applications currently using the "application/vnd.ogc.fg+json" 
+   media type, which include APIs for managing, publishing or processing geospatial data, 
+   tools for processing geospatial data, web mapping applications, etc.
 
 Additional information:
 
-  Magic number(s): none
+  Magic number(s): n/a
 
   File extension(s): .json, .jsonfg
 
   Macintosh file type code: TEXT
 
-Person to contact for further information: TODO
+Person to contact for further information:
+
+   1. Name: Scott Simmons
+   2. Email: ssimmons@ogc.org
 
 Intended usage: COMMON
 
-Restrictions on usage: none
+  GeoJSON (IETF RFC 7946) is a popular encoding for geospatial data. GeoJSON is widely supported. 
+  However, GeoJSON has intentional restrictions that prevent or limit its use in certain geospatial 
+  application contexts. For example, GeoJSON is restricted to WGS 84 coordinates, does not 
+  support volumetric geometries and has no concept of classifying features according to their type.
+  JSON-FG (OGC Features and Geometries JSON) specifies a set of GeoJSON extensions that provide 
+  standard ways to support such requirements. 
 
-Restrictions on usage: none
+Restrictions on usage: n/a
 
-Author: see the editors of this Standard
-
-Change controller:  Open Geospatial Consortium (OGC)
+Change controller: Open Geospatial Consortium (OGC)
 ----

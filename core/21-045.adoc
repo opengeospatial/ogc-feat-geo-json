@@ -1,7 +1,7 @@
 :Title: OGC Features and Geometries JSON - Part 1: Core
 :standard: json-fg-1
 :m_n: 0.2
-:m_n_o: {m_n}.0-SNAPSHOT
+:m_n_o: {m_n}.0
 :titletext: {Title}
 :doctype: book
 :encoding: utf-8
@@ -36,7 +36,7 @@
 [cols = "^", frame = "none", grid = "none"]
 |===
 |*Copyright notice*
-|Copyright (C) 2022 Open Geospatial Consortium
+|Copyright (C) 2023 Open Geospatial Consortium
 |To obtain additional rights of use, visit https://www.ogc.org/legal/
 |===
 

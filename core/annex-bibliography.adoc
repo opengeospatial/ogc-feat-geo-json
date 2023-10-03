@@ -3,9 +3,9 @@
 [[Bibliography]]
 = Bibliography
 
-[[json-schema]] **JSON Schema: A Media Type for Describing JSON Documents**. Edited by A. Wright, H. Andrews, B. Hutton. 2019. Available at https://json-schema.org/draft/2019-09/json-schema-core.html
+[[json-schema]] **JSON Schema: A Media Type for Describing JSON Documents**. Edited by A. Wright, H. Andrews, B. Hutton, G. Dennis. 2022. Available at https://json-schema.org/draft/2020-12/json-schema-core
 
-[[json-schema-validation]] **JSON Schema Validation: A Vocabulary for Structural Validation of JSON**. Edited by A. Wright, H. Andrews, B. Hutton. 2019. Available at https://json-schema.org/draft/2019-09/json-schema-validation.html
+[[json-schema-validation]] **JSON Schema Validation: A Vocabulary for Structural Validation of JSON**. Edited by A. Wright, H. Andrews, B. Hutton. 2022. Available at https://json-schema.org/draft/2020-12/json-schema-validation
 
 [[ogc18_005r4]] Open Geospatial Consortium (OGC). OGC 18-005r4: **OGC Abstract Specification Topic 2: Referencing by coordinates**. Edited by R. Lott. 2019. Available at https://docs.ogc.org/as/18-005r4/18-005r4.html 
 

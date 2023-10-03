@@ -34,6 +34,8 @@ While every JSON-FG document has to validate against the associated JSON-FG sche
 ^|A |If a JSON-FG document is expected to be parsed by clients that only allow access to the JSON members in the GeoJSON Feature schema (in particular the id, the geometry, and the properties), any additional JSON members in the JSON-FG Feature schema ("time", "place", "coordRefSys", and "featureType") SHOULD also be included in the "properties" object.
 |===
 
+NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[open discussion], whether this recommendation should apply only in the "GeoJSON compatibility mode" (i.e., if the "compatibility" media type parameter is set).
+
 === Metadata
 
 :req: metadata
