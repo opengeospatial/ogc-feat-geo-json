@@ -27,7 +27,7 @@ JSON-FG is designed to be extensible.  Extensions to the core, to any of the oth
 
 Readers of JSON-FG documents should therefore be prepared to encounter members that they may not recognize or encounter known members, but unknown value types. Members that are not recognized should be ignored. Values of a known member with an unknown value type should be mapped to `null`.
 
-The JSON schemas are designed to support extensions. JSON-FG documents that include extensions will still validate against the JSON-FG schemas.
+The JSON Schemas are designed to support extensions. JSON-FG documents that include extensions will still validate against the JSON-FG schemas.
 
 The "$id" member of the schemas does not include information about the version of the Standard or the part of the JSON-FG standard. Future revisions of this Standard or additional parts of JSON-FG will update and extend the JSON-FG schemas. Any change will not invalidate existing JSON-FG documents.
 

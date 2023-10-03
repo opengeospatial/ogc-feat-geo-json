@@ -80,14 +80,14 @@ This section illustrates how JSON-FG can be extended with
 * a new temporal data type for a time series;
 * the capability to provide a coordinate reference system definition as a PROJJSON object.
 
-If the extension would be specified in a hypothetical part 2 of JSON-FG, the extension could update the JSON schema definitions as described in the following sub-sections.
+If the extension would be specified in a hypothetical part 2 of JSON-FG, the extension could update the JSON Schema definitions as described in the following sub-sections.
 
-If the same extensions are specified by a community, they would copy the relevant JSON-FG schemas and extend them as described in the sub-sections. Unchanged schemas like the JSON schemas for the "geometry" and "featureType" members or for a link do not need to be copied and can reference the JSON-FG schemas.
+If the same extensions are specified by a community, they would copy the relevant JSON-FG schemas and extend them as described in the sub-sections. Unchanged schemas like the JSON Schemas for the "geometry" and "featureType" members or for a link do not need to be copied and can reference the JSON-FG schemas.
 
 [[geometry_types_arc_and_circle]]
 ==== Geometry types Arc and Circle
 
-The schema definition for the new geometry objects "Arc" and "Circle" shown below could be added as `\#/$defs/Arc` and `#/$defs/Circle` in the JSON schema of geometry objects ("geometry-objects.json"). 
+The schema definition for the new geometry objects "Arc" and "Circle" shown below could be added as `\#/$defs/Arc` and `#/$defs/Circle` in the JSON Schema of geometry objects ("geometry-objects.json"). 
 
 [source,json,linenumbers]
 ----
@@ -103,7 +103,7 @@ include::examples/extensions/circle.json[]
 
 ==== A temporal data type for a time series;
 
-The schema definition for the time series object shown below could be added as `#/$defs/timeSeries` in the JSON schema of the "time" member. 
+The schema definition for the time series object shown below could be added as `#/$defs/timeSeries` in the JSON Schema of the "time" member. 
 
 [source,json,linenumbers]
 ----
@@ -121,7 +121,7 @@ The following member would then be added to `#/oneOf/1/properties`.
 
 ==== Coordinate reference system as PROJJSON
 
-The schema definition for the by-value CRS object shown below could be added as `#/$defs/refsys-byvalue` in the JSON schema of the "coordRefSys" member. 
+The schema definition for the by-value CRS object shown below could be added as `#/$defs/refsys-byvalue` in the JSON Schema of the "coordRefSys" member. 
 
 [source,json,linenumbers]
 ----
