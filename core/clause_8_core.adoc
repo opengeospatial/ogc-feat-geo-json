@@ -27,6 +27,13 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 
 While every JSON-FG document has to validate against the associated JSON-FG schema, executing the validation is only necessary when testing conformance. Implementations reading or writing JSON-FG do not have to perform validation. It is also not necessary to publish application- or community-specific schemas that describe the schema of the feature properties to conform to the Core requirements class.
 
+:rec: properties
+[width="90%",cols="2,7a"]
+|===
+^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
+^|A |If a JSON-FG document is expected to be parsed by clients that only allow access to the JSON members in the GeoJSON Feature schema (in particular the id, the geometry, and the properties), any additional JSON members in the JSON-FG Feature schema ("time", "place", "coordRefSys", and "featureType") SHOULD also be included in the "properties" object.
+|===
+
 === Metadata
 
 :req: metadata
