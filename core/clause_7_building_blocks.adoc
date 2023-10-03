@@ -144,7 +144,9 @@ Dates and timestamps are the initial range of instant values. The range may be e
 
 An interval is described by start and end instants. Both start and end instants are included in the interval, i.e., the interval is closed.
 
-The end of unbounded intervals are represented by a double-dot string ("..") for the start/end. This follows the convention of ISO 8601-2 for an open start or end.
+The unbounded end of an interval is represented by a double-dot string ("..") for the start/end. This follows the convention of ISO 8601-2 for an open start or end.
+
+NOTE: There is a https://github.com/opengeospatial/ogc-feat-geo-json/issues/69[proposal] to use `null` instead of "..".
 
 [#ex-time-3,reftext='{listing-caption} {counter:listing-num}']
 .An interval with dates
