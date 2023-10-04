@@ -52,8 +52,8 @@ The Requirements Class "3D" adds provisions for geometries in a 3D CRS and that 
 * The orientation of each polygon in the first element (the outer shell) SHALL be counter-clockwise, if the shell is viewed from the outside of the solid.
 * The orientation of each polygon in all other shells (the voids) SHALL be clockwise, if the shell is viewed from the outside of the solid.
 * No element (shell) intersects another element (shell).
-* All coordinates in the second to last element (the voids) are inside the simple polyhedron specified by the first element (the outer shell).
-* In the second to last elements (the voids) there is no element where all coordinates of the element are inside the simple polyhedron specified by another element (no void contains another void).
+* All coordinates in the elements from the second element to the last element (the voids) are inside the simple polyhedron specified by the first element (the outer shell).
+* In the elements from the second element to the last element (the voids) there is no element where all coordinates of the element are inside the shell specified by another element (no void contains another void).
 ^|B |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "MultiPolyhedron", each element in the "coordinates" array SHALL be a valid polyhedron geometry (see A).
 ^|C |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "Prism", the base geometry (member "base") SHALL be one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", and each geometry object SHALL be a valid geometry according to <<ogc06_103r4,Simple feature access - Part 1: Common architecture>>.
 ^|D |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "MultiPrism", each prism (items in the member "prisms") SHALL be a valid Prism geometry.
