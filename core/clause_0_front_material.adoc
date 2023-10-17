@@ -36,6 +36,7 @@ The security considerations for GeoJSON as specified in Section 10 of IETF RFC 7
 The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
 
 * Esri
+* Geonovum
 * interactive instruments
 * MariaDB Corporation
 
@@ -48,6 +49,7 @@ All questions regarding this submission should be directed to the editor or the 
 |*Name* |*Affiliation*
 |Clemens Portele _(editor)_ |interactive instruments
 |Panagiotis (Peter) A. Vretanos _(editor)_ |MariaDB Corporation
+|Linda van den Brink |Geonovum
 |Satish Sankaran |Esri
 |===
 
