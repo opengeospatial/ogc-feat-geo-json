@@ -1,10 +1,9 @@
+[#media-types]
 == Media Types
 
-Implementations should use `application/vnd.ogc.fg+json` as a preliminary media type until this Standard is stable to avoid confusing future implementations accessing JSON documents from draft versions of this Standard.
+NOTE: Implementations should use `application/vnd.ogc.fg+json` as a preliminary media type until this Standard is stable to avoid confusing future implementations accessing JSON documents from draft versions of this Standard. The media type `application/fg+json` will be registered for JSON-FG, if and once this Standard is approved by the OGC Members. This note will be removed before publishing the JSON-FG Standard.
 
-The media type `application/fg+json` will be registered for JSON-FG, if and once this Standard will be approved by OGC.
-
-Since a JSON-FG document also conforms to GeoJSON, both the GeoJSON and the JSON-FG media types can be used. APIs that provide feature data that conforms to both GeoJSON and JSON-FG should declare support for both media types in the API definition to support clients that know JSON-FG and also those that only support GeoJSON.
+Since a JSON-FG document also conforms to GeoJSON, both the GeoJSON and the JSON-FG media types can be used. APIs that provide feature data that conforms to both GeoJSON and JSON-FG should declare support for both media types in the API definition to support clients that know JSON-FG as well as those that only support GeoJSON.
 
 [[application_fg_json]]
 === application/fg+json
