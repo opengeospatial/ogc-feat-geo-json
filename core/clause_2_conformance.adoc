@@ -1,17 +1,17 @@
 == Conformance
-This Standard defines three requirements classes. The standardization target for all requirements classes are JSON documents.
+This Standard defines three requirements classes. JSON documents are the standardization target for all requirements classes.
 
 The requirements classes are:
 
-* "Core": The _Core_ conformance class extends GeoJSON with additional members that allow <<time>>, extended <<place>> information (i.e. geometries in coordinate reference systems (CRS) other than CRS84 which is the GeoJSON CRS, and additional geometry types) and <<ref-sys>> information to be encoded in a JSON-FG document. In addition, <<metadata>> is added to declare the JSON-FG conformance classes that the document conforms to. The _Core_ conformance class has a dependency on GeoJSON. This means that a JSON-FG document that conforms to _Core_ must also conform to GeoJSON.
+* "Core": The _Core_ conformance class extends GeoJSON with additional members that specify how <<time>>, extended <<place>> information and <<ref-sys>> information can be encoded in a JSON-FG document. In addition, <<metadata>> is added to declare the JSON-FG conformance classes that the JSON document conforms to. The _Core_ conformance class has a dependency on GeoJSON. This means that a JSON-FG document that conforms to _Core_ must also conform to GeoJSON.
 
 * "3D": The _3D_ conformance class adds support for <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>> geometries in a 3D CRS.  The _3D_ conformance class has a dependency on the _Core_ conformance class. This means that a JSON-FG document that conforms to the _3D_ conformance class must also conform to the _Core_ conformance class.
 
-* "Feature Types and Schemas": The _Feature Types and Schemas_ conformance class adds support for <<feature-types>> and <<schema-ref>>.  Features are often categorized by type and this conformance class adds members to a JSON-FG document that allows features therein to be tagged with a type value.  This conformance class includes guidance about how to include information about the schema of the features in a JSON-FG document. The _Feature Types and Schemas_ conformance class has a dependency on the _Core_ conformance class. This means that a JSON-FG document that conforms to the _Feature Types and Schemas_ conformance class must also conform to the _Core_ conformance class.
+* "Feature Types and Schemas": The _Feature Types and Schemas_ conformance class adds support for <<feature-types>> and <<schema-ref>>.  Features are often categorized by type. This requirements class adds members to a JSON-FG document so that contained features can be tagged with a type value.  This conformance class includes guidance about how to include information about the feature schema in a JSON-FG document. The _Feature Types and Schemas_ conformance class has a dependency on the _Core_ conformance class. This means that a JSON-FG document that conforms to the _Feature Types and Schemas_ conformance class must also conform to the _Core_ conformance class.
 
-Implementations must, at a minimum, support the _Core_ requirements class in order to use the JSON-FG media type.
+JSON documents must, at a minimum, conform to the _Core_ requirements class in order to use the JSON-FG media type.
 
-Conformance with this Standard shall be checked using all the relevant tests specified in Annex A (normative) of this document. The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
+Conformance with the JSON-FG Standard shall be checked using all the relevant tests specified in Annex A (normative) of this document. The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
 
 In order to conform to this OGC® Standard, a software implementation shall choose to implement one or more of the conformance levels specified in Annex A (normative).
 
