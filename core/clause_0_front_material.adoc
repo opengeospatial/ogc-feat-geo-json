@@ -31,7 +31,22 @@ Recipients of this document are requested to submit, with their comments, notifi
 
 The security considerations for GeoJSON as specified in Section 10 of IETF RFC 7946 also apply to JSON-FG.
 
-[big]*v.    Submitting organizations*
+[big]*v.    OGC Considerations*
+
+If and once the JSON-FG Standard is approved by the OGC Members, the following actions need to be taken by OGC before publication:
+
+- Annex <<crs>> specifies additional coordinate reference systems (CRSs) that do not yet exist in the OGC CRS register. The CRSs have been created to support use cases identified in the context of JSON-FG. The CRSs are referenced in the JSON-FG Standard. The CRSs will be added to the OGC CRS register and the Annex will be removed.
+- Annex <<schemas>> specifies the JSON-FG schema documents. The documents will be published in the https://schemas.opengis.net/[OGC Schema Repository].
+- Annex <<relationships_and_links>> may be removed.
+- Annex <<considerations>> will be removed.
+
+The following actions need to be taken after publication:
+
+- OGC will register the media type `application/fg+json` specified in Clause <<media-types>> with IANA.
+
+This section will be removed before the JSON-FG Standard is published.
+
+[big]*vi.    Submitting organizations*
 
 The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
 
@@ -41,7 +56,7 @@ The following organizations submitted this Document to the Open Geospatial Conso
 * MariaDB Corporation
 
 
-[big]*vi.     Submitters*
+[big]*vii.     Submitters*
 
 All questions regarding this submission should be directed to the editor or the submitters:
 
