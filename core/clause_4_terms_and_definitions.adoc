@@ -42,14 +42,19 @@ the name of a *member*
 a name/value pair in a JSON object
 
 primary geometry::
-the geometry that best represents the spatial characteristics of a *feature*
+the geometry that the publisher considers as the most important spatial characteristic of a *feature* (<<OAFeat-5,OGC API - Features - Part 5: Schemas>>)
 
-NOTE: A feature can be described by multiple properties with a geometry. For example, a radio tower can have a property with a point value that describes the location of the tower and another property with a multi-polygon value that describes the transmission area. In GeoJSON and JSON-FG, multiple properties with a geometry value can be encoded in the "properties" member. In those cases, it is the decision of the generator of the JSON-FG document what geometry is considered "primary" for the expected use of the feature.
+NOTE: A feature can be described by multiple spatial properties. For example, a radio tower can have a property with a point value that describes the location of the tower and another property with a multi-polygon value that describes the area of coverage. Some feature formats can represent only a single geometry per feature. In those cases, the primary geometry will be used when the feature is encoded in such a format.
+
+NOTE: The primary geometry of a feature can also vary depending on the zoom level. At a smaller scale, the primary geometry could be a point while a polygon could be used at a larger scale.
 
 primary temporal information::
-the position or extent in time that best represents the temporal characteristics of a *feature*
+the time instant or time interval that the publisher considers as the most important temporal characteristic of a *feature* (<<OAFeat-5,OGC API - Features - Part 5: Schemas>>)
 
-NOTE: A feature can be described by multiple properties with temporal information. For example, an event can have a property with an instant or interval when the event occurred or will occur and another property when the event was recorded in the dataset. In GeoJSON and JSON-FG, multiple properties with a temporal value can be encoded in the "properties" member. In those cases, it is the decision of the generator of the JSON-FG document what temporal information is considered "primary" for the expected use of the feature. The primary temporal information can also be built from two properties, e.g., when the feature has two properties describing the begin and end instants of an interval.
+NOTE: A feature can be described by multiple temporal properties. For example, an event can have a property with an instant or interval when the event occurred or will occur and another property when the event was recorded in the dataset. The primary temporal information can also be built from two properties, e.g., when the feature has two properties describing the start instant and end instant of an interval.
+
+publisher::
+entity responsible for making a resource available (https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher[Dublin Core Metadata Initiative - DCMI Metadata Terms])
 
 === Abbreviated Terms
 
