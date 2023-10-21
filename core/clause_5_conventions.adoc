@@ -1,41 +1,50 @@
 == Conventions
 
 === Identifiers
-The normative provisions in this Standard are denoted by the URI
+The normative provisions in this Standard are denoted by the URI:
 
 `\http://www.opengis.net/spec/{standard}/{m_n}`
 
 All requirements and conformance tests that appear in this document are denoted by partial URIs which are relative to this base.
 
+=== Use of JSON terminology
+
+The following terms are used as specified in <<rfc8259,JSON>>. In particular: 
+
+- "member" refers to a name/value pair of an object; 
+- "key" refers to the name of a member;
+- "value" refers to the value of a member, which may be an object, array, string, number, boolean, or `null`.
+
+For example, the GeoJSON "geometry" member has the key "geometry" and one of the GeoJSON geometry objects (or `null`) as its value.
+
 === Use of JSON Schema
 
-Where possible, https://json-schema.org/specification.html[JSON Schema] is used to formally specify the JSON-FG syntax.  Additional requirements are only used when JSON-Schema is not sufficient to express aspects of the JSON-FG syntax such as the relationship between the JSON-FG `place` member and the <<core_fallback,fallback>> GeoJSON `geometry` member.  Additional requirements are also used when expressing the aspects of the JSON-FG syntax using JSON-Schema would result is a schema that is considered too complex.  All schemas are in Annex '<<schemas>>'.
+Where possible, <<json-schema,JSON Schema>> is used to formally specify the JSON-FG syntax.  Additional requirements are used where JSON-Schema is not sufficient to express aspects of the JSON-FG syntax such as the relationship between the JSON-FG `place` member and the <<core_fallback,fallback>> GeoJSON `geometry` member. All schemas are in Annex '<<schemas>>'.
 
 In addition, JSON Schema is used to describe the schema of feature types, see <<schema-ref>>.
 
 === Use of CURIEs as a compact URI notation
 
-This document uses link:https://www.w3.org/TR/curie/[CURIEs] (Compact URIs) as a compact notation of OGC URIs, in particular for OGC URIs of coordinate reference systems. 
+JSON-FG uses link:https://www.w3.org/TR/curie/[CURIEs] (Compact URIs) as a compact notation of OGC URIs, in particular for OGC URIs of coordinate reference systems. 
 
 The policy for using CURIEs in OGC standards is documented https://docs.opengeospatial.org/pol/09-048r6.html#toc14[here].
 
-This Standard also allows the use of CURIEs where an OGC URI is expected, e.g. in the "coordRefSys" member or the "conformsTo" member. To be unambiguous, the use of safe CURIEs is recommended.
+This Standard also allows the use of CURIEs where an OGC URI is expected, such as in the "coordRefSys" member or the "conformsTo" member. To be unambiguous, the use of safe CURIEs is recommended.
 
 === Extensibility
 
-JSON-FG is designed to be extensible.  Extensions to the core, to any of the other conformance classes defined in this document or the addition of new capabilities can be specified in revisions to this Standard.  Extensions can also be specified in additional documents that would become additional parts to a JSON-FG suite of Standards.  Finally, extensions can be specified by communities of interest in community standards but such documents may not be vetted by the OGC or other standards bodies (e.g. W3C or ISO).
+JSON-FG is designed to be extensible. Extensions to the core, to any of the other conformance classes defined in this document or the addition of new capabilities can be specified in revisions to this Standard.  Extensions can also be specified in additional documents that would become additional parts of the JSON-FG Standard.  Finally, extensions can be specified by communities. However, such documents will not be vetted by the OGC.
 
-Readers of JSON-FG documents should therefore be prepared to encounter members that they may not recognize or encounter known members, but unknown value types. Members that are not recognized should be ignored. Values of a known member with an unknown value type should be mapped to `null`.
+Readers of JSON-FG documents should therefore be prepared to encounter unexpected keys or unexpected values. Keys that are not recognized should be ignored. Unexpected values of a known key should be mapped to `null`.
 
-The JSON Schemas are designed to support extensions. JSON-FG documents that include extensions will still validate against the JSON-FG schemas.
+The JSON Schemas are designed to support extensions. JSON-FG documents that include custom extensions, but conform to JSON-FG requirements classes will still validate against the normative JSON-FG schemas published in the OGC Schema Repository.
 
-The "$id" member of the schemas does not include information about the version of the Standard or the part of the JSON-FG standard. Future revisions of this Standard or additional parts of JSON-FG will update and extend the JSON-FG schemas. Any change will not invalidate existing JSON-FG documents.
+The "$id" member of the schemas does not include information about the version of the Standard or the part of the JSON-FG standard. Future revisions of this Standard or additional parts of JSON-FG will update and extend the JSON-FG schemas. Changes to the JSON-FG schemas should not invalidate existing JSON-FG documents without custom extensions.
 
 NOTE: The "CustomGeometry" object specified in "geometry-objects.json" supports this evolution of the JSON-FG schemas over time. The schema will match any geometry objects that are not specified by GeoJSON or JSON-FG. If in the future additional geometry types are added to JSON-FG, the type names would be excluded from the "type" member in "CustomGeometry". See <<geometry_types_arc_and_circle>> for an example.
 
 NOTE: The "$id" member identifies a schema resource with its canonical URI. The member is specified by <<json-schema,JSON Schema>>.
 
 Custom extensions should use a URI in "$id" that is controlled by the community of interest. A HTTP GET request to the URI should return the JSON Schema document.
-
 
 See <<extending_jsonfg>> for examples of how future parts or communities could extend the schemas.
