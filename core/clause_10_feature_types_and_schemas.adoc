@@ -71,10 +71,8 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the JSON document is a JSON-FG feature or feature collection with a "featureSchema" member, all referenced schemas SHALL conform to OGC API - Features - Part 5: Schemas.
+^|A |If the JSON document is a JSON-FG feature or feature collection with a "featureSchema" member, all referenced schemas SHALL conform to <<OAFeat-5,OGC API - Features - Part 5: Schemas>>.
 |===
-
-NOTE: A draft of OGC API - Features - Part 5: Schemas should be published soon.
 
 :req: single-feature-schema
 [#{req-class}_{req}]
