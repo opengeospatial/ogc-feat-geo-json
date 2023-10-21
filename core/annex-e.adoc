@@ -3,7 +3,7 @@
 :appendix-caption: Annex
 == Considerations (Informative)
 
-NOTE: This is a temporary annex during the development of the document that will be removed from the document before publication.
+NOTE: This is a temporary annex developed during the development of the document that will be removed from the document before publication.
 
 This annex includes considerations for each of the JSON-FG building blocks.
 
@@ -13,7 +13,7 @@ The following aspects were discussed:
 
 1. The current specification of the "time" member could be extended with minimal extensions beyond the RFC 3339 timestamps to support additional use cases, but this would be left to a future extension:
 
-  * Supporting instant values of a year (e.g., "1969") or a month (e.g., "1967-07") in addition to dates and timestamps could useful for extents that cover a complete month or year.
+  * Supporting instant values of a year (e.g., "1969") or a month (e.g., "1967-07") in addition to dates and timestamps could be useful for extents that cover a complete month or year.
   * Supporting instant values of the proleptic Gregorian calendar (i.e., dates before 1582 including negative years) could be useful for historic information.
 
 2. An alternative interval encoding would be to use ISO 8601-1/8601-2 and represent intervals as a string, too, instead of an array. In this case, the value of "interval" would be encoded as:
@@ -23,14 +23,14 @@ The following aspects were discussed:
   * `"2019-10-14/.."`
 
 +
-The main reason for the current design is that this is easier to parse. In a structured language like JSON it is natural to be explicit and use the structures. For example, GeoJSON does not represent the geometry as a WKT string, but as a JSON structure. The JSON encoding of the candidate Common Query Language (CQL2) standard also follows that approach for spatial and temporal literals.
+The main reason for the current design is that this is easier to parse. In a structured language like JSON it is natural to be explicit and use the structures. For example, GeoJSON does not represent the geometry as a Well-Known Text (WKT) string, but as a JSON structure. The JSON encoding of the candidate OGC Common Query Language (CQL2) Standard also follows that approach for spatial and temporal literals.
 
 +
 Another reason for the current design is that an object-based approach can support additional temporal types in the future besides instants and intervals. An example is a time series with an array of timestamps.
 
 3. The current proposal only specifies the use of "time" in the context of a feature. Other contexts could also be supported in the future. For example, temporal information for each geometry in a geometry collection, for properties where the value changes over time or a summary information in the feature collection.
 
-4. https://stacspec.org[SpatioTemporal Asset Catalog (STAC)] specifies a property https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#datetime[datetime] that is included in the "properties" member. This approach was not followed for two reasons:
+4. The https://stacspec.org[SpatioTemporal Asset Catalog (STAC)] specification defines a property https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#datetime[datetime] that is included in the "properties" member. This approach was not followed for two reasons:
 
   * Like the feature identifier and the primary geometry of a feature, the primary temporal information of a feature should be a "first-class" citizen in the JSON encoding of the feature.
   * The use of reserved property names might conflict with existing features that include a "datetime" property with a different specification.
@@ -45,7 +45,7 @@ The following aspects were discussed:
 
 1. JSON-FG will not support multiple geometries per feature (note that multiple geometries can be included inside the "properties" member) or any hints about the semantics of the geometry. The latter could potentially be addressed using JSON-LD contexts where this is important.
 
-2. The OGC Code Sprint in November 2021 also tested JSON-FG data with draft OGC API Features building blocks to access feature data suitable for display at a certain map scale / zoom level. This included API building blocks for simplifying geometries that are not points as well as filtering features that are typically not shown in maps at the scale or zoom level. This was validated with multiple implementations (a JSON-FG client and three OGC API Features servers).
+2. During the November 2021 OGC Code Sprint, the participants also tested JSON-FG data with draft OGC API Features building blocks to access feature data suitable for display at a certain map scale / zoom level. This included API building blocks for simplifying geometries that are not points as well as filtering features that are typically not shown in maps at the scale or zoom level. This was validated with multiple implementations (a JSON-FG client and three OGC API Features servers).
 
 Also see the <<ogc21_018,Testbed-17 Features and Geometries JSON CRS Analysis of Alternatives Engineering Report>>.
 
@@ -63,7 +63,7 @@ If JSON-LD is used, the "featureType" member can be mapped to "@type".
 
 2. This approach is similar to the approach taken by OGC API Records to identify the type of a record.
 
-3. In a JSON-FG extension to OGC API Features (or maybe in the new part "Schemas"), the Collection resources should be extended to include (optional) information about the feature types and geometry types included the collection. There could be a recommendation for "featureType" and "geometryDimension" as queryables for such collections.
+3. In a JSON-FG extension to OGC API Features (or maybe in the new part "Schemas"), the Collection resources should be extended to include (optional) information about the feature types and geometry types included in the collection. There could be a recommendation for "featureType" and "geometryDimension" as queryables for such collections.
 
 === Feature Schemas ("featureSchema")
 
