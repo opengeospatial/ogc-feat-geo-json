@@ -22,10 +22,10 @@ A JSON-FG document is either a feature or feature collection that meets all requ
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |The JSON document SHALL validate against <<schema-feature>> (a JSON-FG feature) or <<schema-feature-collection>> (a JSON-FG feature collection).
+^|A |The JSON document SHALL validate against the <<schema-feature>> (a JSON-FG feature) or the <<schema-feature-collection>> (a JSON-FG feature collection).
 |===
 
-While every JSON-FG document has to validate against the associated JSON-FG schema, executing the validation is only necessary when testing conformance. Implementations reading or writing JSON-FG do not have to perform validation. It is also not necessary to publish application- or community-specific schemas that describe the schema of the feature properties to conform to the Core requirements class.
+While every JSON-FG document must validate against the associated JSON-FG schema, executing the validation is only necessary when testing conformance. Implementations reading or writing JSON-FG do not have to perform validation. It is also not necessary to publish application- or community-specific schemas that describe the schema of the feature properties to conform to the Core requirements class.
 
 :rec: properties
 [width="90%",cols="2,7a"]
@@ -34,7 +34,7 @@ While every JSON-FG document has to validate against the associated JSON-FG sche
 ^|A |If a JSON-FG document is expected to be parsed by clients that only allow access to the JSON members in the GeoJSON Feature schema (in particular the id, the geometry, and the properties), any additional JSON members in the JSON-FG Feature schema ("time", "place", "coordRefSys", and "featureType") SHOULD also be included in the "properties" object.
 |===
 
-NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[open discussion], whether this recommendation should apply only in the "GeoJSON compatibility mode" (i.e., if the "compatibility" media type parameter is set).
+NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[open discussion] as to whether this recommendation should apply only in the "GeoJSON compatibility mode" (i.e., if the "compatibility" media type parameter is set). This discussion has to be resolved and this note must be removed before finalizing the JSON-FG Standard.
 
 === Metadata
 
@@ -87,8 +87,8 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 ^|A |If the "time" object in any JSON-FG feature in the JSON document includes both a "date" and a "timestamp" member, the `full-date` parts SHALL be identical.
 ^|B |If the "time" object in any JSON-FG feature in the JSON document includes both a "timestamp" and an "interval" member with start/end dates, the interval SHALL contain the date of the timestamp.
 ^|C |If the "time" object in any JSON-FG feature in the JSON document includes both a "timestamp" and an "interval" member with start/end timestamps, the interval SHALL contain the timestamp.
-^|D |If the "time" object in any JSON-FG feature in the JSON document includes both a "date" and an "interval" member with with start/end dates, the interval SHALL contain the date.
-^|E |If the "time" object in any JSON-FG feature in the JSON document includes both a "date" and an "interval" member with with start/end timestamps, the interval SHALL include timestamps on the date.
+^|D |If the "time" object in any JSON-FG feature in the JSON document includes both a "date" and an "interval" member with start/end dates, the interval SHALL contain the date.
+^|E |If the "time" object in any JSON-FG feature in the JSON document includes both a "date" and an "interval" member with start/end timestamps, the interval SHALL include timestamps on the date.
 |===
 
 :req: utc
@@ -120,8 +120,8 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "geometry" member in a JSON-FG feature in the JSON document is not `null`, the first element of each position SHALL be between -180 and +180.
-^|B |If the "geometry" member in a JSON-FG feature in the JSON document is not `null`, the second element of each position SHALL be between -90 and +90.
+^|A |If the "geometry" member in a JSON-FG feature in the JSON document is not `null`, the first element of each position SHALL be between -180 and +180 decimal degrees longitude.
+^|B |If the "geometry" member in a JSON-FG feature in the JSON document is not `null`, the second element of each position SHALL be between -90 and +90 decimal degrees latitude.
 |===
 
 :req: geom-valid
@@ -144,7 +144,8 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 ^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon" or "GeometryCollection", the CRS SHALL not be `OGC:CRS84` or `OGC:CRS84h` (WGS 84 with axis order longitude/latitude).
 |===
 
-The CRS of a geometry object is determined as follows: 
+[[determine-crs]]
+The CRS of a "place" geometry object is determined as follows: 
 
 * If the geometry object has a member "coordRefSys", the CRS is identified by the value. 
 ** Otherwise inspect the parent object and repeat until the root object.
@@ -168,7 +169,7 @@ The CRS of a geometry object is determined as follows:
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If both the "place" and the "geometry" member in a JSON-FG feature in the JSON document are not `null`, the values SHALL not be identical.
+^|A |If both the "place" and the "geometry" member in a JSON-FG feature in the JSON document are not `null`, the values of both members SHALL not be identical.
 ^|B |If both the "place" and the "geometry" member in a JSON-FG feature in the JSON document are not `null` and the JSON document is associated with the JSON-FG media type (e.g., the document is the content of the response to a HTTP GET request), the media type SHALL include a parameter "compatibility" with the value "geojson".
 |===
 
@@ -194,6 +195,6 @@ If the "place" member in any JSON-FG feature in the JSON document is not `null`,
 ^|B |If the "place" member in any JSON-FG feature in the JSON document is not `null`, the second element of each position SHOULD be in the valid range for the second coordinate axis of the CRS.
 |===
 
-See above for a description how to determine the CRS of a geometry object.
+See the <<determine-crs,description above>> how to determine the CRS of a geometry object.
 
-NOTE: This is only a recommendation, not a requirement as there are often valid reasons to have coordinates outside of the range, for example outside of a UTM zone that covers most of the area of a dataset.
+NOTE: This is only a recommendation, and not a requirement. This is because there are often valid reasons to have coordinates outside of the range, for example outside of a UTM zone that covers most of the area of a dataset.

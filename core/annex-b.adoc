@@ -3,7 +3,7 @@
 :appendix-caption: Annex
 == Schemas (Normative)
 
-NOTE: The JSON-FG schema documents will only be published on `schemas.opengis.net` once the standard has been approved. Until then, the schema documents will be made available in the OGC schema repository for drafts.
+NOTE: The JSON-FG Schema documents will only be published in the https://schemas.opengis.net/[OGC Schema Repository], if and once the JSON-FG Standard has been approved. Until then, the schema documents will be made available in the https://beta.schemas.opengis.net/[OGC Schema Repository for drafts]. This note will be removed before publishing the JSON-FG Standard.
 
 [[schema-feature-collection]]
 === JSON Schema of a JSON-FG feature collection 
