@@ -454,17 +454,17 @@ If the JSON document is a feature collection and all features in the feature col
 
 ==== Overview
 
-A JSON-FG feature schema is metadata about a feature that clients can use to understand the content of JSON-FG feature objects, such as a textual description of the feature properties or their value range.
+A JSON-FG feature schema is metadata about a feature that clients can use to understand the content of JSON-FG feature objects, such as a textual description of the feature properties or their value range. 
 
-NOTE: As of September 2023, the OGC Features API Standards Working Group is working on OGC API - Features - Part 5: Schemas. JSON Schema will be used to describe the logical schema of features in an encoding-agnostic way. The https://github.com/opengeospatial/ogcapi-features/issues/740#issuecomment-1501758135[discussion and decisions in this issue] will be used as the starting point. The schema uses additional schema keywords to identify special roles of properties, e.g., the feature identifier, the primary geometry or the primary instant.
+JSON-FG follows the approach of <<OAFeat-5,OGC API - Features - Part 5>>, that is, the feature schema is a logical schema. It can not be used to directly validate a JSON-FG document. However, a schema for validation of a JSON-FG feature or feature collection can be derived from the logical schema, if needed. The schemas of the feature properties in the logical schemas can be reused when constructing a JSON Schema for validation.
 
-The JSON-FG Standard provides guidance on how to include information about such feature schemas in a JSON-FG feature or feature collection.
+The JSON-FG Standard provides guidance on how to include information about the feature schemas in a JSON-FG feature or feature collection.
 
 ==== Description
 
 ===== The "featureSchema" member
 
-If all features in a JSON-FG document (either a single feature or a homogeneous feature collection) have the same feature type, the URI of the feature schema can and should be provided in a top-level JSON member "featureSchema" with the feature schema URI as the value.
+If all features in a JSON-FG document (either a single feature or a homogeneous feature collection) have the same feature schema, the URI of the feature schema can and should be provided in a top-level JSON member "featureSchema" with the feature schema URI as the value.
 
 [source,json]
 ----
