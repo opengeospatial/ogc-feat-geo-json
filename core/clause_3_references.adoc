@@ -5,8 +5,6 @@ The following normative documents contain provisions that, through reference in 
 
 [[rfc7946]] Internet Engineering Task Force (IETF). RFC 7946: **The GeoJSON Format**. Edited by H. Butler, M. Daly, A. Doyle, S. Gillies, S. Hagen, T. Schaub. 2016. Available at https://www.rfc-editor.org/rfc/rfc7946.html
 
-[[ogc06_103r4]] Open Geospatial Consortium (OGC). OGC 06-103r4: **OpenGIS® Implementation Standard for Geographic information - Simple feature access - Part 1: Common architecture**. Edited by J. Herring. 2011. Available at http://portal.opengeospatial.org/files/?artifact_id=25355
+[[ogc06_103r4]] Open Geospatial Consortium (OGC). OGC 06-103r4: **OpenGIS® Implementation Standard for Geographic information - Simple feature access - Part 1: Common architecture**. Edited by J. Herring. 2011. Available at https://portal.opengeospatial.org/files/?artifact_id=25355
 
-[[OAFeat-5]] Open Geospatial Consortium (OGC). **OGC API - Features - Part 5: Schemas 1.0 (DRAFT)**. Edited by C. Portele, P. Vretanos. To be published.
-
-NOTE: The draft should be available in the next days. The document will then be updated. Before publication of JSON-FG, a persistent reference is required. This note has to be removed before publication.
+[[OAFeat-5]] Open Geospatial Consortium (OGC). **OGC API - Features - Part 5: Schemas 1.0 (DRAFT)**. Edited by C. Portele, P. Vretanos. Available at https://docs.ogc.org/DRAFTS/23-058.html
