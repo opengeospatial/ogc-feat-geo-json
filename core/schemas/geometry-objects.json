@@ -264,6 +264,9 @@
           "type": "string",
           "enum": ["Prism"]
         },
+        "coordRefSys": {
+          "$ref": "coordrefsys.json"
+        },
         "base": {
           "oneOf": [
             { "$ref": "#/$defs/Point" },
