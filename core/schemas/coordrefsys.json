@@ -11,7 +11,8 @@
       "type": "array",
       "items": {
         "$ref": "#/$defs/single-refsys"
-      }
+      },
+      "minItems": 2
     }
   ],
   "$defs": {
@@ -30,7 +31,7 @@
     },
     "refsys-simpleref": {
       "type": "string",
-      "format": "uri"
+      "description": "The value is either a URI or a CURIE."
     },
     "refsys-byref": {
       "type": "object",
@@ -42,7 +43,7 @@
         },
         "href": {
           "type": "string",
-          "format": "uri"
+          "description": "The value is either a URI or a CURIE."
         },
         "epoch": {
           "type": "number"
