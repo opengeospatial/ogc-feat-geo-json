@@ -159,8 +159,10 @@ The CRS of a "place" geometry object is determined as follows:
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "GeometryCollection", no geometry in the collection SHALL include a "coordRefSys" member.
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "GeometryCollection" or any other geometry type that has embedded geometry objects, no embedded geometry object SHALL include a "coordRefSys" member.
 |===
+
+For example, the "Prism" geometry specified in the Requirements Class "3D" includes an embedded 2D base geometry. The base geometry cannot include a "coordRefSys" member.
 
 :req: fallback
 [#{req-class}_{req}]
