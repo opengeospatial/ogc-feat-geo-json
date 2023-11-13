@@ -21,6 +21,14 @@ include::schemas/featurecollection.json[]
 include::schemas/feature.json[]
 ----
 
+[[schema-conformsto]]
+=== JSON Schema of the "conformsTo" member
+
+[source,json,linenumbers]
+----
+include::schemas/conformsto.json[]
+----
+
 [[schema-time]]
 === JSON Schema of the "time" member
 
