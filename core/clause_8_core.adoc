@@ -50,6 +50,7 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 
 * `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`; 
 * `"[ogc-json-fg-1-{m_n}:{req-class}]"`.
+^|C |Only the root object of the JSON document SHALL include a "conformsTo" member.
 |===
 
 === Temporal information
