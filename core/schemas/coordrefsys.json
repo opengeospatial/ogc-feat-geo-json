@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://beta.schemas.opengis.net/json-fg/coordrefsys.json",
   "title": "the coordRefSys member",
-  "description": "This JSON Schema is part of JSON-FG version 0.2.0",
+  "description": "This JSON Schema is part of JSON-FG version 0.2.2",
   "oneOf": [
     {
       "$ref": "#/$defs/single-refsys"
