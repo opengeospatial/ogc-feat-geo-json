@@ -15,6 +15,8 @@ The Requirements Class "Core" specifies provisions for encoding information abou
 
 A JSON-FG document is either a feature or feature collection that meets all requirements described in this clause and also meets all requirements stated in the <<rfc7946,GeoJSON standard>> for GeoJSON features or feature collections.
 
+NOTE: This version only specifies embedding JSON-FG geometry objects as part of a feature or feature collection JSON-FG document. In general, it would be useful to specify rules for using JSON-FG geometry objects in another context, too. The JSON-FG working group agrees that this requirements class should be changed to support this, but this change was too late to be included in the draft version before the Public Comment period. See https://github.com/opengeospatial/ogc-feat-geo-json/issues/109[Geometry objects in non-feature(collection) documents] for more information.
+
 :req: schema-valid
 [#{req-class}_{req}]
 === Syntax
