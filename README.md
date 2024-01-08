@@ -1,46 +1,90 @@
-# OGC Features and Geometries JSON
+# OGC Features and Geometries JSON (JSON-FG)
 
 This GitHub repository contains [OGC](https://www.ogc.org/)'s candidate standard for OGC Features and Geometries JSON.
 
-OGC Features and Geometries JSON will build on the widely used [GeoJSON standard](https://geojson.org/) and extend it with minimal extensions to support additional concepts that are important for the wider geospatial community and the [OGC API standards](https://ogcapi.ogc.org/).
+OGC Features and Geometries JSON (JSON-FG) builds on the widely used [GeoJSON standard](https://geojson.org/) and extends it with minimal extensions to support additional concepts that are important for the wider geospatial community and the [OGC API standards](https://ogcapi.ogc.org/).
 
 ## Status
 
-This is a new OGC working group and the work has started on June 1st, 2021. A first draft of the candidate standard, version 0.1.0, is available.
+The current version is draft 0.2.2. 
+
+The current version will be the basis for the OGC Public Comment phase for 90 days, which is the final call for public comments before the candidate standard will go through the process for approval as an OGC Standard after resolving the comments received during the OGC Public Comment period.
 
 The editor's draft of the specification can be found at [docs.ogc.org/DRAFTS/21-045.html](https://docs.ogc.org/DRAFTS/21-045.html). A [PDF version](https://docs.ogc.org/DRAFTS/21-045.pdf) is available, too.
 
-Next steps:
+The Open Geospatial Consortium (OGC) invites organisations and developers that have a need for the extensions specified by this specification to implement and test the extensions. Please submit feedback in the [in this repository](https://github.com/opengeospatial/ogc-feat-geo-json/issues). Are these extensions useful for your use cases? Are they simple enough to implement?
 
-* The current draft version 0.1 will be the basis for testing JSON-FG by communities, in code sprints, etc.
-* We currently target an updated draft version 0.2 in mid 2023 to have a stable version for testing.
+There are a number of [open issues under discussion](https://github.com/opengeospatial/ogc-feat-geo-json/labels/waiting%20for%20input). 
+
+Uptake in implementations and sufficient feedback from implementation experience are a prerequisite for this specification to eventually progress towards an OGC Standard.
 
 ## Overview
 
-JSON is a popular encoding format for geospatial data. The light weight, simple syntax, and clear human and machine readability of JSON appeals to developers. GeoJSON has become a very popular encoding and is supported in most deployments of APIs implementing OGC API Features, but has limitations that prevent or limit its use in some cases.
+[GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) is a very popular encoding for geospatial vector data. GeoJSON is widely supported, including in most deployments of APIs implementing the OGC API Features Standard. However, GeoJSON has intentional restrictions that prevent or limit its use in certain geospatial application contexts. For example, GeoJSON is restricted to WGS 84 coordinates, does not support volumetric geometries and has no concept of classifying features according to their type.
 
-OGC Features and Geometries JSON will
+OGC Features and Geometries JSON (JSON-FG) is an OGC Candidate Standard for GeoJSON extensions that provide standard ways to support such requirements. The goal is to focus on capabilities that may require some geospatial expertise, but that are useful for many. Edge cases are considered out-of-scope of JSON-FG.
 
-* include the ability to use Coordinate Reference Systems (CRSs) other than WGS84 
-* follow the [OGC Axis Order Policy](https://portal.opengeospatial.org/files/?artifact_id=76024),
-* allow the use of non-Euclidean metrics, in particular ellipsoidal metrics,
-* support solids and multi-solids as geometry types, and
-* provide guidance on how to represent feature properties, e.g., including temporal properties.
+Since JSON-FG specifies extensions to GeoJSON that conform to the GeoJSON standard, valid JSON-FG features or feature collections are also valid GeoJSON features or feature collections.
 
-These capabilities will be supported by Part 1 (Core) or the OGC Features and Geometries JSON standard.
+The JSON-FG Standard specifies the following extensions to the GeoJSON format:
 
-JSON Schema will be used to formally specify the syntax of OGC Features and Geometries JSON.
+* The ability to use Coordinate Reference Systems (CRSs) other than WGS 84 (OGC:CRS84);
+* The ability to use non-Euclidean metrics, in particular ellipsoidal metrics;
+* Support for solids and prisms as geometry types;
+* The ability to encode temporal characteristics of a feature; and
+* The ability to declare the type and the schema of a feature.
 
-Given the popularity of GeoJSON, the working group will ensure that OGC Features and Geometries JSON will be specified as a superset of GeoJSON so that valid OGC Features and Geometries JSON instances are also valid GeoJSON instances.
+Geographic features, their properties, and their spatial extents that can be represented as GeoJSON objects are encoded as GeoJSON. Additional information not specified in the GeoJSON RFC is mainly encoded in additional members of the GeoJSON objects. The additional members use keys that do not conflict with existing GeoJSON keys. This was done so that existing and future GeoJSON clients can continue to successfully parse and understand GeoJSON encoded content. JSON-FG enabled clients will also be able to parse and understand the additional members.
 
-If the first part of the standard sees good adoption by the market, OGC Features and Geometries JSON may in the future be extended to support additional capabilities needed by multiple communities, for example, include more complex geometries such as curves with non-linear interpolation, time-variant geometries, or geometries based on multiple coordinate reference systems.
+JSON Schema is used to formally specify the JSON-FG syntax.
+
+## Example use cases
+
+NOTE: TODO
+
+## Implementations
+
+NOTE: Work in progress, more to be added, information to be checked
+
+### Converters
+
+| Software Tool | Remarks | Core: `place` | Core: `time` | 3D: Polyhedron | 3D: Prisms | Feature Type | Schema | 
+| ------------- | ------- | :-----------: | :----------: | :------------: | :--------: | :----------: | :----: |
+| [GDAL](https://gdal.org/drivers/vector/jsonfg.html) | Convert between JSON-FG and other feature formats | X | X | (X) | - | X | - |
+| [cityjson2jsonfg](https://pypi.org/project/cityjson2jsonfg/) | CityJSON to JSON-FG converter | X | X | (X) | - | - | - |
+
+### Publish Web APIs implementing OGC API Features
+
+| Software Tool | Remarks | Core: `place` | Core: `time` | 3D: Polyhedron | 3D: Prisms | Feature Type | Schema | 
+| ------------- | ------- | :-----------: | :----------: | :------------: | :--------: | :----------: | :----: |
+| [ldproxy](https://docs.ldproxy.net/services/building-blocks/features_-_json-fg.html) | | X | X | X | - | X | X |
+| CubeServ (MariaDB) | | X | X | ? | ? | ? | ? |
+
+### Mapping clients
+
+| Software Tool | Remarks | Core: `place` | Core: `time` | 3D: Polyhedron | 3D: Prisms | Feature Type | Schema | 
+| ------------- | ------- | :-----------: | :----------: | :------------: | :--------: | :----------: | :----: |
+| [GLeo](https://gitlab.com/IvanSanchez/gleo) | Web client, [Example client](https://ivansanchez.gitlab.io/gleo/demos/jsonfg-drag-drop.html) | X | ? | - | - | - | - |
+| [GNOSIS Cartographer (Ecere)](https://ecere.ca/gnosis/overview/#cartographer) | Desktop client | X | ? | ? | ? | ? | ? |
+
+### Validators
+
+| Software Tool | Remarks | Core: `place` | Core: `time` | 3D: Polyhedron | 3D: Prisms | Feature Type | Schema | 
+| ------------- | ------- | :-----------: | :----------: | :------------: | :--------: | :----------: | :----: |
+| [val3dity](https://github.com/tudelft3d/val3dity) | Validate Polyhedron gemetries | (X) | - | X | - | - | - |
+| [json-fg-validator](https://github.com/tomkralidis/json-fg-validator) | Validate JSON-FG (command line, Python) | X | X | ? | ? | ? | ? |
+| [json-fg-linter](https://github.com/Geonovum-labs/json-fg-linter) | Validate JSON-FG (Node JS) | X | X | ? | ? | ? | ? |
+
+### Libraries
+
+| Software Tool | Remarks | Core: `place` | Core: `time` | 3D: Polyhedron | 3D: Prisms | Feature Type | Schema | 
+| ------------- | ------- | :-----------: | :----------: | :------------: | :--------: | :----------: | :----: |
+| [JSON-FG for Java](https://github.com/Geonovum-labs/json-fg-java) | Java classes to simplfy handling JSON-FG | X | X | ? | ? | ? | ? |
 
 ## Communication
 
-Most all work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/ogc-feat-geo-json/issues),
+Work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/ogc-feat-geo-json/issues),
 so browse there to get a good idea of what is happening, as well as past decisions.
-
-Join the [![chat at https://gitter.im/opengeospatial/OGC-feat-geo-json](https://badges.gitter.im/opengeospatial/OGC-feat-geo-json.svg)](https://gitter.im/opengeospatial/ogc-feat-geo-json?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Recordings of meetings can be found on the [OGC portal](https://portal.ogc.org/index.php?m=projects&a=view&project_id=660&tab=2&artifact_id=97658) (access for members of the OGC and the OGC Features and Geometries JSON Standards Working Group).
 
