@@ -3,7 +3,7 @@
 :appendix-caption: Annex
 == Coordinate Reference Systems (Informative)
 
-NOTE: This is a temporary annex that will be removed from the document when the coordinate reference systems have been registered and assigned persistent OGC URIs. 
+NOTE: This is a temporary annex that will be removed from the document when the coordinate reference systems https://github.com/opengeospatial/NamingAuthority/issues/273[have been registered and assigned persistent OGC URIs].
 
 This annex specifies additional coordinate reference systems that do not yet exist in the OGC register for coordinate reference systems and that have been created to support use cases identified in the context of JSON-FG.
 
