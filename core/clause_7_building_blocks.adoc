@@ -301,9 +301,9 @@ image::images/TorontoCityHall_3D_2.png[alt=Toronto City Hall,width=60%,align="ce
 Without any other information, the following coordinate reference system (CRS) defaults apply in a JSON-FG document:
 
 * Spatial CRS: WGS 84 with axis order longitude, latitude and optional ellipsoidal height, either `link:http://www.opengis.net/def/crs/OGC/0/CRS84[OGC:CRS84]` (2D) or `link:http://www.opengis.net/def/crs/OGC/0/CRS84h[OGC:CRS84h]` (3D) as registered with the OGC;
-* Temporal CRS: DateTime in Gregorian calendar, <<crs-datetime-gregorian,`OGC:datetime`>>. 
+* Temporal CRS: DateTime in Gregorian calendar, https://www.opengis.net/def/crs/OGC/0/GregorianDateTime[`OGC:GregorianDateTime`]. 
 
-NOTE: In `OGC:datetime`, all granularities of ISO 8601 are valid values according to https://docs.ogc.org/as/18-005r5/18-005r5.html#109[OGC Abstract Specification Topic 2: Referencing by coordinates, section D.3]. That is, both dates and timestamps are valid values in the `OGC:datetime` CRS.
+NOTE: In `OGC:GregorianDateTime`, all granularities of ISO 8601 are valid values according to https://docs.ogc.org/as/18-005r5/18-005r5.html#109[OGC Abstract Specification Topic 2: Referencing by coordinates, section D.3]. That is, both dates and timestamps are valid values in the `OGC:GregorianDateTime` CRS.
 
 In this JSON-FG Standard, a new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry object at the collection, feature, or value levels.
 
@@ -410,8 +410,8 @@ The order in which coordinates for JSON-FG geometry objects are expressed is def
 
 For unknown coordinate reference systems, such as with CAD engineering drawings, the following CRS identifiers can be used:
 
-* <<crs-engineering-2d,`OGC:engineering-2d`>> for 2D coordinates (x, y);
-* <<crs-engineering-3d,`OGC:engineering-3d`>> for 3D coordinates (x, y, z).
+* https://www.opengis.net/def/crs/OGC/0/Engineering2D[`OGC:Engineering2D`] for 2D coordinates (x, y);
+* https://www.opengis.net/def/crs/OGC/0/Engineering3D[`OGC:Engineering3D`] for 3D coordinates (x, y, z).
 
 [[feature-types]]
 === Feature types
