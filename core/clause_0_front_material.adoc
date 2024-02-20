@@ -35,7 +35,6 @@ The security considerations for GeoJSON as specified in Section 10 of IETF RFC 7
 
 If and once the JSON-FG Standard is approved by the OGC Members, the following actions need to be taken by OGC before publication:
 
-- Annex <<crs>> specifies additional coordinate reference systems (CRSs) that do not yet exist in the OGC CRS register. The CRSs have been created to support use cases identified in the context of JSON-FG. The CRSs are referenced in the JSON-FG Standard. The CRSs will be added to the OGC CRS register and the Annex will be removed.
 - Annex <<schemas>> specifies the JSON-FG schema documents. The documents will be published in the https://schemas.opengis.net/[OGC Schema Repository].
 - Annex <<relationships_and_links>> may be removed.
 - Annex <<considerations>> will be removed.
@@ -50,10 +49,10 @@ This section will be removed before the JSON-FG Standard is published.
 
 The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
 
+* CubeWerx
 * Esri
 * Geonovum
 * interactive instruments
-* MariaDB Corporation
 
 
 [big]*vii.     Submitters*
@@ -63,7 +62,7 @@ All questions regarding this submission should be directed to the editor or the 
 |===
 |*Name* |*Affiliation*
 |Clemens Portele _(editor)_ |interactive instruments
-|Panagiotis (Peter) A. Vretanos _(editor)_ |MariaDB Corporation
+|Panagiotis (Peter) A. Vretanos _(editor)_ |CubeWerx
 |Linda van den Brink |Geonovum
 |Satish Sankaran |Esri
 |===
