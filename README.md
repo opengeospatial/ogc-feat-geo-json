@@ -12,7 +12,7 @@ This version will be the basis for the OGC Public Comment phase for 90 days, whi
 
 The editor's draft of the specification can be found at [docs.ogc.org/DRAFTS/21-045.html](https://docs.ogc.org/DRAFTS/21-045.html). A [PDF version](https://docs.ogc.org/DRAFTS/21-045.pdf) is available, too.
 
-The Open Geospatial Consortium (OGC) invites organisations and developers that have a need for the extensions specified by this specification to implement and test the extensions. Please submit feedback in the [in this repository](https://github.com/opengeospatial/ogc-feat-geo-json/issues). Are these extensions useful for your use cases? Are they simple enough to implement?
+The Open Geospatial Consortium (OGC) invites organisations and developers that have a need for the extensions specified by this specification to implement and test the extensions. Please submit feedback [in this repository](https://github.com/opengeospatial/ogc-feat-geo-json/issues). Are these extensions useful for your use cases? Are they simple enough to implement?
 
 There are a number of [open issues under discussion](https://github.com/opengeospatial/ogc-feat-geo-json/labels/waiting%20for%20input). 
 
@@ -34,7 +34,7 @@ The JSON-FG Standard specifies the following extensions to the GeoJSON format:
 * The ability to encode temporal characteristics of a feature; and
 * The ability to declare the type and the schema of a feature.
 
-Geographic features, their properties, and their spatial extents that can be represented as GeoJSON objects are encoded as GeoJSON. Additional information not specified in the GeoJSON RFC is mainly encoded in additional members of the GeoJSON objects. The additional members use keys that do not conflict with existing GeoJSON keys. This was done so that existing and future GeoJSON clients can continue to successfully parse and understand GeoJSON encoded content. JSON-FG enabled clients will also be able to parse and understand the additional members.
+Geographic features, their properties, and their spatial extents that can be represented as GeoJSON objects are encoded as GeoJSON. Additional information not supported by the GeoJSON standard is mainly encoded in additional members of the GeoJSON objects. The additional members use keys that do not conflict with existing GeoJSON keys. This was done so that existing and future GeoJSON clients can continue to successfully parse and understand GeoJSON encoded content. JSON-FG enabled clients will also be able to parse and understand the additional members.
 
 JSON Schema is used to formally specify the JSON-FG syntax.
 
@@ -56,8 +56,8 @@ This section provides links to existing implementations of JSON-FG and examples 
 - Name: A name for the implementation or example.
 - Status: An indication of the status of the implementation or example.
 - Remarks: Additional remarks about the scope of the implementation or example.
-- Core (`place`): An indication that the "coord" member is supported or used.
-- Core (`time`): An indication that the "time" member is supported or used.
+- Core ("place"): An indication that the "coord" member is supported or used.
+- Core ("time"): An indication that the "time" member is supported or used.
 - 3D (Polyhedron):  An indication that (Multi-)Polyhedron geometries are supported or used in the "place" member.
 - 3D (Prism): An indication that Prism geometries are supported or used in the "place" member.
 - Feature Type: An indication that the "featureType" member is supported or used.
