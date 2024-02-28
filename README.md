@@ -87,10 +87,19 @@ If you are aware of other implementations or examples, please open an issue or a
 | [ldproxy](https://docs.ldproxy.net/services/building-blocks/features_-_json-fg.html) | Stable | | X | X | X | - | X | X |
 | CubeServ (CubeWerx) | TBD | | X | X | ? | ? | ? | ? |
 
+Examples of APIs providing JSON-FG:
+
+* [Topographic data, Daraa, Syria](https://demo.ldproxy.net/daraa)
+* [Vineyards in Rhineland-Palatinate, Germany](https://demo.ldproxy.net/vineyards)
+* [OS Open Zoomstack](https://demo.ldproxy.net/zoomstack)
+* ...
+
 ### Validators
 
 | Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
 | ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
+| [json-fg-linter](https://github.com/Geonovum-labs/json-fg-linter) | Initial version | Validate JSON-FG using JSON Schema validation and 
+additional tests. [Online linter](https://geonovum-labs.github.io/json-fg-linter/) | X | X | X | X | X | X |
 | [json-fg-validator](https://github.com/tomkralidis/json-fg-validator) | Initial version | Validate JSON-FG (command line, Python) using JSON Schema validation and additional tests. | (X) | (X) | (X) | (X) | (X) | (X) |
 | [val3dity](https://github.com/tudelft3d/val3dity) | Stable | Validate Polyhedron gemetries | (X) | - | X | - | - | - |
 
