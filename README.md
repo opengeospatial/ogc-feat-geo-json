@@ -99,8 +99,7 @@ Examples of APIs providing features in JSON-FG:
 
 | Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
 | ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
-| [json-fg-linter](https://github.com/Geonovum-labs/json-fg-linter) | Initial version | Validate JSON-FG using JSON Schema validation and 
-additional tests. [Online linter](https://geonovum-labs.github.io/json-fg-linter/) | X | X | X | X | X | X |
+| [json-fg-linter](https://github.com/Geonovum-labs/json-fg-linter) | Initial version | Validate JSON-FG using JSON Schema validation and additional tests. [Online linter](https://geonovum-labs.github.io/json-fg-linter/) | X | X | X | X | X | X |
 | [json-fg-validator](https://github.com/tomkralidis/json-fg-validator) | Initial version | Validate JSON-FG (command line, Python) using JSON Schema validation and additional tests. | (X) | (X) | (X) | (X) | (X) | (X) |
 | [val3dity](https://github.com/tudelft3d/val3dity) | Stable | Validate Polyhedron gemetries | (X) | - | X | - | - | - |
 
