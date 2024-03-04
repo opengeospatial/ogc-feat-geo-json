@@ -67,284 +67,54 @@ If you are aware of other implementations or examples, please open an issue or a
 
 ### Map clients
 
-<table style="width:100%">
-<thead>
-<tr>
-<th style="width:12%">Name</th>
-<th style="width:10%">Status</th>
-<th style="width:30%">Remarks</th>
-<th style="width:8%" align="center">Core ("place")</th>
-<th style="width:8%" align="center">Core ("time")</th>
-<th style="width:8%" align="center">3D (Polyhedron)</th>
-<th style="width:8%" align="center">3D (Prism)</th>
-<th style="width:8%" align="center">Feature Type</th>
-<th style="width:8%" align="center">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://gitlab.com/IvanSanchez/gleo" rel="nofollow">GLeo</a></td>
-<td>Demonstrator</td>
-<td>Web client, <a href="https://ivansanchez.gitlab.io/gleo/demos/jsonfg-drag-drop.html" rel="nofollow">Example client that can display JSON-FG data added by drag &amp; drop to the map</a></td>
-<td align="center">X</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td><a href="https://github.com/Geonovum-labs/json-fg-examples">JSON-FG OpenLayers example</a></td>
-<td>Demonstrator</td>
-<td><a href="https://geonovum-labs.github.io/json-fg-examples/" rel="nofollow">Web client demonstrating how JSON-FG data can be shown in an OpenLayers map</a>, supports a time slider to select features in an interval</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td><a href="https://ecere.ca/gnosis/overview/#cartographer" rel="nofollow">GNOSIS Cartographer (Ecere)</a></td>
-<td>Stable</td>
-<td>Desktop client</td>
-<td align="center">X</td>
-<td align="center">?</td>
-<td align="center">?</td>
-<td align="center">?</td>
-<td align="center">?</td>
-<td align="center">?</td>
-</tr>
-</tbody>
-</table>
+| Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
+| ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
+| [GLeo](https://gitlab.com/IvanSanchez/gleo) | Demonstrator | Web client, [Example client that can display JSON-FG data added by drag & drop to the map](https://ivansanchez.gitlab.io/gleo/demos/jsonfg-drag-drop.html) | X | - | - | - | - | - |
+| [JSON-FG OpenLayers example](https://github.com/Geonovum-labs/json-fg-examples)  | Demonstrator | [Web client demonstrating how JSON-FG data can be shown in an OpenLayers map](https://geonovum-labs.github.io/json-fg-examples/), supports a time slider to select features in an interval | X | X | - | - | - | - |
+| [GNOSIS Cartographer (Ecere)](https://ecere.ca/gnosis/overview/#cartographer) | Stable | Desktop client | X | ? | ? | ? | ? | ? |
 
 ### Converters
 
-<table>
-<thead>
-<tr>
-<th style="width:12%">Name</th>
-<th style="width:10%">Status</th>
-<th style="width:30%">Remarks</th>
-<th style="width:8%" align="center">Core ("place")</th>
-<th style="width:8%" align="center">Core ("time")</th>
-<th style="width:8%" align="center">3D (Polyhedron)</th>
-<th style="width:8%" align="center">3D (Prism)</th>
-<th style="width:8%" align="center">Feature Type</th>
-<th style="width:8%" align="center">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://gdal.org/drivers/vector/jsonfg.html" rel="nofollow">GDAL</a></td>
-<td>Stable</td>
-<td>Convert between JSON-FG and other feature formats</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">(X)</td>
-<td align="center">-</td>
-<td align="center">X</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td><a href="https://pypi.org/project/cityjson2jsonfg/" rel="nofollow">cityjson2jsonfg</a></td>
-<td>Initial Version</td>
-<td>CityJSON to JSON-FG converter</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">(X)</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-</tbody>
-</table>
+| Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
+| ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
+| [GDAL](https://gdal.org/drivers/vector/jsonfg.html) | Stable | Convert between JSON-FG and other feature formats | X | X | (X) | - | X | - |
+| [cityjson2jsonfg](https://pypi.org/project/cityjson2jsonfg/) | Initial Version | CityJSON to JSON-FG converter | X | X | (X) | - | - | - |
 
 ### Publish Web APIs implementing OGC API Features
 
-<table>
-<thead>
-<tr>
-<th style="width:12%">Name</th>
-<th style="width:10%">Status</th>
-<th style="width:30%">Remarks</th>
-<th style="width:8%" align="center">Core ("place")</th>
-<th style="width:8%" align="center">Core ("time")</th>
-<th style="width:8%" align="center">3D (Polyhedron)</th>
-<th style="width:8%" align="center">3D (Prism)</th>
-<th style="width:8%" align="center">Feature Type</th>
-<th style="width:8%" align="center">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://docs.ldproxy.net/services/building-blocks/features_-_json-fg.html" rel="nofollow">ldproxy</a></td>
-<td>Stable</td>
-<td></td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">-</td>
-<td align="center">X</td>
-<td align="center">X</td>
-</tr>
-<tr>
-<td>CubeServ (CubeWerx)</td>
-<td>TBD</td>
-<td></td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">?</td>
-<td align="center">?</td>
-<td align="center">?</td>
-<td align="center">?</td>
-</tr>
-</tbody>
-</table>
+| Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
+| ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
+| [ldproxy](https://docs.ldproxy.net/services/building-blocks/features_-_json-fg.html) | Stable | | X | X | X | - | X | X |
+| CubeServ (CubeWerx) | TBD | | X | X | ? | ? | ? | ? |
 
 Examples of APIs providing JSON-FG:
 
 * [Topographic data, Daraa, Syria](https://demo.ldproxy.net/daraa)
 * [Vineyards in Rhineland-Palatinate, Germany](https://demo.ldproxy.net/vineyards)
 * [OS Open Zoomstack](https://demo.ldproxy.net/zoomstack)
-* (more to be added soon)
+* ...
 
 ### Validators
 
-<table>
-<thead>
-<tr>
-<th style="width:12%">Name</th>
-<th style="width:10%">Status</th>
-<th style="width:30%">Remarks</th>
-<th style="width:8%" align="center">Core ("place")</th>
-<th style="width:8%" align="center">Core ("time")</th>
-<th style="width:8%" align="center">3D (Polyhedron)</th>
-<th style="width:8%" align="center">3D (Prism)</th>
-<th style="width:8%" align="center">Feature Type</th>
-<th style="width:8%" align="center">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/Geonovum-labs/json-fg-linter">json-fg-linter</a></td>
-<td>Initial version</td>
-<td>Validate JSON-FG using JSON Schema validation and</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td>additional tests. <a href="https://geonovum-labs.github.io/json-fg-linter/" rel="nofollow">Online linter</a></td>
-<td>X</td>
-<td>X</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td><a href="https://github.com/tomkralidis/json-fg-validator">json-fg-validator</a></td>
-<td>Initial version</td>
-<td>Validate JSON-FG (command line, Python) using JSON Schema validation and additional tests.</td>
-<td align="center">(X)</td>
-<td align="center">(X)</td>
-<td align="center">(X)</td>
-<td align="center">(X)</td>
-<td align="center">(X)</td>
-<td align="center">(X)</td>
-</tr>
-<tr>
-<td><a href="https://github.com/tudelft3d/val3dity">val3dity</a></td>
-<td>Stable</td>
-<td>Validate Polyhedron gemetries</td>
-<td align="center">(X)</td>
-<td align="center">-</td>
-<td align="center">X</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-</tr>
-</tbody>
-</table>
+| Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
+| ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
+| [json-fg-linter](https://github.com/Geonovum-labs/json-fg-linter) | Initial version | Validate JSON-FG using JSON Schema validation and 
+additional tests. [Online linter](https://geonovum-labs.github.io/json-fg-linter/) | X | X | X | X | X | X |
+| [json-fg-validator](https://github.com/tomkralidis/json-fg-validator) | Initial version | Validate JSON-FG (command line, Python) using JSON Schema validation and additional tests. | (X) | (X) | (X) | (X) | (X) | (X) |
+| [val3dity](https://github.com/tudelft3d/val3dity) | Stable | Validate Polyhedron gemetries | (X) | - | X | - | - | - |
 
 ### Parsers
 
-<table>
-<thead>
-<tr>
-<th style="width:12%">Name</th>
-<th style="width:10%">Status</th>
-<th style="width:30%">Remarks</th>
-<th style="width:8%" align="center">Core ("place")</th>
-<th style="width:8%" align="center">Core ("time")</th>
-<th style="width:8%" align="center">3D (Polyhedron)</th>
-<th style="width:8%" align="center">3D (Prism)</th>
-<th style="width:8%" align="center">Feature Type</th>
-<th style="width:8%" align="center">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/Geonovum-labs/json-fg-java">JSON-FG for Java</a></td>
-<td>Development</td>
-<td>Java classes to simplfy handling JSON-FG</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">X</td>
-</tr>
-</tbody>
-</table>
+| Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
+| ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
+| [JSON-FG for Java](https://github.com/Geonovum-labs/json-fg-java) | Development | Java classes to simplfy handling JSON-FG | X | X | X | X | X | X |
 
 ### Data Specifications
 
-<table>
-<thead>
-<tr>
-<th style="width:12%">Name</th>
-<th style="width:10%">Status</th>
-<th style="width:30%">Remarks</th>
-<th style="width:8%" align="center">Core ("place")</th>
-<th style="width:8%" align="center">Core ("time")</th>
-<th style="width:8%" align="center">3D (Polyhedron)</th>
-<th style="width:8%" align="center">3D (Prism)</th>
-<th style="width:8%" align="center">Feature Type</th>
-<th style="width:8%" align="center">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://xleitstelle.de/xplanung" rel="nofollow">XPlanung</a></td>
-<td>Development</td>
-<td>XPlanung is the mandatory specification for the exchange of spatial plans in Germany. XPlanung specifies a GML encoding. Support for a JSON-FG encoding is under investigation, schemas are available at <a href="https://gitlab.opencode.de/xleitstelle/xplanung/schemas/json" rel="nofollow">JSON Schemas for XPlanung</a>.</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">X</td>
-<td align="center">-</td>
-</tr>
-<tr>
-<td><a href="https://github.com/ShapeChange/ShapeChange">ShapeChange</a></td>
-<td>Stable</td>
-<td>ShapeChange processes application schemas for geographic information modelled in UML accoring to ISO 19109. The <a href="https://shapechange.github.io/ShapeChange/3.0.0/targets/JSON_Schema.html" rel="nofollow">JSON Schema target</a> supports generating schemas for validating JSON-FG or GeoJSON instances.</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">X</td>
-<td align="center">-</td>
-<td align="center">X</td>
-<td align="center">-</td>
-</tr>
-</tbody>
-</table>
+| Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
+| ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
+| [XPlanung](https://xleitstelle.de/xplanung) | Development | XPlanung is the mandatory specification for the exchange of spatial plans in Germany. XPlanung specifies a GML encoding. Support for a JSON-FG encoding is under investigation, schemas are available at [JSON Schemas for XPlanung](https://gitlab.opencode.de/xleitstelle/xplanung/schemas/json).  | X | X | - | - | X | - |
+| [ShapeChange](https://github.com/ShapeChange/ShapeChange) | Stable | ShapeChange processes application schemas for geographic information modelled in UML accoring to ISO 19109. The [JSON Schema target](https://shapechange.github.io/ShapeChange/3.0.0/targets/JSON_Schema.html) supports generating schemas for validating JSON-FG or GeoJSON instances. | X | X | X | - | X | - |
 
 ## Communication
 
