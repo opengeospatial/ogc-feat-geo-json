@@ -71,7 +71,7 @@ If you are aware of other implementations or examples, please open an issue or a
 | ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
 | [GLeo](https://gitlab.com/IvanSanchez/gleo) | Demonstrator | Web client, [Example client that can display JSON-FG data added by drag & drop to the map](https://ivansanchez.gitlab.io/gleo/demos/jsonfg-drag-drop.html) | X | - | - | - | - | - |
 | [JSON-FG OpenLayers example](https://github.com/Geonovum-labs/json-fg-examples)  | Demonstrator | [Web client demonstrating how JSON-FG data can be shown in an OpenLayers map](https://geonovum-labs.github.io/json-fg-examples/), supports a time slider to select features in an interval | X | X | - | - | - | - |
-| [GNOSIS Cartographer (Ecere)](https://ecere.ca/gnosis/overview/#cartographer) | Stable | Desktop client | X | ? | ? | ? | ? | ? |
+| [GNOSIS Cartographer (Ecere)](https://ecere.ca/gnosis/overview/#cartographer) | Stable | Desktop client, supports v0.1 | X | X | ? | - | ? | - |
 
 ### Converters
 
@@ -84,15 +84,16 @@ If you are aware of other implementations or examples, please open an issue or a
 
 | Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
 | ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
-| [ldproxy](https://docs.ldproxy.net/services/building-blocks/features_-_json-fg.html) | Stable | | X | X | X | - | X | X |
+| [ldproxy](https://docs.ldproxy.net/services/building-blocks/features_-_json-fg.html) | Stable | OGC API Features Reference Implementation | X | X | X | - | X | X |
 | CubeServ (CubeWerx) | TBD | | X | X | ? | ? | ? | ? |
+| [GoKoala](https://github.com/PDOK/gokoala) | Development | Cloud Native OGC APIs server, written in Go. | X | X | - | - | - | - |
 
-Examples of APIs providing JSON-FG:
+Examples of APIs providing features in JSON-FG:
 
 * [Topographic data, Daraa, Syria](https://demo.ldproxy.net/daraa)
 * [Vineyards in Rhineland-Palatinate, Germany](https://demo.ldproxy.net/vineyards)
 * [OS Open Zoomstack](https://demo.ldproxy.net/zoomstack)
-* ...
+* (more to be added)
 
 ### Validators
 
