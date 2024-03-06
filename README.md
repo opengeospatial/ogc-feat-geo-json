@@ -114,7 +114,7 @@ Examples of APIs providing features in JSON-FG:
 | Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
 | ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
 | [XPlanung](https://xleitstelle.de/xplanung) | Development | XPlanung is the mandatory specification for the exchange of spatial plans in Germany. XPlanung specifies a GML encoding. Support for a JSON-FG encoding is under investigation, schemas are available at [JSON Schemas for XPlanung](https://gitlab.opencode.de/xleitstelle/xplanung/schemas/json).  | X | X | - | - | X | - |
-| [ShapeChange](https://github.com/ShapeChange/ShapeChange) | Stable | ShapeChange processes application schemas for geographic information modelled in UML accoring to ISO 19109. The [JSON Schema target](https://shapechange.github.io/ShapeChange/3.0.0/targets/JSON_Schema.html) supports generating schemas for validating JSON-FG or GeoJSON instances. | X | X | X | - | X | - |
+| [ShapeChange](https://github.com/ShapeChange/ShapeChange) | Stable | ShapeChange processes application schemas for geographic information modelled in UML according to ISO 19109. The [JSON Schema target](https://shapechange.github.io/ShapeChange/3.0.0/targets/JSON_Schema.html) supports generating schemas for validating JSON-FG or GeoJSON instances. | X | X | X | - | X | - |
 
 ## Communication
 
