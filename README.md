@@ -78,7 +78,7 @@ If you are aware of other implementations or examples, please open an issue or a
 | Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
 | ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
 | [GDAL](https://gdal.org/drivers/vector/jsonfg.html) | Stable | Convert between JSON-FG and other feature formats | X | X | (X) | - | X | - |
-| [cityjson2jsonfg](https://pypi.org/project/cityjson2jsonfg/) | Initial Version | CityJSON to JSON-FG converter | X | X | (X) | - | - | - |
+| [cityjson2jsonfg](https://github.com/3DGI/cityjson2jsonfg) | Stable | A command line tool for converting CityJSON files to JSON-FG format | X | X | X | - | - | - |
 
 ### Publish Web APIs implementing OGC API Features
 
