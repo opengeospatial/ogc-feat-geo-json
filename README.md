@@ -86,15 +86,15 @@ If you are aware of other implementations or examples, please open an issue or a
 | Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
 | ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
 | [ldproxy](https://docs.ldproxy.net/services/building-blocks/features_-_json-fg.html) | Stable | OGC API Features Reference Implementation | X | X | X | - | X | X |
-| [CubeServ (CubeWerx)](https://test.cubewerx.com/cubewerx/cubeserv/default/ogcapi/Vancouver) | Stable | OGC API Features server written in C and serving Vancouver infrastructure data. | X | X | ? | ? | X | X |
-| [GoKoala](https://github.com/PDOK/gokoala) | Development | Cloud Native OGC APIs server, written in Go. | X | X | - | - | - | - |
+| CubeServ | Stable | A suite of OGC web services and OGC API endpoints by CubeWerx Inc. | X | X | - | - | X | X |
+| [GoKoala](https://github.com/PDOK/gokoala) | Development | Cloud Native OGC API server | X | X | - | - | - | - |
 
-Examples of APIs providing features in JSON-FG:
+Examples of OGC Web APIs providing features in JSON-FG:
 
-* [Topographic data, Daraa, Syria](https://demo.ldproxy.net/daraa)
-* [Vineyards in Rhineland-Palatinate, Germany](https://demo.ldproxy.net/vineyards)
-* [OS Open Zoomstack](https://demo.ldproxy.net/zoomstack)
-* (more to be added)
+* [Vancouver infrastructure data (CubeServ)](https://test.cubewerx.com/cubewerx/cubeserv/default/ogcapi/Vancouver)
+* [Topographic data, Daraa, Syria (ldproxy)](https://demo.ldproxy.net/daraa)
+* [3D Buildings in Cologne (ldproxy)](https://demo.ldproxy.net/cologne_lod2)
+* [OS Open Zoomstack (ldproxy)](https://demo.ldproxy.net/zoomstack)
 
 ### Validators
 
