@@ -72,13 +72,14 @@ If you are aware of other implementations or examples, please open an issue or a
 | [GLeo](https://gitlab.com/IvanSanchez/gleo) | Demonstrator | Web client, [Example client that can display JSON-FG data added by drag & drop to the map](https://ivansanchez.gitlab.io/gleo/demos/jsonfg-drag-drop.html) | X | - | - | - | - | - |
 | [JSON-FG OpenLayers example](https://github.com/Geonovum-labs/json-fg-examples)  | Demonstrator | [Web client demonstrating how JSON-FG data can be shown in an OpenLayers map](https://geonovum-labs.github.io/json-fg-examples/), supports a time slider to select features in an interval | X | X | - | - | - | - |
 | [GNOSIS Cartographer (Ecere)](https://ecere.ca/gnosis/overview/#cartographer) | Stable | Desktop client, supports v0.1 | X | X | ? | - | ? | - |
+| [3D viewer (3DGI)](https://dev.3dgi.xyz/jsonfg-viewer) | Stable | Web client for features with polyhedron geometries, support file upload and access via OGC API Features | X | X | X | - | X | - |
 
 ### Converters
 
 | Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
 | ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
 | [GDAL](https://gdal.org/drivers/vector/jsonfg.html) | Stable | Convert between JSON-FG and other feature formats | X | X | (X) | - | X | - |
-| [cityjson2jsonfg](https://github.com/3DGI/cityjson2jsonfg) | Stable | A command line tool for converting CityJSON files to JSON-FG format | X | X | X | - | - | - |
+| [CityJSON to JSON-FG (3DGI)](https://pypi.org/project/cityjson2jsonfg) | Stable | A command line tool for converting CityJSON files to JSON-FG format | X | X | X | - | X | - |
 
 ### Publish Web APIs implementing OGC API Features
 
