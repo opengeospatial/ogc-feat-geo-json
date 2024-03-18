@@ -1,7 +1,7 @@
 :Title: OGC Features and Geometries JSON - Part 1: Core
 :standard: json-fg-1
-:m_n: 0.2
-:m_n_o: {m_n}.2
+:m_n: 0.3
+:m_n_o: {m_n}.0-SNAPSHOT
 :titletext: {Title}
 :doctype: book
 :encoding: utf-8
@@ -22,7 +22,7 @@
 |Approval Date:   <yyyy-mm-dd>
 |Publication Date:   <yyyy-mm-dd>
 |External identifier of this OGC(R) document: http://www.opengis.net/doc/IS/{standard}/{m_n}
-|Internal reference number of this OGC(R) document:    21-045
+|Internal reference number of this OGC(R) document:    21-045r1
 |Version: {m_n_o}
 |Category: OGC(R) Implementation Standard
 |Editor:   Clemens Portele, Panagiotis (Peter) A. Vretanos
@@ -36,7 +36,7 @@
 [cols = "^", frame = "none", grid = "none"]
 |===
 |*Copyright notice*
-|Copyright (C) 2023 Open Geospatial Consortium
+|Copyright (C) 2024 Open Geospatial Consortium
 |To obtain additional rights of use, visit https://www.ogc.org/legal/
 |===
 
