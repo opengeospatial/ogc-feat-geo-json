@@ -6,11 +6,11 @@ OGC Features and Geometries JSON (JSON-FG) builds on the widely used [GeoJSON st
 
 ## Status
 
-The current version is 0.2.2. 
+The current version is [0.2.2](https://docs.ogc.org/DRAFTS/21-045.html). 
 
 This version will be the basis for the OGC Public Comment phase for 90 days, which is the final call for comments before the candidate standard will go through the process for approval as an OGC Standard after resolving the comments received during the OGC Public Comment period.
 
-The editor's draft of the specification can be found at [docs.ogc.org/DRAFTS/21-045.html](https://docs.ogc.org/DRAFTS/21-045.html). A [PDF version](https://docs.ogc.org/DRAFTS/21-045.pdf) is available, too.
+The editor's draft of the specification can be found at [docs.ogc.org/DRAFTS/21-045r1.html](https://docs.ogc.org/DRAFTS/21-045r1.html). A [PDF version](https://docs.ogc.org/DRAFTS/21-045r1.pdf) is available, too.
 
 The Open Geospatial Consortium (OGC) invites organisations and developers that have a need for the extensions specified by this specification to implement and test the extensions. Please submit feedback [in this repository](https://github.com/opengeospatial/ogc-feat-geo-json/issues). Are these extensions useful for your use cases? Are they simple enough to implement?
 
