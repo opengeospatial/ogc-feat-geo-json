@@ -2,11 +2,13 @@
 
 The OGC Features and Geometries JSON (JSON-FG) Standard extends the <<rfc7946,GeoJSON format>> to support a limited set of additional capabilities that are out-of-scope for GeoJSON, but that are important for a variety of use cases involving feature data.
 
-The JSON-FG Standard specifies the following minimal extensions to the GeoJSON format:
+The JSON-FG Standard specifies the following extensions to the GeoJSON format:
 
 * The ability to use Coordinate Reference Systems (CRSs) other than WGS 84 (OGC:CRS84);
 * The ability to use non-Euclidean metrics, in particular ellipsoidal metrics;
+* Support for circular arcs, compound curves, and curve polygons as curves;
 * Support for solids and prisms as geometry types;
+* Support for measure values in coordinates;
 * The ability to encode temporal characteristics of a feature; and
 * The ability to declare the type and the schema of a feature.
 
