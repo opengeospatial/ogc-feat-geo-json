@@ -38,6 +38,8 @@ If and once the JSON-FG Standard is approved by the OGC Members, the following a
 - Annex <<schemas>> specifies the JSON-FG schema documents. The documents will be published in the https://schemas.opengis.net/[OGC Schema Repository].
 - Annex <<relationships_and_links>> may be removed.
 - Annex <<considerations>> will be removed.
+- The Abstract needs to be updated to remove the reference to the draft status.
+- All references to issues in the GitHub repository will be removed.
 
 The following actions need to be taken after publication:
 

@@ -7,4 +7,4 @@ The following normative documents contain provisions that, through reference in 
 
 [[ogc06_103r4]] Open Geospatial Consortium (OGC). OGC 06-103r4: **OpenGIS® Implementation Standard for Geographic information - Simple feature access - Part 1: Common architecture**. Edited by J. Herring. 2011. Available at https://portal.opengeospatial.org/files/?artifact_id=25355
 
-[[OAFeat-5]] Open Geospatial Consortium (OGC). **OGC API - Features - Part 5: Schemas 1.0 (DRAFT)**. Edited by C. Portele, P. Vretanos. Available at https://docs.ogc.org/DRAFTS/23-058.html
+[[OAFeat-5]] Open Geospatial Consortium (OGC). **OGC API - Features - Part 5: Schemas 1.0 (DRAFT)**. Edited by C. Portele, P. Vretanos. Available at https://docs.ogc.org/DRAFTS/23-058r1.html

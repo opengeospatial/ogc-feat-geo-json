@@ -100,9 +100,13 @@ include::clause_8_core.adoc[]
 
 include::clause_9_3d.adoc[]
 
-include::clause_10_feature_types_and_schemas.adoc[]
+include::clause_10_circular_arcs.adoc[]
 
-include::clause_11_media_types.adoc[]
+include::clause_11_measures.adoc[]
+
+include::clause_12_feature_types_and_schemas.adoc[]
+
+include::clause_13_media_types.adoc[]
 
 <<<
 ////
