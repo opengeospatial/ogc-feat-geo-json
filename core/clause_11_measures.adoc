@@ -1,0 +1,49 @@
+:req-class: measures
+[#rc_{req-class}]
+== Requirements Class "Measures"
+
+The "Measures" Requirements Class adds provisions for geometries ... TODO.
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |JSON documents
+|Dependency |<<rc_core>>
+|===
+
+=== Metadata
+
+:req: metadata
+[#{req-class}_{req}]
+==== Conformance declaration
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The "conformsTo" member of the JSON document SHALL include at least one of the two following values:
+
+* `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`; 
+* `"[ogc-json-fg-1-{m_n}:{req-class}]"`.
+|===
+
+=== Geometry
+
+:req: coordinate-dimension
+[#{req-class}_{req}]
+==== Coordinate dimension
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |All positions in a geometry object in the "place" member in any JSON-FG feature SHALL ... TODO.
+|===
+
+:req: geom-valid
+[#{req-class}_{req}]
+==== Geometries are valid
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and ... TODO "measures".
+|===

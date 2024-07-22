@@ -1,11 +1,17 @@
 == Conformance
-This Standard defines three requirements classes. JSON documents are the standardization target for all requirements classes.
+This Standard defines six requirements classes. JSON documents are the standardization target type for all requirements classes.
 
 The requirements classes are:
 
 * "Core": The _Core_ conformance class extends GeoJSON with additional members that specify how <<time>>, extended <<place>> information and <<ref-sys>> information can be encoded in a JSON-FG document. In addition, <<metadata>> is added to declare the JSON-FG conformance classes that the JSON document conforms to. The _Core_ conformance class has a dependency on GeoJSON. This means that a JSON-FG document that conforms to _Core_ must also conform to GeoJSON.
 
 * "3D": The _3D_ conformance class adds support for <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>> geometries in a 3D CRS.  The _3D_ conformance class has a dependency on the _Core_ conformance class. This means that a JSON-FG document that conforms to the _3D_ conformance class must also conform to the _Core_ conformance class.
+
+* "Circular Arcs": The _Circular Arcs_ conformance class adds support for <<CircularString>>, <<CompoundCurve>>, <<CurvePolygon>>, <<MultiCurve>>, and <<MultiSurface>> geometries to support curves with linear and circular arc interpolation. The _Circular Arcs_ conformance class has a dependency on the _Core_ conformance class. This means that a JSON-FG document that conforms to the _Circular Arcs_ conformance class must also conform to the _Core_ conformance class.
+
+* "Measures": The _Measures_ conformance class adds support for the <<measures>> member and measure values in coordinates. The _Measures_ conformance class has a dependency on the _Core_ conformance class. This means that a JSON-FG document that conforms to the _Measures_ conformance class must also conform to the _Core_ conformance class.
+
+* TODO: ellipsoidal metrics 
 
 * "Feature Types and Schemas": The _Feature Types and Schemas_ conformance class adds support for <<feature-types>> and <<schema-ref>>.  Features are often categorized by type. This requirements class adds members to a JSON-FG document so that contained features can be tagged with a type value.  This conformance class includes guidance about how to include information about the feature schema in a JSON-FG document. The _Feature Types and Schemas_ conformance class has a dependency on the _Core_ conformance class. This means that a JSON-FG document that conforms to the _Feature Types and Schemas_ conformance class must also conform to the _Core_ conformance class.
 

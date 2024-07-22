@@ -1,0 +1,42 @@
+:req-class: circular_arcs
+[#rc_{req-class}]
+== Requirements Class "Circular Arcs"
+
+The "3D" Requirements Class adds provisions for geometries in a 3D CRS that may be of type <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, or <<MultiPrism>>.
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |JSON documents
+|Dependency |<<rc_core>>
+|===
+
+=== Metadata
+
+:req: metadata
+[#{req-class}_{req}]
+==== Conformance declaration
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The "conformsTo" member of the JSON document SHALL include at least one of the two following values:
+
+* `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`; 
+* `"[ogc-json-fg-1-{m_n}:{req-class}]"`.
+|===
+
+=== Geometry
+
+:req: geom-valid
+[#{req-class}_{req}]
+==== Geometries are valid
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "CircularString", the elements in the "coordinates" array SHALL ... TODO.
+^|B |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "CompoundCurve", each element in the "geometries" array SHALL ... TODO.
+^|C |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "CurvePolygon", each element in the "geometries" array SHALL ... TODO.
+^|D |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "MultiCurve" or "MultiSurface", each element in the "geometries" array SHALL ... TODO.
+|===

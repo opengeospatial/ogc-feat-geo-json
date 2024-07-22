@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beta.schemas.opengis.net/json-fg/measures.json",
+  "title": "the measures member",
+  "description": "This JSON Schema is part of JSON-FG version 0.3.0",
+  "type": "object",
+  "required": ["enabled"],
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

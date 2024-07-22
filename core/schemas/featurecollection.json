@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://beta.schemas.opengis.net/json-fg/featurecollection.json",
   "title": "a JSON-FG Feature Collection",
-  "description": "This JSON Schema is part of JSON-FG version 0.2.2",
+  "description": "This JSON Schema is part of JSON-FG version 0.3.0",
   "type": "object",
   "required": ["type", "features"],
   "properties": {
@@ -10,8 +10,7 @@
       "$ref": "conformsto.json"
     },
     "type": {
-      "type": "string",
-      "enum": ["FeatureCollection"]
+      "const": "FeatureCollection"
     },
     "featureType": {
       "$ref": "featuretype.json"
@@ -26,6 +25,9 @@
     },
     "coordRefSys": {
       "$ref": "coordrefsys.json"
+    },
+    "measures": {
+      "$ref": "measures.json"
     },
     "features": {
       "type": "array",

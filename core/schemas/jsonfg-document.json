@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beta.schemas.opengis.net/json-fg/jsonfg-document.json",
+  "title": "a JSON-FG document",
+  "description": "This JSON Schema is part of JSON-FG version 0.3.0",
+  "allOf": [
+    {
+      "oneOf": [
+        { "$ref": "feature.json" },
+        { "$ref": "featurecollection.json" }
+      ]
+    },
+    {
+      "type": "object",
+      "required": ["conformsTo"],
+      "properties": {
+        "conformsTo": {
+          "$ref": "conformsto.json"
+        }
+      }
+    }
+  ]
+}

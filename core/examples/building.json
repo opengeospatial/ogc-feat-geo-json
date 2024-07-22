@@ -2,9 +2,9 @@
    "type": "Feature",
    "id": "DENW19AL0000giv5BL",
    "conformsTo": [
-      "[ogc-json-fg-1-0.2:core]"         ,
-      "[ogc-json-fg-1-0.2:types-schemas]",
-      "[ogc-json-fg-1-0.2:3d]"
+      "[ogc-json-fg-1-0.3:core]"         ,
+      "[ogc-json-fg-1-0.3:types-schemas]",
+      "[ogc-json-fg-1-0.3:3d]"
    ],
    "featureType": "app:building",
    "featureSchema": "https://example.org/data/v1/collections/buildings/schema",

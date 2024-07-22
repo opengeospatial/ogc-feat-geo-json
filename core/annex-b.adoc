@@ -5,6 +5,14 @@
 
 NOTE: The JSON-FG Schema documents will only be published in the https://schemas.opengis.net/[OGC Schema Repository], if and once the JSON-FG Standard has been approved. Until then, the schema documents will be made available in the https://beta.schemas.opengis.net/[OGC Schema Repository for drafts]. This note will be removed before publishing the JSON-FG Standard.
 
+[[schema-jsonfg-document]]
+=== JSON Schema of a JSON-FG document
+
+[source,json,linenumbers]
+----
+include::schemas/jsonfg-document.json[]
+----
+
 [[schema-feature-collection]]
 === JSON Schema of a JSON-FG feature collection 
 
@@ -51,6 +59,14 @@ include::schemas/place.json[]
 [source,json,linenumbers]
 ----
 include::schemas/coordrefsys.json[]
+----
+
+[[schema-measures]]
+=== JSON Schema of the "measures" member
+
+[source,json,linenumbers]
+----
+include::schemas/measures.json[]
 ----
 
 [[schema-geometry]]

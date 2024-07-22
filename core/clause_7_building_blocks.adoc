@@ -3,7 +3,7 @@
 
 This Clause describes the JSON building blocks required to extend GeoJSON features and feature collections. The following clauses specify the formal requirements classes.
 
-The Annex '<<considerations>>' contains considerations for each of the JSON-FG building blocks.
+The Annex '<<considerations>>' contains considerations for some of the JSON-FG building blocks.
 
 Remarks and known open issues are included in notes.
 
@@ -11,12 +11,27 @@ Remarks and known open issues are included in notes.
 
 The following JSON building blocks are specified by this Standard:
 
-* <<metadata>>
-* <<time>>
-* <<place>>
-* <<ref-sys>>
-* <<feature-types>>
-* <<schema-ref>>
+* <<bb_core>>
+** <<metadata>>
+** <<time>>
+** <<place>>
+** <<ref-sys>>
+* <<bb_3d>>
+** <<polyhedron>>
+** <<multi_polyhedron>>
+** <<prism>>
+** <<multi_prism>>
+* <<bb_circular_arcs>>
+** <<circular_string>>
+** <<compound_curve>>
+** <<curve_polygon>>
+** <<multi_curve>>
+** <<multi_surface>>
+* <<bb_measures>>
+** <<measures>>
+* <<bb_feature_types_schemas>>
+** <<feature-types>>
+** <<schema-ref>>
 
 An additional discussion topic during the development of the JSON-FG Standard was the relationship between a feature and other web resources that are represented as links. The JSON-FG Standard does not mandate a specific approach for representing relationships as links. However, Annex '<<relationships_and_links>>' documents and discusses patterns of how to represent relationships as links.
 
@@ -27,17 +42,21 @@ Annex '<<examples>>' has examples of JSON-FG documents.
 
 The GeoJSON RFC clearly specifies in Clauses 6 and 7 that additional members can be added to the GeoJSON objects as long as they do not conflict with members as specified by GeoJSON ("foreign members").
 
-JSON-FG extends GeoJSON in two ways:
+JSON-FG extends GeoJSON in three ways:
 
 * By adding new JSON members to the "Feature" and "FeatureCollection" objects;
 * By specifying additional geometry objects.
+* TODO: By specifying additional rules for the metrics.
 
 As a result, JSON-FG does not place constraints on the information in the "properties" member (like GeoJSON) and JSON-FG readers do not have to parse the "properties" object. This approach avoids name clashes with existing feature properties in the "properties" object.
 
-Some GeoJSON readers, however, only provide access to the pre-defined JSON members in GeoJSON features, such as "id", "geometry", "bbox" and "properties". If the target audience of JSON-FG documents uses such tools, it is recommended to also include the additional top-level members like "time", "place", "featureType", and "coordRefSys" in the "properties" object.
+Some GeoJSON readers, however, only provide access to the pre-defined JSON members in GeoJSON features, such as "id", "geometry", "bbox" and "properties". If the target audience of JSON-FG documents uses such tools, it is recommended to also include the additional top-level members like "time", "place", "featureType", "coordRefSys", and "measures" in the "properties" object.
+
+[[bb_core]]
+=== Core building blocks
 
 [[metadata]]
-=== Metadata
+==== Metadata: the "conformsTo" member
 
 To indicate that a JSON document is a JSON-FG document and to indicate the JSON-FG version and conformance classes implemented in the document, a `conformsTo` member is required to be included in the JSON-FG document object. 
 
@@ -49,8 +68,8 @@ The value of the member is an array of strings, where each string is a URI of a 
 [source,json,linenumbers]
 ----
 "conformsTo" : [ 
-  "http://www.opengis.net/spec/json-fg-1/0.2/conf/core", 
-  "http://www.opengis.net/spec/json-fg-1/0.2/conf/3d" 
+  "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", 
+  "http://www.opengis.net/spec/json-fg-1/0.3/conf/3d" 
 ]
 ----
 ====
@@ -62,14 +81,14 @@ As an alternative to URIs, the https://docs.ogc.org/pol/09-048r6.html#toc14[Comp
 ====
 [source,json,linenumbers]
 ----
-"conformsTo" : [ "[ogc-json-fg-1-0.2:core]", "[ogc-json-fg-1-0.2:3d]" ]
+"conformsTo" : [ "[ogc-json-fg-1-0.3:core]", "[ogc-json-fg-1-0.3:3d]" ]
 ----
 ====
 
 [[time]]
-=== Temporal information
+==== Temporal information: the "time" member
 
-==== Overview
+===== Overview
 
 Many features have a geometry property that provides information about the primary spatial characteristics of the feature. In GeoJSON, this information is encoded in the "geometry" member. Features often have temporal information. In most cases, time is either an instant (e.g., an event) or an interval (e.g., an activity or a temporal validity). In the OGC API Features Standard the temporal property is reflected in the http://www.opengis.net/doc/IS/ogcapi-features-1/1.0#_parameter_datetime[parameter "datetime"] for temporal filtering of features that is supported by all compliant Feature API instances.
 
@@ -77,7 +96,7 @@ JSON-FG adds support for the most common case: Associating a feature with a sing
 
 More complex cases and other temporal coordinate reference systems are out-of-scope for this Standard and might be specified in future extensions.
 
-==== Description
+===== Description
 
 Features can have temporal properties. These properties will typically be included in the "properties" member.
 
@@ -88,7 +107,7 @@ As GeoJSON does, JSON-FG does not place constraints on the information in the "p
 
 The publisher of the data needs to decide which temporal feature properties are used in the "time" member.
 
-The value of "time" is either `null` (no temporal information) or an object.
+The "time" member is either missing or `null` (no temporal information) or an object with at least one member.
 
 .Properties of the "time" object
 [cols="20,10a,70a",options="header"]
@@ -105,7 +124,7 @@ The "time" object may be extended with additional members. Clients processing a 
 
 NOTE: The data publisher decides how temporal properties inside the "properties" member are encoded. The schema for the "time" member does not imply a recommendation that temporal feature properties reuse the same schema. For example, it is expected that a date-valued feature attribute will in most cases be represented as string with an RFC 3339 date value.
 
-==== Instants
+===== Instants
 
 An instant is a value that conforms to https://datatracker.ietf.org/doc/html/rfc3339[RFC 3339 (Date and Time on the Internet: Timestamps)] and is consistent with one of the following production rules of the ISO 8601 profile specified in the RFC:
 
@@ -118,7 +137,7 @@ In the case of a timestamp the granularity is a second or smaller. All timestamp
 
 In the case of a date the granularity is a day. Dates as instants will be used when a granularity of a day independent of its timezone is sufficient for the intended use of the data. If that is not the case and the timezone is important for the intended use, the temporal information should be provided as an interval with start and end timestamps.
 
-NOTE: The JSON-FG Standard only provides guidance as to how to represent feature data in JSON. Providing guidance as to how to cast JSON-FG data to other data types is out of scope. The https://docs.ogc.org/DRAFTS/21-065.html[OGC Common Query Language (CQL2)] Standard uses the same model of instants and intervals as JSON-FG and includes additional guidance how to compare values.
+NOTE: The JSON-FG Standard only provides guidance as to how to represent feature data in JSON. Providing guidance as to how to cast JSON-FG data to other data types is out of scope. The https://docs.ogc.org/is/21-065r1/21-065r1.html[OGC Common Query Language (CQL2)] Standard uses the same model of instants and intervals as JSON-FG and includes additional guidance how to compare values.
 
 [#ex-time-1,reftext='{listing-caption} {counter:listing-num}']
 .A date
@@ -140,7 +159,7 @@ NOTE: The JSON-FG Standard only provides guidance as to how to represent feature
 
 Dates and timestamps are the initial range of instant values. The range may be extended in the future to support additional use cases. Clients processing values of `time` must be prepared to receive other values. Clients may ignore values that they do not understand.
 
-==== Intervals
+===== Intervals
 
 An interval is described by start and end instants. Both start and end instants are included in the interval, i.e., the interval is closed.
 
@@ -178,42 +197,45 @@ NOTE: There is a https://github.com/opengeospatial/ogc-feat-geo-json/issues/69[p
 The options described above are the initial range of interval values - the granularity is either days or (sub-)seconds and interval ends may be unbounded. The value range may be extended in the future to support additional use cases. Clients processing values of `time` must be prepared to receive other values. Clients may ignore values that they do not understand.
 
 [[place]]
-=== Geometry
+==== Geometry: the "geometry" and "place" members
 
-==== Overview
+===== Overview
 
 Features typically have a geometry that provides information about the primary spatial characteristics of the feature.
 
 In GeoJSON, geometry information is encoded in the "geometry" member. Geometries are encoded according to the <<ogc06_103r4,OGC Simple Features Standard>> (2D or 2.5D points, line strings, polygons or aggregations of them) using a WGS 84 CRS (OGC:CRS84 or OGC:CRS84h).
 
-A key motivation for the development of the JSON-FG Standard is to support additional requirements, especially the ability to express other CRSs and solid geometries.
+A key motivation for the development of the JSON-FG Standard is to support additional requirements, especially the ability to represent geometries in other CRSs and in additional geometry types.
 
 To avoid confusing existing GeoJSON readers, such geometries are provided in a new member in the feature object with the key "place".
 
 NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/97[ongoing discussion] to use a different key instead of "place". This discussion has to be resolved and this note must be removed before finalizing the JSON-FG Standard.
 
-==== Description
+===== Description
 
-The primary geometry of a feature is provided in the "geometry" and/or "place" members of the feature object as specified in the next sub-clause. The value of both members is an object representing a geometry - or `null`.
-
+The primary geometry of a feature is provided in the "geometry" and/or "place" members of the feature object as specified in the next sub-clause. The value of both members is an object representing a geometry - or `null`. The "place" member can also be omitted, if the member has no value.
+ 
 The valid values of the "geometry" member are specified in the GeoJSON standard.
 
 The value range of the "place" member is an extended and extensible version of the value range of the GeoJSON "geometry" member:
 
-* Extended by additional geometry objects (additional JSON-FG geometry types <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>>) as well as by the capabilities to <<ref-sys,declare the coordinate reference system of the coordinates>>.
-* Future parts of Features and Geometries JSON or community extensions may specify additional members or additional geometry types. JSON-FG readers should be prepared to parse values of "place" that go beyond the schema that is implemented by the reader. Unknown members should be ignored and geometries that include an unknown geometry type should be mapped to `null`.
+* Extended by additional geometry objects:
+** Additional 3D geometry types <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>>;
+** Additional geometry types supporting curves with circular arcs <<CircularString>>, <<CompoundCurve>>, <<CurvePolygon>>, <<MultiCurve>>, and <<MultiSurface>>;
+* The capability to <<ref-sys,declare the coordinate reference system of the coordinates>>;
+* The capability to <<measures,add a measure value to each coordinate>>.
+
+Only the capability to declare the coordinate reference system is considered a Core capability. The other capabilities are added by additional building blocks described in subsequent sections.
+
+Future parts of Features and Geometries JSON or community extensions may specify additional members or additional geometry types. JSON-FG readers should be prepared to parse values of "place" that go beyond the schema that is implemented by the reader. Unknown members should be ignored and geometries that use an unknown geometry type should be mapped to `null`.
 
 NOTE: The JSON-FG standard does not add a new JSON-FG geometry collection that includes the new JSON-FG geometry types, because geometry collections are rarely used as feature geometries.
-
-NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/88[ongoing discussion] about which 3D geometries should be included in JSON-FG and how they should be grouped into conformance classes. This discussion has to be resolved and this note must be removed before finalizing the JSON-FG Standard.
-
-NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/35[ongoing discussion] on a proposal to https://github.com/opengeospatial/ogc-feat-geo-json/blob/main/proposals/circular-geometry-objects.adoc[add additional geometry types supporting curves with circular arc interpolation] to JSON-FG. This discussion has to be resolved and this note must be removed before finalizing the JSON-FG Standard.
 
 All coordinates in a "place" member are in the same coordinate reference system. This includes GeometryCollection geometries, where all geometries must be in the same coordinate reference system.
 
 ===== Use of "geometry" and/or "place"
 
-If the geometry is a valid GeoJSON geometry (one of the GeoJSON geometry types, in WGS 84), the geometry is encoded as the value of the "geometry" member. The "place" member then has the value `null`.
+If the geometry is a valid GeoJSON geometry (one of the GeoJSON geometry types, in WGS 84), the geometry is encoded as the value of the "geometry" member. The "place" member then has the value `null` or is omitted.
 
 If the geometry cannot be represented as a valid GeoJSON geometry, the geometry is encoded as the value of the "place" member.  
 
@@ -225,6 +247,8 @@ NOTE: GeoJSON states that "geometry" is `null`, if the feature is "unlocated". A
 
 ===== Metrics
 
+TODO
+
 If the CRS uses longitude and latitude as coordinates, clients should perform geometrical computations - including computation of length or area on the curved surface that approximates the earth's surface. Details are provided, for example, in the drafts of <<ogc20_070,Features and Geometry - Part 2: Metrics>>.
 
 Note that this differs from GeoJSON which states:
@@ -235,72 +259,14 @@ In other words, every point on a line that does not cross the antimeridian betwe
 
 NOTE: Antimeridian: is the meridian 180° both east and west of the prime meridian in a geographical coordinate system. The longitude at this line can be given as either east or west.
 
-===== Polyhedron
-
-A solid is defined by its bounding surfaces. Each bounding surface is a closed, simple surface, also called a shell. 
-
-Each solid has a unique exterior shell and any number of shells that are inside the exterior shell and that describe voids. The interior shells do not intersect each other and cannot contain another interior shell.
-
-A _polyhedron_ is a solid where each shell is a multi-polygon. 'Closed' means that the multi-polygon shell is watertight, it splits space into two distinct regions: inside and outside of the shell. 'Simple' means that the polygons that make up the shell do not intersect, they only touch each other along their common boundaries.
-
-[#figurePolyhedra]
-.A Polyhedron (Cologne Cathedral).
-image::images/cologne_cathedral_lod2.png[alt=Cologne Cathedral LoD 2,width=90%]
-
-The JSON representation of the coordinates of a polyhedron is a non-empty array of _multi-polygon_ arrays. Each _multi-polygon_ array is a shell. The first shell is the exterior boundary, all other shells are voids.
-
-NOTE: As in a GeoJSON Polygon, the first and last positions of each ring have identical values.
-
-The dimension of all positions is three.
-
-The Cologne Cathedral with polyhedron geometries is provided as an example in <<example_cc,Annex C>>.
-
-===== MultiPolyhedron
-
-A _multi-polyhedron_ is a collection of _polyhedron_ objects. These are arbitrary aggregations. There is no assumption regarding the topological relationships between the _polyhedron_ objects, but in most cases the _polyhedron_ objects will not intersect each other. 
-
-NOTE: According to ISO 19107:2020 ("Spatial schema"), the geometry of the _multi-polyhedron_ is the set theoretic union of all _polyhedron_ objects. For example, if there are overlapping _polyhedron_ objects, the volume of the _multi-polyhedron_ will be smaller than the sum of the _polyhedron_ volumes.
-
-The collection of polyhedron objects is represented as a JSON array. The order of the polyhedron objects in the array is not significant.
-
-===== Prism
-
-A _prism_ is defined by a base shape (e.g. Polygon or Circle) that is then extruded from some optional lower limit to an upper limit.
-
-The limits are measured relative to a specified 3D CRS. That is either the default 3D CRS (OGC:CRS84h) or another 3D CRS specified using the <<ref-sys,coordRefSys>> key.
-
-If the base shape is a point, then the extrusion is a line extending from the lower limit to the upper limit.
-
-A pylon feature with a base shape of a point is provided as an example in <<example_pylon,Annex C>>.
-
-If the base shape is a line string, then the extrusion is a ribbon following the path of the line string and extending from the lower limit to the upper limit.
-
-A fence feature with a base shape of a line string is provided as an example in <<example_fence,Annex C>>.
-
-If the base shape is a polygon, then the extrusion is a solid whose footprint takes the shape of the specified polygon and extended from the lower limit to the upper limit. If the polygon base shape contains holes, these manifest as voids in the extruded shape.
-
-[#figurePolygonExtrusion]
-.Extruded polygons (building footprints extruded with the height of the building, City of Cologne/Germany).
-image::images/buildings_cologne_lod1.png[alt=Buildings LoD 1,width=90%]
-
-===== MultiPrism
-
-A _multi-prism_ is an array of _prism_ objects.  The order of the prism geometry objects in the array is not significant.
-
-The following figure shows a 3D rendering of Toronto City Hall. The feature with a MultiPrism geometry is provided as an example in <<example_tch,Annex C>>.
-
-[#figurePolygonExtrusionTorontoCityHall]
-.Toronto City Hall
-image::images/TorontoCityHall_3D_2.png[alt=Toronto City Hall,width=60%,align="center"]
-
 [[ref-sys]]
-=== Reference systems
+==== Reference systems: the "coordRefSys" member
 
-==== Overview
+===== Overview
 
 Without any other information, the following coordinate reference system (CRS) defaults apply in a JSON-FG document:
 
-* Spatial CRS: WGS 84 with axis order longitude, latitude and optional ellipsoidal height, either `link:http://www.opengis.net/def/crs/OGC/0/CRS84[OGC:CRS84]` (2D) or `link:http://www.opengis.net/def/crs/OGC/0/CRS84h[OGC:CRS84h]` (3D) as registered with the OGC;
+* Spatial CRS: WGS 84 with axis order longitude, latitude and optional ellipsoidal height, either `link:http://www.opengis.net/def/crs/OGC/0/CRS84[OGC:CRS84]` (2D) or `link:http://www.opengis.net/def/crs/OGC/0/CRS84h[OGC:CRS84h]` (3D);
 * Temporal CRS: DateTime in Gregorian calendar, https://www.opengis.net/def/crs/OGC/0/GregorianDateTime[`OGC:GregorianDateTime`]. 
 
 NOTE: In `OGC:GregorianDateTime`, all granularities of ISO 8601 are valid values according to https://docs.ogc.org/as/18-005r5/18-005r5.html#109[OGC Abstract Specification Topic 2: Referencing by coordinates, section D.3]. That is, both dates and timestamps are valid values in the `OGC:GregorianDateTime` CRS.
@@ -311,7 +277,7 @@ The "coordRefSys" key _**does not**_ apply to the GeoJSON `geometry` member. Thi
 
 If a CRS is asserted for a JSON-FG document, that assertion will typically be made at the top level of the document, either at the collection level or the feature level depending on the contents of the document.
 
-==== Description
+===== Description
 
 Spatio-temporal objects are specified relative to some reference system.
 
@@ -392,6 +358,12 @@ The epoch is the point in time, expressed as a decimal year, to which coordinate
 ----
 ====
 
+
+===== The "crs" member
+
+TODO
+
+[[ref-sys-scoping-rules]]
 ===== Scoping rules
 
 Used at the feature collection level, the "coordRefSys" key asserts the CRS for JSON-FG geometry objects found anywhere in the document that are not otherwise tagged with CRS information in the feature or geometry object.
@@ -413,10 +385,372 @@ For unknown coordinate reference systems, such as with CAD engineering drawings,
 * https://www.opengis.net/def/crs/OGC/0/Engineering2D[`OGC:Engineering2D`] for 2D coordinates (x, y);
 * https://www.opengis.net/def/crs/OGC/0/Engineering3D[`OGC:Engineering3D`] for 3D coordinates (x, y, z).
 
-[[feature-types]]
-=== Feature types
+[[bb_3d]]
+=== Building blocks for 3D geometries
 
-==== Overview
+NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/88[ongoing discussion] about which 3D geometries should be included in JSON-FG and how they should be grouped into conformance classes. This discussion has to be resolved and this note must be removed before finalizing the JSON-FG Standard.
+
+
+[[polyhedron]]
+==== Polyhedron
+
+A solid is defined by its bounding surfaces. Each bounding surface is a closed, simple surface, also called a shell. 
+
+Each solid has a unique exterior shell and any number of shells that are inside the exterior shell and that describe voids. The interior shells do not intersect each other and cannot contain another interior shell.
+
+A _polyhedron_ is a solid where each shell is a multi-polygon. 'Closed' means that the multi-polygon shell is watertight, it splits space into two distinct regions: inside and outside of the shell. 'Simple' means that the polygons that make up the shell do not intersect, they only touch each other along their common boundaries.
+
+[#figurePolyhedra]
+.A Polyhedron (Cologne Cathedral).
+image::images/cologne_cathedral_lod2.png[alt=Cologne Cathedral LoD 2,width=90%]
+
+The JSON representation of the coordinates of a polyhedron is a non-empty array of _multi-polygon_ arrays. Each _multi-polygon_ array is a shell. The first shell is the exterior boundary, all other shells are voids.
+
+NOTE: As in a GeoJSON Polygon, the first and last positions of each ring have identical values.
+
+The dimension of all positions is three.
+
+The Cologne Cathedral with polyhedron geometries is provided as an example in <<example_cc,Annex C>>.
+
+[[multi_polyhedron]]
+==== MultiPolyhedron
+
+A _multi-polyhedron_ is a collection of _polyhedron_ objects. These are arbitrary aggregations. There is no assumption regarding the topological relationships between the _polyhedron_ objects, but in most cases the _polyhedron_ objects will not intersect each other. 
+
+NOTE: According to ISO 19107:2020 ("Spatial schema"), the geometry of the _multi-polyhedron_ is the set theoretic union of all _polyhedron_ objects. For example, if there are overlapping _polyhedron_ objects, the volume of the _multi-polyhedron_ will be smaller than the sum of the _polyhedron_ volumes.
+
+The collection of polyhedron objects is represented as a JSON array. The order of the polyhedron objects in the array is not significant.
+
+[[prism]]
+==== Prism
+
+A _prism_ is defined by a base shape (e.g. Polygon or Circle) that is then extruded from some optional lower limit to an upper limit.
+
+The limits are measured relative to a specified 3D CRS. That is either the default 3D CRS (OGC:CRS84h) or another 3D CRS specified using the <<ref-sys,coordRefSys>> key.
+
+If the base shape is a point, then the extrusion is a line extending from the lower limit to the upper limit.
+
+A pylon feature with a base shape of a point is provided as an example in <<example_pylon,Annex C>>.
+
+If the base shape is a line string, then the extrusion is a ribbon following the path of the line string and extending from the lower limit to the upper limit.
+
+A fence feature with a base shape of a line string is provided as an example in <<example_fence,Annex C>>.
+
+If the base shape is a polygon, then the extrusion is a solid whose footprint takes the shape of the specified polygon and extended from the lower limit to the upper limit. If the polygon base shape contains holes, these manifest as voids in the extruded shape.
+
+[#figurePolygonExtrusion]
+.Extruded polygons (building footprints extruded with the height of the building, City of Cologne/Germany).
+image::images/buildings_cologne_lod1.png[alt=Buildings LoD 1,width=90%]
+
+[[multi_prism]]
+==== MultiPrism
+
+A _multi-prism_ is an array of _prism_ objects.  The order of the prism geometry objects in the array is not significant.
+
+The following figure shows a 3D rendering of Toronto City Hall. The feature with a MultiPrism geometry is provided as an example in <<example_tch,Annex C>>.
+
+[#figurePolygonExtrusionTorontoCityHall]
+.Toronto City Hall
+image::images/TorontoCityHall_3D_2.png[alt=Toronto City Hall,width=60%,align="center"]
+
+[[bb_circular_arcs]]
+=== Building blocks for circular arcs
+
+[[circular_string]]
+==== CircularString
+
+A _circular string_ is defined by a sequence of an odd number of positions with a minimum of three positions. For each set of three consecutive positions, the geometry is a circular arc passing from the first position through the middle position to the third position.
+
+To support validation of the odd number of positions, a maximum number of 11 positions are allowed in a circular string (that is, a maximum number of five circular arcs in a circular string).
+
+[#circular-arc,reftext='{listing-caption} {counter:listing-num}']
+.A circular arc
+====
+[source,json,linenumbers]
+----
+{
+  "type": "CircularString",
+  "coordinates": [
+    [96101, 400603],
+    [96102, 400604],
+    [96103, 400603]
+  ]
+}
+----
+====
+
+[[compound_curve]]
+==== CompoundCurve
+
+A _compound curve_ is a sequence of curves that are connected end-to-end. The curves can be _line string_ or _circular string_ objects. The end of one curve is the start of the next curve.
+
+[#compound-curve,reftext='{listing-caption} {counter:listing-num}']
+.A compound curve with a line string and a circular arc
+====
+[source,json,linenumbers]
+----
+{
+  "type": "CompoundCurve",
+  "geometries": [
+    {
+      "type": "LineString",
+      "coordinates": [ [96101, 400603], [96102, 400604] ]
+    },
+    {
+      "type": "CircularString",
+      "coordinates": [
+        [96102, 400604],
+        [96103, 400603],
+        [96102, 400602]
+      ]
+    }
+  ]
+}
+----
+====
+
+[[curve_polygon]]
+==== CurvePolygon
+
+A _curve polygon_ is a surface where each ring is a closed _line string_, _circular string_, or _compound curve_. The first ring is the exterior boundary, all other rings are interior boundaries.
+
+[#curve-polygon,reftext='{listing-caption} {counter:listing-num}']
+.A curve polygon with a hole
+====
+[source,json,linenumbers]
+----
+{
+  "type": "CurvePolygon",
+  "geometries": [
+    {
+      "type": "CompoundCurve",
+      "geometries": [
+        {
+          "type": "LineString",
+          "coordinates": [ [96101, 400603], [96102, 400602] ]
+        },
+        {
+          "type": "CircularString",
+          "coordinates": [
+            [96102, 400602],
+            [96103, 400603],
+            [96102, 400604]
+          ]
+        },
+        {
+          "type": "LineString",
+          "coordinates": [ [96102, 400604], [96101, 400603] ]
+        }
+      ]
+    },
+    {
+      "type": "LineString",
+      "coordinates": [
+        [96101.5, 400603.5],
+        [96101.5, 400605.5],
+        [96102.5, 400604.5],
+        [96101.5, 400603.5]
+      ]
+    }
+  ]
+}
+----
+====
+
+A circle is a curve polygon with an exterior boundary that is a circular string with five positions where the first and last positions have identical values.
+
+[#circle,reftext='{listing-caption} {counter:listing-num}']
+.A circle
+====
+[source,json,linenumbers]
+----
+{
+  "type": "CurvePolygon",
+  "geometries": [
+    {
+      "type": "CircularString",
+      "coordinates": [
+        [96100, 400600],
+        [96101, 400601],
+        [96102, 400600],
+        [96101, 400599],
+        [96100, 400600]
+      ]
+    }
+  ]
+}
+----
+====
+
+[[multi_curve]]
+==== MultiCurve
+
+A _multi-curve_ is a set of curves (_line string_, _circular string_ or _compound curve_ objects). There is no assumption regarding the topological relationships between the curves.
+
+[#multi-curve,reftext='{listing-caption} {counter:listing-num}']
+.A multi-curve
+====
+[source,json,linenumbers]
+----
+{
+  "type": "MultiCurve",
+  "geometries": [
+    {
+      "type": "LineString",
+      "coordinates": [ [96101, 400603], [96100, 400600] ]
+    },
+    {
+      "type": "CircularString",
+      "coordinates": [
+        [96102, 400604],
+        [96103, 400603],
+        [96102, 400602]
+      ]
+    }
+  ]
+}
+----
+====
+
+[[multi_surface]]
+==== MultiSurface
+
+A _multi-surface_ is a set of surfaces (_polygon_ or _curve polygon_ objects). There is no assumption regarding the topological relationships between the surfaces.
+
+[#multi-surface,reftext='{listing-caption} {counter:listing-num}']
+.A multi-surface
+====
+[source,json,linenumbers]
+----
+{
+  "type": "MultiSurface",
+  "geometries": [
+    {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [96101, 400603],
+          [96103, 400603],
+          [96102, 400604],
+          [96101, 400603]
+        ]
+      ]
+    },
+    {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [96151, 400653],
+          [96153, 400653],
+          [96152, 400654],
+          [96151, 400653]
+        ]
+      ]
+    },
+    {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [96201.5, 400703.5],
+          [96202.5, 400704.5],
+          [96201.5, 400705.5],
+          [96201.5, 400703.5]
+        ]
+      ]
+    }
+  ]
+}
+----
+====
+
+[[bb_measures]]
+=== Building blocks for measures
+
+In most cases, geometries are restricted to coordinates according to <<ref-sys>>. 
+
+The <<ogc06_103r4,OGC Simple Feature Access Standard>> also supports an additional measure value for each coordinate (M coordinate). 
+
+A typical use case are linear referencing, where the measure value in a curve is the distance of each position along the geometry from the start of the geometry to the position. 
+
+[[measures]]
+==== Measures: the "measures" member
+
+If a geometry includes measure values, each position of the geometry has to contain a measure value. The number of ordinates in each position is the dimension of the CRS in "coordRefSys" plus one for the measure value.
+
+The presence of measure values in a geometry is indicated by a "measures" member.
+
+The value of the "measures" member is an object with the following properties:
+
+* "enabled": A boolean value. If `true`, the measure values are enabled. If `false`, the measure values are disabled. The property is required.
+* "unit": The unit of the measure of the measure values. The property is optional.
+* "description": An optional description of the meaning of the measure values.
+
+The scoping rules are the same as for the <<ref-sys-scoping-rules,"coordRefSys" member>>.
+
+[#line-string-with-measures,reftext='{listing-caption} {counter:listing-num}']
+.A road element feature with measure values
+====
+[source,json,linenumbers]
+----
+{
+  "type": "Feature",
+  "id": "3713041O3613255A",
+  "conformsTo": [
+    "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", 
+    "http://www.opengis.net/spec/json-fg-1/0.3/conf/measures"
+  ],
+  "coordRefSys": "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+  "measures": {
+    "enabled": true,
+    "unit": "km",
+    "description": "Kilometers along the road based on the kilometer markers. Positions between two physical markers are interpolated."
+  },
+  "geometry": null,
+  "place": {
+    "type": "LineString",
+    "coordinates": [
+      [7.9379077, 52.2841795, 227.396],
+      [7.9386618, 52.2856218, 227,227],
+      [7.9389695, 52.2862999, 227,149],
+      [7.9395120, 52.2876169, 226,998],
+      [7.9397562, 52.2883001, 226,920],
+      [7.9401802, 52.2896330, 226,769],
+      [7.9405226, 52.2910055, 226,614],
+      [7.9412150, 52.2945101, 226,222],
+      [7.9415283, 52.2959768, 226,057],
+      [7.9416385, 52.2964391, 226,005],
+      [7.9421299, 52.2981305, 225,814],
+      [7.9426214, 52.2995303, 225,655],
+      [7.9429592, 52.3003909, 225,556],
+      [7.9434566, 52.3015636, 225,422],
+      [7.9438507, 52.3024014, 225,325],
+      [7.9443588, 52.3034069, 225.208]
+    ]
+  },
+  "time": {"instant": "2022-10-21T18:00:00Z"},
+  "properties": {
+    "road.title": "A1",
+    "road.class": "A",
+    "road.number": 1,
+    "num": "8",
+    "type": "Abschnitt",
+    "lr_start": 0,
+    "length_m": 2188,
+    "adminarea.name": "Bundesrepublik Deutschland",
+    "adminarea.knz": "00000000000",
+    "netzstand": "2022-10-21T18:00:00Z"
+  }
+}
+----
+====
+
+[[bb_feature_types_schemas]]
+=== Building blocks for feature types and schemas
+
+[[feature-types]]
+==== Feature types: the "featureType" member
+
+===== Overview
 
 Features are often categorized by type. Typically, all features of the same type have the same schema and the same properties.
 
@@ -427,8 +761,6 @@ GeoJSON is schema-less in the sense that it has no concept of feature types or f
 In most cases, a feature is an instance of a single feature type, but in general, features can be instances of multiple types. JSON-FG also supports multiple feature types.
 
 The related section <<schema-ref>> specifies the schema for each feature type if such information is available.
-
-==== Description
 
 ===== The "featureType" member
 
@@ -450,17 +782,15 @@ If the JSON document is a feature collection and all features in the feature col
 If the JSON document is a feature collection and all features in the feature collection have the same geometry type as their primary geometry (point, curve, surface, solid, including homogeneous aggregates), a "geometryDimension" member can and should be added once for the feature collection with the dimension of the geometry (0 for points, 1 for curves, 2 for surfaces, 3 for solids, null/not set for mixed dimensions or unknown). Declaring the geometry dimension once signals to clients that the feature collection is homogeneous with respect to the dimension, which clients can use to optimize their processing.
 
 [[schema-ref]]
-=== Feature schemas
+==== Feature schemas: the "featureSchema" member
 
-==== Overview
+===== Overview
 
 A JSON-FG feature schema is metadata about a feature that clients can use to understand the content of JSON-FG feature objects, such as a textual description of the feature properties or their value range. 
 
 JSON-FG follows the approach of <<OAFeat-5,OGC API - Features - Part 5>>, that is, the feature schema is a logical schema. It can not be used to directly validate a JSON-FG document. However, a schema for validation of a JSON-FG feature or feature collection can be derived from the logical schema, if needed. The schemas of the feature properties in the logical schemas can be reused when constructing a JSON Schema for validation.
 
 The JSON-FG Standard provides guidance on how to include information about the feature schemas in a JSON-FG feature or feature collection.
-
-==== Description
 
 ===== The "featureSchema" member
 

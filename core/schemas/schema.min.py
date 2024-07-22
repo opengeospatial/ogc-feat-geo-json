@@ -18,11 +18,24 @@ def remove_key(input, key):
     else:
         return input
 
+def remove_nested_key(input, key):
+    if isinstance(input, dict):
+        return {k: remove_key(v, key) for k, v in input.items()}
+    elif isinstance(input, list):
+        return [remove_key(element, key) for element in input]
+    else:
+        return input
+
 def remove_keys(js):
     js1 = remove_key(js, "$defs")
-    js1 = {k: remove_key(v, "$id") if isinstance(v, dict) else v for k, v in js1.items()}
-    js1 = {k: remove_key(v, "$schema") if isinstance(v, dict) else v for k, v in js1.items()}
-    js1 = {k: remove_key(v, "description") if isinstance(v, dict) else v for k, v in js1.items()}
+    js1 = remove_nested_key(js1, "$id")
+    js1 = remove_nested_key(js1, "$schema")
+    js1 = remove_nested_key(js1, "title")
+    js1 = remove_nested_key(js1, "description")
+    # js1 = {k: remove_key(v, "$id") if isinstance(v, dict) else v for k, v in js1.items()}
+    # js1 = {k: remove_key(v, "$schema") if isinstance(v, dict) else v for k, v in js1.items()}
+    # js1 = {k: remove_key(v, "title") if isinstance(v, dict) else v for k, v in js1.items()}
+    # js1 = {k: remove_key(v, "description") if isinstance(v, dict) else v for k, v in js1.items()}
     return js1
 
 #-------------------------------------------------------------------------------------
@@ -55,3 +68,8 @@ resolve_refs('feature.json')
 # featurecollection.min.json
 #---------------------------
 resolve_refs('featurecollection.json')
+
+#---------------------------
+# jsonfg-document.min.json
+#---------------------------
+resolve_refs('jsonfg-document.json')

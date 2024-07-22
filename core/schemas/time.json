@@ -2,13 +2,14 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://beta.schemas.opengis.net/json-fg/time.json",
   "title": "the time member",
-  "description": "This JSON Schema is part of JSON-FG version 0.2.2",
+  "description": "This JSON Schema is part of JSON-FG version 0.3.0",
   "oneOf": [
     {
       "type": "null"
     },
     {
       "type": "object",
+      "minProperties": 1,
       "properties": {
         "date": {
           "$ref": "#/$defs/date"
@@ -32,23 +33,40 @@
       "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?Z$"
     },
     "interval": {
-      "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
-      "items": {
-        "oneOf": [
-          {
-            "$ref": "#/$defs/date"
-          },
-          {
-            "$ref": "#/$defs/timestamp"
-          },
-          {
-            "type": "string",
-            "enum": [".."]
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/date"
+              },
+              {
+                "type": "string",
+                "enum": [".."]
+              }
+            ]
           }
-        ]
-      }
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/$defs/timestamp"
+              },
+              {
+                "type": "string",
+                "enum": [".."]
+              }
+            ]
+          }
+        }
+      ]
     }
   }
 }
