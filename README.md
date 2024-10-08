@@ -95,6 +95,7 @@ Examples of OGC Web APIs providing features in JSON-FG:
 * [Vancouver infrastructure data (CubeServ)](https://test.cubewerx.com/cubewerx/cubeserv/default/ogcapi/Vancouver)
 * [Topographic data, Daraa, Syria (ldproxy)](https://demo.ldproxy.net/daraa)
 * [3D Buildings in Cologne (ldproxy)](https://demo.ldproxy.net/cologne_lod2)
+* [OS Open Zoomstack (ldproxy)](https://demo.ldproxy.net/zoomstack)
 * [OpenStreetMap Ottawa (GNOSIS)](https://maps.gnosis.earth/ogcapi/collections/osm:ottawa)
 
 ### Validators
