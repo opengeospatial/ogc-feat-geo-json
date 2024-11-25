@@ -88,6 +88,7 @@ If you are aware of other implementations or examples, please open an issue or a
 | [ldproxy](https://docs.ldproxy.net/services/building-blocks/features_-_json-fg.html) | Stable | OGC API Features Reference Implementation | X | X | X | - | X | X |
 | CubeServ | Stable | A suite of OGC web services and OGC API endpoints by CubeWerx Inc. | X | X | - | - | X | X |
 | [GoKoala](https://github.com/PDOK/gokoala) | Development | Cloud Native OGC API server | X | X | - | - | - | - |
+| [GNOSIS Map Server](https://maps.gnosis.earth/ogcapi) | Stable | by Ecere | X | X | - | - | - | - |
 
 Examples of OGC Web APIs providing features in JSON-FG:
 
@@ -95,6 +96,7 @@ Examples of OGC Web APIs providing features in JSON-FG:
 * [Topographic data, Daraa, Syria (ldproxy)](https://demo.ldproxy.net/daraa)
 * [3D Buildings in Cologne (ldproxy)](https://demo.ldproxy.net/cologne_lod2)
 * [OS Open Zoomstack (ldproxy)](https://demo.ldproxy.net/zoomstack)
+* [OpenStreetMap Ottawa (GNOSIS)](https://maps.gnosis.earth/ogcapi/collections/osm:ottawa)
 
 ### Validators
 
