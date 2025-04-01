@@ -6,7 +6,7 @@ OGC Features and Geometries JSON (JSON-FG) builds on the widely used [GeoJSON st
 
 ## Status
 
-The current version is [0.2.2](https://docs.ogc.org/DRAFTS/21-045.html). 
+The current version is [0.3.0](https://docs.ogc.org/DRAFTS/21-045r1.html). 
 
 This version will be the basis for the OGC Public Comment phase for 90 days, which is the final call for comments before the candidate standard will go through the process for approval as an OGC Standard after resolving the comments received during the OGC Public Comment period.
 
