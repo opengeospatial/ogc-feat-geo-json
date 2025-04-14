@@ -38,7 +38,7 @@
       "$ref": "geometry-objects.json#/$defs/MultiPrism"
     },
     {
-      "$ref": "geometry-objects.json#/$defs/CircluarString"
+      "$ref": "geometry-objects.json#/$defs/CircularString"
     },
     {
       "$ref": "geometry-objects.json#/$defs/CompoundCurve"

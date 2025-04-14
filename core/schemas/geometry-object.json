@@ -36,7 +36,7 @@
       "$ref": "#/$defs/MultiPrism"
     },
     {
-      "$ref": "#/$defs/CircluarString"
+      "$ref": "#/$defs/CircularString"
     },
     {
       "$ref": "#/$defs/CompoundCurve"
@@ -496,13 +496,13 @@
         }
       }
     },
-    "CircluarString": {
+    "CircularString": {
       "title": "JSON-FG CircularString",
       "type": "object",
       "required": ["type", "coordinates"],
       "properties": {
         "type": {
-          "const": "CircluarString"
+          "const": "CircularString"
         },
         "conformsTo": {
           "$ref": "conformsto.json"
@@ -557,7 +557,7 @@
                 "$ref": "#/$defs/LineString"
               },
               {
-                "$ref": "#/$defs/CircluarString"
+                "$ref": "#/$defs/CircularString"
               },
               {
                 "$ref": "#/$defs/CustomCurve"
@@ -599,7 +599,7 @@
                 "$ref": "#/$defs/LineString"
               },
               {
-                "$ref": "#/$defs/CircluarString"
+                "$ref": "#/$defs/CircularString"
               },
               {
                 "$ref": "#/$defs/CustomCurve"
@@ -641,7 +641,7 @@
                 "$ref": "#/$defs/LineString"
               },
               {
-                "$ref": "#/$defs/CircluarString"
+                "$ref": "#/$defs/CircularString"
               },
               {
                 "$ref": "#/$defs/CustomCurve"
