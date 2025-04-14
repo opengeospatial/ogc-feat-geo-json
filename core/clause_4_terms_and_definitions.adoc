@@ -28,18 +28,24 @@ feature type::
 class of *features* having common characteristics [ISO 19156:2023]
 
 JSON document::
-an information resource (series of octets) described by the application/json media type [<<json-schema,JSON Schema 2020-12>>]
+an information resource (series of octets) described by the "application/json" media type [<<json-schema,JSON Schema 2020-12>>]
 
 NOTE: The terms "JSON document", "JSON text", and "JSON value" are interchangeable.
 
+JSON object::
+an unordered set of name/value pairs mapping the name to a JSON value [<<json-schema,JSON Schema 2020-12>>, modified]
+
 JSON-FG document::
 a **JSON document** that conforms to the Requirements Class "Core" of OGC Features and Geometries JSON - Part 1: Core
+
+JSON-FG object::
+a **JSON object** that is either a JSON-FG feature, a JSON-FG feature collection, or a JSON-FG geometry
 
 <JSON> key::
 the name of a *member*
 
 <JSON> member::
-a name/value pair in a JSON object
+a name/value pair in a **JSON object**
 
 primary geometry::
 the geometry that the publisher considers as the most important spatial characteristic of a *feature* (<<OAFeat-5,OGC API - Features - Part 5: Schemas>>)
@@ -52,6 +58,9 @@ primary temporal information::
 the time instant or time interval that the publisher considers as the most important temporal characteristic of a *feature* (<<OAFeat-5,OGC API - Features - Part 5: Schemas>>)
 
 NOTE: A feature can be described by multiple temporal properties. For example, an event can have a property with an instant or interval when the event occurred or will occur and another property when the event was recorded in the dataset. The primary temporal information can also be built from two properties, e.g., when the feature has two properties describing the start instant and end instant of an interval.
+
+profile::
+additional semantics (constraints, conventions, extensions) that are associated with a resource representation, in addition to those defined by the media type (<<rfc6906,RFC 6906: The 'profile' Link Relation Type>>)
 
 publisher::
 entity responsible for making a resource available (https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher[Dublin Core Metadata Initiative - DCMI Metadata Terms])

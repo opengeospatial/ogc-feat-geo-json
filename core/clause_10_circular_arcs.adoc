@@ -2,12 +2,12 @@
 [#rc_{req-class}]
 == Requirements Class "Circular Arcs"
 
-The "3D" Requirements Class adds provisions for geometries in a 3D CRS that may be of type <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, or <<MultiPrism>>.
+The "Circular Arcs" Requirements Class adds provisions for curve geometries that may be of type <<CircularString>>, <<CompoundCurve>>, <<CurvePolygon>>, <<MultiCurve>>, or <<MultiSurface>>.
 
 [cols="2,7",width="90%"]
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
-|Target type |JSON documents
+|Target type |JSON objects
 |Dependency |<<rc_core>>
 |===
 
@@ -20,10 +20,7 @@ The "3D" Requirements Class adds provisions for geometries in a 3D CRS that may 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |The "conformsTo" member of the JSON document SHALL include at least one of the two following values:
-
-* `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`; 
-* `"[ogc-json-fg-1-{m_n}:{req-class}]"`.
+^|A |The "conformsTo" member of a JSON-FG object that contains any of the curve geometry objects SHALL include at least the following value: `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
 |===
 
 === Geometry
@@ -35,8 +32,8 @@ The "3D" Requirements Class adds provisions for geometries in a 3D CRS that may 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "CircularString", the elements in the "coordinates" array SHALL ... TODO.
-^|B |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "CompoundCurve", each element in the "geometries" array SHALL ... TODO.
-^|C |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "CurvePolygon", each element in the "geometries" array SHALL ... TODO.
-^|D |If the "place" member in any JSON-FG feature in the JSON document is not `null` and the geometry type (member "type") is "MultiCurve" or "MultiSurface", each element in the "geometries" array SHALL ... TODO.
+^|A |If the "place" member in any JSON-FG feature object is not `null` and the geometry type (member "type") is "CircularString", the elements in the "coordinates" array SHALL ... TODO.
+^|B |If the "place" member in any JSON-FG feature object is not `null` and the geometry type (member "type") is "CompoundCurve", each element in the "geometries" array SHALL ... TODO.
+^|C |If the "place" member in any JSON-FG feature object is not `null` and the geometry type (member "type") is "CurvePolygon", each element in the "geometries" array SHALL ... TODO.
+^|D |If the "place" member in any JSON-FG feature object is not `null` and the geometry type (member "type") is "MultiCurve" or "MultiSurface", each element in the "geometries" array SHALL ... TODO.
 |===

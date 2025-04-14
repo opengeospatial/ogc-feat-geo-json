@@ -8,25 +8,25 @@
       "type": "null"
     },
     {
-      "$ref": "geometry-objects.json#/$defs/Point"
+      "$ref": "geometry-object.json#/$defs/Point"
     },
     {
-      "$ref": "geometry-objects.json#/$defs/MultiPoint"
+      "$ref": "geometry-object.json#/$defs/MultiPoint"
     },
     {
-      "$ref": "geometry-objects.json#/$defs/LineString"
+      "$ref": "geometry-object.json#/$defs/LineString"
     },
     {
-      "$ref": "geometry-objects.json#/$defs/MultiLineString"
+      "$ref": "geometry-object.json#/$defs/MultiLineString"
     },
     {
-      "$ref": "geometry-objects.json#/$defs/Polygon"
+      "$ref": "geometry-object.json#/$defs/Polygon"
     },
     {
-      "$ref": "geometry-objects.json#/$defs/MultiPolygon"
+      "$ref": "geometry-object.json#/$defs/MultiPolygon"
     },
     {
-      "$ref": "geometry-objects.json#/$defs/GeometryCollection"
+      "$ref": "geometry-object.json#/$defs/GeometryCollection"
     }
   ]
 }

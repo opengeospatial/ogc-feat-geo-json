@@ -9,8 +9,7 @@
     "type": "string"    
   },
   "contains": {
-    "type": "string",
-    "enum": [ "[ogc-json-fg-1-0.3:core]", "http://www.opengis.net/spec/json-fg-1/0.3/conf/core" ]
+    "const": "http://www.opengis.net/spec/json-fg-1/0.3/conf/core"
   },
   "uniqueItems": true
 }

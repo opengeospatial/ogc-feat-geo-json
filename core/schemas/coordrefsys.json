@@ -31,7 +31,7 @@
     },
     "refsys-simpleref": {
       "type": "string",
-      "description": "The value is either a URI or a CURIE."
+      "format": "uri-reference"
     },
     "refsys-byref": {
       "type": "object",
@@ -43,7 +43,7 @@
         },
         "href": {
           "type": "string",
-          "description": "The value is either a URI or a CURIE."
+          "format": "uri-reference"
         },
         "epoch": {
           "type": "number"

@@ -69,7 +69,7 @@ If JSON-LD is used, the "featureType" member can be mapped to "@type".
 
 The following aspects were discussed:
 
-1. Originally the schema was meant for validation of JSON-FG documents. However, consistent with discussions in the context of OGC API Features, the primary value of a feature schema is not validation, but information about the properties of a feature. Since the same feature will be encoded differently in GeoJSON and JSON-FG (e.g., the same property may be represented in the "properties" member in GeoJSON, but in a "time" member in JSON-FG) instead of having different feature schemas for GeoJSON and JSON-FG, a single JSON Schema describing the logical feature schema with additional annotations to specify the mapping to GeoJSON and JSON-FG was considered more valuable for clients.
+1. Originally the schema was meant for validation of JSON-FG objects. However, consistent with discussions in the context of OGC API Features, the primary value of a feature schema is not validation, but information about the properties of a feature. Since the same feature will be encoded differently in GeoJSON and JSON-FG (e.g., the same property may be represented in the "properties" member in GeoJSON, but in a "time" member in JSON-FG) instead of having different feature schemas for GeoJSON and JSON-FG, a single JSON Schema describing the logical feature schema with additional annotations to specify the mapping to GeoJSON and JSON-FG was considered more valuable for clients.
 
 2. The JSON Schemas specified for GeoJSON and JSON-FG can be used to validate instance documents against the general requirements of the standards. These schema, however, will not validate the contents of the "properties" member.
 

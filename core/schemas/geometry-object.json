@@ -1,8 +1,59 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://beta.schemas.opengis.net/json-fg/geometry-objects.json",
+  "$id": "https://beta.schemas.opengis.net/json-fg/geometry-object.json",
   "title": "the geometry objects",
   "description": "This JSON Schema is part of JSON-FG version 0.3.0",
+  "type": "object",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Point"
+    },
+    {
+      "$ref": "#/$defs/MultiPoint"
+    },
+    {
+      "$ref": "#/$defs/LineString"
+    },
+    {
+      "$ref": "#/$defs/MultiLineString"
+    },
+    {
+      "$ref": "#/$defs/Polygon"
+    },
+    {
+      "$ref": "#/$defs/MultiPolygon"
+    },
+    {
+      "$ref": "#/$defs/Polyhedron"
+    },
+    {
+      "$ref": "#/$defs/MultiPolyhedron"
+    },
+    {
+      "$ref": "#/$defs/Prism"
+    },
+    {
+      "$ref": "#/$defs/MultiPrism"
+    },
+    {
+      "$ref": "#/$defs/CircluarString"
+    },
+    {
+      "$ref": "#/$defs/CompoundCurve"
+    },
+    {
+      "$ref": "#/$defs/CurvePolygon"
+    },
+    {
+      "$ref": "#/$defs/MultiCurve"
+    },
+    {
+      "$ref": "#/$defs/MultiSurface"
+    },
+    {
+      "$ref": "#/$defs/CustomGeometry"
+    }
+  ],
   "$defs": {
     "CustomGeometry": {
       "title": "A custom geometry object",
@@ -74,6 +125,9 @@
         "type": {
           "const": "Point"
         },
+        "conformsTo": {
+          "$ref": "conformsto.json"
+        },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
         },
@@ -95,6 +149,9 @@
       "properties": {
         "type": {
           "const": "LineString"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -121,6 +178,9 @@
       "properties": {
         "type": {
           "const": "Polygon"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -151,6 +211,9 @@
         "type": {
           "const": "MultiPoint"
         },
+        "conformsTo": {
+          "$ref": "conformsto.json"
+        },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
         },
@@ -175,6 +238,9 @@
       "properties": {
         "type": {
           "const": "MultiLineString"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -204,6 +270,9 @@
       "properties": {
         "type": {
           "const": "MultiPolygon"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -236,6 +305,9 @@
       "properties": {
         "type": {
           "const": "GeometryCollection"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -281,6 +353,9 @@
         "type": {
           "const": "Polyhedron"
         },
+        "conformsTo": {
+          "$ref": "conformsto.json"
+        },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
         },
@@ -318,6 +393,9 @@
       "properties": {
         "type": {
           "const": "MultiPolyhedron"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -360,6 +438,9 @@
         "type": {
           "const": "Prism"
         },
+        "conformsTo": {
+          "$ref": "conformsto.json"
+        },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
         },
@@ -395,6 +476,9 @@
         "type": {
           "const": "MultiPrism"
         },
+        "conformsTo": {
+          "$ref": "conformsto.json"
+        },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
         },
@@ -419,6 +503,9 @@
       "properties": {
         "type": {
           "const": "CircluarString"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -450,8 +537,10 @@
       "required": ["type", "geometries"],
       "properties": {
         "type": {
-          "type": "string",
-          "enum": ["CompoundCurve"]
+          "const": "CompoundCurve"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -487,8 +576,10 @@
       "required": ["type", "geometries"],
       "properties": {
         "type": {
-          "type": "string",
-          "enum": ["CurvePolygon"]
+          "const": "CurvePolygon"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -527,8 +618,10 @@
       "required": ["type", "geometries"],
       "properties": {
         "type": {
-          "type": "string",
-          "enum": ["MultiCurve"]
+          "const": "MultiCurve"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"
@@ -567,8 +660,10 @@
       "required": ["type", "geometries"],
       "properties": {
         "type": {
-          "type": "string",
-          "enum": ["MultiSurface"]
+          "const": "MultiSurface"
+        },
+        "conformsTo": {
+          "$ref": "conformsto.json"
         },
         "coordRefSys": {
           "$ref": "coordrefsys.json"

@@ -1,7 +1,7 @@
 {
     "type": "Feature",
     "id": "pylon.1",
-    "conformsTo" : [ "[ogc-json-fg-1-0.3:core]", "[ogc-json-fg-1-0.3:3d]" ],
+    "conformsTo" : [ "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", "http://www.opengis.net/spec/json-fg-1/0.3/conf/3d" ],
     "featureType": "pylon",
     "time": {
         "interval": [

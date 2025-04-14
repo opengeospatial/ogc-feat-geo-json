@@ -40,8 +40,6 @@ This pattern is consistent with the general approach in the OGC API standards. I
 
 The semantics of the relationship / association role is expressed via the link relation type. Where possible, link relation types registered with IANA or OGC should be used, but the data publisher can also define their own link relation types. Note that this introduces overhead, because it requires minting persistent URIs for the link relation types. Where this is too much, an existing link relation type should be used and "related" could be used as a fallback.
 
-Note that the examples use https://www.w3.org/TR/curie/[Safe CURIEs] for better readability in cases where the link relation type is a URI.
-
 The parcel feature could look like the following example, which uses the "anchor" link attribute to specify the link context. The building relationship has been mapped to a hypothetical "http://www.opengis.net/def/rel/ogc/1.0/contains" link relationship based on the topological relationship "contains" from the Simple Features standard.
 
 NOTE: Link relation types for the topological interval relationships as specified in OWL Time are already registered with IANA. The registration of the named spatial topological relationships specified in the <<ogc06_103r4,Simple Feature Access standard>> could be considered, either in the IANA or the OGC register. Such link relation types are useful for cases where relationships are pre-computed or are computed on the fly but are presented, because the clients cannot easily compute them.
@@ -54,27 +52,27 @@ NOTE: Link relation types for the topological interval relationships as specifie
    "links" : [ { 
       "title" : "123 Main St., Atlantis",
       "href" : "https://example.com/building/123",
-      "rel" : "[ogc:contains]"
+      "rel" : "http://www.opengis.net/def/rel/ogc/1.0/contains"
    }, {
       "anchor": "#/properties/owners/0", 
       "href": "https://example.com/person/foo", 
       "title": "John Doe", 
-      "rel": "[app:owner]" 
+      "rel": "http://www.example.com/app/profile/owner" 
    }, {
       "anchor": "#/properties/owners/1", 
       "href": "https://example.com/company/bar", 
       "title": "Acme Inc", 
-      "rel": "[app:owner]" 
+      "rel": "http://www.example.com/app/profile/owner" 
    }, {
       "anchor": "#/properties/landUse/0", 
       "href": "https://example.com/landuse/residential", 
       "title": "residential use", 
-      "rel": "[app:land-use]" 
+      "rel": "http://www.example.com/app/profile/land-use" 
    }, {
       "anchor": "#/properties/landUse/1", 
       "href": "https://example.com/landuse/commercial", 
       "title": "commercial use", 
-      "rel": "[app:land-use]" 
+      "rel": "http://www.example.com/app/profile/land-use" 
    } ],
    "properties": {
       "registerId": "foo",

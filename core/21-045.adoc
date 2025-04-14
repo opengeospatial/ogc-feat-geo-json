@@ -106,7 +106,11 @@ include::clause_11_measures.adoc[]
 
 include::clause_12_feature_types_and_schemas.adoc[]
 
-include::clause_13_media_types.adoc[]
+include::clause_13_profiles.adoc[]
+
+include::clause_14_jsonfg-api.adoc[]
+
+include::clause_15_media_types.adoc[]
 
 <<<
 ////

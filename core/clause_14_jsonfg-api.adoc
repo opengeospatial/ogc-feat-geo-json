@@ -1,0 +1,21 @@
+:req-class: api
+[#rc_{req-class}]
+== Requirements Class "JSON-FG in Web APIs"
+
+The Requirements Class "JSON-FG in Web APIs" adds provisions for three GeoJSON profiles.
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |Web APIs
+|Dependency |<<OAFeat-5,OGC API - Features - Part 5: Schemas 1.0 (DRAFT), Requirements Class "Profile Query Parameter">>
+|Indirect Dependency |<<rc_profiles>>
+|===
+
+:req: profiles
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The Web API SHALL support the query parameter "profile" on GET/HEAD operations that support GeoJSON.
+^|B |The query parameter "profile" SHALL support at least the values "rfc7946" and "jsonfg".
+|===

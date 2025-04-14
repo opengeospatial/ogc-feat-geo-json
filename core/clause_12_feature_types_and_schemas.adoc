@@ -7,7 +7,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 [cols="2,7",width="90%"]
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
-|Target type |JSON documents
+|Target type |JSON objects
 |Dependency |<<rc_core>>
 |Indirect Dependency |<<OAFeat-5,OGC API - Features - Part 5: Schemas>>
 
@@ -22,13 +22,12 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |The "conformsTo" member of the JSON document SHALL include at least one of the two following values:
-
-* `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`; 
-* `"[ogc-json-fg-1-{m_n}:{req-class}]"`.
+^|A |The "conformsTo" member of a JSON-FG object that contains directly or in embedded JSON-FG objects "featureType" or "featureSchema" members SHALL include at least the following value: `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
 |===
 
 === Feature type(s)
+
+TODO
 
 :req: feature-type
 [#{req-class}_{req}]
