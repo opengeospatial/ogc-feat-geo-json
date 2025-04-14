@@ -442,6 +442,26 @@ To support validation of the odd number of positions, a maximum number of 11 pos
 ----
 ====
 
+A circle is a circular string with five positions where the first and last positions have identical values.
+
+[#circle,reftext='{listing-caption} {counter:listing-num}']
+.A circle
+====
+[source,json,linenumbers]
+----
+{
+  "type": "CircularString",
+  "coordinates": [
+    [96100, 400600],
+    [96101, 400601],
+    [96102, 400600],
+    [96101, 400599],
+    [96100, 400600]
+  ]
+}
+----
+====
+
 [[compound_curve]]
 ==== CompoundCurve
 
@@ -513,31 +533,6 @@ A _curve polygon_ is a surface where each ring is a closed _line string_, _circu
         [96101.5, 400605.5],
         [96102.5, 400604.5],
         [96101.5, 400603.5]
-      ]
-    }
-  ]
-}
-----
-====
-
-A circle is a curve polygon with an exterior boundary that is a circular string with five positions where the first and last positions have identical values.
-
-[#circle,reftext='{listing-caption} {counter:listing-num}']
-.A circle
-====
-[source,json,linenumbers]
-----
-{
-  "type": "CurvePolygon",
-  "geometries": [
-    {
-      "type": "CircularString",
-      "coordinates": [
-        [96100, 400600],
-        [96101, 400601],
-        [96102, 400600],
-        [96101, 400599],
-        [96100, 400600]
       ]
     }
   ]
