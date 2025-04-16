@@ -1,0 +1,15 @@
+{
+    "conformsTo": [
+        "http://www.opengis.net/spec/json-fg-1/0.3/conf/core"         ,
+        "http://www.opengis.net/spec/json-fg-1/0.3/conf/circular-arcs"
+    ],
+    "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/28992",
+    "type": "CircularString",
+    "coordinates": [
+        [96103.337, 400611.390],
+        [96104.822, 400616.074],
+        [96110.480, 400613.523],
+        [96105.822, 400612.074],
+        [96103.337, 400611.390]
+    ]
+}

@@ -5,7 +5,7 @@
 
 === A building feature
 
-The following feature instance is an example of a building feature that includes all new JSON-FG capabilities.
+The following feature instance is an example of a building feature that includes severel new JSON-FG capabilities.
 
 [#example_building,reftext='{listing-caption} {counter:listing-num}']
 .Building with a polyhedron geometry and the polygon footprint
@@ -16,9 +16,35 @@ include::examples/building.json[]
 ----
 ====
 
+=== A road segment feature with measure values
+
+The following feature instance is an example of a road segment feature.
+
+[#example_road_segment,reftext='{listing-caption} {counter:listing-num}']
+.A road element with measure values
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/road-segment.json[]
+----
+====
+
+=== A circle geometry
+
+The following feature instance is an example of a circle as a JSON-FG outside of a feature context.
+
+[#example_circle_document,reftext='{listing-caption} {counter:listing-num}']
+.A circle
+====
+[source%unnumbered,json,linenumbers]
+----
+include::examples/circle-document.json[]
+----
+====
+
 === Simple prism geometries
 
-The following are simple examples of prism geometries. 
+The following are simple examples of prism geometries in a feature. 
 
 [#example_pylon,reftext='{listing-caption} {counter:listing-num}']
 .A pylon as a entruded point
@@ -74,9 +100,11 @@ include::examples/airports.json[]
 [#extending_jsonfg]
 === Extending JSON-FG
 
+TODO
+
 This section illustrates how JSON-FG can be extended with 
 
-* new geometry types Arc and Circle;
+* new geometry type TODO;
 * a new temporal data type for a time series;
 * the capability to provide a coordinate reference system definition as a PROJJSON object.
 
@@ -84,22 +112,17 @@ If the extension would be specified in a hypothetical part 2 of JSON-FG, the ext
 
 If the same extensions are specified by a community, they would copy the relevant JSON-FG schemas and extend them as described in the sub-sections. Unchanged schemas like the JSON Schemas for the "geometry" and "featureType" members or for a link do not need to be copied and can reference the JSON-FG schemas.
 
-[[geometry_types_arc_and_circle]]
-==== Geometry types Arc and Circle
+[[geometry_type_TODO]]
+==== Geometry type TODO
 
-The schema definition for the new geometry objects "Arc" and "Circle" shown below could be added as `\#/$defs/Arc` and `#/$defs/Circle` in the JSON Schema of geometry objects ("geometry-objects.json"). 
-
-[source,json,linenumbers]
-----
-include::examples/extensions/arc.json[]
-----
+The schema definition for a new geometry object "TODO" shown below could be added as `\#/$defs/TODO` in the JSON Schema of geometry objects ("geometry-object.json"). 
 
 [source,json,linenumbers]
 ----
-include::examples/extensions/circle.json[]
+include::examples/extensions/TODO.json[]
 ----
 
-"Arc" and "Circle" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum` to declare the two new JSON-FG geometry types.
+"TODO" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum` to declare the two new JSON-FG geometry types.
 
 ==== A temporal data type for a time series;
 

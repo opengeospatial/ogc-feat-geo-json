@@ -64,6 +64,8 @@
           "type": "string",
           "not": {
             "enum": [
+              "Feature",
+              "FeatureCollection",
               "Point",
               "MultiPoint",
               "LineString",
@@ -95,7 +97,8 @@
           "not": {
             "enum": [
               "LineString",
-              "CircularString"
+              "CircularString",
+              "CompoundCurve"
             ]
           }
         }
@@ -168,7 +171,7 @@
         },
         "bbox": {
           "$ref": "#/$defs/bbox"
-        }
+        }  
       }
     },
     "Polygon": {
