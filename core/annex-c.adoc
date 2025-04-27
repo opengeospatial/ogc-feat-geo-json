@@ -100,11 +100,9 @@ include::examples/airports.json[]
 [#extending_jsonfg]
 === Extending JSON-FG
 
-TODO
-
 This section illustrates how JSON-FG can be extended with 
 
-* new geometry type TODO;
+* new geometry type "GeodesicString" for a geodesic curve;
 * a new temporal data type for a time series;
 * the capability to provide a coordinate reference system definition as a PROJJSON object.
 
@@ -112,17 +110,27 @@ If the extension would be specified in a hypothetical part 2 of JSON-FG, the ext
 
 If the same extensions are specified by a community, they would copy the relevant JSON-FG schemas and extend them as described in the sub-sections. Unchanged schemas like the JSON Schemas for the "geometry" and "featureType" members or for a link do not need to be copied and can reference the JSON-FG schemas.
 
-[[geometry_type_TODO]]
-==== Geometry type TODO
+[[geometry_type_geodesicstring]]
+==== Geometry type "GeodesicString"
 
-The schema definition for a new geometry object "TODO" shown below could be added as `\#/$defs/TODO` in the JSON Schema of geometry objects ("geometry-object.json"). 
+A GeoJSON LineString is a sequence of straight lines through two or more positions with the assumption that Euclidean geometry is used. That is, while GeoJSON uses geographic coordinates (longitude and latitude) on an ellipsoid, the path between two positions is computed in a Cartesian coordinate system - applying the Pseudo Plate Carrée projection. In other words, the path between two positions is a straight line in the Cartesian coordinate system, not the shortest path on the WGS 84 ellipsoid. 
+
+To support geodesic curves on the reference ellipsoid, a new geometry type "GeodesicString" could be defined. The new geometry type would be a sequence of geodesic lines between two or more positions on the ellipsoid.
+
+A GeodesicString requires that the coordinates are in a geographic coordinate reference system (CRS) with longitude and latitude as the horizontal coordinates. 
+
+Geometrical computations of a GeodesicString - including computation of length or area - should be performed on the curved surface that approximates the earth's surface. Details are provided, for example, in the drafts of <<ogc20_070,Features and Geometry - Part 2: Metrics>>.
+
+If the "bbox" member is provided, it will be the bounding box that contains all positions along the path of the geodesic string. That is, it will in general be larger than the bounding box of the positions in the "coordinates" member.
+
+The schema definition for a new geometry "GeodesicString" shown below could be added as `\#/$defs/GeodesicString` in the JSON Schema of geometries ("geometry-object.json"). 
 
 [source,json,linenumbers]
 ----
-include::examples/extensions/TODO.json[]
+include::examples/extensions/geodesicstring.json[]
 ----
 
-"TODO" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum` to declare the two new JSON-FG geometry types.
+"GeodesicString" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum` to declare the new JSON-FG geometry type.
 
 ==== A temporal data type for a time series;
 

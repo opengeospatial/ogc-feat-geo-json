@@ -2,37 +2,36 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://beta.schemas.opengis.net/json-fg/featurecollection.json",
   "title": "a JSON-FG Feature Collection",
-  "description": "This JSON Schema is part of JSON-FG version 0.3.0",
+  "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
   "type": "object",
   "required": ["type", "features"],
   "properties": {
-    "conformsTo": {
-      "$ref": "conformsto.json"
-    },
-    "type": {
-      "const": "FeatureCollection"
-    },
-    "featureType": {
-      "$ref": "featuretype.json"
-    },
-    "geometryDimension": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 3
-    },
-    "featureSchema": {
-      "$ref": "featureschema.json"
-    },
-    "coordRefSys": {
-      "$ref": "coordrefsys.json"
-    },
-    "measures": {
-      "$ref": "measures.json"
-    },
+    "type": {"const": "FeatureCollection"},
+    "featureType": {"$ref": "featuretype.json"},
+    "geometryDimension": {"type": "integer", "minimum": 0, "maximum": 3},
+    "featureSchema": {"$ref": "featureschema.json"},
+    "coordRefSys": {"$ref": "coordrefsys.json"},
+    "measures": {"$ref": "measures.json"},
     "features": {
       "type": "array",
       "items": {
-        "$ref": "feature.json"
+        "allOf": [
+          {"$ref": "feature.json"},
+          {
+            "not": {
+              "type": "object",
+              "properties": {"coordRefSys": {}},
+              "required": ["coordRefSys"]
+            }
+          },
+          {
+            "not": {
+              "type": "object",
+              "properties": {"conformsTo": {}},
+              "required": ["conformsTo"]
+            }
+          }
+        ]
       }
     }
   }

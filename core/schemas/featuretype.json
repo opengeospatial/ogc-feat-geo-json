@@ -1,17 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://beta.schemas.opengis.net/json-fg/featuretype.json",
-  "title": "the featureType member",
-  "description": "This JSON Schema is part of JSON-FG version 0.3.0",
+  "title": "the value of the 'featureType' member",
+  "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
   "oneOf": [
-    {
-      "type": "string"
-    },
-    {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    }
+    { "type": "string"                              },
+    { "type": "array" , "items": {"type": "string"} }
   ]
 }

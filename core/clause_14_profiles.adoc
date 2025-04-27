@@ -1,0 +1,92 @@
+:req-class: profiles
+[#rc_{req-class}]
+== Requirements Class "GeoJSON Profiles"
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |JSON documents
+|Conditional Dependency |<<rfc7946,RFC 7946: The GeoJSON Format>>
+|Conditional Dependency |<<rc_core>>
+|===
+
+The Requirements Class "GeoJSON Profiles" adds provisions for three GeoJSON profiles.
+
+[[profile-rfc7946]]
+=== Profile "RFC 7946"
+
+:req: rfc7946
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|Condition |A JSON document has a link to the profile "\http://www.opengis.net/def/profile/OGC/0/{req}".
+^|A |The JSON document SHALL be a GeoJSON feature, feature collection or geometry that conforms to <<rfc7946,RFC 7946 (The GeoJSON Format)>>.
+^|B |The JSON document SHALL not include a JSON-FG conformance class URI in a "conformsTo" member of the root object, if one is provided.
+^|C |The JSON document SHALL not include a "place" member in any feature.
+|===
+
+:per: rfc7946
+[width="90%",cols="2,7a"]
+|===
+^|*Permission {counter:per-num}* |/per/{req-class}/{per}
+^|Condition |A JSON document has a link to the profile "\http://www.opengis.net/def/profile/OGC/0/{req}".
+^|A |The JSON document MAY include coordinates in the "geometry" member that are not in WGS 84, if a prior arrangement exists (that is, by explicitly requesting the use of the coordinate reference system when generating the JSON document).
+|===
+
+Creators of GeoJSON according to this profile may decide to include the obsolete "crs" member, too, if the geometry in "geometry" is not in WGS 84 longitude/latitude and they want to support GeoJSON readers that already supported the now obsolete version. The obsolete "crs" member is a JSON object with two members: "type" and "properties". The "type" member has the value "name" and the "properties" member is a JSON object with one member, "name", which has the value of the CRS URI.
+
+
+[#feature-with-crs,reftext='{listing-caption} {counter:listing-num}']
+.A feature with the obsolete "crs" member.
+====
+[source,json,linenumbers]
+----
+{
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::25832"
+    }
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [ 358000, 5531000 ]
+  },
+  "properties": {
+    "name": "Lieser"
+  }
+}
+----
+====
+
+
+[[profile-jsonfg]]
+=== Profile "JSON-FG"
+
+:req: jsonfg
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|Condition |A JSON document has a link to the profile "\http://www.opengis.net/def/profile/OGC/0/{req}".
+^|A |The JSON document SHALL conform to the <<rc_core,Requirements Class "Core">>.
+|===
+
+[[profile-jsonfg-plus]]
+=== Profile "JSON-FG with improved support for GeoJSON readers"
+
+:req: jsonfg-plus
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|Condition |A JSON document has a link to the profile "\http://www.opengis.net/def/profile/OGC/0/{req}".
+^|A |The JSON document SHALL conform to the <<rc_core,Requirements Class "Core">>.
+^|B |Each feature in the JSON document SHALL include a non-null "geometry" member, if the feature has a non-null "place" member.
+|===
+
+:rec: properties
+[width="90%",cols="2,7a"]
+|===
+^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
+^|A |If JSON-FG features are expected to be parsed by clients that only allow access to the JSON members in the GeoJSON Feature schema ("id", "geometry", "bbox", and "properties"),
+additional JSON-FG members in the Feature schema ("time", "place", "coordRefSys", "measures", and "featureType") SHOULD also be included in the "properties" object.
+|===

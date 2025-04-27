@@ -1,11 +1,7 @@
 [[building_blocks]]
 == JSON-FG building blocks
 
-This Clause describes the JSON building blocks required to extend GeoJSON features and feature collections. The following clauses specify the formal requirements classes.
-
-The Annex '<<considerations>>' contains considerations for some of the JSON-FG building blocks.
-
-Remarks and known open issues are included in notes.
+This Clause describes the JSON building blocks required to extend GeoJSON features and feature collections. The following clauses specify the formal requirements.
 
 === Overview
 
@@ -33,8 +29,6 @@ The following JSON building blocks are specified by this Standard:
 ** <<feature-types>>
 ** <<schema-ref>>
 
-An additional discussion topic during the development of the JSON-FG Standard was the relationship between a feature and other web resources that are represented as links. The JSON-FG Standard does not mandate a specific approach for representing relationships as links. However, Annex '<<relationships_and_links>>' documents and discusses patterns of how to represent relationships as links.
-
 Annex '<<examples>>' has examples of JSON-FG objects.
 
 [[general_approach]]
@@ -44,13 +38,12 @@ The GeoJSON RFC clearly specifies in Clauses 6 and 7 that additional members can
 
 JSON-FG extends GeoJSON in three ways:
 
-* By adding new JSON members to the "Feature" and "FeatureCollection" objects;
-* By specifying additional geometry objects.
-* TODO: By specifying additional rules for the metrics.
+* By adding new JSON members to features, feature collections and geometries;
+* By specifying additional geometries.
 
-As a result, JSON-FG does not place constraints on the information in the "properties" member (like GeoJSON) and JSON-FG readers do not have to parse the "properties" object. This approach avoids name clashes with existing feature properties in the "properties" object.
+Like GeoJSON, JSON-FG does not place constraints on the information in the "properties" member and JSON-FG readers do not have to parse the "properties" object. This approach avoids name clashes with existing feature properties in the "properties" object.
 
-Some GeoJSON readers, however, only provide access to the pre-defined JSON members in GeoJSON features, such as "id", "geometry", "bbox" and "properties". If the target audience uses such tools, it is recommended to also include the additional top-level JSON-FG members like "time", "place", "featureType", "coordRefSys", and "measures" in the "properties" object.
+Some GeoJSON readers, however, only provide access to the pre-defined JSON members in GeoJSON features, such as "id", "geometry", "bbox" and "properties". If the target audience uses such tools, it is recommended to also include the additional JSON-FG members like "time", "place", "featureType", "coordRefSys", and "measures" in the "properties" object.
 
 [[bb_core]]
 === Core building blocks
@@ -58,7 +51,7 @@ Some GeoJSON readers, however, only provide access to the pre-defined JSON membe
 [[metadata]]
 ==== Metadata: the "conformsTo" member
 
-To indicate that a JSON document contains JSON-FG objects and to indicate the JSON-FG version and requirements classes implemented in the document, a `conformsTo` member is required to be included in the root object.
+To indicate that a JSON document contains JSON-FG objects and to indicate the JSON-FG version and requirements classes implemented in the document, a `conformsTo` member is required to be included in the root object of the JSON document.
 
 The value of the member is an array of strings, where each string is a URI of a conformance class.
 
@@ -69,7 +62,7 @@ The value of the member is an array of strings, where each string is a URI of a 
 ----
 "conformsTo" : [ 
   "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", 
-  "http://www.opengis.net/spec/json-fg-1/0.3/conf/3d" 
+  "http://www.opengis.net/spec/json-fg-1/0.3/conf/polyhedra" 
 ]
 ----
 ====
@@ -83,7 +76,7 @@ Many features have a geometry property that provides information about the prima
 
 JSON-FG adds support for the most common case: Associating a feature with a single temporal instant or interval in the Gregorian calendar.
 
-More complex cases and other temporal coordinate reference systems are out-of-scope for this Standard and might be specified in future extensions.
+More complex cases and other temporal coordinate reference systems are out-of-scope for this Standard and might be specified in extensions.
 
 ===== Description
 
@@ -92,7 +85,7 @@ Features can have temporal properties. These properties will typically be includ
 * In many datasets all temporal properties are instants (represented by a date or a timestamp) and intervals are described using two temporal instants, one for the start and one for the end.
 * Multiple temporal properties are sometimes used to describe different temporal characteristics of a feature. For example, the time instant or interval when the information in the feature is valid (sometimes called "valid time") and the time when the feature was recorded in the dataset (sometimes called "transaction time"). Another example is the https://www.ogc.org/standards/om[Observations & Measurements Standard], where an observation has multiple temporal properties including "phenomenon time", "result time" and "valid time".
 
-As GeoJSON does, JSON-FG does not place constraints on the information in the "properties" member. JSON-FG specifies a new JSON member in a feature object (key: "time"). The member describes temporal information (an instant or an interval) that can be used by clients without a need to inspect the "properties" member or to understand the schema of the feature. Clients that are familiar with a dataset can, of course, inspect the information in the "properties" member instead of inspecting the "time" member.
+As GeoJSON does, JSON-FG does not place constraints on the information in the "properties" member. JSON-FG specifies a new JSON member in a feature (key: "time"). The member describes temporal information (an instant or an interval) that can be used by clients without a need to inspect the "properties" member or to understand the schema of the feature. Clients that are familiar with a dataset can, of course, inspect the information in the "properties" member instead of inspecting the "time" member.
 
 The publisher of the data needs to decide which temporal feature properties are used in the "time" member.
 
@@ -107,7 +100,7 @@ The "time" member is either missing or `null` (no temporal information) or an ob
 |interval |[ string ] |An interval, described by an array of the two instants (start and end). See below for more details about intervals.
 !===
 
-If both values intersect, then including both an instant and an interval is valid. In this case, clients should use the interval property and may use the date or timestamp property to determine the temporal characteristics of the feature.
+If both values intersect, then including both an instant and an interval is valid. In this case, clients should use the "interval" property and may use the "date" or "timestamp" property to determine the temporal characteristics of the feature.
 
 The "time" object may be extended with additional members. Clients processing a "time" object must be prepared to parse additional members. Clients should ignore members that they do not understand. For example, in cases where the "time" member neither includes an "instant" or "interval", a client may process the feature as a feature without temporal information.
 
@@ -196,17 +189,17 @@ In GeoJSON, geometry information is encoded in the "geometry" member. Geometries
 
 A key motivation for the development of the JSON-FG Standard is to support additional requirements, especially the ability to represent geometries in other CRSs and in additional geometry types.
 
-To avoid confusing existing GeoJSON readers, such geometries are provided in a new member in the feature object with the key "place".
+To avoid confusing existing GeoJSON readers, such geometries are provided in a new member in the feature with the key "place".
 
 ===== Description
 
-The primary geometry of a feature is provided in the "geometry" and/or "place" members of the feature object as specified in the next sub-clause. The value of both members is an object representing a geometry - or `null`. The "place" member can also be omitted, if the member has no value.
+The primary geometry of a feature is provided in the "geometry" and/or "place" members of the feature as specified in the next sub-clause. The value of both members is an object representing a geometry - or `null`. The "place" member can also be omitted, if the member has no value.
  
 The valid values of the "geometry" member are specified in the GeoJSON standard.
 
 The value range of the "place" member is an extended and extensible version of the value range of the GeoJSON "geometry" member:
 
-* Extended by additional geometry objects:
+* Extended by additional geometries:
 ** Additional 3D geometry types <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>>;
 ** Additional geometry types supporting curves with circular arcs <<CircularString>>, <<CompoundCurve>>, <<CurvePolygon>>, <<MultiCurve>>, and <<MultiSurface>>;
 * The capability to <<ref-sys,declare the coordinate reference system of the coordinates>>;
@@ -228,23 +221,9 @@ If the geometry cannot be represented as a valid GeoJSON geometry, the geometry 
 
 In addition, a valid GeoJSON geometry may be provided as the value of the "geometry" member in the WGS 84 CRS as specified in the GeoJSON standard. Otherwise, the "geometry" member is set to `null`. If present, the geometry that is the value of the "geometry" member is a fallback for readers that support GeoJSON, but not JSON-FG. This fallback geometry could be a simplified version of the value of the "place" member - like the building footprint in the example <<example_building,"building with a polyhedron geometry and the polygon footprint">> which is the polygon projection of the solid geometry. The fallback geometry can also be the same point/line string/polygon geometry that is the value of the "place" member, but in a WGS 84 CRS (potentially with fewer vertices to reduce the file size). It is the decision of the publisher, how the fallback geometry in a WGS 84 CRS is derived from the geometry that is the value of the "place" member. In the example, this is the footprint of the building, but it also could be a representative point (to reduce the data volume) or a 3D MultiPolygon representing the outer shell of the polyhedron (for clients that support visualizations in 3D).
 
-The presence of such fallback geometries in JSON-FG feature objects is indicated by a link from the JSON document to the "\http://www.opengis.net/def/profile/OGC/0/jsonfg-plus" profile (see <<rc_profiles>>).
+The presence of such fallback geometries in JSON-FG features is indicated by a link from the JSON document to the "\http://www.opengis.net/def/profile/OGC/0/jsonfg-plus" profile (see <<rc_profiles>>).
 
 NOTE: GeoJSON states that "geometry" is `null`, if the feature is "unlocated". A real-world entity is obviously not unlocated when "place" has a value. However, the GeoJSON representation of the feature can still considered to be "unlocated", if a representation in a WGS 84 CRS cannot be determined. Examples for such situations are: a local engineering CRS or a planetary CRS is used for the geometry in "place", or if the known consumers of the JSON document do not need the fallback geometry.
-
-===== Metrics
-
-TODO
-
-If the CRS uses longitude and latitude as coordinates, clients should perform geometrical computations - including computation of length or area on the curved surface that approximates the earth's surface. Details are provided, for example, in the drafts of <<ogc20_070,Features and Geometry - Part 2: Metrics>>.
-
-Note that this differs from GeoJSON which states:
-
-[quote, GeoJSON (RFC 7946)]
-A line between two positions is a straight Cartesian line, the shortest line between those two points in the coordinate reference system.
-In other words, every point on a line that does not cross the antimeridian between a point (lon0, lat0) and (lon1, lat1) can be calculated as `F(lon, lat) = (lon0 + (lon1 - lon0) * t, lat0 + (lat1 - lat0) * t)` with t being a real number greater than or equal to 0 and smaller than or equal to 1. Note that this line may markedly differ from the geodesic path along the curved surface of the reference ellipsoid.
-
-NOTE: Antimeridian: is the meridian 180° both east and west of the prime meridian in a geographical coordinate system. The longitude at this line can be given as either east or west.
 
 [[ref-sys]]
 ==== Reference systems: the "coordRefSys" member
@@ -258,19 +237,21 @@ Without any other information, the following coordinate reference system (CRS) d
 
 NOTE: In the GregorianDateTime temporal CRS, all granularities of ISO 8601 are valid values according to https://docs.ogc.org/as/18-005r5/18-005r5.html#109[OGC Abstract Specification Topic 2: Referencing by coordinates, section D.3]. That is, both dates and timestamps are valid values in the CRS.
 
-In this JSON-FG Standard, a new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry object at the collection, feature, or value levels.
+In this Standard, a new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry at the feature collection, feature, or geometry levels.
 
-The "coordRefSys" key _**does not**_ apply to the GeoJSON `geometry` member. This key only applies to geometry objects in the "place" member and those that may appear in the "properties" member.
+The "coordRefSys" key _**does not**_ apply to the GeoJSON "geometry" member. This key only applies to geometries in the "place" member and those that may appear in the "properties" member.
 
-If a CRS is asserted for a JSON-FG object, that assertion will typically be made at the root level of JSON-FG objects, either at the feature collection level or the feature level depending on the document contents.
+If a CRS is asserted for a JSON-FG object, that assertion will typically be made at the root level of JSON-FG objects, either at the feature collection level or the feature level depending on the contents.
 
 ===== Description
 
 Spatio-temporal objects are specified relative to some reference system.
 
-GeoJSON (both the current <<rfc7946,RFC>> and the https://geojson.org/geojson-spec.html[legacy version]) fixed the reference system for geometric values to the "WGS84 datum, and with [an axis order of] longitude and latitude [and coordinate] units of decimal degrees".  The https://geojson.org/geojson-spec.html[legacy version] included a "prior arrangement" provision to allow other reference systems to be used and to also defined the "crs" key for specifying the reference system.  This _prior arrangement_ mechanism survived into the https://tools.ietf.org/html/rfc7946[RFC] but the accompanying "crs" key did not. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON.  As such, the only safe approach is to continue using OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
+GeoJSON (both the current <<rfc7946,RFC>> and the https://geojson.org/geojson-spec.html[obsolete version]) fixed the CRS for geometries to the "WGS84 datum, and with [an axis order of] longitude and latitude [and coordinate] units of decimal degrees".  The https://geojson.org/geojson-spec.html[obsolete version] supported other CRSs through defining the key "crs" for specifying the CRS.  In the https://tools.ietf.org/html/rfc7946[RFC] the "crs" member was removed, but a _prior arrangement_ provision was added that if all parties agree, coordinates could be represented in a different reference system. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON.  As such, the only safe approach is to continue using OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
 
-Additional JSON-FG building blocks like the "place" member are not bound by these restrictions and so this Standard provides for handling reference systems in JSON-FG objects in a way that does not interfere with anything, past or present, defined in any of the GeoJSON specifications. The GeoJSON building blocks can continue to operate as always but JSON-FG building blocks provides enhanced CRS support.
+It is also important to note that the "crs" member applied to the geometry in the "geometry" member, while the "coordRefSys" member from JSON-FG does not apply to the geometry in the "geometry" member.
+
+Additional JSON-FG building blocks like the "place" member are not bound by the restrictions in GeoJSON and so this Standard provides for handling CRSs in JSON-FG objects in a way that does not interfere with anything, past or present, defined in any of the GeoJSON specifications. The GeoJSON building blocks can continue to operate as always, but JSON-FG building blocks provides enhanced CRS support.
 
 ===== Reference system values
 
@@ -278,7 +259,7 @@ A reference system can be specified in a JSON-FG object using a "coordRefSys" me
 
 * As a CRS reference using the URI of a simple CRS;
 * As a CRS reference using the URI of a simple CRS accompanied by an optional epoch value (for https://docs.ogc.org/as/18-005r5/18-005r5.html#64[dynamic CRSs]);
-* As an array of simple CRS references denoting an ad hoc compound reference system.
+* As an array of simple CRS references denoting an ad hoc compound CRS.
 
 [#rs-by-simple-ref,reftext='{listing-caption} {counter:listing-num}']
 .A simple reference system value by reference (URI).
@@ -320,37 +301,30 @@ The epoch is the point in time, expressed as a decimal year, to which coordinate
 ----
 ====
 
-===== The "crs" member
-
-TODO
-
 [[ref-sys-scoping-rules]]
 ===== Scoping rules
 
-Used at the feature collection level, the "coordRefSys" key asserts the CRS for JSON-FG geometry objects found anywhere in the feature collection that are not otherwise tagged with CRS information in the feature or geometry object.
+Used at the feature collection level, the "coordRefSys" key asserts the CRS for JSON-FG geometries found anywhere in the feature collection that are not otherwise tagged with CRS information in the feature or geometry.
 
-Used at the feature level, the "coordRefSys" key asserts the CRS for JSON-FG geometry objects found anywhere in the feature that are not otherwise tagged with CRS information in the geometry object.
+Used at the feature level, the "coordRefSys" key asserts the CRS for JSON-FG geometries found anywhere in the feature that are not otherwise tagged with CRS information in the geometry.
 
-Used at the geometry level, the "coordRefSys" key asserts the CRS for the JSON-FG geometry object within which the key is contained. For a GeometryCollection, all geometries in the collection must be in the same CRS (this constraint is "inherited" from the <<ogc06_103r4,OGC Simple Feature Access Standard>>) and cannot include a "coordRefSys" member.
+Used at the geometry level, the "coordRefSys" key asserts the CRS for the JSON-FG geometry within which the key is contained. For a GeometryCollection, all geometries in the collection must be in the same CRS (this constraint is "inherited" from the <<ogc06_103r4,OGC Simple Feature Access Standard>>) and cannot include a "coordRefSys" member.
 
 Where all objects on the same level are in the same CRS, declaring the CRS on the parent level instead of declaring it in all parallel objects is recommended.
 
 ===== Coordinate order
 
-The order in which coordinates for JSON-FG geometry objects are expressed is defined in the https://portal.opengeospatial.org/files/?artifact_id=76024[OGC Axis Order Policy] and shall be in the axis order defined by the closest-to-scope CRS metadata.
+The order in which coordinates for JSON-FG geometries are expressed is defined in the https://portal.opengeospatial.org/files/?artifact_id=76024[OGC Axis Order Policy] and shall be in the axis order defined by the closest-to-scope CRS metadata.
 
 ===== Additional coordinate reference systems
 
 For unknown coordinate reference systems, such as with CAD engineering drawings, the following CRS identifiers can be used:
 
-* https://www.opengis.net/def/crs/OGC/0/Engineering2D[`OGC:Engineering2D`] for 2D coordinates (x, y);
-* https://www.opengis.net/def/crs/OGC/0/Engineering3D[`OGC:Engineering3D`] for 3D coordinates (x, y, z).
+* "\http://www.opengis.net/def/crs/OGC/0/Engineering2D" for 2D coordinates (x, y);
+* "\http://www.opengis.net/def/crs/OGC/0/Engineering3D" for 3D coordinates (x, y, z).
 
 [[bb_3d]]
 === Building blocks for 3D geometries
-
-NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/88[ongoing discussion] about which 3D geometries should be included in JSON-FG and how they should be grouped into conformance classes. This discussion has to be resolved and this note must be removed before finalizing the JSON-FG Standard.
-
 
 [[polyhedron]]
 ==== Polyhedron
@@ -362,10 +336,8 @@ Each solid has a unique exterior shell and any number of shells that are inside 
 A _polyhedron_ is a solid where each shell is a multi-polygon. 'Closed' means that the multi-polygon shell is watertight, it splits space into two distinct regions: inside and outside of the shell. 'Simple' means that the polygons that make up the shell do not intersect, they only touch each other along their common boundaries.
 
 [#figurePolyhedra]
-.A Polyhedron (Cologne Cathedral).
+.A complex Polyhedron (Cologne Cathedral).
 image::images/cologne_cathedral_lod2.png[alt=Cologne Cathedral LoD 2,width=90%]
-
-TODO: all faces of the polyhedron should be rendered the same way (no red roofs).
 
 The JSON representation of the coordinates of a polyhedron is a non-empty array of _multi-polygon_ arrays. Each _multi-polygon_ array is a shell. The first shell is the exterior boundary, all other shells are voids.
 
@@ -408,7 +380,7 @@ image::images/buildings_cologne_lod1.png[alt=Buildings LoD 1,width=90%]
 [[multi_prism]]
 ==== MultiPrism
 
-A _multi-prism_ is an array of _prism_ objects.  The order of the prism geometry objects in the array is not significant.
+A _multi-prism_ is an array of _prism_ objects.  The order of the prism geometries in the array is not significant.
 
 The following figure shows a 3D rendering of Toronto City Hall. The feature with a MultiPrism geometry is provided as an example in <<example_tch,Annex C>>.
 
@@ -419,7 +391,7 @@ image::images/TorontoCityHall_3D_2.png[alt=Toronto City Hall,width=60%,align="ce
 [[bb_circular_arcs]]
 === Building blocks for circular arcs
 
-All examples in this section use RD new (`http://www.opengis.net/def/crs/EPSG/0/28992`) as the coordinate reference system.
+All examples in this section use RD new (\http://www.opengis.net/def/crs/EPSG/0/28992) as the coordinate reference system.
 
 [[circular_string]]
 ==== CircularString
@@ -507,24 +479,27 @@ include::examples/multi-surface.json[]
 [[bb_measures]]
 === Building blocks for measures
 
-In most cases, geometries are restricted to coordinates according to <<ref-sys>>. 
+In most cases, geometries are restricted to coordinates according to a <<ref-sys,coordinate reference system>>. 
 
 The <<ogc06_103r4,OGC Simple Feature Access Standard>> also supports an additional measure value for each coordinate (M coordinate). 
 
-A typical use case are linear referencing, where the measure value in a curve is the distance of each position along the geometry from the start of the geometry to the position. 
+A typical use case is linear referencing, where the measure value in a curve is the distance of each position along the geometry from the start of the geometry to the position. 
 
 [[measures]]
 ==== Measures: the "measures" member
 
-If a geometry includes measure values, each position of the geometry has to contain a measure value. The number of ordinates in each position is the dimension of the CRS in "coordRefSys" plus one for the measure value.
+If a geometry includes measure values, each position of the geometry has to contain a measure value. The number of cordinates in each position is the dimension of the CRS in "coordRefSys" plus one for the measure value.
 
 The presence of measure values in a geometry is indicated by a "measures" member.
 
-The value of the "measures" member is an object with the following properties:
+The value of the "measures" member is either a boolean value or an object with the following properties:
 
-* "enabled": A boolean value. If `true`, the measure values are enabled. If `false`, the measure values are disabled. The property is required.
-* "unit": The unit of the measure of the measure values. The property is optional.
+* "unit": The unit of the measure of the measure values. The property is required.
 * "description": An optional description of the meaning of the measure values.
+
+If the value of the "measures" member is a boolean value, the value `true` indicates that the geometry has measure values without specifying information about the semantics of the the measure values. The value `false` indicates that the geometry does not have measure values.
+
+If the value of the "measures" member is an object, the geometry has measure values.
 
 The scoping rules are the same as for the <<ref-sys-scoping-rules,"coordRefSys" member>>.
 
@@ -550,7 +525,7 @@ The related section <<schema-ref>> specifies the schema for each feature type if
 
 ===== The "featureType" member
 
-The feature types of a feature are declared in a member of the feature object with the key "featureType". The value is either a string (in the standard case of a single feature type) or an array of strings (to support features that instantiate multiple feature types). Each string should be a code, convenient for the use in filter expressions.
+The feature types of a feature are declared in a member of the feature with the key "featureType". The value is either a string (in the standard case of a single feature type) or an array of strings (to support features that instantiate multiple feature types). Each string should be a code, convenient for the use in filter expressions.
 
 Data specifications often specify codes for feature types. Where data is based on such a data specification, those code will in general be used. An example is the https://portal.dgiwg.org/files/3911[DIGEST 2.1 Feature and Attribute Coding Catalogue (FACC) Data Dictionary] of the https://dgiwg.org/[Defence Geospatial Information Working Group (DGIWG)].
 
@@ -563,7 +538,7 @@ NOTE: The https://www.iana.org/assignments/link-relations/link-relations.xml[IAN
 
 Some clients will process feature collections differently depending on whether the collection is homogeneous with respect to the feature type or the geometry type. These clients will benefit from information that declares the feature and/or geometry type for all features in a collection.
 
-For a feature collection where all features have the same "featureType" value, the "featureType" member can and should be added once for the feature collection. The "featureType" member can then be omitted in the feature objects. Declaring the feature type(s) once signals to clients that the feature collection is homogeneous with respect to the type, which clients can use to optimize their processing.
+For a feature collection where all features have the same "featureType" value, the "featureType" member can and should be added once for the feature collection. The "featureType" member can then be omitted in the features. Declaring the feature type(s) once signals to clients that the feature collection is homogeneous with respect to the type, which clients can use to optimize their processing.
 
 For a feature collection where all features in the feature collection have the same geometry type as their primary geometry (point, curve, surface, solid, including homogeneous aggregates), a "geometryDimension" member can and should be added once for the feature collection with the dimension of the geometry (0 for points, 1 for curves, 2 for surfaces, 3 for solids, null/not set for mixed dimensions or unknown). Declaring the geometry dimension once signals to clients that the feature collection is homogeneous with respect to the dimension, which clients can use to optimize their processing.
 
@@ -572,7 +547,7 @@ For a feature collection where all features in the feature collection have the s
 
 ===== Overview
 
-A JSON-FG feature schema is metadata about a feature that clients can use to understand the content of JSON-FG feature objects, such as a textual description of the feature properties or their value range. 
+A JSON-FG feature schema is metadata about a feature that clients can use to understand the content of JSON-FG features, such as a textual description of the feature properties or their value range. 
 
 JSON-FG follows the approach of <<OAFeat-5,OGC API - Features - Part 5>>, that is, the feature schema is a logical schema. It can not be used to directly validate a JSON document. However, a schema for validation of a JSON-FG feature or feature collection can be derived from the logical schema, if needed. The schemas of the feature properties in the logical schemas can be reused when constructing a JSON Schema for validation.
 
@@ -619,6 +594,101 @@ RECOMMENDATION: Instances described by a schema provide a link to a downloadable
 Where JSON Schema validation is important, such links can be added. For example, OGC API Features already specifies a general "links" member with an array of link objects based on https://tools.ietf.org/html/rfc8288[RFC 8288 (Web linking)] and feature responses from APIs implementing OGC API Features will already include a "links" member.
 
 [[profiles]]
-==== GeoJSON Profiles
+=== GeoJSON Profiles
 
-TODO
+The same resource can be represented in the same format or media type, but with variations depending on the intended use of the data. Named variations are called profiles.
+
+A profile does not alter the semantics of the resource representation itself, but to allow clients to learn about additional semantics that are associated with the resource representation, in addition to those defined by the media type.
+
+This Standard leverages the concept of profiles to define a set of named variations of GeoJSON:
+
+- RFC 7946 ("rfc7946"): GeoJSON as specified in <<rfc7946,RFC 7946>>;
+- JSON-FG ("jsonfg"): JSON-FG as specified in this Standard;
+- JSON-FG with improved support for GeoJSON readers ("jsonfg-plus"): JSON-FG with a geometry in the "geometry" member in WGS 84 to support GeoJSON readers that do not support JSON-FG.
+
+This allows that all variations can use "application/geo+json" as the media type for JSON-FG documents, too, but still distinguish the variations. 
+
+Each profile is defined by a URI and a set of constraints on the JSON-FG representation. The constraints are defined in terms of the members that are required or optional in the JSON-FG representation.
+
+If a JSON-FG document is sent over HTTP, the profile can be indicated in the HTTP header "Link" using the link relation "profile". The value of the link relation is the URI of the profile. The link can also be used in a JSON-FG document to indicate the profile of the document.
+
+The following examples show the same feature in the three profiles. The feature is an airport in Islay, Scotland, with a geometry in the EPSG:27700 coordinate reference system. 
+
+[#feature-rfc7946,reftext='{listing-caption} {counter:listing-num}']
+.HTTP response with a feature in the profile "RFC 7946".
+====
+[source,linenumbers]
+----
+HTTP/2 200 
+Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/27700>
+Content-Language: en
+Content-Type: application/geo+json
+Date: Sun, 27 Apr 2025 13:19:31 GMT
+Link: <http://www.opengis.net/def/profile/OGC/0/rfc7946>; rel="profile"
+Vary: Accept,Accept-Language,Accept-Encoding
+Content-Length: 160
+
+{
+    "type": "Feature",
+    "id": 13,
+    "geometry": { "type": "Point", "coordinates": [132440.63, 651435.92] },
+    "properties": {"name": "Islay Airport"}
+}
+----
+====
+
+[#feature-jsonfg,reftext='{listing-caption} {counter:listing-num}']
+.HTTP response with a feature in the profile "JSON-FG".
+====
+[source,linenumbers]
+----
+HTTP/2 200 
+Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/27700>
+Content-Language: en
+Content-Type: application/geo+json
+Date: Sun, 27 Apr 2025 13:19:31 GMT
+Link: <http://www.opengis.net/def/profile/OGC/0/jsonfg>; rel="profile"
+Vary: Accept,Accept-Language,Accept-Encoding
+Content-Length: 500
+
+{
+    "type": "Feature",
+    "featureType": "Airport",
+    "featureSchema": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
+    "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/27700",
+    "conformsTo": ["http://www.opengis.net/spec/json-fg-1/0.3/conf/core","http://www.opengis.net/spec/json-fg-1/0.3/conf/types-schemas"],
+    "id": 13,
+    "geometry": null,
+    "properties": {"name": "Islay Airport"},
+    "place": { "type": "Point", "coordinates": [132440.63, 651435.92] }
+}
+----
+====
+
+[#feature-jsonfg-plus,reftext='{listing-caption} {counter:listing-num}']
+.HTTP response with a feature in the profile "JSON-FG with improved support for GeoJSON readers".
+====
+[source,linenumbers]
+----
+HTTP/2 200 
+Content-Crs: <http://www.opengis.net/def/crs/EPSG/0/27700>
+Content-Language: en
+Content-Type: application/geo+json
+Date: Sun, 27 Apr 2025 13:19:31 GMT
+Link: <http://www.opengis.net/def/profile/OGC/0/jsonfg-plus>; rel="profile"
+Vary: Accept,Accept-Language,Accept-Encoding
+Content-Length: 556
+
+{
+    "type": "Feature",
+    "featureType": "Airport",
+    "featureSchema": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
+    "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/27700",
+    "conformsTo": ["http://www.opengis.net/spec/json-fg-1/0.3/conf/core","http://www.opengis.net/spec/json-fg-1/0.3/conf/types-schemas"],
+    "id": 13,
+    "geometry": { "type": "Point", "coordinates": [-6.2580609, 55.6824121] },
+    "properties": {"name": "Islay Airport"},
+    "place": { "type": "Point", "coordinates": [132440.63, 651435.92] }
+}
+----
+====

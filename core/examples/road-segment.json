@@ -5,9 +5,8 @@
      "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", 
      "http://www.opengis.net/spec/json-fg-1/0.3/conf/measures"
    ],
-   "coordRefSys": "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+   "coordRefSys": "http://www.opengis.net/def/crs/OGC/0/CRS84",
    "measures": {
-     "enabled": false,
      "unit": "km",
      "description": "Kilometers along the road based on the kilometer markers. Positions between two physical markers are interpolated."
    },
@@ -30,7 +29,7 @@
        [7.9429592, 52.3003909, 225.556],
        [7.9434566, 52.3015636, 225.422],
        [7.9438507, 52.3024014, 225.325],
-       [7.9443588, 52.3034069, 225.208, 34]
+       [7.9443588, 52.3034069, 225.208]
      ]
    },
    "time": {"instant": "2022-10-21T18:00:00Z"},

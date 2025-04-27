@@ -73,3 +73,8 @@ resolve_refs('featurecollection.json')
 # jsonfg-object.min.json
 #---------------------------
 resolve_refs('jsonfg-object.json')
+
+#---------------------------
+# jsonfg-root-object.min.json
+#---------------------------
+resolve_refs('jsonfg-root-object.json')

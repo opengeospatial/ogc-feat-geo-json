@@ -1,0 +1,15 @@
+{
+    "title": "GeodesicString",
+    "description": "A sequence of geodesic lines between two or more positions on the curved surface of the coordinate reference system. A GeodesicString requires that the coordinates are in a geographic coordinate reference system.",
+    "type": "object",
+    "required": ["type", "coordinates"],
+    "properties": {
+        "type": { "type": "string", "const": "GeodesicString" },
+        "coordinates": {
+            "type": "array",
+            "minItems": 2,
+            "items": {"$ref": "#/$defs/position"}
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+    }
+}

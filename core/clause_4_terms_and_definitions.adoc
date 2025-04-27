@@ -8,6 +8,9 @@ This document also uses terms defined in the OGC Standard for Modular specificat
 
 For the purposes of this document, the following additional terms and definitions apply.
 
+coordinate::
+one of a sequence of numbers designating the **position** of a point [<<ogc18_005r4,OGC Topic 2>>]
+
 coordinate reference system::
 coordinate system that is related to an object by a datum [<<ogc18_005r4,OGC Topic 2>>]
 
@@ -36,16 +39,31 @@ JSON object::
 an unordered set of name/value pairs mapping the name to a JSON value [<<json-schema,JSON Schema 2020-12>>, modified]
 
 JSON-FG document::
-a **JSON document** that conforms to the Requirements Class "Core" of OGC Features and Geometries JSON - Part 1: Core
+a **JSON document** that contains a JSON-FG root object
+
+JSON-FG feature::
+a **JSON object** that validates against the JSON-FG feature schema
+
+JSON-FG feature collection::
+a **JSON object** that validates against the JSON-FG feature collection schema
+
+JSON-FG geometry::
+a **JSON object** that validates against the JSON-FG geometry schema
 
 JSON-FG object::
 a **JSON object** that is either a JSON-FG feature, a JSON-FG feature collection, or a JSON-FG geometry
+
+JSON-FG root object::
+a **JSON-FG object** that is not a direct children of another JSON-FG object
 
 <JSON> key::
 the name of a *member*
 
 <JSON> member::
 a name/value pair in a **JSON object**
+
+position::
+a sequence of numbers representing a point in a **coordinate reference system**
 
 primary geometry::
 the geometry that the publisher considers as the most important spatial characteristic of a *feature* (<<OAFeat-5,OGC API - Features - Part 5: Schemas>>)

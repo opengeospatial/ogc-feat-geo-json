@@ -6,12 +6,6 @@ OGC Features and Geometries JSON (JSON-FG) is a proposal for GeoJSON extensions 
 
 Since JSON-FG specifies extensions to GeoJSON that conform to the GeoJSON standard, valid JSON-FG features or feature collections are also valid GeoJSON features or feature collections.
 
-The Open Geospatial Consortium (OGC) invites organisations and developers that have a need for the extensions specified by this specification to implement and test the extensions. Please submit feedback in the https://github.com/opengeospatial/ogc-feat-geo-json/issues[GitHub repository of the specification]. Are these extensions useful for your use cases? Are they simple enough to implement?
-
-NOTE: There are a number of https://github.com/opengeospatial/ogc-feat-geo-json/projects/1[open issues under discussion] at the time of the release of this draft (version 0.2). Notes in this document link to related issues in the GitHub repository.
-
-Uptake in implementations and sufficient feedback from implementation experience will be a prerequisite for this specification to eventually progress towards an OGC Standard.
-
 CAUTION: This is a DRAFT. The technical requirements specified in this document can change in future versions.
 
 [big]*ii.    Keywords*

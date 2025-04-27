@@ -1,0 +1,60 @@
+:req-class: measures
+[#rc_{req-class}]
+== Requirements Class "Measures"
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |JSON objects
+|Dependency |<<rc_core>>
+|===
+
+The "Measures" Requirements Class adds provisions for geometries with a third or four coordinate representing a measure, often called the "m coordinate".
+
+=== Metadata
+
+:req: metadata
+[#{req-class}_{req}]
+==== Conformance declaration
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The "conformsTo" member of a JSON-FG root object that contains a "measures" member in any JSON-FG object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
+|===
+
+=== Geometry
+
+:req: coordinates
+[#{req-class}_{req}]
+==== Coordinates
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the geometry in the "place" member in any JSON-FG feature has m coordinates, each position SHALL have three coordinates (in case of a 2D CRS) or four coordinates (in case of a 3D CRS).
+|===
+
+[[determine-m]]
+Whether a "place" geometry contains m coordinates, is determined as follows: 
+
+* If the geometry has a member "measures" with `true` or an object, the geometry has m coordinates. If the geometry has a member "measures" with `false`, the geometry does not have m coordinates.
+** Otherwise inspect the parent object and repeat until the JSON-FG root object.
+* If no "measures" member has been found, the geometry does not have m coordinates.
+
+:req: xxx
+[#{req-class}_{req}]
+==== All positions in a primary geometry use m coordinates or not
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |No sub-geometry of a geometry that is the value of the "place" member SHALL include a "measures" member.
+|===
+
+For example,
+- the "CompoundCurve" geometry specified in the Requirements Class "Circular Arcs" includes embedded curve geometries, which cannot include a "measures" member;
+- the "Prism" geometry specified in the Requirements Class "Prisms" includes an embedded 2D base geometry, which cannot include a "measures" member.
+
+NOTE: Strictly, this requirement is not necessary as it is implied by requirement `/req/core/schema-valid`. It is, however, included for clarity.
+

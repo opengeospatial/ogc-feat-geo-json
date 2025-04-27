@@ -2,8 +2,6 @@
 [#rc_{req-class}]
 == Requirements Class "Core"
 
-The Requirements Class "Core" specifies provisions for encoding information about the primary geometry and temporal information of a feature in JSON. 
-
 [cols="2,7",width="90%"]
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
@@ -13,32 +11,33 @@ The Requirements Class "Core" specifies provisions for encoding information abou
 |Indirect Dependency |<<ogc06_103r4,Simple feature access - Part 1: Common architecture>>
 |===
 
-A JSON-FG object is a JSON object 
+The Requirements Class "Core" specifies provisions for JSON-FG root objects. 
+
+A JSON-FG root object is a JSON object 
 
 * that is either a feature collection, feature, or geometry;
+* that is not contained in another JSON-FG object;
 * that meets all requirements described in this clause; and 
-* that meets all requirements stated in the <<rfc7946,GeoJSON standard>> for feature collections, features, and geometries.
+* that meets all requirements stated in the <<rfc7946,GeoJSON standard>> for feature collections, features, and GeoJSON geometries.
 
 :req: schema-valid
 [#{req-class}_{req}]
-=== Syntax
+=== Structure of a JSON-FG root object
 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |The JSON-FG object SHALL validate against the <<schema-feature>> (a JSON-FG feature), the <<schema-feature-collection>> (a JSON-FG feature collection), or the <<schema-geometry>> (a JSON-FG geometry).
+^|A |The JSON object SHALL validate against the <<schema-jsonfg-root-object>>.
 |===
 
-While every JSON-FG object must validate against the associated JSON-FG schema, executing the validation is only necessary when testing conformance. Implementations reading or writing JSON-FG do not have to perform validation. It is also not necessary to publish application- or community-specific schemas that describe the schema of the feature properties to conform to the Core requirements class.
+NOTE: While every JSON-FG root object must validate against the schema, executing the validation is only necessary when testing conformance. Implementations reading or writing JSON-FG do not have to perform validation. It is also not necessary to publish application- or community-specific schemas that describe the schema of the feature properties to conform to the Core requirements class.
 
-:rec: properties
-[width="90%",cols="2,7a"]
-|===
-^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
-^|A |If a JSON-FG object is expected to be parsed by clients that only allow access to the JSON members in the GeoJSON Feature schema (in particular the "id", the "geometry", and the "properties"), any additional JSON members in the JSON-FG Feature schema ("time", "place", "coordRefSys", and "featureType") SHOULD also be included in the "properties" object.
-|===
-
-NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[open discussion] as to whether this recommendation should apply only in the "GeoJSON compatibility mode" (i.e., if the <<profile-jsonfg-plus,"JSON-FG with improved GeoJSON support" profile>> is used). This discussion has to be resolved and this note must be removed before finalizing the JSON-FG Standard.
+In requirements and recommendations, the following terms have to be interpreted as follows:
+* JSON-FG root object: refers to standaridation target;
+* JSON-FG object: refers to a JSON-FG object that is either the JSON-FG root object or a JSON-FG that is a child object outside of any "properties" member;
+* JSON-FG feature: refers to a JSON-FG object that is a feature;
+* JSON-FG geometry: refers to a JSON-FG object that is a geometry;
+* JSON-FG feature collection: refers to a JSON-FG object that is a feature collection.
 
 === Metadata
 
@@ -49,12 +48,12 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |Every JSON-FG object that is not contained in another JSON-FG object SHALL include a "conformsTo" member.
-^|B |The "conformsTo" member SHALL include at least the following value:
-
-* `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`; 
-^|C |Every JSON-FG object that is contained in another JSON-FG object SHALL NOT include a "conformsTo" member.
+^|A |The JSON-FG root object SHALL include a "conformsTo" member.
+^|B |The "conformsTo" member SHALL include at least the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
+^|C |Every other JSON-FG object SHALL NOT include a "conformsTo" member.
 |===
+
+NOTE: Strictly, this requirement is not necessary as it is implied by requirement `/req/{req-class}/schema-valid`. It is, however, included for clarity.
 
 === Temporal information
 
@@ -65,9 +64,11 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "time" object in any JSON-FG feature object includes a "date" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match the production rule `full-date`.
-^|B |If the "time" object in any JSON-FG feature object includes a "timestamp" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match the production rule `date-time`.
+^|A |If the "time" value in any JSON-FG feature includes a "date" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match the production rule `full-date`.
+^|B |If the "time" value in any JSON-FG feature includes a "timestamp" member, the value SHALL conform to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match the production rule `date-time`.
 |===
+
+NOTE: Strictly, this requirement is not necessary as it is implied by requirement `/req/{req-class}/schema-valid`. It is, however, included for clarity.
 
 :req: interval
 [#{req-class}_{req}]
@@ -76,10 +77,13 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "time" object in any JSON-FG feature object includes an "interval" member, each array item SHALL be a string that is a double-dot ("..") or conforms to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match one of the following production rules: `full-date` (a date) or `date-time` (a timestamp).
+^|A |If the "time" value in any JSON-FG feature includes an "interval" member, each array item SHALL be a string that is a double-dot ("..") or conforms to <<rfc3339,RFC 3339 (Date and Time on the Internet: Timestamps)>> and match one of the following production rules: `full-date` (a date) or `date-time` (a timestamp).
 ^|B |If the start is a date, the end SHALL be a date, too, or "..".
 ^|C |If the start is a timestamp, the end SHALL be a timestamp, too, or "..".
+^|D |If neither the start and the end are "..", the start SHALL be earlier than or equal to the end.
 |===
+
+NOTE: Strictly, A to C of this requirement are not necessary as the statements are implied by requirement `/req/{req-class}/schema-valid`. They are, however, included for clarity.
 
 :req: instant-and-interval
 [#{req-class}_{req}]
@@ -88,11 +92,11 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "time" object in any JSON-FG feature object includes both a "date" and a "timestamp" member, the `full-date` parts SHALL be identical.
-^|B |If the "time" object in any JSON-FG feature object includes both a "timestamp" and an "interval" member with start/end dates, the interval SHALL contain the date of the timestamp.
-^|C |If the "time" object in any JSON-FG feature object includes both a "timestamp" and an "interval" member with start/end timestamps, the interval SHALL contain the timestamp.
-^|D |If the "time" object in any JSON-FG feature object includes both a "date" and an "interval" member with start/end dates, the interval SHALL contain the date.
-^|E |If the "time" object in any JSON-FG feature object includes both a "date" and an "interval" member with start/end timestamps, the interval SHALL include timestamps on the date.
+^|A |If the "time" value in any JSON-FG feature includes both a "date" and a "timestamp" member, the `full-date` parts SHALL be identical.
+^|B |If the "time" value in any JSON-FG feature includes both a "timestamp" and an "interval" member with start/end dates, the interval SHALL contain the date of the timestamp.
+^|C |If the "time" value in any JSON-FG feature includes both a "timestamp" and an "interval" member with start/end timestamps, the interval SHALL contain the timestamp.
+^|D |If the "time" value in any JSON-FG feature includes both a "date" and an "interval" member with start/end dates, the interval SHALL contain the date.
+^|E |If the "time" value in any JSON-FG feature includes both a "date" and an "interval" member with start/end timestamps, the interval SHALL include timestamps on the date.
 |===
 
 :req: utc
@@ -102,8 +106,10 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |Timestamps in the "time" member in any JSON-FG feature object SHALL use UTC ("Z") as the time zone.
+^|A |Timestamps in the "time" member in any JSON-FG feature SHALL use "Z" (UTC) as the time zone.
 |===
+
+NOTE: Strictly, this requirement is not necessary as it is implied by requirement `/req/{req-class}/schema-valid`. It is, however, included for clarity.
 
 === Geometry
 
@@ -114,7 +120,8 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |All positions in a geometry object in the "geometry" or "place" members in any JSON-FG feature object SHALL have the same dimension.
+^|A |All positions in a geometry in the "geometry" members in any JSON-FG feature SHALL have the same dimension.
+^|A |All positions in a geometry in the "place" members in any JSON-FG feature SHALL have the same dimension.
 |===
 
 :req: geometry-wgs84
@@ -124,9 +131,23 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "geometry" member in a JSON-FG feature object is not `null`, the first element of each position SHALL be between -180 and +180 decimal degrees longitude.
-^|B |If the "geometry" member in a JSON-FG feature object is not `null`, the second element of each position SHALL be between -90 and +90 decimal degrees latitude.
+^|A |The first element of each position in the "geometry" members in any JSON-FG feature SHALL be between -180 and +180.
+^|B |The second element of each position in the "geometry" members in any JSON-FG feature SHALL be between -90 and +90.
 |===
+
+NOTE: The unit of the values is decimal degrees.
+
+:req: geometry-no-jsonfg-extension
+[#{req-class}_{req}]
+==== "geometry" without JSON-FG extensions
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The "geometry" members in any JSON-FG feature SHALL not include any members specified by JSON-FG (from this Standard: "coordRefSys", "measures").
+|===
+
+NOTE: Strictly, this requirement is not necessary as it is implied by requirement `/req/{req-class}/schema-valid`. It is, however, included for clarity.
 
 :req: geom-valid
 [#{req-class}_{req}]
@@ -135,8 +156,10 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature object is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon",  "MultiPolygon" or "GeometryCollection", the geometry objects SHALL be valid geometries according to <<ogc06_103r4,Simple feature access - Part 1: Common architecture>>.
+^|A |If the "place" value in any JSON-FG feature is of geometry type "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon",  "MultiPolygon" or "GeometryCollection", the geometry SHALL be valid geometries according to <<ogc06_103r4,Simple feature access - Part 1: Common architecture>>.
 |===
+
+NOTE: If the geometry type is not one the listed types, the validity of the geometry is specified in the requirements class that defines the geometry type.
 
 :req: place
 [#{req-class}_{req}]
@@ -145,28 +168,32 @@ NOTE: There is an https://github.com/opengeospatial/ogc-feat-geo-json/issues/82[
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature object is not `null` and the geometry type (member "type") is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon" or "GeometryCollection", the CRS SHALL not be `OGC:CRS84` or `OGC:CRS84h` (WGS 84 with axis order longitude/latitude).
+^|A |If the "place" value in any JSON-FG feature is of geometry type "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon" or "GeometryCollection" and does not include a "measures" member the CRS SHALL not be `"http://www.opengis.net/def/crs/OGC/0/CRS84"` or `"http://www.opengis.net/def/crs/OGC/0/CRS84h"` (WGS 84 with axis order longitude/latitude).
 |===
 
 [[determine-crs]]
-The CRS of a "place" geometry object is determined as follows: 
+The CRS of a "place" geometry is determined as follows: 
 
-* If the geometry object has a member "coordRefSys", the CRS is identified by the value. 
-** Otherwise inspect the parent object and repeat until the root object.
-* If no "coordRefSys" member has been found, the CRS has WGS84 longitude/latitude as the first two coordinate axes (that is, the requirement above is not met).
-* Otherwise inspect the CRS URI or CRS object to determine the datum and the first two coordinate axes.
+* If the geometry has a member "coordRefSys", the CRS is identified by the value. 
+** Otherwise inspect the parent object and repeat until the JSON-FG root object.
+* If no "coordRefSys" member has been found, the CRS is `"http://www.opengis.net/def/crs/OGC/0/CRS84"`, if the position has two coordinates (excluding a measure coordinate), or `"http://www.opengis.net/def/crs/OGC/0/CRS84h"`, if the position has three coordinates (excluding a measure coordinate).
+* Otherwise the CRS is identified by the value of "coordRefSys" member.
 
-:req: geometry-collection
+:req: same-crs
 [#{req-class}_{req}]
-==== All coordinates in a geometry collection are in the same CRS
+==== All primary geometries are in the same CRS
 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature object is not `null` and the geometry type (member "type") is "GeometryCollection" or any other geometry type that has embedded geometry objects, no embedded geometry object SHALL include a "coordRefSys" member.
+^|A |A "coordRefSys" member SHALL only be included in the JSON-FG root object and not in any other JSON-FG objects.
 |===
 
-For example, the "Prism" geometry specified in the Requirements Class "3D" includes an embedded 2D base geometry. The base geometry cannot include a "coordRefSys" member.
+This includes geometries that are embedded in other geometries. For example,
+- the "CompoundCurve" geometry specified in the Requirements Class "Circular Arcs" includes embedded curve geometries, which cannot include a "coordRefSys" member;
+- the "Prism" geometry specified in the Requirements Class "Prisms" includes an embedded 2D base geometry, which cannot include a "coordRefSys" member.
+
+NOTE: Strictly, this requirement is not necessary as it is implied by requirement `/req/{req-class}/schema-valid`. It is, however, included for clarity.
 
 :req: fallback
 [#{req-class}_{req}]
@@ -175,19 +202,17 @@ For example, the "Prism" geometry specified in the Requirements Class "3D" inclu
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If both the "place" and the "geometry" member in a JSON-FG feature object are not `null`, the values of both members SHALL not be identical.
-^|B |If both the "place" and the "geometry" member in a JSON-FG feature object are not `null`, the JSON document shall include a link to the profile "\http://www.opengis.net/def/profile/OGC/0/jsonfg-plus". TODO
+^|A |If both the "place" and the "geometry" member in a JSON-FG feature are not `null`, the values of both members SHALL not be identical.
 |===
 
 :req: axis-order
 [#{req-class}_{req}]
-==== Axis order of coordinate values in "place"
+==== Axis order of coordinates
 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-
-If the "place" member in any JSON-FG feature object is not `null`, the coordinates of each position SHALL be expressed according to the https://portal.opengeospatial.org/files/?artifact_id=76024[OGC Axis Order Policy] and SHALL be in the axis order defined by the closest-to-scope CRS metadata.
+^|A |In any JSON-FG geometry, the coordinates of each position SHALL be expressed according to the https://portal.opengeospatial.org/files/?artifact_id=76024[OGC Axis Order Policy] and SHALL be in the axis order defined by the closest-to-scope CRS.
 |===
 
 :rec: place-crs
@@ -197,10 +222,10 @@ If the "place" member in any JSON-FG feature object is not `null`, the coordinat
 [width="90%",cols="2,7a"]
 |===
 ^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
-^|A |If the "place" member in any JSON-FG feature object is not `null`, the first element of each position SHOULD be in the valid range for the first coordinate axis of the CRS.
-^|B |If the "place" member in any JSON-FG feature object is not `null`, the second element of each position SHOULD be in the valid range for the second coordinate axis of the CRS.
+^|A |The first element of each position in the "place" members in any JSON-FG feature SHOULD be in the valid range for the first coordinate axis of the CRS.
+^|B |The second element of each position in the "place" members in any JSON-FG feature SHOULD be in the valid range for the second coordinate axis of the CRS.
 |===
 
-See the <<determine-crs,description above>> how to determine the CRS of a geometry object.
+See the <<determine-crs,description above>> how to determine the CRS of a JSON-FG geometry.
 
 NOTE: This is only a recommendation, and not a requirement. This is because there are often valid reasons to have coordinates outside of the range, for example outside of a UTM zone that covers most of the area of a dataset.

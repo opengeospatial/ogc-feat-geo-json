@@ -2,7 +2,7 @@
   "type": "Feature",
   "id": "CWFID.Toronto3D.0.177482",
   "bbox": [-79.384481,43.653199,90.848,-79.383449,43.653866,190.348],
-  "conformsTo" : [ "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", "http://www.opengis.net/spec/json-fg-1/0.3/conf/3d" ],
+  "conformsTo" : [ "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", "http://www.opengis.net/spec/json-fg-1/0.3/conf/prisms" ],
   "geometry": null,
   "coordRefSys": "http://www.opengis.net/def/crs/OGC/0/CRS84h",
   "place": {

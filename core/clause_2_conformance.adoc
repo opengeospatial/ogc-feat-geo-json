@@ -3,19 +3,19 @@ This Standard defines eight requirements classes.
 
 Six requirements classes have JSON objects as their standardization target type:
 
-* "Core": The _Core_ requirements class extends GeoJSON with additional members that specify how <<time>>, extended <<place>> information and <<ref-sys>> information can be encoded in a JSON-FG object. In addition, <<metadata>> is added to declare the JSON-FG conformance classes that the JSON document conforms to. The _Core_ requirements class has a dependency on GeoJSON. This means that a JSON-FG object that conforms to _Core_ must also conform to GeoJSON.
+* "Core": The _Core_ requirements class extends GeoJSON with additional members that specify how <<time,temporal information>>, extended <<place,geometry information>>, and <<ref-sys,coordinate reference system information>> can be encoded in a JSON-FG object. In addition, <<metadata,metadata>> is added to declare the JSON-FG conformance classes that a JSON object conforms to. The _Core_ requirements class has a dependency on GeoJSON. This means that a JSON-FG object that conforms to _Core_ must also conform to GeoJSON.
 
-* "3D": The _3D_ requirements class adds support for <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>> geometries in a 3D CRS.  The _3D_ requirements class has a dependency on the _Core_ requirements class. This means that a JSON-FG object that conforms to the _3D_ conformance class must also conform to the _Core_ conformance class.
+* "Polyhedra": The _Polyhedra_ requirements class adds support for <<Polyhedron>> and <<MultiPolyhedron>> geometries in a 3D CRS. The _Polyhedra_ requirements class has a dependency on the _Core_ requirements class. This means that a JSON-FG object that conforms to the _Polyhedra_ conformance class must also conform to the _Core_ conformance class.
+
+* "Prisms": The _Prisms_ requirements class adds support for <<Prism>>, and <<MultiPrism>> geometries in a 3D CRS.  The _Prisms_ requirements class has a dependency on the _Core_ requirements class. This means that a JSON-FG object that conforms to the _Prisms_ conformance class must also conform to the _Core_ conformance class.
 
 * "Circular Arcs": The _Circular Arcs_ requirements class adds support for <<CircularString>>, <<CompoundCurve>>, <<CurvePolygon>>, <<MultiCurve>>, and <<MultiSurface>> geometries to support curves with linear and circular arc interpolation. The _Circular Arcs_ requirements class has a dependency on the _Core_ requirements class. This means that a JSON-FG object that conforms to the _Circular Arcs_ conformance class must also conform to the _Core_ conformance class.
 
 * "Measures": The _Measures_ requirements class adds support for the <<measures>> member and measure values in coordinates. The _Measures_ requirements class has a dependency on the _Core_ requirements class. This means that a JSON-FG object that conforms to the _Measures_ conformance class must also conform to the _Core_ conformance class.
 
-* TODO: ellipsoidal metrics 
+* "Feature Types and Schemas": The _Feature Types and Schemas_ requirements class adds support for <<feature-types,feature types>> and <<schema-ref,schema references>>. Features are often categorized by type. This requirements class adds members to a JSON-FG feature or feature collection so that contained features can be tagged with a type value.  This requirements class includes guidance about how to include information about the schema of a feature type. The _Feature Types and Schemas_ requirements class has a dependency on the _Core_ requirements class. This means that a JSON-FG object that conforms to the _Feature Types and Schemas_ conformance class must also conform to the _Core_ conformance class.
 
-* "Feature Types and Schemas": The _Feature Types and Schemas_ requirements class adds support for <<feature-types>> and <<schema-ref>>.  Features are often categorized by type. This requirements class adds members to a JSON-FG feature or feature collection so that contained features can be tagged with a type value.  This requirements class includes guidance about how to include information about the feature schema. The _Feature Types and Schemas_ requirements class has a dependency on the _Core_ requirements class. This means that a JSON-FG object that conforms to the _Feature Types and Schemas_ conformance class must also conform to the _Core_ conformance class.
-
-The seventh requirements class, "GeoJSON Profiles", has JSON documents as its standardization type. The requirements class adds support for <<profiles>> of the GeoJSON media type. The _GeoJSON Profiles_ requirements class has conditional dependencies on GeoJSON and on the _Core_ requirements class. 
+The seventh requirements class, "GeoJSON Profiles", has GeoJSON documents as its standardization type. The requirements class adds support for <<profiles>> of the GeoJSON media type. The _GeoJSON Profiles_ requirements class has conditional dependencies on GeoJSON and the _Core_ requirements class. 
 
 The eighth requirements class, "JSON-FG in Web APIs", has Web APIs as its standardization target type. The requirements class specifies how clients can request GeoJSON in the JSON-FG profiles via a Web API.
 
@@ -31,7 +31,8 @@ All requirements-classes and conformance-classes described in this document are 
 !===
 |Conformance class |URI
 |<<ats,Core>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/core
-|<<ats,3D>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/3d
+|<<ats,Polyhedra>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/polyhedra
+|<<ats,Prisms>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/risms
 |<<ats,Circular Arcs>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/circular_arcs
 |<<ats,Measures>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/measures
 |<<ats,Feature Types and Schemas>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/types-schemas
