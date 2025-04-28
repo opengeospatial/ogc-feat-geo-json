@@ -516,13 +516,13 @@ Many GIS clients depend on knowledge about the feature type when processing feat
 
 GeoJSON is schema-less in the sense that it has no concept of feature types or feature schemas.
 
-In most cases, a feature is an instance of a single feature type, but in general, features can be instances of multiple types. JSON-FG also supports multiple feature types.
+In JSON-FG, a feature is an instance of a single feature type. If a feature is associated with multiple feature types, the primary type should be identified. 
 
 The related section <<schema-ref>> specifies the schema for each feature type if such information is available.
 
 ===== The "featureType" member
 
-The feature types of a feature are declared in a member of the feature with the key "featureType". The value is either a string (in the standard case of a single feature type) or an array of strings (to support features that instantiate multiple feature types). Each string should be a code, convenient for the use in filter expressions.
+The feature type of a feature is declared in a member of the feature with the key "featureType". The value is a string, which should be a code, convenient for the use in filter expressions.
 
 Data specifications often specify codes for feature types. Where data is based on such a data specification, those code will in general be used. An example is the https://portal.dgiwg.org/files/3911[DIGEST 2.1 Feature and Attribute Coding Catalogue (FACC) Data Dictionary] of the https://dgiwg.org/[Defence Geospatial Information Working Group (DGIWG)].
 
@@ -535,7 +535,7 @@ NOTE: The https://www.iana.org/assignments/link-relations/link-relations.xml[IAN
 
 Some clients will process feature collections differently depending on whether the collection is homogeneous with respect to the feature type or the geometry type. These clients will benefit from information that declares the feature and/or geometry type for all features in a collection.
 
-For a feature collection where all features have the same "featureType" value, the "featureType" member can and should be added once for the feature collection. The "featureType" member can then be omitted in the features. Declaring the feature type(s) once signals to clients that the feature collection is homogeneous with respect to the type, which clients can use to optimize their processing.
+For a feature collection where all features have the same "featureType" value, the "featureType" member can and should be added once for the feature collection. The "featureType" member can then be omitted in the features. Declaring the feature type once signals to clients that the feature collection is homogeneous with respect to the type, which clients can use to optimize their processing.
 
 For a feature collection where all features in the feature collection have the same geometry type as their primary geometry (point, curve, surface, solid, including homogeneous aggregates), a "geometryDimension" member can and should be added once for the feature collection with the dimension of the geometry (0 for points, 1 for curves, 2 for surfaces, 3 for solids, null/not set for mixed dimensions or unknown). Declaring the geometry dimension once signals to clients that the feature collection is homogeneous with respect to the dimension, which clients can use to optimize their processing.
 
