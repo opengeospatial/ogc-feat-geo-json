@@ -1,32 +1,34 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://beta.schemas.opengis.net/json-fg/geometry.json",
-  "title": "the geometry member",
-  "description": "This JSON Schema is part of JSON-FG version 0.2.2",
-  "oneOf": [
+  "title": "the geometries allowed as values of the 'geometry' member",
+  "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
+  "allOf": [
     {
-      "type": "null"
+      "oneOf": [
+        {"type": "null"}                                          ,
+        {"$ref": "geometry-object.json#/$defs/Point"}             ,
+        {"$ref": "geometry-object.json#/$defs/MultiPoint"}        ,
+        {"$ref": "geometry-object.json#/$defs/LineString"}        ,
+        {"$ref": "geometry-object.json#/$defs/MultiLineString"}   ,
+        {"$ref": "geometry-object.json#/$defs/Polygon"}           ,
+        {"$ref": "geometry-object.json#/$defs/MultiPolygon"}      ,
+        {"$ref": "geometry-object.json#/$defs/GeometryCollection"}
+      ]
     },
     {
-      "$ref": "geometry-objects.json#/$defs/Point"
+      "not": {
+        "type": "object",
+        "properties": {"coordRefSys": {}},
+        "required": ["coordRefSys"]
+      }
     },
     {
-      "$ref": "geometry-objects.json#/$defs/MultiPoint"
-    },
-    {
-      "$ref": "geometry-objects.json#/$defs/LineString"
-    },
-    {
-      "$ref": "geometry-objects.json#/$defs/MultiLineString"
-    },
-    {
-      "$ref": "geometry-objects.json#/$defs/Polygon"
-    },
-    {
-      "$ref": "geometry-objects.json#/$defs/MultiPolygon"
-    },
-    {
-      "$ref": "geometry-objects.json#/$defs/GeometryCollection"
+      "not": {
+        "type": "object",
+        "properties": {"measures": {}},
+        "required": ["measures"]
+      }
     }
   ]
 }

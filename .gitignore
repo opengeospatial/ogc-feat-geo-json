@@ -2,3 +2,4 @@
 .DS_Store
 *.code-workspace
 *.sh
+core/schemas/json-fg-schemas-*.zip

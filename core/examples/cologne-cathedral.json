@@ -1,15 +1,13 @@
 {
     "type": "FeatureCollection",
     "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/5555",
-    "conformsTo" : [ "[ogc-json-fg-1-0.2:core]", "[ogc-json-fg-1-0.2:types-schemas]", "[ogc-json-fg-1-0.2:3d]" ],
+    "conformsTo" : [ "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", "http://www.opengis.net/spec/json-fg-1/0.3/conf/types-schemas", "http://www.opengis.net/spec/json-fg-1/0.3/conf/polyhedra" ],
     "features": [
         {
             "type": "Feature",
             "featureType": "Building",
             "id": 1672388,
             "geometry": null,
-            "time": null,
-            "place": null,
             "properties": {
                 "gml_id": "DENW37AL1000qmxq",
                 "creationDate": "2019-12-27",

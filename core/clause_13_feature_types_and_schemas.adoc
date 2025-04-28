@@ -1,0 +1,81 @@
+:req-class: types-schemas
+[#rc_{req-class}]
+== Requirements Class "Feature Types and Schemas"
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |JSON objects
+|Dependency |<<rc_core>>
+|Indirect Dependency |<<OAFeat-5,OGC API - Features - Part 5: Schemas>>
+|===
+
+The Requirements Class "Feature Types and Schemas" adds provisions for feature type classifications and schemas.
+
+=== Metadata
+
+:req: metadata
+[#{req-class}_{req}]
+==== Conformance declaration
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The "conformsTo" member of a JSON-FG root object that contains a "featureType" or "featureSchema" member in any JSON-FG object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
+|===
+
+=== Feature type(s)
+
+:req: feature-type
+[#{req-class}_{req}]
+==== "featureType" is present
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the JSON-FG root object is a feature, the feature SHALL have a member "featureType".
+^|B |If the JSON-FG root object is a feature collection, either the feature collection SHALL have a member "featureType" or each feature SHALL have a member "featureType".
+|===
+
+:req: geometry-dimension
+[#{req-class}_{req}]
+==== Value in "geometryDimension"
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the JSON-FG root object is a feature collection with a member "geometryDimension" that is not `null`, the geometry type of the primary geometry of each feature in the "place" member - or if "place" is `null`, in the "geometry" member - SHALL be consistent with the value (0: a Point or MultiPoint; 1: a LineString, CircularString, CompoundCurve, MultiLineString, MultiCurve, or CustomCurve; 2: a Polygon, CurvePolygon, MultiPolygon, MultiSurface, or CustomSurface; 3: a Polyhedron, MultiPolyhedron, Prism or MultiPrism).
+|===
+
+:rec: homogeneous-collection
+[#{req-class}_{rec}]
+==== Homogeneous feature collections
+
+[width="90%",cols="2,7a"]
+|===
+^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
+^|A |If the JSON-FG root object is a feature collection and each feature is of the same feature type, the feature type information SHOULD be specified in the feature collection.
+^|B |If the JSON-FG root object is a feature collection and the primary geometry of each feature has the same dimension, the feature collection SHOULD contain a member "geometryDimension".
+|===
+
+=== Feature schema
+
+:req: feature-schemas
+[#{req-class}_{req}]
+==== Feature schemas conform to OGC API - Features - Part 5: Schemas
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the JSON-FG root object is a feature or feature collection with a "featureSchema" member, all referenced schemas SHALL conform to <<OAFeat-5,OGC API - Features - Part 5: Schemas>>.
+|===
+
+:req: single-feature-schema
+[#{req-class}_{req}]
+==== Single feature schema implies one feature type
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the JSON-FG root object is a feature or feature collection with a "featureSchema" member where the value is a string (URI), all "featureType" members in the JSON document SHALL declare a single feature type and all SHALL have the same value.
+|===

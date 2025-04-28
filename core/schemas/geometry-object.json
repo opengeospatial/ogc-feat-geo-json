@@ -1,0 +1,606 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beta.schemas.opengis.net/json-fg/geometry-object.json",
+  "title": "a JSON-FG geometry",
+  "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
+  "oneOf": [
+    {"$ref": "#/$defs/Point"          },
+    {"$ref": "#/$defs/MultiPoint"     },
+    {"$ref": "#/$defs/LineString"     },
+    {"$ref": "#/$defs/MultiLineString"},
+    {"$ref": "#/$defs/Polygon"        },
+    {"$ref": "#/$defs/MultiPolygon"   },
+    {"$ref": "#/$defs/Polyhedron"     },
+    {"$ref": "#/$defs/MultiPolyhedron"},
+    {"$ref": "#/$defs/Prism"          },
+    {"$ref": "#/$defs/MultiPrism"     },
+    {"$ref": "#/$defs/CircularString" },
+    {"$ref": "#/$defs/CompoundCurve"  },
+    {"$ref": "#/$defs/CurvePolygon"   },
+    {"$ref": "#/$defs/MultiCurve"     },
+    {"$ref": "#/$defs/MultiSurface"   },
+    {"$ref": "#/$defs/CustomGeometry" }
+  ],
+  "$defs": {
+    "CustomGeometry": {
+      "title": "A custom geometry",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "not": {
+            "enum": [
+              "Feature"           , "FeatureCollection" , "Point"             ,
+              "MultiPoint"        , "LineString"        , "MultiLineString"   ,
+              "Polygon"           , "MultiPolygon"      , "Polyhedron"        ,
+              "MultiPolyhedron"   , "Prism"             , "MultiPrism"        ,
+              "CircularString"    , "CompoundCurve"     , "CurvePolygon"      ,
+              "MultiCurve"        , "MultiSurface"      , "GeometryCollection"
+            ]
+          }
+        }
+      }
+    },
+    "CustomCurve": {
+      "title": "A custom curve object",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "not": { "enum": ["LineString", "CircularString", "CompoundCurve"] }
+        }
+      }
+    },
+    "CustomSurface": {
+      "title": "A custom surface object",
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "not": { "enum": ["Polygon", "CurvePolygon"] }
+        }
+      }
+    },
+    "Point": {
+      "title": "GeoJSON Point with additional 'coordRefSys' and 'measures' members",
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type"       : {"const": "Point"                            },
+        "coordRefSys": {                  "$ref": "coordrefsys.json"},
+        "measures"   : {                  "$ref": "measures.json"   },
+        "coordinates": {                  "$ref": "#/$defs/position"},
+        "bbox"       : {                  "$ref": "#/$defs/bbox"    }
+      }
+    },
+    "LineString": {
+      "title": "GeoJSON LineString with additional 'coordRefSys' and 'measures' members",
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "LineString"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "coordinates": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"$ref": "#/$defs/position"}
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "Polygon": {
+      "title": "GeoJSON Polygon with additional 'coordRefSys' and 'measures' members",
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "Polygon"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "minItems": 4,
+            "items": {"$ref": "#/$defs/position"}
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "MultiPoint": {
+      "title": "GeoJSON MultiPoint with additional 'coordRefSys' and 'measures' members",
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "MultiPoint"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "coordinates": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/position"}
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "MultiLineString": {
+      "title": "GeoJSON MultiLineString with additional 'coordRefSys' and 'measures' members",
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "MultiLineString"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "items": {"$ref": "#/$defs/position"}
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "MultiPolygon": {
+      "title": "GeoJSON MultiPolygon with additional 'coordRefSys' and 'measures' members",
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "MultiPolygon"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "minItems": 4,
+              "items": {"$ref": "#/$defs/position"}
+            }
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "GeometryCollection": {
+      "title": "GeoJSON GeometryCollection with additional 'coordRefSys' and 'measures' members",
+      "type": "object",
+      "required": ["type", "geometries"],
+      "properties": {
+        "type": {"const": "GeometryCollection"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "geometries": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {
+                "oneOf": [
+                  {"$ref": "#/$defs/Point"          },
+                  {"$ref": "#/$defs/MultiPoint"     },
+                  {"$ref": "#/$defs/LineString"     },
+                  {"$ref": "#/$defs/MultiLineString"},
+                  {"$ref": "#/$defs/Polygon"        },
+                  {"$ref": "#/$defs/MultiPolygon"   }
+                ]
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"coordRefSys": {}},
+                  "required": ["coordRefSys"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"measures": {}},
+                  "required": ["measures"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"conformsTo": {}},
+                  "required": ["conformsTo"]
+                }
+              }
+            ]
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "Polyhedron": {
+      "title": "JSON-FG Polyhedron",
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "Polyhedron"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "coordinates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "array",
+                "minItems": 4,
+                "items": {"$ref": "#/$defs/position3d"}
+              }
+            }
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox3d"}
+      }
+    },
+    "MultiPolyhedron": {
+      "title": "JSON-FG MultiPolyhedron",
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "MultiPolyhedron"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "array",
+                  "minItems": 4,
+                  "items": {"$ref": "#/$defs/position3d"}
+                }
+              }
+            }
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox3d"}
+      }
+    },
+    "Prism": {
+      "title": "JSON-FG Prism",
+      "type": "object",
+      "required": ["type", "base", "upper"],
+      "properties": {
+        "type": {"const": "Prism"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "base": {
+          "allOf": [
+            {
+              "oneOf": [
+                {"$ref": "#/$defs/Point"          },
+                {"$ref": "#/$defs/MultiPoint"     },
+                {"$ref": "#/$defs/LineString"     },
+                {"$ref": "#/$defs/MultiLineString"},
+                {"$ref": "#/$defs/Polygon"        },
+                {"$ref": "#/$defs/MultiPolygon"   }
+              ]
+            },
+            {
+              "not": {
+                "type": "object",
+                "properties": {"coordRefSys": {}},
+                "required": ["coordRefSys"]
+              }
+            },
+            {
+              "not": {
+                "type": "object",
+                "properties": {"measures": {}},
+                "required": ["measures"]
+              }
+            },
+            {
+              "not": {
+                "type": "object",
+                "properties": {"conformsTo": {}},
+                "required": ["conformsTo"]
+              }
+            }
+          ]
+        },
+        "lower": {"type": "number"},
+        "upper": {"type": "number"},
+        "bbox": {"$ref": "#/$defs/bbox3d"}
+      }
+    },
+    "MultiPrism": {
+      "title": "JSON-FG Multi-Prism",
+      "type": "object",
+      "required": ["type", "prisms"],
+      "properties": {
+        "type": {"const": "MultiPrism"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "prisms": {
+          "type": "array",
+          "items": {
+            "allOf": [
+              {"$ref": "#/$defs/Prism"},
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"coordRefSys": {}},
+                  "required": ["coordRefSys"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"measures": {}},
+                  "required": ["measures"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"conformsTo": {}},
+                  "required": ["conformsTo"]
+                }
+              }
+            ]
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox3d"}
+      }
+    },
+    "CircularString": {
+      "title": "JSON-FG CircularString",
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "CircularString"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "coordinates": {
+          "type": "array",
+          "oneOf": [
+            {"minItems":  3, "maxItems":  3},
+            {"minItems":  5, "maxItems":  5},
+            {"minItems":  7, "maxItems":  7},
+            {"minItems":  9, "maxItems":  9},
+            {"minItems": 11, "maxItems": 11}
+          ],
+          "items": {"$ref": "#/$defs/position"}
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "CompoundCurve": {
+      "title": "JSON-FG CompoundCurve",
+      "type": "object",
+      "required": ["type", "geometries"],
+      "properties": {
+        "type": {"const": "CompoundCurve"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "geometries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "allOf": [
+              {
+                "oneOf": [
+                  {"$ref": "#/$defs/LineString"    },
+                  {"$ref": "#/$defs/CircularString"},
+                  {"$ref": "#/$defs/CustomCurve"   }
+                ]
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"coordRefSys": {}},
+                  "required": ["coordRefSys"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"measures": {}},
+                  "required": ["measures"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"conformsTo": {}},
+                  "required": ["conformsTo"]
+                }
+              }
+            ]
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "CurvePolygon": {
+      "title": "JSON-FG CurvePolygon",
+      "type": "object",
+      "required": ["type", "geometries"],
+      "properties": {
+        "type": {"const": "CurvePolygon"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "geometries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "allOf": [
+              {
+                "oneOf": [
+                  {"$ref": "#/$defs/CompoundCurve" },
+                  {"$ref": "#/$defs/LineString"    },
+                  {"$ref": "#/$defs/CircularString"},
+                  {"$ref": "#/$defs/CustomCurve"   }
+                ]
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"coordRefSys": {}},
+                  "required": ["coordRefSys"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"measures": {}},
+                  "required": ["measures"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"conformsTo": {}},
+                  "required": ["conformsTo"]
+                }
+              }
+            ]
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "MultiCurve": {
+      "title": "JSON-FG MultiCurve",
+      "type": "object",
+      "required": ["type", "geometries"],
+      "properties": {
+        "type": {"const": "MultiCurve"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "geometries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "allOf": [
+              {
+                "oneOf": [
+                  {"$ref": "#/$defs/CompoundCurve" },
+                  {"$ref": "#/$defs/LineString"    },
+                  {"$ref": "#/$defs/CircularString"},
+                  {"$ref": "#/$defs/CustomCurve"   }
+                ]
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"coordRefSys": {}},
+                  "required": ["coordRefSys"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"measures": {}},
+                  "required": ["measures"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"conformsTo": {}},
+                  "required": ["conformsTo"]
+                }
+              }
+            ]
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "MultiSurface": {
+      "title": "JSON-FG MultiSurface",
+      "type": "object",
+      "required": ["type", "geometries"],
+      "properties": {
+        "type": {"const": "MultiSurface"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "geometries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "allOf": [
+              {
+                "oneOf": [
+                  {"$ref": "#/$defs/CurvePolygon" },
+                  {"$ref": "#/$defs/Polygon"      },
+                  {"$ref": "#/$defs/CustomSurface"}
+                ]
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"coordRefSys": {}},
+                  "required": ["coordRefSys"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"measures": {}},
+                  "required": ["measures"]
+                }
+              },
+              {
+                "not": {
+                  "type": "object",
+                  "properties": {"conformsTo": {}},
+                  "required": ["conformsTo"]
+                }
+              }
+            ]
+          }
+        },
+        "bbox": {"$ref": "#/$defs/bbox"}
+      }
+    },
+    "position": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 4,
+      "items": {"type": "number"}
+    },
+    "position3d": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 4,
+      "items": {"type": "number"}
+    },
+    "bbox": {
+      "oneOf": [ {"$ref": "#/$defs/bbox2d"}, {"$ref": "#/$defs/bbox3d"} ]
+    },
+    "bbox2d": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"type": "number"}
+    },
+    "bbox3d": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {"type": "number"}
+    }
+  }
+}

@@ -36,7 +36,7 @@
 [cols = "^", frame = "none", grid = "none"]
 |===
 |*Copyright notice*
-|Copyright (C) 2024 Open Geospatial Consortium
+|Copyright (C) 2025 Open Geospatial Consortium
 |To obtain additional rights of use, visit https://www.ogc.org/legal/
 |===
 
@@ -98,11 +98,21 @@ include::clause_7_building_blocks.adoc[]
 
 include::clause_8_core.adoc[]
 
-include::clause_9_3d.adoc[]
+include::clause_9_polyhedra.adoc[]
 
-include::clause_10_feature_types_and_schemas.adoc[]
+include::clause_10_prisms.adoc[]
 
-include::clause_11_media_types.adoc[]
+include::clause_11_circular_arcs.adoc[]
+
+include::clause_12_measures.adoc[]
+
+include::clause_13_feature_types_and_schemas.adoc[]
+
+include::clause_14_profiles.adoc[]
+
+include::clause_15_jsonfg-api.adoc[]
+
+include::clause_16_media_types.adoc[]
 
 <<<
 ////
@@ -115,12 +125,6 @@ include::annex-b.adoc[]
 
 <<<
 include::annex-c.adoc[]
-
-<<<
-include::annex-d.adoc[]
-
-<<<
-include::annex-e.adoc[]
 
 <<<
 ////

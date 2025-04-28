@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beta.schemas.opengis.net/json-fg/jsonfg-root-object.json",
+  "title": "a JSON-FG root object",
+  "description": "A JSON-FG root object is a JSON-FG object that is not a direct child of another JSON-FG object. This JSON Schema is part of JSON-FG version 0.3.0.",
+  "allOf": [
+    {"$ref": "jsonfg-object.json"},
+    {
+      "type": "object",
+      "required": ["conformsTo"],
+      "properties": { "conformsTo": {"$ref": "conformsto.json"} }
+    }
+  ]
+}

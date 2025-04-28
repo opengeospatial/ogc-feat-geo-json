@@ -1,0 +1,50 @@
+:req-class: circular-arcs
+[#rc_{req-class}]
+== Requirements Class "Circular Arcs"
+
+The "Circular Arcs" Requirements Class adds provisions for curve geometries that may be of type <<CircularString>>, <<CompoundCurve>>, <<CurvePolygon>>, <<MultiCurve>>, or <<MultiSurface>>.
+
+[cols="2,7",width="90%"]
+|===
+^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
+|Target type |JSON objects
+|Dependency |<<rc_core>>
+|===
+
+=== Metadata
+
+:req: metadata
+[#{req-class}_{req}]
+==== Conformance declaration
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |The "conformsTo" member of a JSON-FG root object that contains any of the geometry types "CircularString", "CompoundCurve", "CurvePolygon", "MultiCurve", or "MultiSurface" SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
+|===
+
+=== Geometry
+
+:req: geom-valid
+[#{req-class}_{req}]
+==== Geometries are valid
+
+[width="90%",cols="2,7a"]
+|===
+^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
+^|A |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "CircularString", the items in the "coordinates" array SHALL meet the following requirements:
+
+* The items are a sequence of one, two, three, four, or five connected circular arcs, where each arc is a sequence of three positions and the first position of each connected arc is not repeated (that is, the circular string consists of three, five, seven, nine, or eleven positions);
+* Each circular arc is the curved segment between the first and the last position of the arc through the second position of the arc; 
+* The first and the third position of each circular arc are not identical.
+^|B |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "CompoundCurve", each item in the "geometries" array SHALL meet the following requirements:
+
+* Each item is a primitive curve geometry (of type "LineString", "CircularString", or "CustomCurve");
+* The first position of each item (except the first item) is identical to the last position of the previous item.
+^|C |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "CurvePolygon", each item in the "geometries" array SHALL meet the following requirements:
+
+* Each item is a curve geometry (of type "LineString", "CircularString", "CustomCurve", or "CompoundCurve");
+* The first and last position of each curve geometry is identical.
+^|D |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "MultiCurve", each item in the "geometries" array SHALL be a curve geometry (of type "LineString", "CircularString", "CustomCurve", or "CompoundCurve").
+^|E |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "MultiSurface", each item in the "geometries" array SHALL be a surface geometry (of type "Polygon", "CustomSurface", or "CurvePolygon").
+|===

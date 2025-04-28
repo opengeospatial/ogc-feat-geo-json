@@ -1,0 +1,8 @@
+[#media-types]
+== Media Types
+
+JSON-FG documents conform to GeoJSON. The media type is `application/geo+json`.
+
+JSON-FG documents can be identified by the presence of the "conformsTo" member in the root object that identifies JSON-FG conformance classes that the document conforms to.
+
+NOTE: Earlier drafts of JSON-FG used the media types `application/fg+json` and `application/vnd.ogc.fg+json`. Implementations may continue to support these media types for backward compatibility. However, the media type `application/geo+json` is the preferred media type for JSON-FG documents conforming to this Standard.

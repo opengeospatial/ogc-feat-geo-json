@@ -1,55 +1,27 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://beta.schemas.opengis.net/json-fg/feature.json",
-  "title": "a JSON-FG Feature",
-  "description": "This JSON Schema is part of JSON-FG version 0.2.2",
-  "type": "object",
-  "required": ["type", "time", "place", "geometry", "properties"],
-  "properties": {
-    "conformsTo": {
-      "$ref": "conformsto.json"
-    },
-    "type": {
-      "type": "string",
-      "enum": ["Feature"]
-    },
-    "id": {
-      "oneOf": [
-        {
-          "type": "number"
-        },
-        {
-          "type": "string"
-        }
-      ]
-    },
-    "featureType": {
-      "$ref": "featuretype.json"
-    },
-    "featureSchema": {
-      "$ref": "featureschema.json"
-    },
-    "time": {
-      "$ref": "time.json"
-    },
-    "coordRefSys": {
-      "$ref": "coordrefsys.json"
-    },
-    "place": {
-      "$ref": "place.json"
-    },
-    "geometry": {
-      "$ref": "geometry.json"
-    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://beta.schemas.opengis.net/json-fg/feature.json",
+    "title": "a JSON-FG Feature",
+    "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
+    "type": "object",
+    "required": ["type", "geometry", "properties"],
     "properties": {
-      "oneOf": [
-        {
-          "type": "null"
+        "type": {"const": "Feature"},
+        "id": {"oneOf": [{"type": "number"}, {"type": "string"}]},
+        "featureType": {"$ref": "featuretype.json"},
+        "featureSchema": {"$ref": "featureschema.json"},
+        "time": {"$ref": "time.json"},
+        "coordRefSys": {"$ref": "coordrefsys.json"},
+        "measures": {"$ref": "measures.json"},
+        "place": {
+            "allOf": [
+                {"$ref": "place.json"},
+                {"not": {"type": "object", "properties": {"coordRefSys": {}}, "required": ["coordRefSys"]}},
+                {"not": {"type": "object", "properties": {"measures": {}}, "required": ["measures"]}},
+                {"not": {"type": "object", "properties": {"conformsTo": {}}, "required": ["conformsTo"]}}
+            ]
         },
-        {
-          "type": "object"
-        }
-      ]
+        "geometry": {"allOf": [{"$ref": "geometry.json"}, {"not": {"type": "object", "properties": {"conformsTo": {}}, "required": ["conformsTo"]}}]},
+        "properties": {"oneOf": [{"type": "null"}, {"type": "object"}]}
     }
-  }
 }

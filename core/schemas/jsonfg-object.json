@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beta.schemas.opengis.net/json-fg/jsonfg-object.json",
+  "title": "a JSON-FG object",
+  "description": "A JSON-FG object is either a geometry, a feature, or a feature collection. This JSON Schema is part of JSON-FG version 0.3.0.",
+  "oneOf": [
+    {"$ref": "geometry-object.json"  },
+    {"$ref": "feature.json"          },
+    {"$ref": "featurecollection.json"}
+  ]
+}

@@ -1,9 +1,9 @@
 {
     "type": "object",
-    "required": ["valueType", "value"],
+    "required": ["type", "value"],
     "properties": {
-        "type": { "type": "string", "enum": ["PROJJSON"] },
-        "value": {"$ref": "https://proj.org/schemas/v0.4/projjson.schema.json#/definitions/crs"},
-        "epoch": {"type": "string"}
+        "type": { "type": "string", "const": "PROJJSON" },
+        "value": {"$ref": "https://proj.org/en/latest/schemas/v0.7/projjson.schema.json#/definitions/crs"},
+        "epoch": {"type": "number"}
     }
 }
