@@ -94,10 +94,10 @@ NOTE: Strictly, A to C of this requirement are not necessary as the statements a
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
 ^|A |If the "time" value in any JSON-FG feature includes both a "date" and a "timestamp" member, the `full-date` parts SHALL be identical.
-^|B |If the "time" value in any JSON-FG feature includes both a "timestamp" and an "interval" member with start/end dates, the interval SHALL contain the date of the timestamp.
-^|C |If the "time" value in any JSON-FG feature includes both a "timestamp" and an "interval" member with start/end timestamps, the interval SHALL contain the timestamp.
-^|D |If the "time" value in any JSON-FG feature includes both a "date" and an "interval" member with start/end dates, the interval SHALL contain the date.
-^|E |If the "time" value in any JSON-FG feature includes both a "date" and an "interval" member with start/end timestamps, the interval SHALL include timestamps on the date.
+^|B |If the "time" value in any JSON-FG feature includes both a "timestamp" and an "interval" member with start/end dates, the interval SHALL contain the date of the timestamp, or in case start and end of the interval are identical, the date of the timestamp SHALL be identical to the date of both interval ends.
+^|C |If the "time" value in any JSON-FG feature includes both a "timestamp" and an "interval" member with start/end timestamps, the interval SHALL contain the timestamp, or in case start and end of the interval are identical, the timestamp SHALL be identical to both interval ends.
+^|D |If the "time" value in any JSON-FG feature includes both a "date" and an "interval" member with start/end dates, the interval SHALL contain the date, or in case start and end of the interval are identical, the date SHALL be identical to both interval ends.
+^|E |If the "time" value in any JSON-FG feature includes both a "date" and an "interval" member with start/end timestamps, the interval SHALL include timestamps on the date, or in case start and end of the interval are identical, the date SHALL be identical to the date of both interval ends.
 |===
 
 :req: utc
