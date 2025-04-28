@@ -36,7 +36,7 @@ Annex '<<examples>>' has examples of JSON-FG objects.
 
 The GeoJSON RFC clearly specifies in Clauses 6 and 7 that additional members can be added to the GeoJSON objects as long as they do not conflict with members as specified by GeoJSON ("foreign members").
 
-JSON-FG extends GeoJSON in three ways:
+JSON-FG extends GeoJSON in two ways:
 
 * By adding new JSON members to features, feature collections and geometries;
 * By specifying additional geometries.
@@ -488,18 +488,15 @@ A typical use case is linear referencing, where the measure value in a curve is 
 [[measures]]
 ==== Measures: the "measures" member
 
-If a geometry includes measure values, each position of the geometry has to contain a measure value. The number of cordinates in each position is the dimension of the CRS in "coordRefSys" plus one for the measure value.
+If a geometry includes measure values, each position of the geometry has to contain a measure value (or m coordinate). The number of cordinates in each position is the dimension of the CRS in "coordRefSys" plus one for the measure value.
 
 The presence of measure values in a geometry is indicated by a "measures" member.
 
-The value of the "measures" member is either a boolean value or an object with the following properties:
+The value of the "measures" member is an object with the following properties:
 
-* "unit": The unit of the measure of the measure values. The property is required.
-* "description": An optional description of the meaning of the measure values.
-
-If the value of the "measures" member is a boolean value, the value `true` indicates that the geometry has measure values without specifying information about the semantics of the the measure values. The value `false` indicates that the geometry does not have measure values.
-
-If the value of the "measures" member is an object, the geometry has measure values.
+* "enabled": A boolean value that indicates whether the geometry has measure values or not. The property is required.
+* "unit": The unit of the measure of the measure values. The property is optional. It only applies if the value of the "enabled" property is `true`. 
+* "description": An optional description of the meaning of the measure values. The description only applies if the value of the "enabled" property is `true`.
 
 The scoping rules are the same as for the <<ref-sys-scoping-rules,"coordRefSys" member>>.
 

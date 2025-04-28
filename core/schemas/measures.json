@@ -3,15 +3,11 @@
   "$id": "https://beta.schemas.opengis.net/json-fg/measures.json",
   "title": "the value of the 'measures' member",
   "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
-  "oneOf": [
-    {"const": true},
-    {
-      "type": "object",
-      "properties": {
-        "unit"       : {"type": "string"},
-        "description": {"type": "string"}
-      },
-      "required": ["unit"]
-    }
-  ]
+  "type": "object",
+  "properties": {
+    "enabled"    : {"type": "boolean"},
+    "unit"       : {"type": "string" },
+    "description": {"type": "string" }
+  },
+  "required": ["enabled"]
 }

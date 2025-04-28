@@ -9,7 +9,7 @@
 |Dependency |<<rc_core>>
 |===
 
-The "Measures" Requirements Class adds provisions for geometries with a third or four coordinate representing a measure, often called the "m coordinate".
+The "Measures" Requirements Class adds provisions for geometries with a third or fourth coordinate representing a measure, often called the "m coordinate".
 
 === Metadata
 
@@ -42,7 +42,7 @@ Whether a "place" geometry contains m coordinates, is determined as follows:
 ** Otherwise inspect the parent object and repeat until the JSON-FG root object.
 * If no "measures" member has been found, the geometry does not have m coordinates.
 
-:req: xxx
+:req: sub-geometries
 [#{req-class}_{req}]
 ==== All positions in a primary geometry use m coordinates or not
 

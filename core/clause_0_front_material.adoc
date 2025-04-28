@@ -30,10 +30,7 @@ The security considerations for GeoJSON as specified in Section 10 of IETF RFC 7
 If and once the JSON-FG Standard is approved by the OGC Members, the following actions need to be taken by OGC before publication:
 
 - Annex <<schemas>> specifies the JSON-FG Schema documents. The documents will be published in the https://schemas.opengis.net/[OGC Schema Repository]. The note at the start of the annex will be removed.
-- Annex <<relationships_and_links>> will be removed.
-- Annex <<considerations>> will be removed.
 - The Abstract needs to be updated to remove the reference to the draft status.
-- All references to issues in the GitHub repository will be removed.
 - The profiles "\http://www.opengis.net/def/profile/OGC/0/rfc7946", "\http://www.opengis.net/def/profile/OGC/0/jsonfg", and "\http://www.opengis.net/def/profile/OGC/0/jsonfg-plus" will be registered in the OGC Profiles Registry.
 
 This section will be removed before publication.
