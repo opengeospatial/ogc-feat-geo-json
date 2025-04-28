@@ -33,6 +33,7 @@ A JSON-FG root object is a JSON object
 NOTE: While every JSON-FG root object must validate against the schema, executing the validation is only necessary when testing conformance. Implementations reading or writing JSON-FG do not have to perform validation. It is also not necessary to publish application- or community-specific schemas that describe the schema of the feature properties to conform to the Core requirements class.
 
 In requirements and recommendations, the following terms have to be interpreted as follows:
+
 * JSON-FG root object: refers to standaridation target;
 * JSON-FG object: refers to a JSON-FG object that is either the JSON-FG root object or a JSON-FG that is a child object outside of any "properties" member;
 * JSON-FG feature: refers to a JSON-FG object that is a feature;

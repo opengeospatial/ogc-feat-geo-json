@@ -30,12 +30,12 @@ All requirements-classes and conformance-classes described in this document are 
 [cols="40,60",options="header"]
 !===
 |Conformance class |URI
-|<<ats,Core>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/core
-|<<ats,Polyhedra>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/polyhedra
-|<<ats,Prisms>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/risms
-|<<ats,Circular Arcs>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/circular_arcs
-|<<ats,Measures>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/measures
-|<<ats,Feature Types and Schemas>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/types-schemas
-|<<ats,GeoJSON Profiles>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/profiles
-|<<ats,JSON-FG in Web APIs>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/api
+|<<conf_core,Core>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/core
+|<<conf_polyhedra,Polyhedra>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/polyhedra
+|<<conf_prisms,Prisms>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/risms
+|<<conf_circular-arcs,Circular Arcs>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/circular-arcs
+|<<conf_measures,Measures>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/measures
+|<<conf_types-schemas,Feature Types and Schemas>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/types-schemas
+|<<conf_profiles,GeoJSON Profiles>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/profiles
+|<<conf_api,JSON-FG in Web APIs>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/api
 !===

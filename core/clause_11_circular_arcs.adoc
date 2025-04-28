@@ -1,4 +1,4 @@
-:req-class: circular_arcs
+:req-class: circular-arcs
 [#rc_{req-class}]
 == Requirements Class "Circular Arcs"
 
