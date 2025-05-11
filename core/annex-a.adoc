@@ -3,6 +3,891 @@
 :appendix-caption: Annex
 == Abstract Test Suite (Normative)
 
-NOTE: An Abstract Test Suite will be added once the normative statements are stable. The primary test will be schema validation with additional tests for requirements that cannot be checked with validation.
+This test suite uses the https://en.wikipedia.org/wiki/Given-When-Then[Given-When-Then] notation to specify the tests.
 
-TODO
+The test suite is organized into sections that correspond to the requirements classes in the main body of the document. Each section contains a set of tests that validate the requirements specified in that requirements class.
+
+=== Conformance Class "Core"
+
+:conf-class: core
+[[conf_{conf-class}]]
+[cols="1,4a",width="90%"]
+|===
+2+|*Conformance Class*
+2+|http://www.opengis.net/spec/{standard}/{m_n}/conf/{conf-class}
+|Target type |JSON-FG root objects
+|Requirements class |<<rc_{conf-class},Requirements Class "Core">>
+|===
+
+:conf-test: schema-valid
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/schema-valid, /req/core/metadata, /req/core/instant, /req/core/interval A to C, /req/core/utc, /req/core/geometry-no-jsonfg-extension, /req/core/same-crs
+|Test purpose: | Validate the JSON-FG root object against the JSON Schema.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+
+When:
+
+* the JSON object is validated against the schema "jsonfg-root-object.json" using a JSON Schema validator (the strictest validation level should be used);
+
+Then:
+
+* assert that JSON object passes validation.
+|===
+
+
+:conf-test: metadata-geometry-extension
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/metadata D-F
+|Test purpose: | Assert that the "conformsTo" member declares all JSON-FG geometry extensions that are used.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all "place" values from any JSON-FG feature in the JSON-FG root object;
+
+Then:
+
+* if any "place" value is of type "Polyhedron" or "MultiPolyhedron", assert that the "conformsTo" member of the JSON-FG root object includes the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/polyhedra"`;
+* if any "place" value is of type "Prism" or "MultiPrism", assert that the "conformsTo" member of the JSON-FG root object includes the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/prisms"`;
+* if any "place" value is of type "CircularString", "CompoundCurve", "CurvePolygon", "MultiCurve", or "MultiSurface", assert that the "conformsTo" member of the JSON-FG root object includes the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/circular-arcs"`;
+|===
+
+:conf-test: metadata-measures
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/metadata G
+|Test purpose: | Assert that the "conformsTo" member declares all JSON-FG extensions that are used.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* determine, if any JSON-FG object in the JSON-FG root object includes a "measures" member;
+
+Then:
+
+* if yes, assert that the "conformsTo" member of the JSON-FG root object includes the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/measures"`;
+|===
+
+:conf-test: metadata-types-schemas
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/metadata H
+|Test purpose: | Assert that the "conformsTo" member declares all JSON-FG geometry extensions that are used.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* determine, if any JSON-FG object in the JSON-FG root object includes a "featureType" or "featureSchema" member;
+
+Then:
+
+* if yes, assert that the "conformsTo" member of the JSON-FG root object includes the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/types-schemas"`;
+|===
+
+:conf-test: interval-start-end
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/interval D
+|Test purpose: | Assert that the start of an interval not after the end of the interval.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all intervals from any JSON-FG feature with a "time" member that includes an "interval" member with a "start" and "end" member that is not "..";
+
+Then:
+
+* assert for all intervals that start is before or equal to end.
+|===
+
+:conf-test: instant-and-interval-a
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/instant-and-interval A
+|Test purpose: | Assert the consistency between multiple members in a "time" member.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all date/timestamp pairs from any JSON-FG feature with a "time" member that includes both a "date" and "timestamp" member;
+
+Then:
+
+* assert that year, month and day are identical for each pair.
+|===
+
+:conf-test: instant-and-interval-bc
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/instant-and-interval B/C
+|Test purpose: | Assert the consistency between multiple members in a "time" member.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all date/timestamp pairs from any JSON-FG feature with a "time" member that includes both a "interval" and "timestamp" member;
+
+Then:
+
+* if the interval has date granularity, assert that the day of the timestamp is included in the interval;
+* if the interval has timestamp granularity, assert that the timestamp is included in the interval.
+|===
+
+:conf-test: instant-and-interval-de
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/instant-and-interval D/E
+|Test purpose: | Assert the consistency between multiple members in a "time" member.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all date/timestamp pairs from any JSON-FG feature with a "time" member that includes both a "interval" and "date" member;
+
+Then:
+
+* if the interval has date granularity, assert that the date is included in the interval;
+* if the interval has timestamp granularity, assert that the date is included in the interval or that the date is the start or end day of the interval.
+|===
+
+:conf-test: coordinate-dimension-geometry
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/coordinate-dimension A
+|Test purpose: | Assert that all positions in "geometry" members have the same number of coordinates.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature or feature collection;
+
+When:
+
+* collect the values of all "geometry" members (geometries) from all JSON-FG features in the JSON object;
+* collect all position arrays inside the geometries (lowest array level inside "coordinates" members);
+
+Then:
+
+* assert that all position arrays have the same item count;
+* assert that the item count is at least 2.
+|===
+
+:conf-test: coordinate-dimension-place
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/coordinate-dimension B
+|Test purpose: | Assert that all positions in "place" members have the same number of coordinates.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature or feature collection;
+
+When:
+
+* collect the values of all "place" members (geometries) from all JSON-FG features in the JSON object;
+* collect all position arrays inside the geometries (lowest array level inside "coordinates" members);
+
+Then:
+
+* assert that all position arrays have the same item count;
+* assert that the item count is at least 2.
+|===
+
+:conf-test: geometry-wgs84
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/geometry-wgs84
+|Test purpose: | Assert that all positions in "geometry" members are in WGS 84 longitude/latitude.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature or feature collection;
+
+When:
+
+* collect the values of all "geometry" members (geometries) from all JSON-FG features in the JSON object;
+* collect all position arrays inside the geometries (lowest array level inside "coordinates" members);
+
+Then:
+
+* assert that the first value in each position array is between -180 and 180;
+* assert that the second value in each position array is between -90 and 90.
+|===
+
+:conf-test: geometry-no-jsonfg-extension
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/geometry-no-jsonfg-extension
+|Test purpose: | Assert that all "geometry" members do not include JSON-FG extensions.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature or feature collection;
+
+When:
+
+* collect the values of all "geometry" members (geometries) from all JSON-FG features in the JSON object;
+
+Then:
+
+* assert that no geometry contains a "coordRefSys" or "measures" member.
+|===
+
+:conf-test: valid-geometry
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/valid-geometry
+|Test purpose: | Assert that Simple Feature geometries are valid.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all JSON-FG geometries, where "type" is one of "Point", "LineString", "Polygon", "MultiPoint", "MultiLineString", "MultiPolygon", or "GeometryCollection";
+
+Then:
+
+* assert that each geometry is valid according to the Simple Feature specification.
+|===
+
+NOTE: It is recommended to use a library that implements the Simple Feature specification to validate the geometries.
+
+:conf-test: place-geometries
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/place-geometries, /req/core/fallback
+|Test purpose: | Assert that the geometries in "place" members are not valid GeoJSON geometries.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature or feature collection;
+
+When:
+
+* collect the values of all "place" members (geometries) from all JSON-FG features in the JSON object, where "type" is one of "Point", "LineString", "Polygon", "MultiPoint", "MultiLineString", "MultiPolygon", or "GeometryCollection" and where the geometry does not include a "measures" member;
+* for each geometry, determine the CRS using the scoping rule in <<core_place-geometries>>;
+
+Then:
+
+* assert that no geometry is in CRS "\http://www.opengis.net/def/crs/OGC/0/CRS84" or "\http://www.opengis.net/def/crs/OGC/0/CRS84h".
+|===
+
+:conf-test: axis-order
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/core/axis-order
+|Test purpose: | Assert that all geometries use the axis order specified in the CRS.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* the CRS definition for each CRS used in the JSON object is available;
+* collect all JSON-FG geometries;
+* for each geometry except those in a "geometry" member, determine the CRS using the scoping rule in <<core_place-geometries>>;
+
+Then:
+
+* assert that the first two coordinates of each position array in each geometry are consistent with the value range of the first two axes of the CRS.
+|===
+
+NOTE: "consistent with the value range" means that the first coordinate is in the range of the first axis and the second coordinate is in the range of the second axis. As indicated by /rec/core/place-crs, the range should not be used strictly, but should include a buffer in case of a projected CRS.
+
+=== Conformance Class "Polyhedra"
+
+:conf-class: polyhedra
+[[conf_{conf-class}]]
+[cols="1,4a",width="90%"]
+|===
+2+|*Conformance Class*
+2+|http://www.opengis.net/spec/{standard}/{m_n}/conf/{conf-class}
+|Target type |JSON-FG root objects
+|Requirements class |<<rc_{conf-class},Requirements Class "Polyhedra">>
+|Dependency |<<conf_core,Conformance Class "Core">>
+|Condition |The "conformsTo" member of the JSON object include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{conf-class}"`.
+|===
+
+:conf-test: coordinates
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/polyhedra/coordinates
+|Test purpose: | Assert that the number of coordinates is consistent with the CRS.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the <<conf_core,Conformance Class "Core">>;
+
+When:
+
+* collect all JSON-FG geometries with "type" set to "Polyhedron" or "MultiPolyhedron";
+* collect all position arrays inside the geometries (lowest array level inside "coordinates" members);
+* check for each geometry the CRS (see <<determine-crs>>);
+* the CRS definition for each CRS is available;
+* check for each geometry whether m coordinates are included by checking for a "measures" member with "enabled" set to `true` (see <<determine-m>>);
+
+Then:
+
+* assert that all position arrays have 3 items if no m coordinates are included and 4 items if m coordinates are included;
+* assert that each CRS is a 3D CRS or an ad-hoc compound CRS consisting of a horizontal 2D CRS and a vertical CRS;
+|===
+
+:conf-test: valid-geometry
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/polyhedra/valid-geometry
+|Test purpose: | Assert that polyhedron geometries are valid.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the <<conf_core,Conformance Class "Core">>;
+
+When:
+
+* collect all JSON-FG geometries with "type" set to "Polyhedron" or "MultiPolyhedron";
+
+Then:
+
+* assert that all conditions for a valid polyhedron geometry stated in the requirement are met.
+|===
+
+NOTE: It is recommended to use a library that implements polyhedron geometries to perform geometrical and topological validation.
+
+=== Conformance Class "Prisms"
+
+:conf-class: prisms
+[[conf_{conf-class}]]
+[cols="1,4a",width="90%"]
+|===
+2+|*Conformance Class*
+2+|http://www.opengis.net/spec/{standard}/{m_n}/conf/{conf-class}
+|Target type |JSON-FG root objects
+|Requirements class |<<rc_{conf-class},Requirements Class "Prisms">>
+|Dependency |<<conf_core,Conformance Class "Core">>
+|Condition |The "conformsTo" member of the JSON object include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{conf-class}"`.
+|===
+
+:conf-test: coordinates
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/prisms/coordinates
+|Test purpose: | Assert that the number of coordinates is consistent with the CRS.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the <<conf_core,Conformance Class "Core">>;
+
+When:
+
+* collect all JSON-FG geometries with "type" set to "Prism" or "MultiPrism";
+* collect all position arrays inside the "base" geometries (lowest array level inside "coordinates" members);
+* collect all "lower" and "upper" values;
+* check for each geometry the CRS (see <<determine-crs>>);
+* the CRS definition for each CRS is available;
+* check for each geometry whether m coordinates are included by checking for a "measures" member with "enabled" set to `true` (see <<determine-m>>);
+
+Then:
+
+* assert that all position arrays have 2 items if no m coordinates are included and 3 items if m coordinates are included;
+* assert that each CRS is a 3D CRS or an ad-hoc compound CRS consisting of a horizontal 2D CRS and a vertical CRS;
+* assert that the "lower" and "upper" values are in the valid range for the third coordinate axis of the CRS;
+* assert that the "lower" value is equal or smaller than the "upper" value.
+|===
+
+=== Conformance Class "Circular Arcs"
+
+:conf-class: circular-arcs
+[[conf_{conf-class}]]
+[cols="1,4a",width="90%"]
+|===
+2+|*Conformance Class*
+2+|http://www.opengis.net/spec/{standard}/{m_n}/conf/{conf-class}
+|Target type |JSON-FG root objects
+|Requirements class |<<rc_{conf-class},Requirements Class "Circular Arcs">>
+|Dependency |<<conf_core,Conformance Class "Core">>
+|Condition |The "conformsTo" member of the JSON object include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{conf-class}"`.
+|===
+
+:conf-test: valid-geometry-circular-string
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/circular-arcs/valid-geometry A
+|Test purpose: | assert that circular string geometries are valid.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all JSON-FG geometries with "type" set to "CircularString";
+
+Then:
+
+* assert that the first, second and third position of each circular arc are all different;
+* assert that the first, second and third position of each circular arc are not collinear.
+|===
+
+:conf-test: valid-geometry-compound-curve
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/circular-arcs/valid-geometry B
+|Test purpose: | assert that compound curve geometries are valid.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all JSON-FG geometries with "type" set to "CompoundCurve";
+
+Then:
+
+* assert that - starting with the second item in "geometries", the first position of each item is identical to the last position of the previous item.
+|===
+
+:conf-test: valid-geometry-curve-polygon
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/circular-arcs/valid-geometry B
+|Test purpose: | assert that curve polygon geometries are valid.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all JSON-FG geometries with "type" set to "CurvePolygon";
+
+Then:
+
+* assert that for each item in "geometries", the first position is identical to the last position.
+|===
+
+=== Conformance Class "Measures"
+
+:conf-class: measures
+[[conf_{conf-class}]]
+[cols="1,4a",width="90%"]
+|===
+2+|*Conformance Class*
+2+|http://www.opengis.net/spec/{standard}/{m_n}/conf/{conf-class}
+|Target type |JSON-FG root objects
+|Requirements class |<<rc_{conf-class},Requirements Class "Measures">>
+|Dependency |<<conf_core,Conformance Class "Core">>
+|Condition |The "conformsTo" member of the JSON object include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{conf-class}"`.
+|===
+
+:conf-test: coordinates
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/measures/coordinates
+|Test purpose: | Assert that the number of coordinates is consistent with the measure declaration.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+
+When:
+
+* collect all JSON-FG geometries;
+* collect all position arrays inside the geometries (lowest array level inside "coordinates" members);
+* check for each geometry the CRS (see <<determine-crs>>);
+* the CRS definition for each CRS is available;
+* check for each geometry whether m coordinates are included by checking for a "measures" member with "enabled" set to `true` (see <<determine-m>>);
+
+Then:
+
+* assert that all positions in JSON-FG geometries with m coordinates have either 3 coordinates (in case of a 2D CRS) or four coordinates (in case of a 3D CRS).
+|===
+
+=== Conformance Class "Feature Types and Schemas"
+
+:conf-class: types-schemas
+[[conf_{conf-class}]]
+[cols="1,4a",width="90%"]
+|===
+2+|*Conformance Class*
+2+|http://www.opengis.net/spec/{standard}/{m_n}/conf/{conf-class}
+|Target type |JSON-FG root objects
+|Requirements class |<<rc_{conf-class},Requirements Class "Feature Types and Schemas">>
+|Dependency |<<conf_core,Conformance Class "Core">>
+|Condition |The "conformsTo" member of the JSON object include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{conf-class}"`.
+|===
+
+:conf-test: feature-type-1
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/types-schemas/feature-type A
+|Test purpose: | assert that the feature type is declared for each feature.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature;
+
+Then:
+
+* assert that the feature includes a "featureType" member.
+|===
+
+:conf-test: feature-type-2
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/types-schemas/feature-type B
+|Test purpose: | assert that the feature type is declared for each feature.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature collection;
+
+Then:
+
+* assert that either the feature collection includes a "featureType" member or that each feature includes "featureType" member.
+|===
+
+:conf-test: geometry-dimension
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/types-schemas/geometry-dimension
+|Test purpose: | Assert that the geometry types are consistent with the "geometryDimension" value.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature collection;
+* the member "geometryDimension" is provided and not `null`;
+
+When:
+
+* collect the type of the primary geometry of all JSON-FG features in the feature collection (the primary geometry is the value of the "place" member or if "place" is not provided or `null`, the value of the "geometry" member);
+
+Then:
+
+* assert that the geometry types are consistent with the "geometryDimension" value
+** 0: no geometry is of type "LineString", "MultiLineString", "CircularString", "CompoundCurve", "MultiCurve", "Polygon", "MultiPolygon", "CurvePolygon", "MultiSurface", "Polyhedron", "MultiPolyhedron", "Prism" or "MultiPrism";
+** 1: no geometry is of type "Point", "MultiPoint", "Polygon", "MultiPolygon", "CurvePolygon", "MultiSurface", "Polyhedron", "MultiPolyhedron", "Prism" or "MultiPrism";
+** 2: no geometry is of type "Point", "MultiPoint", "LineString", "MultiLineString", "CircularString", "CompoundCurve", "MultiCurve", "Polyhedron", "MultiPolyhedron", "Prism" or "MultiPrism"
+** 3: no geometry is of type "Point", "MultiPoint", "LineString", "MultiLineString", "CircularString", "CompoundCurve", "MultiCurve", "Polygon", "MultiPolygon", "CurvePolygon", or "MultiSurface".
+|===
+
+
+:conf-test: feature-schemas
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/types-schemas/feature-schemas
+|Test purpose: | Assert that all feature schemas are valid.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature or feature collection;
+
+When:
+
+* collect all schemas referenced from "featureSchema" members;
+
+Then:
+
+* assert that all referenced schemas conform to <<OAFeat-5,OGC API - Features - Part 5: Schemas>>, requirements class "Schemas".
+|===
+
+NOTE: This test requires that a test suite for <<OAFeat-5,OGC API - Features - Part 5: Schemas>> is available.
+
+:conf-test: single-feature-schema
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/types-schemas/single-feature-schema
+|Test purpose: | Assert that all features of of the same type.
+|Test method: | 
+Given:
+
+* The JSON-FG root object under test;
+* the JSON-FG root object has passed the conformance test /conf/core/schema-valid;
+* the JSON-FG root object is a JSON-FG feature or feature collection;
+* the JSON-FG root object has a "featureSchema" member with a value that is a string;
+
+When:
+
+* collect all "featureType" members;
+
+Then:
+
+* assert that all "featureType" members in the JSON document have the same value.
+|===
+
+=== Conformance Class "GeoJSON Profiles"
+
+:conf-class: profiles
+[[conf_{conf-class}]]
+[cols="1,4a",width="90%"]
+|===
+2+|*Conformance Class*
+2+|http://www.opengis.net/spec/{standard}/{m_n}/conf/{conf-class}
+|Target type |GeoJSON documents
+|Requirements class |<<rc_{conf-class},Requirements Class "GeoJSON Profiles">>
+|===
+
+:conf-test: rfc7946
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/profiles/rfc7946
+|Test purpose: | Assert that the GeoJSON document is GeoJSON without JSON-FG extensions.
+|Test method: | 
+Given:
+
+* The GeoJSON document under test has a link to "http://www.opengis.net/def/profile/OGC/0/rfc7946" with link relation type "profile" (the link is either represented in a "Link" header, if the GeoJSON document has been fetched via HTTP, or in a link object in the array of a "links" member of the GeoJSON document);
+
+Then:
+
+* assert that the GeoJSON document is a GeoJSON feature, feature collection or geometry that conforms to <<rfc7946,RFC 7946 (The GeoJSON Format)>>.
+* assert that the GeoJSON document does not include a JSON-FG conformance class URI in a "conformsTo" member of the root object, if one is provided.
+* assert that no GeoJSON feature includes a "place" member.
+|===
+
+:conf-test: json-fg
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/profiles/jsonfg
+|Test purpose: | Assert that the GeoJSON document is a JSON-FG document.
+|Test method: | 
+Given:
+
+* The GeoJSON document under test has a link to "http://www.opengis.net/def/profile/OGC/0/jsonfg" with link relation type "profile" (the link is either represented in a "Link" header, if the GeoJSON document has been fetched via HTTP, or in a link object in the array of a "links" member of the GeoJSON document);
+
+Then:
+
+* assert that the GeoJSON document is a JSON-FG root object that passes the <<conf_core,Conformance Class "Core">>.
+|===
+
+:conf-test: jsonfg-plus
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/profiles/jsonfg-plus
+|Test purpose: | Assert that the GeoJSON document is a JSON-FG document with improved support for GeoJSON readers.
+|Test method: | 
+Given:
+
+* The GeoJSON document under test has a link to "http://www.opengis.net/def/profile/OGC/0/jsonfg-plus" with link relation type "profile" (the link is either represented in a "Link" header, if the GeoJSON document has been fetched via HTTP, or in a link object in the array of a "links" member of the GeoJSON document);
+
+When:
+
+* collect all JSON-FG features;
+
+Then:
+
+* assert that each JSON-FG feature in the GeoJSON document has a "geometry" member that is not `null`, if the feature has a "place" member that is not `null`;
+|===
+
+=== Conformance Class "JSON-FG in Web APIs"
+
+:conf-class: api
+[[conf_{conf-class}]]
+[cols="1,4a",width="90%"]
+|===
+2+|*Conformance Class*
+2+|http://www.opengis.net/spec/{standard}/{m_n}/conf/{conf-class}
+|Target type |Web APIs
+|Requirements class |<<rc_{conf-class},Requirements Class "JSON-FG in Web APIs">>
+|===
+
+:conf-test: profile-parameter-rfc7946
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/api/profile-parameter
+|Test purpose: | Assert that the Web API supports the "profile" query parameter.
+|Test method: | 
+Given:
+
+* The Web API under test;
+* a URI to request a GeoJSON document;
+
+When:
+
+* the URI is requested with a query parameter "profile" set to "rfc7946" and the "Accept" header set to "application/geo+json";
+
+Then:
+
+* assert the response has a "Content-Type" header with the value "application/geo+json";
+* assert the response has a "Link" header with a link to "http://www.opengis.net/def/profile/OGC/0/rfc7946" with link relation type "profile";
+* assert that the response payload passes conformance test <<conf_profiles_rfc7946,/conf/profiles/rfc7946>>.
+|===
+
+:conf-test: profile-parameter-jsonfg
+[#conf_{conf-class}_{conf-test}]
+==== Conformance Test {counter:test-id}
+[cols=">20h,<80a",width="100%"]
+|===
+|Test id: | /conf/{conf-class}/{conf-test}
+|Requirements: | /req/api/profile-parameter
+|Test purpose: | Assert that the Web API supports the "profile" query parameter.
+|Test method: | 
+Given:
+
+* The Web API under test;
+* a URI to request a GeoJSON document;
+
+When:
+
+* the URI is requested with a query parameter "profile" set to "jsonfg" and the "Accept" header set to "application/geo+json";
+
+Then:
+
+* assert the response has a "Content-Type" header with the value "application/geo+json";
+* assert the response has a "Link" header with a link to "http://www.opengis.net/def/profile/OGC/0/jsonfg" with link relation type "profile";
+* assert that the response payload passes conformance test <<conf_profiles_jsonfg,/conf/profiles/jsonfg>>.
+|===

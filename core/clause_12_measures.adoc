@@ -5,7 +5,7 @@
 [cols="2,7",width="90%"]
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
-|Target type |JSON objects
+|Target type |JSON-FG root objects
 |Dependency |<<rc_core>>
 |===
 
@@ -20,7 +20,7 @@ The "Measures" Requirements Class adds provisions for geometries with a third or
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |The "conformsTo" member of a JSON-FG root object that contains a "measures" member in any JSON-FG object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
+^|A |The "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
 |===
 
 === Geometry
@@ -32,7 +32,7 @@ The "Measures" Requirements Class adds provisions for geometries with a third or
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the geometry in the "place" member in any JSON-FG feature has m coordinates, each position SHALL have three coordinates (in case of a 2D CRS) or four coordinates (in case of a 3D CRS).
+^|A |If a JSON-FG geometry has m coordinates, each position SHALL have three coordinates (in case of a 2D CRS) or four coordinates (in case of a 3D CRS).
 |===
 
 [[determine-m]]
@@ -49,7 +49,7 @@ Whether a "place" geometry contains m coordinates, is determined as follows:
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |No sub-geometry of a geometry that is the value of the "place" member SHALL include a "measures" member.
+^|A |No JSON-FG geometry that is directly embedded in another JSON-FG geometry (in members "geometries" or "base") SHALL include a "measures" member.
 |===
 
 For example,
@@ -57,4 +57,3 @@ For example,
 - the "Prism" geometry specified in the Requirements Class "Prisms" includes an embedded 2D base geometry, which cannot include a "measures" member.
 
 NOTE: Strictly, this requirement is not necessary as it is implied by requirement `/req/core/schema-valid`. It is, however, included for clarity.
-

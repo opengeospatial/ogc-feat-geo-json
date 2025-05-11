@@ -396,9 +396,11 @@ All examples in this section use RD new (\http://www.opengis.net/def/crs/EPSG/0/
 [[circular_string]]
 ==== CircularString
 
-A _circular string_ is defined by a sequence of an odd number of positions with a minimum of three positions. For each set of three consecutive positions, the geometry is a circular arc passing from the first position through the middle position to the third position.
+A _circular string_ is defined by a sequence of an odd number of positions with a minimum of three positions. For each set of three consecutive positions, the geometry is a circular arc passing from the first position through the intermediate position to the third position.
 
 To support validation of the odd number of positions, a maximum number of 11 positions are allowed in a circular string (that is, a maximum number of five circular arcs in a circular string).
+
+Only the first two coordinates are used to determine the circular arc (that is, the center and radius). The third coordinate is linearly interpolated along the arc.
 
 [#circular-arc,reftext='{listing-caption} {counter:listing-num}']
 .A circular arc

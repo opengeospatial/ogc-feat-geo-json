@@ -1,7 +1,7 @@
 == Conformance
 This Standard defines eight requirements classes.
 
-Six requirements classes have JSON objects as their standardization target type:
+Six requirements classes have JSON-FG root objects as their standardization target type:
 
 * "Core": The _Core_ requirements class extends GeoJSON with additional members that specify how <<time,temporal information>>, extended <<place,geometry information>>, and <<ref-sys,coordinate reference system information>> can be encoded in a JSON-FG object. In addition, <<metadata,metadata>> is added to declare the JSON-FG conformance classes that a JSON object conforms to. The _Core_ requirements class has a dependency on GeoJSON. This means that a JSON-FG object that conforms to _Core_ must also conform to GeoJSON.
 

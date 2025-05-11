@@ -5,7 +5,7 @@
 [cols="2,7",width="90%"]
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
-|Target type |JSON objects
+|Target type |JSON-FG root objects
 |Dependency |<<rc_core>>
 |===
 
@@ -20,7 +20,7 @@ The "Prisms" Requirements Class adds provisions for extruded geometries in a 3D 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |The "conformsTo" member of a JSON-FG root object that contains any of the polyhedron geometry types SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
+^|A |The "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
 |===
 
 === Geometry
@@ -32,19 +32,10 @@ The "Prisms" Requirements Class adds provisions for extruded geometries in a 3D 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |All positions in the "base" member of a "Prism" or "MultiPrism" geometry in the "place" member in any JSON-FG feature SHALL have a coordinate dimension of two (2) - or three (3), if measure values are included (see <<rc_measures>>).
+^|A |All positions in the "base" member of a JSON-FG geometry of type "Prism" SHALL have a coordinate dimension of two (2) - or three (3), if measure values are included (see <<rc_measures>>).
 ^|B |The "lower" and "upper" values of each Prism SHALL be in the valid range for the third coordinate axis of the CRS.
 ^|C |In an Prism, the "lower" value SHALL be equal or smaller than the "upper" value.
 ^|D |The CRS of each Prism geometry SHALL be have three dimensions (a 3D CRS or an ad-hoc compound CRS consisting of a horizontal 2D CRS and a vertical CRS).
 |===
 
-:req: geom-valid
-[#{req-class}_{req}]
-==== Geometries are valid
-
-[width="90%",cols="2,7a"]
-|===
-^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "Prism", the base geometry (member "base") SHALL be one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon" or "MultiPolygon", and each geometry SHALL be a valid geometry according to <<ogc06_103r4,Simple feature access - Part 1: Common architecture>>.
-^|B |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "MultiPrism", each prism (items in the member "prisms") SHALL be a valid Prism geometry (see A).
-|===
+NOTE: There is no need to state a requirement that base geometries have to be valid, as this is already stated in the <<rc_core>> requirements class for Simple Feature geometries or in the requirements class that defines the base geometry for other geometry types.
