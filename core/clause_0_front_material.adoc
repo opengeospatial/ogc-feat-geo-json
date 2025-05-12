@@ -2,7 +2,7 @@
 
 <<rfc7946,GeoJSON>> is a very popular encoding for feature data. GeoJSON is widely supported, including in most deployments of APIs implementing the OGC API Features Standard. However, GeoJSON has intentional restrictions that prevent or limit its use in certain geospatial application contexts. For example, GeoJSON is restricted to WGS 84 coordinates, only supports the original Simple Features geometry types and has no concept of classifying features according to their type.
 
-OGC Features and Geometries JSON (JSON-FG) is a proposal for GeoJSON extensions that provide standard ways to support such requirements. The goal is to focus on capabilities that may require some geospatial expertise, but that are useful for many. Edge cases are considered out-of-scope of JSON-FG.
+OGC Features and Geometries JSON (JSON-FG) specifies GeoJSON extensions that provide standard ways to support such requirements. The goal is to focus on capabilities that may require some geospatial expertise, but that are useful for many. Edge cases are considered out-of-scope of JSON-FG.
 
 Since JSON-FG specifies extensions to GeoJSON that conform to the GeoJSON standard, valid JSON-FG features or feature collections are also valid GeoJSON features or feature collections.
 
@@ -32,7 +32,7 @@ If and once the JSON-FG Standard is approved by the OGC Members, the following a
 - Annex <<schemas>> specifies the JSON-FG Schema documents. The documents will be published in the https://schemas.opengis.net/[OGC Schema Repository]. The note at the start of the annex will be removed.
 - The Abstract needs to be updated to remove the reference to the draft status.
 - The reference to OGC API Features Part 5: Schemas in the References section should be updated to the latest version that is available.
-- The profiles "\http://www.opengis.net/def/profile/OGC/0/rfc7946", "\http://www.opengis.net/def/profile/OGC/0/jsonfg", and "\http://www.opengis.net/def/profile/OGC/0/jsonfg-plus" will be registered in the OGC Profiles Registry.
+- The profiles "\http://www.opengis.net/def/profile/OGC/0/rfc7946", "\http://www.opengis.net/def/profile/OGC/0/jsonfg", and "\http://www.opengis.net/def/profile/OGC/0/jsonfg-plus" will be registered in the OGC Profiles Register.
 
 This section will be removed before publication.
 

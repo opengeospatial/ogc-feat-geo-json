@@ -1,7 +1,7 @@
 [[building_blocks]]
 == JSON-FG building blocks
 
-This Clause describes the JSON building blocks required to extend GeoJSON features and feature collections. The following clauses specify the formal requirements.
+This Clause describes the JSON building blocks required to extend GeoJSON. The subsequent clauses specify the formal requirements.
 
 === Overview
 
@@ -34,7 +34,7 @@ Annex '<<examples>>' has examples of JSON-FG objects.
 [[general_approach]]
 === General Approach
 
-The GeoJSON RFC clearly specifies in Clauses 6 and 7 that additional members can be added to the GeoJSON objects as long as they do not conflict with members as specified by GeoJSON ("foreign members").
+The GeoJSON RFC specifies in Clauses 6 and 7 that additional members ("foreign members") can be added to GeoJSON objects as long as they do not conflict with members as specified by GeoJSON.
 
 JSON-FG extends GeoJSON in two ways:
 
@@ -51,7 +51,7 @@ Some GeoJSON readers, however, only provide access to the pre-defined JSON membe
 [[metadata]]
 ==== Metadata: the "conformsTo" member
 
-To indicate that a JSON document contains JSON-FG objects and to indicate the JSON-FG version and requirements classes implemented in the document, a `conformsTo` member is required to be included in the root object of the JSON document.
+To indicate that a JSON object is a JSON-FG object and to indicate the JSON-FG version and requirements classes implemented in the value, a "conformsTo" member is required to be included in the JSON-FG root object (that is, a JSON-FG geometry, feature, or feature collection that is not a direct child of another JSON-FG object).
 
 The value of the member is an array of strings, where each string is a URI of a conformance class.
 
@@ -72,7 +72,7 @@ The value of the member is an array of strings, where each string is a URI of a 
 
 ===== Overview
 
-Many features have a geometry property that provides information about the primary spatial characteristics of the feature. In GeoJSON, this information is encoded in the "geometry" member. Features often have temporal information. In most cases, time is either an instant (e.g., an event) or an interval (e.g., an activity or a temporal validity). In the OGC API Features Standard the temporal property is reflected in the http://www.opengis.net/doc/IS/ogcapi-features-1/1.0#_parameter_datetime[parameter "datetime"] for temporal filtering of features that is supported by all compliant Feature API instances.
+Many features have a geometry property that provides information about the primary spatial characteristics of the feature. In GeoJSON, this information is encoded in the "geometry" member. Features often have temporal information, too. In most cases, time is either an instant (e.g., an event) or an interval (e.g., an activity or a temporal validity). In the OGC API Features Standard the temporal property is reflected in the http://www.opengis.net/doc/IS/ogcapi-features-1/1.0#_parameter_datetime[parameter "datetime"] for temporal filtering of features that is supported by all compliant Feature API instances.
 
 JSON-FG adds support for the most common case: Associating a feature with a single temporal instant or interval in the Gregorian calendar.
 
@@ -91,18 +91,18 @@ The publisher of the data needs to decide which temporal feature properties are 
 
 The "time" member is either missing or `null` (no temporal information) or an object with at least one member.
 
-.Properties of the "time" object
+.Members of the "time" object
 [cols="20,10a,70a",options="header"]
 !===
-|Property |Type |Description
-|date |string |An instant with a granularity of a date. See below for more details about instants.
-|timestamp |string |An instant with the granularity of a timestamp. See below for more details about instants.
+|Member |Type |Description
+|date |string |An instant with a granularity of a date. See below for more details about dates.
+|timestamp |string |An instant with the granularity of a timestamp. See below for more details about timestamps.
 |interval |[ string ] |An interval, described by an array of the two instants (start and end). See below for more details about intervals.
 !===
 
-If both values intersect, then including both an instant and an interval is valid. In this case, clients should use the "interval" property and may use the "date" or "timestamp" property to determine the temporal characteristics of the feature.
+Providing multiple members is valid, if all values intersect. In this case, clients should use the "interval" property and may use the "date" or "timestamp" property to determine the temporal characteristics of the feature.
 
-The "time" object may be extended with additional members. Clients processing a "time" object must be prepared to parse additional members. Clients should ignore members that they do not understand. For example, in cases where the "time" member neither includes an "instant" or "interval", a client may process the feature as a feature without temporal information.
+The "time" object may be extended with additional members. Clients processing a "time" object must be prepared to parse additional members. Clients should ignore members that they do not understand. For example, in cases where the "time" member neither includes a "date", "timestamp", or "interval", a client may process the feature as a feature without temporal information.
 
 NOTE: The data publisher decides how temporal properties inside the "properties" member are encoded. The schema for the "time" member does not imply a recommendation that temporal feature properties reuse the same schema. For example, it is expected that a date-valued feature attribute will in most cases be represented as string with an RFC 3339 date value.
 
@@ -139,15 +139,13 @@ NOTE: The JSON-FG Standard only provides guidance as to how to represent feature
 ----
 ====
 
-Dates and timestamps are the initial range of instant values. The range may be extended in the future to support additional use cases. Clients processing values of `time` must be prepared to receive other values. Clients may ignore values that they do not understand.
+Dates and timestamps are the initial range of instant values. The range may be extended in the future to support additional use cases. Clients processing values of `time` must be prepared to receive other values. Clients should ignore values that they do not understand.
 
 ===== Intervals
 
 An interval is described by start and end instants. Both start and end instants are included in the interval, i.e., the interval is closed.
 
 The unbounded end of an interval is represented by a double-dot string ("..") for the start/end. This follows the convention of ISO 8601-2 for an open start or end.
-
-NOTE: There is a https://github.com/opengeospatial/ogc-feat-geo-json/issues/69[proposal] to use `null` instead of "..".
 
 [#ex-time-3,reftext='{listing-caption} {counter:listing-num}']
 .An interval with dates
@@ -168,7 +166,7 @@ NOTE: There is a https://github.com/opengeospatial/ogc-feat-geo-json/issues/69[p
 ====
 
 [#ex-time-5,reftext='{listing-caption} {counter:listing-num}']
-.An half-bounded interval
+.A half-bounded interval
 ====
 [source,json,linenumbers]
 ----
@@ -176,7 +174,7 @@ NOTE: There is a https://github.com/opengeospatial/ogc-feat-geo-json/issues/69[p
 ----
 ====
 
-The options described above are the initial range of interval values - the granularity is either days or (sub-)seconds and interval ends may be unbounded. The value range may be extended in the future to support additional use cases. Clients processing values of `time` must be prepared to receive other values. Clients may ignore values that they do not understand.
+The options described above are the initial range of interval values - the granularity is either days or (sub-)seconds and interval ends may be unbounded. The value range may be extended in the future to support additional use cases. Clients processing values of `time` must be prepared to receive other values. Clients should ignore values that they do not understand.
 
 [[place]]
 ==== Geometry: the "geometry" and "place" members
@@ -185,7 +183,7 @@ The options described above are the initial range of interval values - the granu
 
 Features typically have a geometry that provides information about the primary spatial characteristics of the feature.
 
-In GeoJSON, geometry information is encoded in the "geometry" member. Geometries are encoded according to the <<ogc06_103r4,OGC Simple Features Standard>> (2D or 2.5D points, line strings, polygons or aggregations of them) using a WGS 84 CRS (OGC:CRS84 or OGC:CRS84h).
+In GeoJSON, geometry information is encoded in the "geometry" member. Geometries are encoded according to the <<ogc06_103r4,OGC Simple Features Standard>> (2D or 2.5D points, line strings, polygons or aggregations of them) using a WGS 84 CRS (OGC:CRS84 for 2D or OGC:CRS84h for 2.5D).
 
 A key motivation for the development of the JSON-FG Standard is to support additional requirements, especially the ability to represent geometries in other CRSs and in additional geometry types.
 
@@ -203,7 +201,7 @@ The value range of the "place" member is an extended and extensible version of t
 ** Additional 3D geometry types <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>>;
 ** Additional geometry types supporting curves with circular arcs <<CircularString>>, <<CompoundCurve>>, <<CurvePolygon>>, <<MultiCurve>>, and <<MultiSurface>>;
 * The capability to <<ref-sys,declare the coordinate reference system of the coordinates>>;
-* The capability to <<measures,add a measure value to each coordinate>>.
+* The capability to <<measures,add a measure coordinate to each position>>.
 
 Only the capability to declare the coordinate reference system is considered a Core capability. The other capabilities are added by additional building blocks described in subsequent sections.
 
@@ -215,7 +213,7 @@ All coordinates in a "place" member are in the same coordinate reference system.
 
 ===== Use of "geometry" and/or "place"
 
-If the geometry is a valid GeoJSON geometry (one of the GeoJSON geometry types, in WGS 84), the geometry is encoded as the value of the "geometry" member. The "place" member then has the value `null` or is omitted.
+If the geometry is a valid GeoJSON geometry (that is, one of the GeoJSON geometry types, in WGS 84), the geometry is encoded as the value of the "geometry" member. The "place" member then has the value `null` or is omitted.
 
 If the geometry cannot be represented as a valid GeoJSON geometry, the geometry is encoded as the value of the "place" member.  
 
@@ -483,7 +481,7 @@ include::examples/multi-surface.json[]
 
 In most cases, geometries are restricted to coordinates according to a <<ref-sys,coordinate reference system>>. 
 
-The <<ogc06_103r4,OGC Simple Feature Access Standard>> also supports an additional measure value for each coordinate (M coordinate). 
+The <<ogc06_103r4,OGC Simple Feature Access Standard>> also supports an additional measure value for each position (m coordinate). 
 
 A typical use case is linear referencing, where the measure value in a curve is the distance of each position along the geometry from the start of the geometry to the position. 
 
@@ -518,9 +516,9 @@ Many GIS clients depend on knowledge about the feature type when processing feat
 
 GeoJSON is schema-less in the sense that it has no concept of feature types or feature schemas.
 
-In JSON-FG, a feature is an instance of a single feature type. If a feature is associated with multiple feature types, the primary type should be identified. 
+In JSON-FG, a feature is an instance of a single feature type. If a feature is associated with multiple feature types, the primary type should be declared. 
 
-The related section <<schema-ref>> specifies the schema for each feature type if such information is available.
+The related section <<schema-ref>> specifies the schema for each feature type, if such information is available.
 
 ===== The "featureType" member
 

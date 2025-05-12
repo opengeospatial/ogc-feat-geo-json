@@ -66,37 +66,59 @@ position::
 a sequence of numbers representing a point in a **coordinate reference system**
 
 primary geometry::
-the geometry that the publisher considers as the most important spatial characteristic of a *feature* (<<OAFeat-5,OGC API - Features - Part 5: Schemas>>)
+the geometry that the publisher considers as the most important spatial characteristic of a *feature* [<<OAFeat-5,OGC API - Features - Part 5: Schemas>>]
 
 NOTE: A feature can be described by multiple spatial properties. For example, a radio tower can have a property with a point value that describes the location of the tower and another property with a multi-polygon value that describes the area of coverage. Some feature formats can represent only a single geometry per feature. In those cases, the primary geometry will be used when the feature is encoded in such a format.
 
 NOTE: The primary geometry of a feature can also vary depending on the zoom level. At a smaller scale, the primary geometry could be a point while a polygon could be used at a larger scale.
 
 primary temporal information::
-the time instant or time interval that the publisher considers as the most important temporal characteristic of a *feature* (<<OAFeat-5,OGC API - Features - Part 5: Schemas>>)
+the time instant or time interval that the publisher considers as the most important temporal characteristic of a *feature* [<<OAFeat-5,OGC API - Features - Part 5: Schemas>>]
 
 NOTE: A feature can be described by multiple temporal properties. For example, an event can have a property with an instant or interval when the event occurred or will occur and another property when the event was recorded in the dataset. The primary temporal information can also be built from two properties, e.g., when the feature has two properties describing the start instant and end instant of an interval.
 
 profile::
-additional semantics (constraints, conventions, extensions) that are associated with a resource representation, in addition to those defined by the media type (<<rfc6906,RFC 6906: The 'profile' Link Relation Type>>)
+additional semantics (constraints, conventions, extensions) that are associated with a resource representation, in addition to those defined by the media type [<<rfc6906,RFC 6906: The 'profile' Link Relation Type>>]
 
 publisher::
-entity responsible for making a resource available (https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher[Dublin Core Metadata Initiative - DCMI Metadata Terms])
+entity responsible for making a resource available [https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/publisher[Dublin Core Metadata Initiative - DCMI Metadata Terms]]
 
 === Abbreviated Terms
 
+3D:: Three Dimensional
+
 API:: Application Programming Interface
 
+CAD:: Computer Aided Design
+
+CQL2:: OGC Common Query Language
+
 CRS:: Coordinate Reference System
+
+DGIWG:: Defense Geospatial Information Working Group
+
+DIGEST:: Digital Geospatial Information Exchange Standard
+
+FACC:: Feature Attribute Coding Catalog
+
+IANA:: Internet Assigned Numbers Authority
+
+IETF:: Internet Engineering Task Force
+
+ISO:: International Organization for Standardization
 
 JSON:: JavaScript Object Notation
 
 JSON-FG:: OGC Features and Geometries JSON
 
-JSON-LD:: JSON for Linking Data
-
 OGC:: Open Geospatial Consortium
 
-SWG:: Standards Working Group
+OWL:: Web Ontology Language
+
+RFC:: Request for Comments
+
+URI:: Uniform Resource Identifier
+
+UTC:: Coordinated Universal Time
 
 WGS 84:: World Geodetic System 1984 

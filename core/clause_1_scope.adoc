@@ -6,7 +6,7 @@ The JSON-FG Standard specifies the following mandatory extensions to the GeoJSON
 
 * The ability to use Coordinate Reference Systems (CRSs) other than WGS 84 with axis order longitude/latitude;
 * The ability to encode temporal characteristics of a feature; and
-* A statement to which JSON-FG conformance classes a JSON feature collection, feature, or geometry conforms to.
+* A statement to which JSON-FG conformance classes a JSON-FG feature collection, feature, or geometry conforms to.
 
 In addition, the following optional extensions are specified:
 
