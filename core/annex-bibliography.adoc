@@ -7,6 +7,8 @@
 
 [[rfc8259]] Internet Engineering Task Force (IETF). RFC 8259: **The JavaScript Object Notation (JSON) Data Interchange Format**. Edited by T. Bray. 2017. Available at https://www.rfc-editor.org/rfc/rfc8259.html
 
+[[iso13249-3]] International Organization for Standardization (ISO). ISO 13249-3:2016: **Information technology — Database languages — SQL multimedia and application packages - Part 3: Spatial**. Available at https://www.iso.org/standard/60343.html
+
 [[json-schema]] **JSON Schema: A Media Type for Describing JSON Documents**. Edited by A. Wright, H. Andrews, B. Hutton, G. Dennis. 2022. Available at https://json-schema.org/draft/2020-12/json-schema-core
 
 [[json-schema-validation]] **JSON Schema Validation: A Vocabulary for Structural Validation of JSON**. Edited by A. Wright, H. Andrews, B. Hutton. 2022. Available at https://json-schema.org/draft/2020-12/json-schema-validation

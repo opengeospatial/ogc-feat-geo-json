@@ -5,7 +5,7 @@
 [cols="2,7",width="90%"]
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
-|Target type |JSON objects
+|Target type |JSON-FG root objects
 |Dependency |<<rc_core>>
 |Indirect Dependency |<<OAFeat-5,OGC API - Features - Part 5: Schemas>>
 |===
@@ -21,7 +21,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |The "conformsTo" member of a JSON-FG root object that contains a "featureType" or "featureSchema" member in any JSON-FG object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
+^|A |The "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
 |===
 
 === Feature type(s)
@@ -44,7 +44,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the JSON-FG root object is a feature collection with a member "geometryDimension" that is not `null`, the geometry type of the primary geometry of each feature in the "place" member - or if "place" is `null`, in the "geometry" member - SHALL be consistent with the value (0: a Point or MultiPoint; 1: a LineString, CircularString, CompoundCurve, MultiLineString, MultiCurve, or CustomCurve; 2: a Polygon, CurvePolygon, MultiPolygon, MultiSurface, or CustomSurface; 3: a Polyhedron, MultiPolyhedron, Prism or MultiPrism).
+^|A |If the JSON-FG root object is a feature collection with a member "geometryDimension" that is not `null`, the geometry type of the primary geometry of each feature in the "place" member - or if "place" is `null`, in the "geometry" member - SHALL be consistent with the value (0: only points; 1: only curves; 2: only surfaces; 3: only solids or prisms).
 |===
 
 :rec: homogeneous-collection
@@ -77,5 +77,5 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the JSON-FG root object is a feature or feature collection with a "featureSchema" member where the value is a string (URI), all "featureType" members in the JSON document SHALL declare a single feature type and all SHALL have the same value.
+^|A |If the JSON-FG root object is a feature or feature collection with a "featureSchema" member where the value is a string (URI), all "featureType" members in the JSON document SHALL have the same value.
 |===

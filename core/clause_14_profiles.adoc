@@ -5,7 +5,7 @@
 [cols="2,7",width="90%"]
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
-|Target type |JSON documents
+|Target type |GeoJSON documents
 |Conditional Dependency |<<rfc7946,RFC 7946: The GeoJSON Format>>
 |Conditional Dependency |<<rc_core>>
 |===
@@ -34,7 +34,6 @@ The Requirements Class "GeoJSON Profiles" adds provisions for three GeoJSON prof
 |===
 
 Creators of GeoJSON according to this profile may decide to include the obsolete "crs" member, too, if the geometry in "geometry" is not in WGS 84 longitude/latitude and they want to support GeoJSON readers that already supported the now obsolete version. The obsolete "crs" member is a JSON object with two members: "type" and "properties". The "type" member has the value "name" and the "properties" member is a JSON object with one member, "name", which has the value of the CRS URI.
-
 
 [#feature-with-crs,reftext='{listing-caption} {counter:listing-num}']
 .A feature with the obsolete "crs" member.

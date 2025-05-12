@@ -7,7 +7,7 @@ The "Circular Arcs" Requirements Class adds provisions for curve geometries that
 [cols="2,7",width="90%"]
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
-|Target type |JSON objects
+|Target type |JSON-FG root objects
 |Dependency |<<rc_core>>
 |===
 
@@ -20,31 +20,29 @@ The "Circular Arcs" Requirements Class adds provisions for curve geometries that
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |The "conformsTo" member of a JSON-FG root object that contains any of the geometry types "CircularString", "CompoundCurve", "CurvePolygon", "MultiCurve", or "MultiSurface" SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
+^|A |The "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
 |===
 
 === Geometry
 
-:req: geom-valid
+:req: valid-geometry
 [#{req-class}_{req}]
 ==== Geometries are valid
 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "CircularString", the items in the "coordinates" array SHALL meet the following requirements:
+^|A |In any JSON-FG geometry of type "CircularString", the items in the "coordinates" array SHALL meet the following requirements:
 
 * The items are a sequence of one, two, three, four, or five connected circular arcs, where each arc is a sequence of three positions and the first position of each connected arc is not repeated (that is, the circular string consists of three, five, seven, nine, or eleven positions);
-* Each circular arc is the curved segment between the first and the last position of the arc through the second position of the arc; 
-* The first and the third position of each circular arc are not identical.
-^|B |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "CompoundCurve", each item in the "geometries" array SHALL meet the following requirements:
+* The first, second and third position of each circular arc are all different;
+* The first, second and third position of each circular arc are not collinear.
+^|B |In any JSON-FG geometry of type "CompoundCurve", each item in the "geometries" array except the first item SHALL meet the following requirement:
 
-* Each item is a primitive curve geometry (of type "LineString", "CircularString", or "CustomCurve");
-* The first position of each item (except the first item) is identical to the last position of the previous item.
-^|C |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "CurvePolygon", each item in the "geometries" array SHALL meet the following requirements:
+* The first position of each item is identical to the last position of the previous item (that is, all items are consequtive).
+^|C |In any JSON-FG geometry of type "CurvePolygon", each item in the "geometries" array SHALL meet the following requirement:
 
-* Each item is a curve geometry (of type "LineString", "CircularString", "CustomCurve", or "CompoundCurve");
-* The first and last position of each curve geometry is identical.
-^|D |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "MultiCurve", each item in the "geometries" array SHALL be a curve geometry (of type "LineString", "CircularString", "CustomCurve", or "CompoundCurve").
-^|E |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "MultiSurface", each item in the "geometries" array SHALL be a surface geometry (of type "Polygon", "CustomSurface", or "CurvePolygon").
+* The first and last position of each curve geometry is identical  (that is, each item is a closed ring).
 |===
+
+NOTE: The valid geometry items in the "CompoundCurve", "CurvePolygon", "MultiCurve", and "MultiSurface" geometries are implicitly specified by the JSON Schema for the JSON-FG geometries.

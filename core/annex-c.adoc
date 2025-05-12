@@ -130,7 +130,7 @@ The schema definition for a new geometry "GeodesicString" shown below could be a
 include::examples/extensions/geodesicstring.json[]
 ----
 
-"GeodesicString" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum` to declare the new JSON-FG geometry type.
+"GeodesicString" would also be added to `#/$defs/CustomGeometry/properties/type/not/enum` in "geometry-object.json" to declare the new JSON-FG geometry type.
 
 ==== A temporal data type for a time series;
 

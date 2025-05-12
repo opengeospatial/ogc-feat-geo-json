@@ -5,7 +5,7 @@
 [cols="2,7",width="90%"]
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
-|Target type |JSON objects
+|Target type |JSON-FG root objects
 |Dependency |<<rc_core>>
 |===
 
@@ -20,7 +20,7 @@ The "Polyhedra" Requirements Class adds provisions for volumetric geometries in 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |The "conformsTo" member of a JSON-FG root object that contains any of the polyhedron geometry types SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
+^|A |The "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/{req-class}"`.
 |===
 
 === Geometry
@@ -32,18 +32,18 @@ The "Polyhedra" Requirements Class adds provisions for volumetric geometries in 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |All positions in a "Polyhedron" or "MultiPolyhedron" geometry in the "place" member in any JSON-FG feature SHALL have a coordinate dimension of three (3) - or four (4), if measure values are included (see <<rc_measures>>).
+^|A |All positions in a "Polyhedron" or "MultiPolyhedron" geometry (JSON-FG geometry with "type" set to "Polyhedron" or "MultiPolyhedron") SHALL have a coordinate dimension of three (3) - or four (4), if measure values are included (see <<rc_measures>>).
 ^|B |The CRS of each Polyhedron geometry SHALL be have three dimensions (a 3D CRS or an ad-hoc compound CRS consisting of a horizontal 2D CRS and a vertical CRS).
 |===
 
-:req: geom-valid
+:req: valid-geometry
 [#{req-class}_{req}]
 ==== Geometries are valid
 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the "place" value in any JSON-FG feature is not `null` and the geometry type (member "type") is "Polyhedron", the elements in the "coordinates" array SHALL meet the following requirements:
+^|A |If a JSON-FG geometry is of type "Polyhedron", the elements in the "coordinates" array SHALL meet the following requirements:
 
 * Each element is a closed, simple multi-polygon geometry (a shell).
 * The coordinates of the first and last position in each ring of each polygon in each shell SHALL be identical.
@@ -52,7 +52,7 @@ The "Polyhedra" Requirements Class adds provisions for volumetric geometries in 
 * No element (shell) intersects another element (shell).
 * All coordinates in the elements from the second element to the last element (the voids) are inside the simple polyhedron specified by the first element (the outer shell).
 * In the elements from the second element to the last element (the voids) there is no element where all coordinates of the element are inside the shell specified by another element (no void contains another void).
-^|B |If the "place" member in any JSON-FG feature is not `null` and the geometry type (member "type") is "MultiPolyhedron", each element in the "coordinates" array SHALL be a valid polyhedron geometry (see A).
+^|B |If a JSON-FG geometry is of type "MultiPolyhedron", each element in the "coordinates" array SHALL be a valid polyhedron geometry (see A).
 |===
 
 Clients should, if possible, be tolerant and also accept shells with an incorrect orientation.
