@@ -24,6 +24,7 @@
   "$defs": {
     "CustomGeometry": {
       "title": "A custom geometry",
+      "description": "A custom geometry object type that is not one of the standard GeoJSON geometry types or one of the JSON-FG extensions. It is defined as an object with a \"type\" member that is not one of the GeoJSON or JSON-FG types. This is a mechanism to keep the schema extensible so that validation will also validate JSON-FG root objects with new geometry types that are not (yet) standardized. Readers of JSON-FG root objects that encouter an unknown geometry type should ignore it and treat it as if the value would be 'null'.",
       "type": "object",
       "required": ["type"],
       "properties": {
@@ -44,6 +45,7 @@
     },
     "CustomCurve": {
       "title": "A custom curve object",
+      "description": "A custom curve object type that is not one of the standard GeoJSON curve types or one of the JSON-FG extensions. It is defined as an object with a \"type\" member that is not one of the GeoJSON or JSON-FG types. This is a mechanism to keep the schema extensible so that validation will also validate JSON-FG root objects with new geometry types that are not (yet) standardized. Readers of JSON-FG root objects that encouter an unknown curve type should ignore it and treat it as if the value would be 'null'.",
       "type": "object",
       "required": ["type"],
       "properties": {
@@ -55,6 +57,7 @@
     },
     "CustomSurface": {
       "title": "A custom surface object",
+      "description": "A custom surface object type that is not one of the standard GeoJSON surface types or one of the JSON-FG extensions. It is defined as an object with a \"type\" member that is not one of the GeoJSON or JSON-FG types. This is a mechanism to keep the schema extensible so that validation will also validate JSON-FG root objects with new geometry types that are not (yet) standardized. Readers of JSON-FG root objects that encouter an unknown surface type should ignore it and treat it as if the value would be 'null'.",
       "type": "object",
       "required": ["type"],
       "properties": {
