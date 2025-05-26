@@ -6,15 +6,11 @@ OGC Features and Geometries JSON (JSON-FG) builds on the widely used [GeoJSON st
 
 ## Status
 
-The latest release is [v0.2.2](https://github.com/opengeospatial/ogc-feat-geo-json/releases/tag/v0.2.2) from February 2024. This version was the the basis for the OGC Public Comment phase. In OGC, this phase is the final call for comments before the candidate standard will go through the process for approval as an OGC Standard.
+The latest release is [v0.3.0](https://github.com/opengeospatial/ogc-feat-geo-json/releases/tag/v0.3.0) from May 2025. 
 
-Most issues that have been received have now been resolved or the proposed resolution has been merged into the editor's draft and is under review.
+The document is in the process for approval as an OGC Standard. The approval vote of the OGC Technical Committee is expected to start in June/July 2025.
 
-The editor's draft of the specification, version 0.3.0-SNAPSHOT, can be found at [docs.ogc.org/DRAFTS/21-045r1.html](https://docs.ogc.org/DRAFTS/21-045r1.html). A [PDF version](https://docs.ogc.org/DRAFTS/21-045r1.pdf) is available, too.
-
-Even though the OGC Public Comment phase is formally closed, the OGC invites organisations and developers that have a need for the extensions specified by this specification to implement and test the extensions. Please submit feedback [in this repository](https://github.com/opengeospatial/ogc-feat-geo-json/issues). Are these extensions useful for your use cases? Are they simple enough to implement?
-
-It is planned to submit the document soon to the OGC Technical Committee for approval as an OGC Standard.
+OGC invites organisations and developers that have a need for the extensions specified by this specification to implement and test the extensions. Please submit feedback [in this repository](https://github.com/opengeospatial/ogc-feat-geo-json/issues).
 
 ## Overview
 
@@ -24,7 +20,7 @@ OGC Features and Geometries JSON (JSON-FG) is an OGC Candidate Standard for GeoJ
 
 Since JSON-FG specifies extensions to GeoJSON that conform to the GeoJSON standard, valid JSON-FG features or feature collections are also valid GeoJSON features or feature collections.
 
-The JSON-FG Standard is expected to specify the following mandatory extensions to the GeoJSON format in its first version:
+The JSON-FG Standard specifies the following mandatory extensions to the GeoJSON format in its first version:
 
 * The ability to use Coordinate Reference Systems (CRSs) other than WGS 84 with axis order longitude/latitude;
 * The ability to encode temporal characteristics of a feature; and
@@ -32,7 +28,7 @@ The JSON-FG Standard is expected to specify the following mandatory extensions t
 
 In addition, the following optional extensions are planned for the first version:
 
-* Support for solids and prisms as geometry types;
+* Support for solids and prisms as geometry types for 3D;
 * Support for circular arcs, compound curves, and curve polygons as geometry types;
 * Support for measure values in coordinates;
 * The ability to declare the type and the schema of a feature.
@@ -47,14 +43,14 @@ The JSON-FG extensions to GeoJSON are intended to support requirements that prof
 
 - In many jurisdictions, coordinates are not stored in WGS 84 longitude/latitude, but using a Cartesian coordinate system and/or in a different geodetic datum (for example, [NAD-83](https://en.wikipedia.org/wiki/North_American_Datum#North_American_Datum_of_1983) in North America or [ETRS89](https://en.wikipedia.org/wiki/European_Terrestrial_Reference_System_1989) in Europe). Representing such feature data in GeoJSON would require converting the coordinates to WGS 84 longitude/latitude, which would introduce geometric errors depending on the accuracy of the conversion. Such errors may or may not be acceptable for the intended purpose. To avoid such errors, JSON-FG supports that geometries can be represented in the CRS that the user wants or has to use when processing the data.
   - For example, coordinate conversions are typically not acceptable in an application to edit features. Feature geometries need to be represented throughout the editing process in the CRS in which the data is stored.
-- Feature geometries increasingly include volumetric geometries, for example, to represent the shape of buildings or airspaces. GeoJSON implements the geometries specified by the [OGC Simple Feature Access Standard](https://www.ogc.org/standard/sfa/), which does not support solids as geometries. To be able to represent solid geometries in feature data, JSON-FG adds support for solids as well as extruded GeoJSON geometries ([prisms](https://en.wikipedia.org/wiki/Prism_(geometry))).
+- Feature geometries increasingly include volumetric geometries, for example, to represent the shape of buildings or airspaces. GeoJSON implements the geometries specified by the [OGC Simple Feature Access Standard](https://www.ogc.org/standard/sfa/), which does not support solids as geometries. To be able to represent solid geometries in feature data, JSON-FG adds support for polyhedra as well as extruded GeoJSON geometries ([prisms](https://en.wikipedia.org/wiki/Prism_(geometry))).
 - The GeoJSON "geometry" member enables GeoJSON clients to process the geometry of a feature without understanding the schema or the semantics of the feature. This, for example, enables clients to render any feature on a map or to select features based on their geometry. For feature data where time is important, a new member "time" is introduced and enables, for example, JSON-FG map clients to select or render features in a time interval using a time slider - without the need to understand the schema or the semantics of the features.
 - It is a common practice to publish feature datasets organized by the type of the features, e.g., roads, railways, etc. This information is utilized by clients when processing the data. For example, when rendering the features in a map, the feature type will typically determine the portrayal rules that are used to display a feature. To support such workflows, JSON-FG adds a JSON member "featureType" that can be used to convey the feature type of each feature.
 - It is also a common practice, and a characteristic of commonly used data formats for feature data, e.g., [Shapefile](https://en.wikipedia.org/wiki/Shapefile) or [GeoPackage](https://en.wikipedia.org/wiki/GeoPackage), to have a fixed set of attributes for each feature type. These are expressed in a schema describing the attributes. The knowledge about the attributes can help clients when processing the data. To support such clients, JSON-FG specifies the JSON member "featureSchema" to reference the schema of the features of a feature type. Following the [approach taken by the OGC API Features Standard](https://docs.ogc.org/DRAFTS/23-058r1.html), the schema is a logical schema expressed in JSON Schema.
 
 ## Implementations and Examples
 
-NOTE: This section needs to be updated to version 0.3 once it is stable.
+NOTE: This section is for version 0.2 and needs to be updated to version 0.3.
 
 This section provides links to existing implementations of JSON-FG and examples of using JSON-FG. For each entry, the following information is provided:
 
