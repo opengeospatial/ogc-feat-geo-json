@@ -3,7 +3,7 @@
         "http://www.opengis.net/spec/json-fg-1/0.3/conf/core"         ,
         "http://www.opengis.net/spec/json-fg-1/0.3/conf/circular-arcs"
     ],
-    "coordRefSys": "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
+    "coordRefSys": "http://www.opengis.net/def/crs/OGC/0/CRS84",
     "type": "CircularString",
     "coordinates": [
         [4.5390985, 51.5902952],
