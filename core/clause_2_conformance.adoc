@@ -15,13 +15,11 @@ Six requirements classes have JSON-FG root objects as their standardization targ
 
 * "Feature Types and Schemas": The _Feature Types and Schemas_ requirements class adds support for <<feature-types,feature types>> and <<schema-ref,schema references>>. Features are often categorized by type. This requirements class adds members to a JSON-FG feature or feature collection so that contained features can be tagged with a type value.  This requirements class includes guidance about how to include information about the schema of a feature type. The _Feature Types and Schemas_ requirements class has a dependency on the _Core_ requirements class. This means that a JSON-FG object that conforms to the _Feature Types and Schemas_ conformance class must also conform to the _Core_ conformance class.
 
-The seventh requirements class, "GeoJSON Profiles", has GeoJSON documents as its standardization type. The requirements class adds support for <<profiles>> of the GeoJSON media type. The _GeoJSON Profiles_ requirements class has conditional dependencies on GeoJSON and the _Core_ requirements class. 
+The "GeoJSON Profiles" requirements class, has GeoJSON documents as its standardization type. The requirements class adds support for <<profiles>> of the GeoJSON media type. The _GeoJSON Profiles_ requirements class has conditional dependencies on GeoJSON and the _Core_ requirements class of this Standard. 
 
 The eighth requirements class, "JSON-FG in Web APIs", has Web APIs as its standardization target type. The requirements class specifies how clients can request GeoJSON in the JSON-FG profiles via a Web API.
 
 Conformance with the JSON-FG Standard shall be checked using all the relevant tests specified in Annex A (normative) of this document. The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
-
-In order to conform to this OGC® Standard, a software implementation shall choose to implement one or more of the conformance levels specified in Annex A (normative).
 
 All requirements-classes and conformance-classes described in this document are owned by the Standard(s) identified.
 

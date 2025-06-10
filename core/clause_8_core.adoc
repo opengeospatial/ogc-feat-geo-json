@@ -13,20 +13,20 @@
 
 The Requirements Class "Core" specifies provisions for JSON-FG root objects. 
 
-A JSON-FG root object is a JSON object 
+A JSON-FG root object is a JSON object:
 
-* that is either a feature collection, feature, or geometry;
-* that is not contained in another JSON-FG object;
-* that meets all requirements described in this clause; and 
-* that meets all requirements stated in the <<rfc7946,GeoJSON standard>> for feature collections, features, and GeoJSON geometries.
+* That is either a feature collection, feature, or geometry;
+* That is not contained in another JSON-FG object;
+* That meets all requirements described in this clause; and 
+* That meets all requirements stated in the <<rfc7946,GeoJSON standard>> for feature collections, features, and GeoJSON geometries.
 
 In requirements and recommendations in Clauses 8 to 13, the following terms are used as follows:
 
-* JSON-FG root object: refers to the standardization target;
-* JSON-FG object: refers to a JSON object that is either a JSON-FG root object or a JSON-FG feature collection, JSON-FG feature, or JSON-FG geometry embedded in a JSON-FG root object;
-* JSON-FG feature collection: refers to a JSON-FG object that is a feature collection ("type" is "FeatureCollection");
-* JSON-FG feature: refers to a JSON-FG object that is a feature ("type" is "Feature");
-* JSON-FG geometry: refers to a JSON-FG object that is a geometry ("type" is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection", "Polyhedron", "MultiPolyhedron", "Prism", "MultiPrism", "CircularString", "CompoundCurve", "CurvePolygon", "MultiCurve", or "MultiSurface").
+* JSON-FG root object: Refers to the standardization target;
+* JSON-FG object: Refers to a JSON object that is either a JSON-FG root object or a JSON-FG feature collection, JSON-FG feature, or JSON-FG geometry embedded in a JSON-FG root object;
+* JSON-FG feature collection: Refers to a JSON-FG object that is a feature collection ("type" is "FeatureCollection");
+* JSON-FG feature: Fefers to a JSON-FG object that is a feature ("type" is "Feature");
+* JSON-FG geometry: Refers to a JSON-FG object that is a geometry ("type" is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection", "Polyhedron", "MultiPolyhedron", "Prism", "MultiPrism", "CircularString", "CompoundCurve", "CurvePolygon", "MultiCurve", or "MultiSurface").
 
 :req: schema-valid
 [#{req-class}_{req}]
