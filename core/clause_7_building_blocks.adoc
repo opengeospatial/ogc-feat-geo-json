@@ -592,7 +592,7 @@ Where JSON Schema validation is important, such links can be added. For example,
 === GeoJSON Profiles
 
 This Standard defines several variations of a resource that are represented in 
-the same format or media type.  Named variations of a resource are called "prfoles".
+the same format or media type.  Named variations of a resource are called "profiles".
 
 A profile does not alter the semantics of the resource representation itself.  In addition to those defined by the media type, profiles enable clients to "understand" additional semantics that are associated with the resource representation.
 
