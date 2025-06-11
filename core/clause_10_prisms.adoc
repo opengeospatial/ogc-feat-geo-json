@@ -34,8 +34,8 @@ The "Prisms" Requirements Class adds provisions for extruded geometries in a 3D 
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
 ^|A |All positions in the "base" member of a JSON-FG geometry of type "Prism" SHALL have a coordinate dimension of two (2) - or three (3), if measure values are included (see <<rc_measures>>).
 ^|B |The "lower" and "upper" values of each Prism SHALL be in the valid range for the third coordinate axis of the CRS.
-^|C |In an Prism, the "lower" value SHALL be equal or smaller than the "upper" value.
-^|D |The CRS of each Prism geometry SHALL be have three dimensions (a 3D CRS or an ad-hoc compound CRS consisting of a horizontal 2D CRS and a vertical CRS).
+^|C |In a Prism, the "lower" value SHALL be equal or smaller than the "upper" value.
+^|D |The CRS of each Prism geometry SHALL have three dimensions (a 3D CRS or an ad-hoc compound CRS consisting of a horizontal 2D CRS and a vertical CRS).
 |===
 
 NOTE: There is no need to state a requirement that base geometries have to be valid, as this is already stated in the <<rc_core>> requirements class for Simple Feature geometries or in the requirements class that defines the base geometry for other geometry types.

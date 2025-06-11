@@ -35,11 +35,11 @@ The "Circular Arcs" Requirements Class adds provisions for curve geometries that
 ^|A |In any JSON-FG geometry of type "CircularString", the items in the "coordinates" array SHALL meet the following requirements:
 
 * The items are a sequence of one, two, three, four, or five connected circular arcs, where each arc is a sequence of three positions and the first position of each connected arc is not repeated (that is, the circular string consists of three, five, seven, nine, or eleven positions);
-* The first, second and third position of each circular arc are all different;
+* The first, second and third position of each circular arc are different;
 * The first, second and third position of each circular arc are not collinear.
 ^|B |In any JSON-FG geometry of type "CompoundCurve", each item in the "geometries" array except the first item SHALL meet the following requirement:
 
-* The first position of each item is identical to the last position of the previous item (that is, all items are consequtive).
+* The first position of each item is identical to the last position of the previous item (that is, all items are consecutive).
 ^|C |In any JSON-FG geometry of type "CurvePolygon", each item in the "geometries" array SHALL meet the following requirement:
 
 * The first and last position of each curve geometry is identical  (that is, each item is a closed ring).

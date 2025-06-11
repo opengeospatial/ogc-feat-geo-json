@@ -47,7 +47,7 @@ The "Polyhedra" Requirements Class adds provisions for volumetric geometries in 
 
 * Each element is a closed, simple multi-polygon geometry (a shell).
 * The coordinates of the first and last position in each ring of each polygon in each shell SHALL be identical.
-* If the shell is viewed from the outside of the solid, the orientation of each polygon in the first element (the outer shell) SHALL be counter clockwise.
+* If the shell is viewed from the outside of the solid, the orientation of each polygon in the first element (the outer shell) SHALL be counterclockwise.
 * If the shell is viewed from the outside of the solid, the orientation of each polygon in all other shells (the voids) SHALL be clockwise.
 * No element (shell) intersects another element (shell).
 * All coordinates in the elements from the second element to the last element (the voids) are inside the simple polyhedron specified by the first element (the outer shell).

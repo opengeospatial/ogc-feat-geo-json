@@ -228,14 +228,14 @@ NOTE: GeoJSON states that "geometry" is `null`, if the feature is "unlocated". A
 
 ===== Overview
 
-Without any other information, the following coordinate reference system (CRS) defaults apply in JSON-FG objects:
+Without any other information, the following coordinate reference system (CRS) defaults apply to JSON-FG objects:
 
-* Spatial CRS: WGS 84 with axis order longitude, latitude and optional ellipsoidal height, either "\http://www.opengis.net/def/crs/OGC/0/CRS84" (2D) or "\http://www.opengis.net/def/crs/OGC/0/CRS84h" (3D);
+* Geographic CRS: WGS 84 with axis order longitude, latitude and optional ellipsoidal height, either "\http://www.opengis.net/def/crs/OGC/0/CRS84" (2D) or "\http://www.opengis.net/def/crs/OGC/0/CRS84h" (3D);
 * Temporal CRS: DateTime in Gregorian calendar, "\http://www.opengis.net/def/crs/OGC/0/GregorianDateTime". 
 
 NOTE: In the GregorianDateTime temporal CRS, all granularities of ISO 8601 are valid values according to https://docs.ogc.org/as/18-005r5/18-005r5.html#109[OGC Abstract Specification Topic 2: Referencing by coordinates, section D.3]. That is, both dates and timestamps are valid values in the CRS.
 
-In this Standard, a new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry at the feature collection, feature, or geometry levels.
+In the JSON-FG Standard, a new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry at the feature collection, feature, or geometry levels.
 
 The "coordRefSys" key _**does not**_ apply to the GeoJSON "geometry" member. This key only applies to geometries in the "place" member and those that may appear in the "properties" member.
 
@@ -245,11 +245,11 @@ If a CRS is asserted for a JSON-FG object, that assertion will typically be made
 
 Spatio-temporal objects are specified relative to some reference system.
 
-GeoJSON (both the current <<rfc7946,RFC>> and the https://geojson.org/geojson-spec.html[obsolete version]) fixed the CRS for geometries to the "WGS84 datum, and with [an axis order of] longitude and latitude [and coordinate] units of decimal degrees".  The https://geojson.org/geojson-spec.html[obsolete version] supported other CRSs through defining the key "crs" for specifying the CRS.  In the https://tools.ietf.org/html/rfc7946[RFC] the "crs" member was removed, but a _prior arrangement_ provision was added that if all parties agree, coordinates could be represented in a different reference system. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON.  As such, the only safe approach is to continue using OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
+GeoJSON (both the most recent <<rfc7946,RFC 7946>> and the https://geojson.org/geojson-spec.html[obsolete version]) fixed the CRS for geometries to the "WGS84 datum, and with [an axis order of] longitude and latitude [and coordinate] units of decimal degrees".  The https://geojson.org/geojson-spec.html[obsolete version] supported other CRSs through defining the key "crs" for specifying the CRS.  In https://tools.ietf.org/html/rfc7946[RFC 7946] the "crs" member was removed, but a _prior arrangement_ provision was added that if all parties agree, coordinates could be represented in a different reference system. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON.  As such, the only safe approach is to continue using OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
 
 It is also important to note that the "crs" member applied to the geometry in the "geometry" member, while the "coordRefSys" member from JSON-FG does not apply to the geometry in the "geometry" member.
 
-Additional JSON-FG building blocks like the "place" member are not bound by the restrictions in GeoJSON and so this Standard provides for handling CRSs in JSON-FG objects in a way that does not interfere with anything, past or present, defined in any of the GeoJSON specifications. The GeoJSON building blocks can continue to operate as always, but JSON-FG building blocks provides enhanced CRS support.
+Additional JSON-FG building blocks like the "place" member are not bound by the restrictions in GeoJSON and so the JSON-FG Standard provides for handling CRSs in JSON-FG objects in a way that does not interfere with anything, past or present, defined in any of the GeoJSON specifications. The GeoJSON building blocks can continue to operate as always, but JSON-FG building blocks provide enhanced CRS support.
 
 ===== Reference system values
 
@@ -389,8 +389,6 @@ image::images/TorontoCityHall_3D_2.png[alt=Toronto City Hall,width=60%,align="ce
 [[bb_circular_arcs]]
 === Building blocks for circular arcs
 
-All examples in this section use RD new (\http://www.opengis.net/def/crs/EPSG/0/28992) as the coordinate reference system.
-
 [[circular_string]]
 ==== CircularString
 
@@ -437,7 +435,7 @@ include::examples/compound-curve.json[]
 [[curve_polygon]]
 ==== CurvePolygon
 
-A _curve polygon_ is a surface where each ring is a closed _line string_, _circular string_, or _compound curve_. The first ring is the exterior boundary, all other rings are interior boundaries.
+A _curve polygon_ is a surface where each ring is a closed _line string_, _circular string_, or _compound curve_. The first ring is the exterior boundary and, all other rings are interior boundaries.
 
 [#curve-polygon,reftext='{listing-caption} {counter:listing-num}']
 .A curve polygon with three holes
@@ -488,14 +486,14 @@ A typical use case is linear referencing, where the measure value in a curve is 
 [[measures]]
 ==== Measures: the "measures" member
 
-If a geometry includes measure values, each position of the geometry has to contain a measure value (or m coordinate). The number of cordinates in each position is the dimension of the CRS in "coordRefSys" plus one for the measure value.
+If a geometry includes measure values, each position of the geometry has to contain a measure value (or m coordinate). The number of coordinates in each position is the dimension of the CRS in "coordRefSys" plus one for the measure value.
 
 The presence of measure values in a geometry is indicated by a "measures" member.
 
 The value of the "measures" member is an object with the following properties:
 
-* "enabled": A boolean value that indicates whether the geometry has measure values or not. The property is required.
-* "unit": The unit of the measure of the measure values. The property is optional. It only applies if the value of the "enabled" property is `true`. 
+* "enabled": A Boolean value that indicates whether the geometry has measure values or not. The property is required.
+* "unit": This optional property is the unit of the measure of the measure values. This property only applies if the value of the "enabled" property is `true`. 
 * "description": An optional description of the meaning of the measure values. The description only applies if the value of the "enabled" property is `true`.
 
 The scoping rules are the same as for the <<ref-sys-scoping-rules,"coordRefSys" member>>.
@@ -593,17 +591,18 @@ Where JSON Schema validation is important, such links can be added. For example,
 [[profiles]]
 === GeoJSON Profiles
 
-The same resource can be represented in the same format or media type, but with variations depending on the intended use of the data. Named variations are called profiles.
+This Standard defines several variations of a resource that are represented in 
+the same format or media type.  Named variations of a resource are called "prfoles".
 
-A profile does not alter the semantics of the resource representation itself, but to allow clients to learn about additional semantics that are associated with the resource representation, in addition to those defined by the media type.
+A profile does not alter the semantics of the resource representation itself.  In addition to those defined by the media type, profiles enable clients to "understand" additional semantics that are associated with the resource representation.
 
-This Standard leverages the concept of profiles to define a set of named variations of GeoJSON:
+The JSON-FG Standard leverages the concept of profiles to define a set of named variations of GeoJSON resources:
 
 - RFC 7946 ("rfc7946"): GeoJSON as specified in <<rfc7946,RFC 7946>>;
 - JSON-FG ("jsonfg"): JSON-FG as specified in this Standard;
 - JSON-FG with improved support for GeoJSON readers ("jsonfg-plus"): JSON-FG with a geometry in the "geometry" member in WGS 84 to support GeoJSON readers that do not support JSON-FG.
 
-This allows that all variations can use "application/geo+json" as the media type for JSON-FG documents, too, but still distinguish the variations. 
+This supports all variations using "application/geo+json" as the media type for JSON-FG documents, but still distinguish the variations. 
 
 Each profile is defined by a URI and a set of constraints on the JSON-FG representation. The constraints are defined in terms of the members that are required or optional in the JSON-FG representation.
 

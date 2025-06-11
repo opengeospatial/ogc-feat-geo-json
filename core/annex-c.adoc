@@ -100,20 +100,20 @@ include::examples/airports.json[]
 [#extending_jsonfg]
 === Extending JSON-FG
 
-This section illustrates how JSON-FG can be extended with 
+This section illustrates how JSON-FG can be extended with:
 
-* new geometry type "GeodesicString" for a geodesic curve;
-* a new temporal data type for a time series;
-* the capability to provide a coordinate reference system definition as a PROJJSON object.
+* A new geometry type "GeodesicString" for a geodesic curve;
+* A new temporal data type for a time series;
+* The capability to provide a coordinate reference system definition as a PROJJSON object.
 
-If the extension would be specified in a hypothetical part 2 of JSON-FG, the extension could update the JSON Schema definitions as described in the following sub-sections.
+If the extension could be specified in a hypothetical part 2 of JSON-FG, the extension could update the JSON Schema definitions as described in the following sub-sections.
 
-If the same extensions are specified by a community, they would copy the relevant JSON-FG schemas and extend them as described in the sub-sections. Unchanged schemas like the JSON Schemas for the "geometry" and "featureType" members or for a link do not need to be copied and can reference the JSON-FG schemas.
+If the same extensions are specified by a community, the relevant JSON-FG schemas could be copied from this Standard and extended as described in the following sub-sections. Unchanged schemas such as the JSON Schemas for the "geometry" and "featureType" members or for a link do not need to be copied and can reference the JSON-FG schemas.
 
 [[geometry_type_geodesicstring]]
 ==== Geometry type "GeodesicString"
 
-A GeoJSON LineString is a sequence of straight lines through two or more positions with the assumption that Euclidean geometry is used. That is, while GeoJSON uses geographic coordinates (longitude and latitude) on an ellipsoid, the path between two positions is computed in a Cartesian coordinate system - applying the Pseudo Plate Carrée projection. In other words, the path between two positions is a straight line in the Cartesian coordinate system, not the shortest path on the WGS 84 ellipsoid. 
+A GeoJSON LineString is a sequence of straight lines through two or more positions with the assumption that Euclidean geometry is used. That is, while GeoJSON uses geographic coordinates (longitude and latitude) on an ellipsoid, the path between two positions is computed in a Cartesian coordinate system by applying the Pseudo Plate Carrée projection. In other words, the path between two positions is a straight line in the Cartesian coordinate system, not the shortest path on the WGS 84 ellipsoid. 
 
 To support geodesic curves on the reference ellipsoid, a new geometry type "GeodesicString" could be defined. The new geometry type would be a sequence of geodesic lines between two or more positions on the ellipsoid.
 

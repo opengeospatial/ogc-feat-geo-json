@@ -36,7 +36,7 @@ The "Measures" Requirements Class adds provisions for geometries with a third or
 |===
 
 [[determine-m]]
-Whether a "place" geometry contains m coordinates, is determined as follows: 
+Whether a "place" geometry contains m coordinates is determined as follows: 
 
 * If the geometry has a member "measures" with "enabled" set to `true`, the geometry has m coordinates. If the geometry has a member "measures" with "enabled" set to `false`, the geometry does not have m coordinates.
 ** Otherwise inspect the parent object and repeat until the JSON-FG root object.
