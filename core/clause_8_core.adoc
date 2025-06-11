@@ -25,7 +25,7 @@ In requirements and recommendations in Clauses 8 to 13, the following terms are 
 * JSON-FG root object: Refers to the standardization target;
 * JSON-FG object: Refers to a JSON object that is either a JSON-FG root object or a JSON-FG feature collection, JSON-FG feature, or JSON-FG geometry embedded in a JSON-FG root object;
 * JSON-FG feature collection: Refers to a JSON-FG object that is a feature collection ("type" is "FeatureCollection");
-* JSON-FG feature: Fefers to a JSON-FG object that is a feature ("type" is "Feature");
+* JSON-FG feature: Refers to a JSON-FG object that is a feature ("type" is "Feature");
 * JSON-FG geometry: Refers to a JSON-FG object that is a geometry ("type" is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection", "Polyhedron", "MultiPolyhedron", "Prism", "MultiPrism", "CircularString", "CompoundCurve", "CurvePolygon", "MultiCurve", or "MultiSurface").
 
 :req: schema-valid

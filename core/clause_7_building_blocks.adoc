@@ -245,7 +245,7 @@ If a CRS is asserted for a JSON-FG object, that assertion will typically be made
 
 Spatio-temporal objects are specified relative to some reference system.
 
-GeoJSON (both the current <<rfc7946,RFC>> and the https://geojson.org/geojson-spec.html[obsolete version]) fixed the CRS for geometries to the "WGS84 datum, and with [an axis order of] longitude and latitude [and coordinate] units of decimal degrees".  The https://geojson.org/geojson-spec.html[obsolete version] supported other CRSs through defining the key "crs" for specifying the CRS.  In the most recent https://tools.ietf.org/html/rfc7946[RFC] the "crs" member was removed, but a _prior arrangement_ provision was added that if all parties agree, coordinates could be represented in a different reference system. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON.  As such, the only safe approach is to continue using OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
+GeoJSON (both the most recent <<rfc7946,RFC 7946>> and the https://geojson.org/geojson-spec.html[obsolete version]) fixed the CRS for geometries to the "WGS84 datum, and with [an axis order of] longitude and latitude [and coordinate] units of decimal degrees".  The https://geojson.org/geojson-spec.html[obsolete version] supported other CRSs through defining the key "crs" for specifying the CRS.  In https://tools.ietf.org/html/rfc7946[RFC 7946] the "crs" member was removed, but a _prior arrangement_ provision was added that if all parties agree, coordinates could be represented in a different reference system. The result is that there is no interoperable way to unambiguously specify a different CRS in GeoJSON.  As such, the only safe approach is to continue using OGC:CRS84(h) for GeoJSON and ignore the _prior arrangement_ provision and the old "crs" key.
 
 It is also important to note that the "crs" member applied to the geometry in the "geometry" member, while the "coordRefSys" member from JSON-FG does not apply to the geometry in the "geometry" member.
 
@@ -388,8 +388,6 @@ image::images/TorontoCityHall_3D_2.png[alt=Toronto City Hall,width=60%,align="ce
 
 [[bb_circular_arcs]]
 === Building blocks for circular arcs
-
-All examples in this section use "Amersfoort / RD New" (\http://www.opengis.net/def/crs/EPSG/0/28992) as the coordinate reference system.
 
 [[circular_string]]
 ==== CircularString

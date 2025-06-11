@@ -23,7 +23,18 @@ Recipients of this document are requested to submit, with their comments, notifi
 
 The security considerations for GeoJSON as specified in Section 10 of IETF RFC 7946 also apply to JSON-FG.
 
-[big]*v.    Submitting organizations*
+[big]*v.    OGC Considerations*
+
+If and once the JSON-FG Standard is approved by the OGC Members, the following actions need to be taken by OGC before publication:
+
+- Annex <<schemas>> specifies the JSON-FG Schema documents. The documents will be published in the https://schemas.opengis.net/[OGC Schema Repository]. The note at the start of the annex will be removed.
+- The Abstract needs to be updated to remove the reference to the draft status.
+- The reference to OGC API Features Part 5: Schemas in the References section should be updated to the latest version that is available.
+- The profiles "\http://www.opengis.net/def/profile/OGC/0/rfc7946", "\http://www.opengis.net/def/profile/OGC/0/jsonfg", and "\http://www.opengis.net/def/profile/OGC/0/jsonfg-plus" will be registered in the OGC Profiles Register.
+
+This section will be removed before publication.
+
+[big]*vi.    Submitting organizations*
 
 The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
 
@@ -32,7 +43,7 @@ The following organizations submitted this Document to the Open Geospatial Conso
 * Geonovum
 * interactive instruments
 
-[big]*vi.     Submitters*
+[big]*vii.     Submitters*
 
 All questions regarding this submission should be directed to the editor or the submitters:
 
