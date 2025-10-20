@@ -103,7 +103,7 @@ Examples of OGC Web APIs providing features in JSON-FG:
 
 | Name | Status | Remarks | Core ("place") | Core ("time") | 3D (Polyhedron) | 3D (Prism) | Feature Type | Schema | 
 | ---- | ------ | ------- | :------------: | :-----------: | :-------------: | :--------: | :----------: | :----: |
-| [ogc-checker]([https://github.com/Geonovum/ogc-checker](https://github.com/Geonovum/ogc-checker/)) | Initial version | Validate JSON-FG using JSON Schema validation and additional tests. [Online validator](https://geonovum-labs.github.io/ogc-checker/) | X | X | X | X | X | X |
+| [ogc-checker](https://github.com/Geonovum/ogc-checker/) | Stable | Validate JSON-FG using JSON Schema validation and additional tests. [Online validator](https://geonovum.github.io/ogc-checker/) | X | X | X | X | X | X |
 | [json-fg-validator](https://github.com/tomkralidis/json-fg-validator) | Initial version | Validate JSON-FG (command line, Python) using JSON Schema validation and additional tests. | (X) | (X) | (X) | (X) | (X) | (X) |
 | [val3dity](https://github.com/tudelft3d/val3dity) | Stable | Validate Polyhedron gemetries | (X) | - | X | - | - | - |
 
