@@ -4,22 +4,23 @@
   "title": "a JSON-FG geometry",
   "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
   "oneOf": [
-    {"$ref": "#/$defs/Point"          },
-    {"$ref": "#/$defs/MultiPoint"     },
-    {"$ref": "#/$defs/LineString"     },
-    {"$ref": "#/$defs/MultiLineString"},
-    {"$ref": "#/$defs/Polygon"        },
-    {"$ref": "#/$defs/MultiPolygon"   },
-    {"$ref": "#/$defs/Polyhedron"     },
-    {"$ref": "#/$defs/MultiPolyhedron"},
-    {"$ref": "#/$defs/Prism"          },
-    {"$ref": "#/$defs/MultiPrism"     },
-    {"$ref": "#/$defs/CircularString" },
-    {"$ref": "#/$defs/CompoundCurve"  },
-    {"$ref": "#/$defs/CurvePolygon"   },
-    {"$ref": "#/$defs/MultiCurve"     },
-    {"$ref": "#/$defs/MultiSurface"   },
-    {"$ref": "#/$defs/CustomGeometry" }
+    {"$ref": "#/$defs/Point"             },
+    {"$ref": "#/$defs/MultiPoint"        },
+    {"$ref": "#/$defs/LineString"        },
+    {"$ref": "#/$defs/MultiLineString"   },
+    {"$ref": "#/$defs/Polygon"           },
+    {"$ref": "#/$defs/MultiPolygon"      },
+    {"$ref": "#/$defs/GeometryCollection"},
+    {"$ref": "#/$defs/Polyhedron"        },
+    {"$ref": "#/$defs/MultiPolyhedron"   },
+    {"$ref": "#/$defs/Prism"             },
+    {"$ref": "#/$defs/MultiPrism"        },
+    {"$ref": "#/$defs/CircularString"    },
+    {"$ref": "#/$defs/CompoundCurve"     },
+    {"$ref": "#/$defs/CurvePolygon"      },
+    {"$ref": "#/$defs/MultiCurve"        },
+    {"$ref": "#/$defs/MultiSurface"      },
+    {"$ref": "#/$defs/CustomGeometry"    }
   ],
   "$defs": {
     "CustomGeometry": {
@@ -32,12 +33,12 @@
           "type": "string",
           "not": {
             "enum": [
-              "Feature"           , "FeatureCollection" , "Point"             ,
-              "MultiPoint"        , "LineString"        , "MultiLineString"   ,
-              "Polygon"           , "MultiPolygon"      , "Polyhedron"        ,
-              "MultiPolyhedron"   , "Prism"             , "MultiPrism"        ,
-              "CircularString"    , "CompoundCurve"     , "CurvePolygon"      ,
-              "MultiCurve"        , "MultiSurface"      , "GeometryCollection"
+              "Feature",            "FeatureCollection",  "Point",
+              "MultiPoint",         "LineString",         "MultiLineString",
+              "Polygon",            "MultiPolygon",       "Polyhedron",
+              "MultiPolyhedron",    "Prism",              "MultiPrism",
+              "CircularString",     "CompoundCurve",      "CurvePolygon",
+              "MultiCurve",         "MultiSurface",       "GeometryCollection"
             ]
           }
         }
