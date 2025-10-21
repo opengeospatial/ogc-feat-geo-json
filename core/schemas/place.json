@@ -3,24 +3,5 @@
     "$id": "https://beta.schemas.opengis.net/json-fg/place.json",
     "title": "the value of the 'place' member",
     "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
-    "oneOf": [
-        {"type": "null"}                                          ,
-        {"$ref": "geometry-object.json#/$defs/Point"}             ,
-        {"$ref": "geometry-object.json#/$defs/MultiPoint"}        ,
-        {"$ref": "geometry-object.json#/$defs/LineString"}        ,
-        {"$ref": "geometry-object.json#/$defs/MultiLineString"}   ,
-        {"$ref": "geometry-object.json#/$defs/Polygon"}           ,
-        {"$ref": "geometry-object.json#/$defs/MultiPolygon"}      ,
-        {"$ref": "geometry-object.json#/$defs/GeometryCollection"},
-        {"$ref": "geometry-object.json#/$defs/Polyhedron"}        ,
-        {"$ref": "geometry-object.json#/$defs/MultiPolyhedron"}   ,
-        {"$ref": "geometry-object.json#/$defs/Prism"}             ,
-        {"$ref": "geometry-object.json#/$defs/MultiPrism"}        ,
-        {"$ref": "geometry-object.json#/$defs/CircularString"}    ,
-        {"$ref": "geometry-object.json#/$defs/CompoundCurve"}     ,
-        {"$ref": "geometry-object.json#/$defs/CurvePolygon"}      ,
-        {"$ref": "geometry-object.json#/$defs/MultiCurve"}        ,
-        {"$ref": "geometry-object.json#/$defs/MultiSurface"}      ,
-        {"$ref": "geometry-object.json#/$defs/CustomGeometry"}
-    ]
+    "oneOf": [ {"type": "null"}, {"$ref": "geometry-object.json"} ]
 }

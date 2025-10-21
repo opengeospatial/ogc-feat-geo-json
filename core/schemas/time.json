@@ -26,20 +26,25 @@
             "minItems": 2,
             "maxItems": 2,
             "items": {
-                "anyOf": [
-                    {
-                        "oneOf": [
-                            {"$ref": "#/$defs/date"}            ,
-                            { "type": "string", "enum": [".."] }
-                        ]
-                    },
-                    {
-                        "oneOf": [
-                            {"$ref": "#/$defs/timestamp"}       ,
-                            { "type": "string", "enum": [".."] }
-                        ]
-                    }
-                ]
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": {
+                    "anyOf": [
+                        {
+                            "oneOf": [
+                                {"$ref": "#/$defs/date"},
+                                { "type": "string", "enum": [".."] }
+                            ]
+                        },
+                        {
+                            "oneOf": [
+                                {"$ref": "#/$defs/timestamp"},
+                                { "type": "string", "enum": [".."] }
+                            ]
+                        }
+                    ]
+                }
             }
         }
     }
