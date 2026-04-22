@@ -6,13 +6,11 @@ OGC Features and Geometries JSON (JSON-FG) builds on the widely used [GeoJSON st
 
 ## Status
 
-The latest release is [v0.3.0](https://github.com/opengeospatial/ogc-feat-geo-json/releases/tag/v0.3.0) from May 2025.
-
 The current draft is available at [docs.ogc.org/DRAFTS/21-045r1.html](https://docs.ogc.org/DRAFTS/21-045r1.html)
 
-The document has been approved as an OGC Standard and will be published later in 2025.
+The document has been approved as an OGC Standard and will be published at the end of April 2026.
 
-OGC invites organisations and developers that have a need for the extensions specified by this specification to implement and test the extensions. Please submit feedback [in this repository](https://github.com/opengeospatial/ogc-feat-geo-json/issues).
+Please submit any feedback [as an issue in this repository](https://github.com/opengeospatial/ogc-feat-geo-json/issues).
 
 ## Overview
 
@@ -52,7 +50,7 @@ The JSON-FG extensions to GeoJSON are intended to support requirements that prof
 
 ## Implementations and Examples
 
-NOTE: This section is for version 0.2 and needs to be updated to version 0.3.
+NOTE: This section is for version 0.2 and needs to be updated to version 1.0.
 
 This section provides links to existing implementations of JSON-FG and examples of using JSON-FG. For each entry, the following information is provided:
 

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://beta.schemas.opengis.net/json-fg/geometry.json",
+  "$id": "https://schemas.opengis.net/json-fg/geometry.json",
   "title": "the geometries allowed as values of the 'geometry' member",
-  "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
+  "description": "This JSON Schema is part of JSON-FG version 1.0.0.",
   "allOf": [
     {
       "oneOf": [

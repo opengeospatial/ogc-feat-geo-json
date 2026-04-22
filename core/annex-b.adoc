@@ -3,8 +3,6 @@
 :appendix-caption: Annex
 == Schemas (Normative)
 
-NOTE: The JSON-FG Schema documents will only be published in the https://schemas.opengis.net/[OGC Schema Repository], if and once the JSON-FG Standard has been approved. Until then, the schema documents will be made available in the https://beta.schemas.opengis.net/[OGC Schema Repository for drafts]. This note will be removed before publishing the JSON-FG Standard.
-
 [[schema-jsonfg-root-object]]
 === JSON Schema of a JSON-FG root object
 

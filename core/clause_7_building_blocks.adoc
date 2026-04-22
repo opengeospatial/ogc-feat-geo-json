@@ -61,8 +61,8 @@ The value of the member is an array of strings, where each string is a URI of a 
 [source,json,linenumbers]
 ----
 "conformsTo" : [ 
-  "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", 
-  "http://www.opengis.net/spec/json-fg-1/0.3/conf/polyhedra" 
+  "http://www.opengis.net/spec/json-fg-1/1.0/conf/core", 
+  "http://www.opengis.net/spec/json-fg-1/1.0/conf/polyhedra" 
 ]
 ----
 ====
@@ -559,7 +559,7 @@ If all features in the JSON document have the same feature schema (either a sing
   "featureType": "Airport",
   "featureSchema": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
   "geometryDimension": 0,
-  "conformsTo": [ "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", "http://www.opengis.net/spec/json-fg-1/0.3/conf/types-schemas" ],
+  "conformsTo": [ "http://www.opengis.net/spec/json-fg-1/1.0/conf/core", "http://www.opengis.net/spec/json-fg-1/1.0/conf/types-schemas" ],
   "features": [ ... ]
 }
 ----
@@ -574,7 +574,7 @@ If the features in the JSON document reference multiple feature types, the value
     "Airport": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
     "RailwayStation": "https://demo.ldproxy.net/zoomstack/collections/railway_stations/schema"
   },
-  "conformsTo": [ "http://www.opengis.net/spec/json-fg-1/0.3/conf/core", "http://www.opengis.net/spec/json-fg-1/0.3/conf/types-schemas" ],
+  "conformsTo": [ "http://www.opengis.net/spec/json-fg-1/1.0/conf/core", "http://www.opengis.net/spec/json-fg-1/1.0/conf/types-schemas" ],
   "features": [ ... ]
 }
 ----
@@ -652,7 +652,7 @@ Content-Length: 500
     "featureType": "Airport",
     "featureSchema": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
     "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/27700",
-    "conformsTo": ["http://www.opengis.net/spec/json-fg-1/0.3/conf/core","http://www.opengis.net/spec/json-fg-1/0.3/conf/types-schemas"],
+    "conformsTo": ["http://www.opengis.net/spec/json-fg-1/1.0/conf/core","http://www.opengis.net/spec/json-fg-1/1.0/conf/types-schemas"],
     "id": 13,
     "geometry": null,
     "properties": {"name": "Islay Airport"},
@@ -680,7 +680,7 @@ Content-Length: 556
     "featureType": "Airport",
     "featureSchema": "https://demo.ldproxy.net/zoomstack/collections/airports/schema",
     "coordRefSys": "http://www.opengis.net/def/crs/EPSG/0/27700",
-    "conformsTo": ["http://www.opengis.net/spec/json-fg-1/0.3/conf/core","http://www.opengis.net/spec/json-fg-1/0.3/conf/types-schemas"],
+    "conformsTo": ["http://www.opengis.net/spec/json-fg-1/1.0/conf/core","http://www.opengis.net/spec/json-fg-1/1.0/conf/types-schemas"],
     "id": 13,
     "geometry": { "type": "Point", "coordinates": [-6.2580609, 55.6824121] },
     "properties": {"name": "Islay Airport"},
