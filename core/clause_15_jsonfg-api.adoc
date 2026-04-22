@@ -6,7 +6,7 @@
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
 |Target type |Web APIs
-|Dependency |<<OAFeat-5,OGC API - Features - Part 5: Schemas 1.0 (DRAFT), Requirements Class "Profile Query Parameter">>
+|Dependency |<<OAFeat-5,OGC API - Features - Part 5: Schemas 1.0, Requirements Class "Profile Query Parameter">>
 |Indirect Dependency |<<rc_profiles>>
 |===
 

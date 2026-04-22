@@ -2,9 +2,9 @@
    "type": "Feature",
    "id": "DENW19AL0000giv5BL",
    "conformsTo": [
-      "http://www.opengis.net/spec/json-fg-1/0.3/conf/core"         ,
-      "http://www.opengis.net/spec/json-fg-1/0.3/conf/types-schemas",
-      "http://www.opengis.net/spec/json-fg-1/0.3/conf/polyhedra"
+      "http://www.opengis.net/spec/json-fg-1/1.0/conf/core"         ,
+      "http://www.opengis.net/spec/json-fg-1/1.0/conf/types-schemas",
+      "http://www.opengis.net/spec/json-fg-1/1.0/conf/polyhedra"
    ],
    "featureType": "app:building",
    "featureSchema": "https://example.org/data/v1/collections/buildings/schema",

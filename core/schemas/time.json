@@ -1,8 +1,8 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://beta.schemas.opengis.net/json-fg/time.json",
+    "$id": "https://schemas.opengis.net/json-fg/time.json",
     "title": "the value of the 'time' member",
-    "description": "This JSON Schema is part of JSON-FG version 0.3.0.",
+    "description": "This JSON Schema is part of JSON-FG version 1.0.0.",
     "oneOf": [
         {"type": "null"},
         {
@@ -23,19 +23,14 @@
             "minItems": 2,
             "maxItems": 2,
             "items": {
-                "type": "array",
-                "minItems": 2,
-                "maxItems": 2,
-                "items": {
-                    "anyOf": [
-                        {
-                            "oneOf": [ {"$ref": "#/$defs/date"}, {"type": "string", "const": ".."} ]
-                        },
-                        {
-                            "oneOf": [ {"$ref": "#/$defs/timestamp"}, {"type": "string", "const": ".."} ]
-                        }
-                    ]
-                }
+                "anyOf": [
+                    {
+                        "oneOf": [ {"$ref": "#/$defs/date"}, {"type": "string", "const": ".."} ]
+                    },
+                    {
+                        "oneOf": [ {"$ref": "#/$defs/timestamp"}, {"type": "string", "const": ".."} ]
+                    }
+                ]
             }
         }
     }
