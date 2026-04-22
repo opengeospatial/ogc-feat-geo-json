@@ -30,7 +30,7 @@ All requirements-classes and conformance-classes described in this document are 
 |Conformance class |URI
 |<<conf_core,Core>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/core
 |<<conf_polyhedra,Polyhedra>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/polyhedra
-|<<conf_prisms,Prisms>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/risms
+|<<conf_prisms,Prisms>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/prisms
 |<<conf_circular-arcs,Circular Arcs>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/circular-arcs
 |<<conf_measures,Measures>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/measures
 |<<conf_types-schemas,Feature Types and Schemas>> |http://www.opengis.net/spec/{standard}/{m_n}/conf/types-schemas

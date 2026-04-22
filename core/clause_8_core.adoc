@@ -130,6 +130,8 @@ NOTE: Strictly, this requirement is not necessary as it is implied by requiremen
 ^|B |All positions in a geometry in the "place" members in any JSON-FG feature SHALL have the same dimension.
 |===
 
+NOTE: This requirement applies only to geometries in a feature, not to geometries that are used in another context.
+
 :req: geometry-wgs84
 [#{req-class}_{req}]
 ==== "geometry" in longitude/latitude
