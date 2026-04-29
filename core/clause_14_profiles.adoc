@@ -33,7 +33,7 @@ The Requirements Class "GeoJSON Profiles" adds provisions for three GeoJSON prof
 ^|A |The JSON document MAY include coordinates in the "geometry" member that are not in WGS 84, if a prior arrangement exists (that is, by explicitly requesting the use of the coordinate reference system when generating the JSON document).
 |===
 
-Creators of GeoJSON according to this profile may decide to also include the obsolete "crs" member.  This supports the case if the geometry in "geometry" is not in WGS 84 longitude/latitude and the developer wants to support GeoJSON readers that already supported the now obsolete version. The obsolete "crs" member is a JSON object with two members: "type" and "properties". The "type" member has the value "name" and the "properties" member is a JSON object with one member, "name", which has the value of the CRS URI.
+Creators of GeoJSON according to this profile may decide to also include the obsolete "crs" member.  This supports the case if the geometry in "geometry" is not in WGS 84 longitude/latitude and the developer wants to support GeoJSON readers that already supported the now obsolete version. The obsolete "crs" member is a JSON object with two members: "type" and "properties". The "type" member has the value "name" and the "properties" member is a JSON object with one member, "name," which has the value of the CRS URI.
 
 [#feature-with-crs,reftext='{listing-caption} {counter:listing-num}']
 .A feature with the obsolete "crs" member.
@@ -86,6 +86,6 @@ Creators of GeoJSON according to this profile may decide to also include the obs
 [width="90%",cols="2,7a"]
 |===
 ^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
-^|A |If JSON-FG features are expected to be parsed by clients that only allow access to the JSON members in the GeoJSON Feature schema ("id", "geometry", "bbox", and "properties"),
-additional JSON-FG members in the Feature schema ("time", "place", "coordRefSys", "measures", and "featureType") SHOULD also be included in the "properties" object.
+^|A |If JSON-FG features are expected to be parsed by clients that only allow access to the JSON members in the GeoJSON Feature schema ("id," "geometry," "bbox," and "properties"),
+additional JSON-FG members in the Feature schema ("time," "place," "coordRefSys," "measures," and "featureType") SHOULD also be included in the "properties" object.
 |===

@@ -43,7 +43,7 @@ The "Polyhedra" Requirements Class adds provisions for volumetric geometries in 
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If a JSON-FG geometry is of type "Polyhedron", the elements in the "coordinates" array SHALL meet the following requirements:
+^|A |If a JSON-FG geometry is of type "Polyhedron", the elements in the "coordinates" array SHALL meet the following requirements.
 
 * Each element is a closed, simple multi-polygon geometry (a shell).
 * The coordinates of the first and last position in each ring of each polygon in each shell SHALL be identical.

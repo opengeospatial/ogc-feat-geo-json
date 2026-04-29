@@ -1,6 +1,6 @@
 [big]*i.     Abstract*
 
-<<rfc7946,GeoJSON>> is a very popular exchange format for feature data. GeoJSON is widely supported, including in most implementations of the OGC API - Features - Part 1: Core Standard. However, GeoJSON has intentional restrictions that prevent or limit its use in certain geospatial application contexts. For example, GeoJSON is restricted to using only WGS 84 coordinates in Logitude Latitude axis order, supports only the original Simple Features geometry types, and has no concept of classifying features according to their type.
+<<rfc7946,GeoJSON>> is a very popular exchange format for feature data. GeoJSON is widely supported, including in most implementations of the OGC API - Features - Part 1: Core Standard. However, GeoJSON has intentional restrictions that prevent or limit its use in certain geospatial application contexts. For example, GeoJSON is restricted to using only WGS 84 coordinates in Longitude Latitude axis order, supports only the original Simple Features geometry types, and has no concept of classifying features according to their type.
 
 The OGC Features and Geometries JSON (JSON-FG) Standard specifies GeoJSON extensions that provide standard ways to support these and other additional requirements. The JSON-FG Standardization goal is to focus on capabilities that may require some geospatial expertise, but that are useful in many applications. Edge cases are considered out-of-scope of JSON-FG.
 

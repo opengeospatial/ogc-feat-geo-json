@@ -7,7 +7,7 @@
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
 |Target type |JSON-FG root objects
 |Dependency |<<rc_core>>
-|Indirect Dependency |<<OAFeat-5,OGC API - Features - Part 5: Schemas>>
+|Indirect Dependency |<<ogc23-058r2,OGC API - Features - Part 5: Schemas>>
 |===
 
 The Requirements Class "Feature Types and Schemas" adds provisions for feature type classifications and schemas.
@@ -34,7 +34,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
 ^|A |If the JSON-FG root object is a feature, the feature SHALL have a member "featureType".
-^|B |If the JSON-FG root object is a feature collection, either the feature collection SHALL have a member "featureType" or each feature SHALL have a member "featureType".
+^|B |If the JSON-FG root object is a feature collection, either the feature collection SHALL have a member "featureType" or each feature SHALL have a member "featureType."
 |===
 
 :req: geometry-dimension
@@ -55,7 +55,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 |===
 ^|*Recommendation {counter:rec-num}* |/rec/{req-class}/{rec}
 ^|A |If the JSON-FG root object is a feature collection and each feature is of the same feature type, the feature type information SHOULD be specified in the feature collection.
-^|B |If the JSON-FG root object is a feature collection and the primary geometry of each feature has the same dimension, the feature collection SHOULD contain a member "geometryDimension".
+^|B |If the JSON-FG root object is a feature collection and the primary geometry of each feature has the same dimension, the feature collection SHOULD contain a member "geometryDimension."
 |===
 
 === Feature schema
@@ -67,7 +67,7 @@ The Requirements Class "Feature Types and Schemas" adds provisions for feature t
 [width="90%",cols="2,7a"]
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
-^|A |If the JSON-FG root object is a feature or feature collection with a "featureSchema" member, all referenced schemas SHALL conform to <<OAFeat-5,OGC API - Features - Part 5: Schemas>>.
+^|A |If the JSON-FG root object is a feature or feature collection with a "featureSchema" member, all referenced schemas SHALL conform to <<ogc23-058r2,OGC API - Features - Part 5: Schemas>>.
 |===
 
 :req: single-feature-schema

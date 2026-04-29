@@ -38,7 +38,7 @@ The GeoJSON RFC specifies in Clauses 6 and 7 that additional members ("foreign m
 
 JSON-FG extends GeoJSON in two ways:
 
-* By adding new JSON members to features, feature collections and geometries;
+* By adding new JSON members to features, feature collections and geometries; and
 * By specifying additional geometries.
 
 Like GeoJSON, JSON-FG does not place constraints on the information in the "properties" member and JSON-FG readers do not have to parse the "properties" object. This approach avoids name clashes with existing feature properties in the "properties" object.
@@ -83,7 +83,7 @@ More complex cases and other temporal coordinate reference systems are out-of-sc
 Features can have temporal properties. These properties will typically be included in the "properties" member.
 
 * In many datasets all temporal properties are instants (represented by a date or a timestamp) and intervals are described using two temporal instants, one for the start and one for the end.
-* Multiple temporal properties are sometimes used to describe different temporal characteristics of a feature. For example, the time instant or interval when the information in the feature is valid (sometimes called "valid time") and the time when the feature was recorded in the dataset (sometimes called "transaction time"). Another example is the https://www.ogc.org/standards/om[Observations & Measurements Standard], where an observation has multiple temporal properties including "phenomenon time", "result time" and "valid time".
+* Multiple temporal properties are sometimes used to describe different temporal characteristics of a feature. For example, the time instant or interval when the information in the feature is valid (sometimes called "valid time") and the time when the feature was recorded in the dataset (sometimes called "transaction time"). Another example is the https://www.ogc.org/standards/om[Observations & Measurements Standard], where an observation has multiple temporal properties including "phenomenon time," "result time," and "valid time".
 
 As GeoJSON does, JSON-FG does not place constraints on the information in the "properties" member. JSON-FG specifies a new JSON member in a feature (key: "time"). The member describes temporal information (an instant or an interval) that can be used by clients without a need to inspect the "properties" member or to understand the schema of the feature. Clients that are familiar with a dataset can, of course, inspect the information in the "properties" member instead of inspecting the "time" member.
 
@@ -102,7 +102,7 @@ The "time" member is either missing or `null` (no temporal information) or an ob
 
 Providing multiple members is valid, if all values intersect. In this case, clients should use the "interval" property and may use the "date" or "timestamp" property to determine the temporal characteristics of the feature.
 
-The "time" object may be extended with additional members. Clients processing a "time" object must be prepared to parse additional members. Clients should ignore members that they do not understand. For example, in cases where the "time" member neither includes a "date", "timestamp", or "interval", a client may process the feature as a feature without temporal information.
+The "time" object may be extended with additional members. Clients processing a "time" object must be prepared to parse additional members. Clients should ignore members that they do not understand. For example, in cases where the "time" member neither includes a "date," "timestamp," or "interval," a client may process the feature as a feature without temporal information.
 
 NOTE: The data publisher decides how temporal properties inside the "properties" member are encoded. The schema for the "time" member does not imply a recommendation that temporal feature properties reuse the same schema. For example, it is expected that a date-valued feature attribute will in most cases be represented as string with an RFC 3339 date value.
 
@@ -187,7 +187,7 @@ In GeoJSON, geometry information is encoded in the "geometry" member. Geometries
 
 A key motivation for the development of the JSON-FG Standard is to support additional requirements, especially the ability to represent geometries in other CRSs and in additional geometry types.
 
-To avoid confusing existing GeoJSON readers, such geometries are provided in a new member in the feature with the key "place".
+To avoid confusing existing GeoJSON readers, such geometries are provided in a new member in the feature with the key "place."
 
 ===== Description
 
@@ -200,7 +200,7 @@ The value range of the "place" member is an extended and extensible version of t
 * Extended by additional geometries:
 ** Additional 3D geometry types <<Polyhedron>>, <<MultiPolyhedron>>, <<Prism>>, and <<MultiPrism>>;
 ** Additional geometry types supporting curves with circular arcs <<CircularString>>, <<CompoundCurve>>, <<CurvePolygon>>, <<MultiCurve>>, and <<MultiSurface>>;
-* The capability to <<ref-sys,declare the coordinate reference system of the coordinates>>;
+* The capability to <<ref-sys,declare the coordinate reference system of the coordinates>>; and
 * The capability to <<measures,add a measure coordinate to each position>>.
 
 Only the capability to declare the coordinate reference system is considered a Core capability. The other capabilities are added by additional building blocks described in subsequent sections.
@@ -230,7 +230,7 @@ NOTE: GeoJSON states that "geometry" is `null`, if the feature is "unlocated". A
 
 Without any other information, the following coordinate reference system (CRS) defaults apply to JSON-FG objects:
 
-* Geographic CRS: WGS 84 with axis order longitude, latitude and optional ellipsoidal height, either "\http://www.opengis.net/def/crs/OGC/0/CRS84" (2D) or "\http://www.opengis.net/def/crs/OGC/0/CRS84h" (3D);
+* Geographic CRS: WGS 84 with axis order longitude, latitude and optional ellipsoidal height, either "\http://www.opengis.net/def/crs/OGC/0/CRS84" (2D) or "\http://www.opengis.net/def/crs/OGC/0/CRS84h" (3D); and
 * Temporal CRS: DateTime in Gregorian calendar, "\http://www.opengis.net/def/crs/OGC/0/GregorianDateTime". 
 
 NOTE: In the GregorianDateTime temporal CRS, all granularities of ISO 8601 are valid values according to https://docs.ogc.org/as/18-005r5/18-005r5.html#109[OGC Abstract Specification Topic 2: Referencing by coordinates, section D.3]. That is, both dates and timestamps are valid values in the CRS.
@@ -256,7 +256,7 @@ Additional JSON-FG building blocks like the "place" member are not bound by the 
 A reference system can be specified in a JSON-FG object using a "coordRefSys" member in one of three ways:
 
 * As a CRS reference using the URI of a simple CRS;
-* As a CRS reference using the URI of a simple CRS accompanied by an optional epoch value (for https://docs.ogc.org/as/18-005r5/18-005r5.html#64[dynamic CRSs]);
+* As a CRS reference using the URI of a simple CRS accompanied by an optional epoch value (for https://docs.ogc.org/as/18-005r5/18-005r5.html#64[dynamic CRSs]); or
 * As an array of simple CRS references denoting an ad hoc compound CRS.
 
 [#rs-by-simple-ref,reftext='{listing-caption} {counter:listing-num}']
@@ -318,7 +318,7 @@ The order in which coordinates for JSON-FG geometries are expressed is defined i
 
 For unknown coordinate reference systems, such as with CAD engineering drawings, the following CRS identifiers can be used:
 
-* "\http://www.opengis.net/def/crs/OGC/0/Engineering2D" for 2D coordinates (x, y);
+* "\http://www.opengis.net/def/crs/OGC/0/Engineering2D" for 2D coordinates (x, y); and
 * "\http://www.opengis.net/def/crs/OGC/0/Engineering3D" for 3D coordinates (x, y, z).
 
 [[bb_3d]]
@@ -490,7 +490,7 @@ If a geometry includes measure values, each position of the geometry has to cont
 
 The presence of measure values in a geometry is indicated by a "measures" member.
 
-The value of the "measures" member is an object with the following properties:
+The value of the "measures" member is an object with the following properties.
 
 * "enabled": A Boolean value that indicates whether the geometry has measure values or not. The property is required.
 * "unit": This optional property is the unit of the measure of the measure values. This property only applies if the value of the "enabled" property is `true`. 
@@ -544,7 +544,7 @@ For a feature collection where all features in the feature collection have the s
 
 A JSON-FG feature schema is metadata about a feature that clients can use to understand the content of JSON-FG features, such as a textual description of the feature properties or their value range. 
 
-JSON-FG follows the approach of <<OAFeat-5,OGC API - Features - Part 5>>, that is, the feature schema is a logical schema. It can not be used to directly validate a JSON document. However, a schema for validation of a JSON-FG feature or feature collection can be derived from the logical schema, if needed. The schemas of the feature properties in the logical schemas can be reused when constructing a JSON Schema for validation.
+JSON-FG follows the approach of <<ogc23-058r2,OGC API - Features - Part 5>>, that is, the feature schema is a logical schema. It can not be used to directly validate a JSON document. However, a schema for validation of a JSON-FG feature or feature collection can be derived from the logical schema, if needed. The schemas of the feature properties in the logical schemas can be reused when constructing a JSON Schema for validation.
 
 This Standard provides guidance on how to include information about the feature schemas in a JSON-FG feature or feature collection.
 
@@ -599,7 +599,7 @@ A profile does not alter the semantics of the resource representation itself.  I
 The JSON-FG Standard leverages the concept of profiles to define a set of named variations of GeoJSON resources:
 
 - RFC 7946 ("rfc7946"): GeoJSON as specified in <<rfc7946,RFC 7946>>;
-- JSON-FG ("jsonfg"): JSON-FG as specified in this Standard;
+- JSON-FG ("jsonfg"): JSON-FG as specified in this Standard; and
 - JSON-FG with improved support for GeoJSON readers ("jsonfg-plus"): JSON-FG with a geometry in the "geometry" member in WGS 84 to support GeoJSON readers that do not support JSON-FG.
 
 This supports all variations using "application/geo+json" as the media type for JSON-FG documents, but still distinguish the variations. 

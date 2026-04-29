@@ -25,8 +25,8 @@ In requirements and recommendations in Clauses 8 to 13, the following terms are 
 * JSON-FG root object: Refers to the standardization target;
 * JSON-FG object: Refers to a JSON object that is either a JSON-FG root object or a JSON-FG feature collection, JSON-FG feature, or JSON-FG geometry embedded in a JSON-FG root object;
 * JSON-FG feature collection: Refers to a JSON-FG object that is a feature collection ("type" is "FeatureCollection");
-* JSON-FG feature: Refers to a JSON-FG object that is a feature ("type" is "Feature");
-* JSON-FG geometry: Refers to a JSON-FG object that is a geometry ("type" is one of "Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection", "Polyhedron", "MultiPolyhedron", "Prism", "MultiPrism", "CircularString", "CompoundCurve", "CurvePolygon", "MultiCurve", or "MultiSurface").
+* JSON-FG feature: Refers to a JSON-FG object that is a feature ("type" is "Feature"); and
+* JSON-FG geometry: Refers to a JSON-FG object that is a geometry ("type" is one of "Point," "MultiPoint," "LineString," "MultiLineString," "Polygon," "MultiPolygon," "GeometryCollection," "Polyhedron," "MultiPolyhedron," "Prism," "MultiPrism," "CircularString," "CompoundCurve," "CurvePolygon," "MultiCurve," or "MultiSurface").
 
 :req: schema-valid
 [#{req-class}_{req}]
@@ -54,7 +54,7 @@ NOTE: While every JSON-FG root object must validate against the schema, executin
 ^|C |Every other JSON-FG object SHALL NOT include a "conformsTo" member.
 ^|D |If the "place" value in any JSON-FG feature is of geometry type "Polyhedron" or "MultiPolyhedron", the "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/polyhedra"`.
 ^|E |If the "place" value in any JSON-FG feature is of geometry type "Prism" or "MultiPrism", the "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/prisms"`.
-^|F |If the "place" value in any JSON-FG feature is of geometry type "CircularString", "CompoundCurve", "CurvePolygon", "MultiCurve", or "MultiSurface", the "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/circular-arcs"`.
+^|F |If the "place" value in any JSON-FG feature is of geometry type "CircularString," "CompoundCurve," "CurvePolygon," "MultiCurve," or "MultiSurface," the "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/circular-arcs"`.
 ^|G |If any JSON-FG object includes a "measures" member, the "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/measures"`.
 ^|H |If any JSON-FG object includes a "featureType" or "featureSchema" member, the "conformsTo" member of the JSON-FG root object SHALL include the value `"http://www.opengis.net/spec/json-fg-1/{m_n}/conf/types-schemas"`.
 |===

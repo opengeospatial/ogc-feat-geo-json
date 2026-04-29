@@ -10,7 +10,7 @@ JavaScript Object Notation (JSON) is a popular encoding format for geospatial da
 
 === Scenarios
 
-The following general scenarios are useful in understanding the principles that were used in the JSON-FG design:
+The following general scenarios are useful in understanding the principles that were used in the JSON-FG design.
 
 1. In order to display features in a 3D scene, a client accesses a Web API that shares a building dataset and that implements the OGC API Features Standard. The scene uses a projected CRS, such as `EPSG:5555`. The API advertises support for GeoJSON for representing features including JSON-FG extensions as well as support for the projected CRS in addition to WGS 84.
 2. A client accesses a JSON-FG document with building data that is stored locally or as a static file in the cloud (e.g., in an Object Storage or a GitHub repository). Again, the file is accessed to display features in a 3D scene and a time slider is used to suppress features outside of a user-specified time interval.

@@ -6,7 +6,7 @@
 |===
 ^|*Requirements Class* |http://www.opengis.net/spec/{standard}/{m_n}/req/{req-class} 
 |Target type |Web APIs
-|Dependency |<<OAFeat-5,OGC API - Features - Part 5: Schemas 1.0, Requirements Class "Profile Query Parameter">>
+|Dependency |<<ogc23-058r2,OGC API - Features - Part 5: Schemas 1.0, Requirements Class "Profile Query Parameter">>
 |Indirect Dependency |<<rc_profiles>>
 |===
 
@@ -18,7 +18,7 @@ The Requirements Class "JSON-FG in Web APIs" adds provisions for requesting spec
 |===
 ^|*Requirement {counter:req-num}* |/req/{req-class}/{req}
 ^|A |The Web API SHALL support the query parameter "profile" on GET/HEAD operations that support GeoJSON as a response media type.
-^|B |The query parameter "profile" SHALL support at least the values "rfc7946" and "jsonfg".
+^|B |The query parameter "profile" SHALL support at least the values "rfc7946" and "jsonfg."
 |===
 
 :rec: profile-default

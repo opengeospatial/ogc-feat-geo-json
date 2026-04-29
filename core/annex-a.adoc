@@ -575,7 +575,7 @@ Given:
 
 When:
 
-* collect all JSON-FG geometries with "type" set to "CurvePolygon";
+* collect all JSON-FG geometries with "type" set to "CurvePolygon;"
 
 Then:
 
@@ -700,10 +700,10 @@ When:
 Then:
 
 * assert that the geometry types are consistent with the "geometryDimension" value
-** 0: no geometry is of type "LineString", "MultiLineString", "CircularString", "CompoundCurve", "MultiCurve", "Polygon", "MultiPolygon", "CurvePolygon", "MultiSurface", "Polyhedron", "MultiPolyhedron", "Prism" or "MultiPrism";
-** 1: no geometry is of type "Point", "MultiPoint", "Polygon", "MultiPolygon", "CurvePolygon", "MultiSurface", "Polyhedron", "MultiPolyhedron", "Prism" or "MultiPrism";
-** 2: no geometry is of type "Point", "MultiPoint", "LineString", "MultiLineString", "CircularString", "CompoundCurve", "MultiCurve", "Polyhedron", "MultiPolyhedron", "Prism" or "MultiPrism"
-** 3: no geometry is of type "Point", "MultiPoint", "LineString", "MultiLineString", "CircularString", "CompoundCurve", "MultiCurve", "Polygon", "MultiPolygon", "CurvePolygon", or "MultiSurface".
+** 0: no geometry is of type "LineString", "MultiLineString", "CircularString", "CompoundCurve", "MultiCurve", "Polygon", "MultiPolygon", "CurvePolygon", "MultiSurface", "Polyhedron", "MultiPolyhedron", "Prism" or "MultiPrism;"
+** 1: no geometry is of type "Point", "MultiPoint", "Polygon", "MultiPolygon", "CurvePolygon", "MultiSurface", "Polyhedron", "MultiPolyhedron", "Prism" or "MultiPrism;"
+** 2: no geometry is of type "Point", "MultiPoint", "LineString", "MultiLineString", "CircularString", "CompoundCurve", "MultiCurve", "Polyhedron", "MultiPolyhedron", "Prism" or "MultiPrism;"
+** 3: no geometry is of type "Point", "MultiPoint", "LineString", "MultiLineString", "CircularString", "CompoundCurve", "MultiCurve", "Polygon", "MultiPolygon", "CurvePolygon", or "MultiSurface."
 |===
 
 
@@ -728,10 +728,10 @@ When:
 
 Then:
 
-* assert that all referenced schemas conform to <<OAFeat-5,OGC API - Features - Part 5: Schemas>>, requirements class "Schemas".
+* assert that all referenced schemas conform to <<ogc23-058r2,OGC API - Features - Part 5: Schemas>>, requirements class "Schemas."
 |===
 
-NOTE: This test requires that a test suite for <<OAFeat-5,OGC API - Features - Part 5: Schemas>> is available.
+NOTE: This test requires that a test suite for <<ogc23-058r2,OGC API - Features - Part 5: Schemas>> is available.
 
 :conf-test: single-feature-schema
 [#conf_{conf-class}_{conf-test}]
@@ -785,8 +785,8 @@ Given:
 
 Then:
 
-* assert that the GeoJSON document is a GeoJSON feature, feature collection or geometry that conforms to <<rfc7946,RFC 7946 (The GeoJSON Format)>>.
-* assert that the GeoJSON document does not include a JSON-FG conformance class URI in a "conformsTo" member of the root object, if one is provided.
+* assert that the GeoJSON document is a GeoJSON feature, feature collection or geometry that conforms to <<rfc7946,RFC 7946 (The GeoJSON Format)>>;
+* assert that the GeoJSON document does not include a JSON-FG conformance class URI in a "conformsTo" member of the root object, if one is provided;
 * assert that no GeoJSON feature includes a "place" member.
 |===
 

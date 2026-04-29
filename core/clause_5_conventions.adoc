@@ -1,6 +1,7 @@
 == Conventions
 
 === Identifiers
+
 The normative provisions in this Standard are denoted by the URI:
 
 `\http://www.opengis.net/spec/{standard}/{m_n}`
@@ -12,7 +13,7 @@ All requirements and conformance tests that appear in this document are denoted 
 The following terms are used as specified in <<rfc8259,JSON>>. In particular: 
 
 - "member" refers to a name/value pair of an object; 
-- "key" refers to the name of a member;
+- "key" refers to the name of a member; and
 - "value" refers to the value of a member, which may be an object, array, string, number, boolean, or `null`.
 
 For example, the GeoJSON "geometry" member has the key "geometry" and one of the GeoJSON geometries (or `null`) as its value.
