@@ -6,9 +6,11 @@ OGC Features and Geometries JSON (JSON-FG) builds on the widely used [GeoJSON st
 
 ## Status
 
-The current draft is available at [docs.ogc.org/DRAFTS/21-045r1.html](https://docs.ogc.org/DRAFTS/21-045r1.html)
+The standard is available on the OGC website:
 
-The document has been approved as an OGC Standard and will be published at the end of April 2026.
+* OGC Features and Geometries JSON - Part 1: Core (JSON-FG)
+  * [Version 1.0.0 (approved version)](https://docs.ogc.org/is/21-045r1/21-045r1.html)
+  * [Editor's draft](https://docs.ogc.org/DRAFTS/21-045r1.html)
 
 Please submit any feedback [as an issue in this repository](https://github.com/opengeospatial/ogc-feat-geo-json/issues).
 
@@ -126,7 +128,7 @@ Examples of OGC Web APIs providing features in JSON-FG:
 Work on the specification takes place in [GitHub issues](https://github.com/opengeospatial/ogc-feat-geo-json/issues),
 so browse there to get a good idea of what is happening, as well as past decisions.
 
-Recordings of meetings can be found on the [OGC portal](https://portal.ogc.org/index.php?m=projects&a=view&project_id=660&tab=2&artifact_id=97658) (access for members of the OGC and the OGC Features and Geometries JSON Standards Working Group).
+If you are on OGC Agora, here is the link to the [OGC Features and Geometries JSON SWG](https://agora.ogc.org/c/overview-716747/).
 
 ## Contributing
 
