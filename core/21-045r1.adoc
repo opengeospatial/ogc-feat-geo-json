@@ -20,12 +20,12 @@
 |[big]*Open Geospatial Consortium*
 |Submission Date: 2025-06-02
 |Approval Date:   2025-08-25
-|Publication Date:   <yyyy-mm-dd>
+|Publication Date:   2026-04-30
 |External identifier of this OGC(R) document: http://www.opengis.net/doc/IS/{standard}/{m_n}
 |Internal reference number of this OGC(R) document:    21-045r1
 |Version: {m_n_o}
 |Category: OGC(R) Implementation Standard
-|Editor:   Clemens Portele, Panagiotis (Peter) A. Vretanos
+|Editor:  Clemens Portele, Panagiotis (Peter) A. Vretanos
 |===
 
 [cols = "^", frame = "none"]
