@@ -13,7 +13,7 @@
 
 [[json-schema-validation]] **JSON Schema Validation: A Vocabulary for Structural Validation of JSON**. Edited by A. Wright, H. Andrews, B. Hutton. 2022. Available at https://json-schema.org/draft/2020-12/json-schema-validation
 
-[[ogc18_005r4]] Open Geospatial Consortium (OGC). OGC 18-005r4: **OGC Abstract Specification Topic 2: Referencing by coordinates**. Edited by R. Lott. 2019. Available at https://docs.ogc.org/as/18-005r4/18-005r4.html 
+[[ogc18_005r8]] Open Geospatial Consortium (OGC). OGC 18-005r8: **OGC Abstract Specification Topic 2: Referencing by coordinates**. Edited by R. Lott. 2023. Available at https://docs.ogc.org/as/18-005r8/18-005r8.pdf 
 
 [[ogc20_070]] Open Geospatial Consortium (OGC). OGC 20-070: **Geographic information - Features and geometry — Part 2: Metrics**. Edited by J. Herring. 2019. Available at https://portal.ogc.org/files/?artifact_id=94178 (access requires OGC membership)
 

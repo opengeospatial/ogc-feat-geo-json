@@ -119,7 +119,7 @@ In the case of a timestamp the granularity is a second or smaller. All timestamp
 
 In the case of a date the granularity is a day. Dates as instants will be used when a granularity of a day independent of its timezone is sufficient for the intended use of the data. If that is not the case and the timezone is important for the intended use, the temporal information should be provided as an interval with start and end timestamps.
 
-NOTE: The JSON-FG Standard only provides guidance as to how to represent feature data in JSON. Providing guidance as to how to cast JSON-FG data to other data types is out of scope. The https://docs.ogc.org/is/21-065r1/21-065r1.html[OGC Common Query Language (CQL2)] Standard uses the same model of instants and intervals as JSON-FG and includes additional guidance how to compare values.
+NOTE: The JSON-FG Standard only provides guidance as to how to represent feature data in JSON. Providing guidance as to how to cast JSON-FG data to other data types is out of scope. The https://docs.ogc.org/is/21-065r2/21-065r2.html[OGC Common Query Language (CQL2)] Standard uses the same model of instants and intervals as JSON-FG and includes additional guidance how to compare values.
 
 [#ex-time-1,reftext='{listing-caption} {counter:listing-num}']
 .A date
@@ -233,7 +233,7 @@ Without any other information, the following coordinate reference system (CRS) d
 * Geographic CRS: WGS 84 with axis order longitude, latitude and optional ellipsoidal height, either "\http://www.opengis.net/def/crs/OGC/0/CRS84" (2D) or "\http://www.opengis.net/def/crs/OGC/0/CRS84h" (3D); and
 * Temporal CRS: DateTime in Gregorian calendar, "\http://www.opengis.net/def/crs/OGC/0/GregorianDateTime". 
 
-NOTE: In the GregorianDateTime temporal CRS, all granularities of ISO 8601 are valid values according to https://docs.ogc.org/as/18-005r5/18-005r5.html#109[OGC Abstract Specification Topic 2: Referencing by coordinates, section D.3]. That is, both dates and timestamps are valid values in the CRS.
+NOTE: In the GregorianDateTime temporal CRS, all granularities of ISO 8601 are valid values according to https://docs.ogc.org/as/18-005r8/18-005r8.pdf[OGC Abstract Specification Topic 2: Referencing by coordinates, section D.3]. That is, both dates and timestamps are valid values in the CRS.
 
 In the JSON-FG Standard, a new key "coordRefSys" is defined and can be used to assert the CRS of a JSON-FG geometry at the feature collection, feature, or geometry levels.
 
@@ -256,7 +256,7 @@ Additional JSON-FG building blocks like the "place" member are not bound by the 
 A reference system can be specified in a JSON-FG object using a "coordRefSys" member in one of three ways:
 
 * As a CRS reference using the URI of a simple CRS;
-* As a CRS reference using the URI of a simple CRS accompanied by an optional epoch value (for https://docs.ogc.org/as/18-005r5/18-005r5.html#64[dynamic CRSs]); or
+* As a CRS reference using the URI of a simple CRS accompanied by an optional epoch value (for https://docs.ogc.org/as/18-005r8/18-005r8.pdf[dynamic CRSs]); or
 * As an array of simple CRS references denoting an ad hoc compound CRS.
 
 [#rs-by-simple-ref,reftext='{listing-caption} {counter:listing-num}']
